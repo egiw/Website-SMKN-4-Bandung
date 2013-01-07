@@ -1,0 +1,32 @@
+
+<?php $this->headScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/Tag-Handler/js/jquery.taghandler.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<form action="" method="post" enctype="multipart/form-data">
+  <?php echo $this->form->title; ?>
+  <div class="row-fluid">
+    <div class="span8">
+      <?php echo $this->form->content; ?>
+
+    </div>
+    <div class="span4">
+      <div class="control-group well">
+        <label for="">Tag</label>
+        <div class="controls">
+          <?php echo $this->form->tags; ?>
+          <ul class="tags" style="background-color: #fff"></ul>
+          <span class="text text-info">Ketikan nama tag. Tekan Enter untuk menambahkan.</span>
+        </div>
+      </div>
+      <div class="control-group well">
+        <div class="controls">
+          <?php echo $this->form->submit; ?>
+          <?php echo $this->form->draft; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>
