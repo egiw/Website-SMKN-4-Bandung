@@ -11,7 +11,7 @@ class Admin_View_Helper_Tags extends Zend_View_Helper_Abstract
           'module' => 'default',
           'controller' => 'article',
           'tag' => $tag));
-      $links[] = "<a href='{$url}' target='_blank'>{$tag}</a>";
+      $links[] = "<small><a href='{$url}' target='_blank'>{$tag}</a></small>";
     }
     return implode(', ', $links);
   }

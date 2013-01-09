@@ -1,4 +1,5 @@
-body, td, pre {color:#000; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px; margin:8px;}
+/*body, td, pre {color:#000; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:.85em; margin:8px;}*/
+body, td, pre {color:#000; font-family:Georgia, "Times New Roman", serif; font-size:.85em; margin:8px;}
 body {background:#FFF;}
 body.mceForceColors {background:#FFF; color:#000;}
 body.mceBrowserDefaults {background:transparent; color:inherit; font-size:inherit; font-family:inherit;}
@@ -23,14 +24,14 @@ abbr {border-bottom:1px dashed #CCC; cursor:help}
 
 /* IE */
 * html body {
-scrollbar-3dlight-color:#F0F0EE;
-scrollbar-arrow-color:#676662;
-scrollbar-base-color:#F0F0EE;
-scrollbar-darkshadow-color:#DDD;
-scrollbar-face-color:#E0E0DD;
-scrollbar-highlight-color:#F0F0EE;
-scrollbar-shadow-color:#F0F0EE;
-scrollbar-track-color:#F5F5F5;
+  scrollbar-3dlight-color:#F0F0EE;
+  scrollbar-arrow-color:#676662;
+  scrollbar-base-color:#F0F0EE;
+  scrollbar-darkshadow-color:#DDD;
+  scrollbar-face-color:#E0E0DD;
+  scrollbar-highlight-color:#F0F0EE;
+  scrollbar-shadow-color:#F0F0EE;
+  scrollbar-track-color:#F5F5F5;
 }
 
 img:-moz-broken {-moz-force-broken-image-icon:1; width:24px; height:24px}
@@ -48,3 +49,8 @@ font[face=mceinline] {font-family:inherit !important}
 .mceItemEmbeddedAudio {background-image:url(../../img/video.gif)}
 .mceItemIframe {background-image:url(../../img/iframe.gif)}
 .mcePageBreak {display:block;border:0;width:100%;height:12px;border-top:1px dotted #ccc;margin-top:15px;background:#fff url(../../img/pagebreak.gif) no-repeat center top;}
+
+/*Editor*/
+img[style*="left"] {
+  margin-right: 6px;
+}

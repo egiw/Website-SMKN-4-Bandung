@@ -1,6 +1,6 @@
 <?php
 
-class Admin_ArticleControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
+class Admin_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
 
     public function setUp()
@@ -11,16 +11,41 @@ class Admin_ArticleControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
+        $params = array('action' => 'index', 'controller' => 'News', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
     }
 
     public function testCreateAction()
     {
-      
+        $params = array('action' => 'create', 'controller' => 'News', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
     }
 
     public function testEditAction()
     {
-        $params = array('action' => 'edit', 'controller' => 'Article', 'module' => 'admin');
+        $params = array('action' => 'edit', 'controller' => 'News', 'module' => 'admin');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -37,7 +62,7 @@ class Admin_ArticleControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testDeleteAction()
     {
-        $params = array('action' => 'delete', 'controller' => 'Article', 'module' => 'admin');
+        $params = array('action' => 'delete', 'controller' => 'News', 'module' => 'admin');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -54,7 +79,7 @@ class Admin_ArticleControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testRestoreAction()
     {
-        $params = array('action' => 'restore', 'controller' => 'Article', 'module' => 'admin');
+        $params = array('action' => 'restore', 'controller' => 'News', 'module' => 'admin');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);

@@ -42,6 +42,19 @@
 
     <link rel="shortcut icon" href="/img/favico.png" />
 
+    <style type="text/css">
+      form select, select {
+        margin-bottom: 0;
+      }
+      
+      .table thead th {
+        vertical-align: middle;
+      }
+      .table thead input {
+        margin-bottom: 0;
+      }
+    </style>
+
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/ie.css" />
         <script src="js/ie/html5.js"></script>
@@ -171,7 +184,8 @@
                       <div class="accordion-inner">
                         <ul class="nav nav-list">
                           <li><a href="<?php echo $this->url(['controller' => 'article', 'action' => 'index']); ?>">Artikel</a></li>
-                          <li><a href="">Berita</a></li>
+                          <li><a href="<?php echo $this->url(['controller' => 'news', 'action' => 'index']); ?>">Berita</a></li>
+                          <li><a href="<?php echo $this->url(['controller' => 'event', 'action' => 'index']); ?>">Kegiatan</a></li>
                           <li><a href="javascript:void(0)">Mading</a></li>
                           <li><a href="javascript:void(0)">Komentar</a></li>
                         </ul>

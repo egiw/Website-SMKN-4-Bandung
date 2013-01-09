@@ -42,8 +42,8 @@ class Admin_Form_Article extends Zend_Form
 
 
     $this->title->setRequired(true)
-            ->setLabel('Judul')
-            ->setAttrib('class', 'span6')
+            ->setAttrib('class', 'span8  title')
+            ->setAttrib('placeholder', 'Tulis judul artikel')
             ->setErrorMessages(array(
                 'isEmpty' => 'Judul tidak boleh kosong'));
 
@@ -55,7 +55,7 @@ class Admin_Form_Article extends Zend_Form
     $this->draft->setAttribs(array(
         'class' => 'btn'))->setLabel('Simpan Sebagai Draft');
     $this->submit->setAttribs(array(
-        'class' => 'btn btn-success'))->setLabel('Terbitkan');
+        'class' => 'btn btn-gebo'))->setLabel('Posting');
 
     $this->addElements(array(
         $this->tags,

@@ -1,0 +1,37 @@
+<?php $this->headLink()->appendStylesheet($this->baseUrl('lib/datepicker/datepicker.css')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/datepicker/bootstrap-datepicker.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+
+<?php
+$this->headScript()->appendScript(
+        <<<SCRIPT
+ $(function(){
+   SITi_tinyMCE.init();
+   SITi_datepicker.init();
+ });
+SCRIPT
+);
+?>
+
+<form action="" method="post">
+  <?php echo $this->form->title; ?>
+  <?php echo $this->form->location; ?>
+  <div class="row-fluid">
+    <div class="span8">
+      <?php echo $this->form->info; ?>
+    </div>
+    <div class="span4">
+      <div class="well">
+        <p class="f_legend">Waktu Kegiatan</p>
+        <?php echo $this->form->from_date; ?>
+        <?php echo $this->form->until_date; ?>
+      </div>
+      <div class="well">
+        <?php echo $this->form->submit; ?>
+        <?php echo $this->form->draft; ?>
+      </div>
+    </div>
+  </div>
+
+</form>

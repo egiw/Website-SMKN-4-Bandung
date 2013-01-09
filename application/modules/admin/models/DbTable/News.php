@@ -1,28 +1,23 @@
 <?php
 
-class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
+class Admin_Model_DbTable_News extends Zend_Db_Table_Abstract
 {
-  protected $_name = 'article';
+  protected $_name = 'news';
 
-  public function findAll($user = null, $filter = NULL)
+  public function findAll($username = null, $filter = null)
   {
-    $select = $this->select()->setIntegrityCheck(false)
-            ->from($this->_name);
-
-    if (null !== $user) {
-      $select->where("{$this->_name}.created_by = ?", $user);
-    }
+    $select = $this->select()->from($this->_name);
 
     if (Admin_Model_Status::ARCHIVED != $filter['status']) {
       $select->where("{$this->_name}.status != ?", Admin_Model_Status::ARCHIVED);
     }
 
+    if (null != $username) {
+      $select->where("{$this->_name}.created_by = ?", $username);
+    }
     if (null !== $filter) {
-      if (null != $filter ['title']) {
+      if (null != $filter['title']) {
         $select->where("{$this->_name}.title like ?", "%{$filter['title']}%");
-      }
-      if (null != $filter['tag']) {
-        $select->where("{$this->_name}.tags like ?", "%{$filter['tag']}%");
       }
       if (null != $filter['status']) {
         $select->where("{$this->_name}.status = ?", $filter['status']);
