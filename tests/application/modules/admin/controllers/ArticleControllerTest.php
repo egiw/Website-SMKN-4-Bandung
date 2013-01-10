@@ -1,0 +1,84 @@
+<?php
+
+class Admin_ArticleControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
+{
+
+    public function setUp()
+    {
+        $this->bootstrap = new Zend_Application(APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini');
+        parent::setUp();
+    }
+
+    public function testIndexAction()
+    {
+    }
+
+    public function testCreateAction()
+    {
+      
+    }
+
+    public function testEditAction()
+    {
+        $params = array('action' => 'edit', 'controller' => 'Article', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
+    public function testDeleteAction()
+    {
+        $params = array('action' => 'delete', 'controller' => 'Article', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
+    public function testRestoreAction()
+    {
+        $params = array('action' => 'restore', 'controller' => 'Article', 'module' => 'admin');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
