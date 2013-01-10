@@ -1,3 +1,4 @@
+
 <?php
 
 class Admin_UserController extends Zend_Controller_Action
@@ -19,7 +20,7 @@ class Admin_UserController extends Zend_Controller_Action
   public function indexAction()
   {
     // action body
-    
+
     $this->view->messages = $this->_helper->flashMessenger->getMessages();
   }
 
@@ -45,7 +46,16 @@ class Admin_UserController extends Zend_Controller_Action
           $auth->getStorage()->write($user);
           $this->_helper->redirector('index', 'index');
         } else {
-          $this->view->messages[] = 'error|Nama User atau Kata Sandi salah.';
+          switch ($result->getCode()) {
+            case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
+              $this->view->messages[] = 'error|Nama User tidak ditemukan.';
+              break;
+            case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
+              $this->view->messages[] = 'error|Kata Sandi salah.';
+              break;
+            default:
+              break;
+          }
         }
       } else {
         $this->view->messages[] = 'error|Harap isikan semua field.';
