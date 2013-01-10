@@ -102,15 +102,15 @@
               </td>
               <td>
                 <?php if (Admin_Model_Status::ARCHIVED === $news->status): ?>
-                  <a href="<?php echo $this->url(['action' => 'restore', 'id' => $news->id]); ?>"
+                  <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $news->id)); ?>"
                      title="Kembalikan">
                     <i class="icon-refresh"></i>
                   </a>
                 <?php endif; ?>
-                <a href="<?php echo $this->url(['action' => 'edit', 'id' => $news->id]); ?>"
+                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $news->id)); ?>"
                    title="Sunting">
                   <i class="icon-edit"></i></a>
-                <a href="<?php echo $this->url(['action' => 'delete', 'id' => $news->id]); ?>"
+                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $news->id)); ?>"
                    onclick="return confirm('Apakah anda yakin ingin menghapus berita ini?')">
                   <i class="icon-trash"></i></a>
               </td>

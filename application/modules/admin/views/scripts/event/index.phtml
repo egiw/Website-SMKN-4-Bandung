@@ -19,7 +19,7 @@ SCRIPT
     <div class="pull-left">
       <h3 style="display: inline">Kegiatan</h3>
       <a class="btn btn-link label label-success"
-         href="<?php echo $this->url(['action' => 'create']); ?>">
+         href="<?php echo $this->url(array('action' => 'create')); ?>">
         Posting Kegiatan
       </a>
     </div>
@@ -148,11 +148,11 @@ SCRIPT
                 <span class="badge badge-info"><?php echo $event->views; ?></span>
               </td>
               <td>
-                <a href="<?php echo $this->url(['action' => 'edit', 'id' => $event->id]); ?>"
+                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $event->id)); ?>"
                    title="Sunting">
                   <i class="icon-edit"></i>
                 </a>
-                <a href="<?php echo $this->url(['action' => 'delete', 'id' => $event->id]); ?>"
+                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $event->id)); ?>"
                    title="Hapus"
                    onclick="return confirm('Apakan anda yakin ingin menghapus kegiatan ini?')">
                   <i class="icon-trash"></i>

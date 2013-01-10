@@ -5,7 +5,7 @@
   <div class="row-fluid" style="margin-bottom: 20px">
     <div class="pull-left">
       <h3 style="display: inline">Artikel</h3>
-      <a href="<?php echo $this->url(['action' => 'create']); ?>"
+      <a href="<?php echo $this->url(array('action' => 'create')); ?>"
          class="btn btn-link label label-success">
         Posting Artikel
       </a>
@@ -120,15 +120,15 @@
               <td><span class="badge badge-info"><?php echo $article->views; ?></span></td>
               <td>
                 <?php if (Admin_Model_Status::ARCHIVED === $article->status): ?>
-                  <a href="<?php echo $this->url(['action' => 'restore', 'id' => $article->id]); ?>"
+                  <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $article->id)); ?>"
                      title="Kembalikan">
                     <i class="icon-refresh"></i>
                   </a>
                 <?php endif; ?>
-                <a href="<?php echo $this->url(['action' => 'edit', 'id' => $article->id]); ?>">
+                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id)); ?>">
                   <i class="icon-edit"></i>
                 </a>
-                <a href="<?php echo $this->url(['action' => 'delete', 'id' => $article->id]); ?>"
+                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $article->id)); ?>"
                    onclick="if(!confirm('Apakah anda yakin ingin menghapus artikel'+
                          ' ini?.')) return false">
                   <i class="icon-trash"></i>
