@@ -74,7 +74,7 @@
         <div class="navbar navbar-fixed-top">
           <div class="navbar-inner">
             <div class="container-fluid">
-              <a class="brand" href="<?php echo $this->url(['controller' => 'index', 'action' => 'index']); ?>">
+              <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index')); ?>">
                 <!--<i class="icon-home icon-white"></i>--> 
                 <img src="/img/favico.png" width="32" alt="" />
                 SMKN 4 Bandung
@@ -92,23 +92,23 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                      <a href="<?php echo $this->url(['module' => 'default', 'controller' => 'index', 'action' => 'index']); ?>">
+                      <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index')); ?>">
                         <i class="icon-home"></i> Ke halaman depan
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo $this->url(['controller' => 'user', 'action' => 'index']); ?>">
+                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">
                         <i class="icon-user"></i> Profil                      
                       </a>
                     </li>
                     <li>
-                      <a href="<?php echo $this->url(['controller' => 'user', 'action' => 'setting']); ?>">
+                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'setting')); ?>">
                         <i class="icon-cog"></i> Sunting Akun
                       </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                      <a href="<?php echo $this->url(['controller' => 'user', 'action' => 'logout']); ?>">
+                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">
                         <i class="icon-off"></i> Keluar
                       </a>
                     </li>
@@ -183,10 +183,10 @@
                     <div class="accordion-body collapse in" id="collapseOne">
                       <div class="accordion-inner">
                         <ul class="nav nav-list">
-                          <li><a href="<?php echo $this->url(['controller' => 'article', 'action' => 'index']); ?>">Artikel</a></li>
-                          <li><a href="<?php echo $this->url(['controller' => 'news', 'action' => 'index']); ?>">Berita</a></li>
-                          <li><a href="<?php echo $this->url(['controller' => 'event', 'action' => 'index']); ?>">Kegiatan</a></li>
-                          <li><a href="<?php echo $this->url(['controller' => 'polling', 'action' => 'index']); ?>">Jajak Pendapat</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'index')); ?>">Artikel</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'news', 'action' => 'index')); ?>">Berita</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'event', 'action' => 'index')); ?>">Kegiatan</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'polling', 'action' => 'index')); ?>">Jajak Pendapat</a></li>
                           <li><a href="javascript:void(0)">Mading</a></li>
                           <li><a href="javascript:void(0)">Komentar</a></li>
                         </ul>
