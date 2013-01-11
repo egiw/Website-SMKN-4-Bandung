@@ -1,0 +1,28 @@
+<?php $this->headScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/Tag-Handler/js/jquery.taghandler.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<?php
+$this->headScript()->appendScript('
+  SITi_tinyMCE.init();
+  SITi_tag_handler.init();');
+?>
+<div class="row-fluid">
+  <h3>Posting Lowongan Pekerjaan</h3>
+</div>
+<div class="row-fluid">
+  <form action="" method="post">
+    <?php echo $this->form->title; ?>
+    <div class="row-fluid">
+      <div class="span8">
+        <?php echo $this->form->info; ?>
+        <?php echo $this->form->tags; ?>
+        <ul class="tags" style="background-color: #fff"></ul>
+        <span class="text text-info">Ketikan nama tag. Tekan Enter untuk menambahkan.</div>
+      </span>
+    </div>
+    <div class="row-fluid">
+      <?php echo $this->form->submit; ?>
+    </div>
+  </form>
+</div>
