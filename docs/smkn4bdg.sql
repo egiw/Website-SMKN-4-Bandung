@@ -82,6 +82,43 @@ INSERT INTO `event` VALUES (23,'Jalan santai dan Car Free Day','2013-01-08 23:23
 UNLOCK TABLES;
 
 --
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `company` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `info` text COLLATE utf8_unicode_ci NOT NULL,
+  `tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_by` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `updated_by` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `created_by` (`created_by`),
+  KEY `updated_by` (`updated_by`),
+  CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`username`),
+  CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` VALUES (2,'Web DeveloperEdited','PT. Sangkuriang Internasional Edited','asdf_1357978057.jpg','http://www.sangkuriang.co.ids','<p>Edoted</p>','MYSQL,PHP,Web Developer','egisolehhasdi','2013-01-12 08:33:16','egisolehhasdi','2013-01-12 09:09:29'),(3,'Web Developer','PT. Sangkuriang Internasional','sangkuriang_1357976282.jpg','http://www.sangkuriang.co.id','<div id=\"row1-career\" style=\"font-family: pt_sansregular, arial, tahoma; font-size: 14.666666984558105px; background-color: #4d4039; margin: 0px auto; padding: 0px; border-width: 1px 0px 0px; border-top-style: solid; border-top-color: #5e4e46; font: inherit; vertical-align: baseline; width: 960px; height: auto; color: #404040; line-height: 21px;\">\r\n<div id=\"career-content-1\" style=\"margin: 0px; padding: 70px 8.5em 0px; border: 0px; font: inherit; vertical-align: baseline; color: #ffffff; line-height: 1.2em; text-shadow: #2e2826 0px 1px;\"><span class=\"position-text\" style=\"margin: 0px; padding: 0px; border: 0px; font-size: 20px; font: inherit; vertical-align: baseline; font-weight: bold;\">Position Name : Web Developer</span><br /><br /><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Vacant for 7 people</span><br /><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">The jobs to be performed are:</span><br /><br />\r\n<ul class=\"career-details\" style=\"margin: 0px 0px 0px 2.5em; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline; list-style-image: url(\'http://sangkuriang.co.id/wp-content/themes/holding/images/about-us-ul.png\'); list-style-position: initial; letter-spacing: 0.7px;\">\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Develop web application.</li>\r\n</ul>\r\n<span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Requirements</span><br /><br />\r\n<ul class=\"career-details\" style=\"margin: 0px 0px 0px 2.5em; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline; list-style-image: url(\'http://sangkuriang.co.id/wp-content/themes/holding/images/about-us-ul.png\'); list-style-position: initial; letter-spacing: 0.7px;\">\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Excellent knowledge of PHP5, MySQL, Javascript.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with MySQL relational database.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with Object Oriented Concepts.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with the MVC framework, preferably the Zend Framework.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with javascript framework, preferably jQuery.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with subversion (svn or Git).</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with HTML 5 , CSS3 is a bonus.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Familiar with Unix environment is a bonus.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">High Flexibility and meet Deadlines.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Minimum of 3 years experience for senior position.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Minimum of 1 years experience for intermediate position.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Fresh graduate is welcome for junior position.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Work Location: Bandung (Ready to be placed outside the city).</li>\r\n</ul>\r\n<br /><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Soft Skills</span><br /><br />\r\n<ul class=\"career-details\" style=\"margin: 0px 0px 0px 2.5em; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline; list-style-image: url(\'http://sangkuriang.co.id/wp-content/themes/holding/images/about-us-ul.png\'); list-style-position: initial; letter-spacing: 0.7px;\">\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">High Analytical skills.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Hard Worker.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Able to work overtime.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Open-minded personality.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Able to communicate clearly.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Friendly and Easy going.</li>\r\n<li style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Able to adapt to our work Environment.</li>\r\n</ul>\r\n</div>\r\n</div>\r\n<div id=\"row2-career\" style=\"font-size: 14.666666984558105px; background-color: #4d4039; margin: 0px; padding: 0px; border: 0px; font: inherit; vertical-align: baseline; color: #404040; font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; line-height: 21px;\">\r\n<div id=\"career-footer\" style=\"margin: 0px; padding: 50px 0px 0px 8.5em; border: 0px; font: inherit; vertical-align: baseline; font-family: pt_sansregular, arial, tahoma; color: #ffffff; line-height: 1.2em; text-shadow: #2e2826 0px 1px; width: 960px;\"><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">If you are interested, please send your CV and portfolio to:&nbsp;<a style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline; text-decoration: initial; color: #b66f48; text-shadow: #0e0e0e 0px 1px;\" href=\"mailto:hr@sangkuriang.co.id\">hr@sangkuriang.co.id</a></span><br /><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">Be sure to include the position and your contact number</span><br /><span style=\"margin: 0px; padding: 0px; border: 0px; font-size: 14.666666984558105px; font: inherit; vertical-align: baseline;\">We are looking forward to see you.</span></div>\r\n</div>','Web Developer,PHP,MYSQL,Zend Framework','egisolehhasdi','2013-01-12 08:38:02',NULL,NULL);
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `news`
 --
 
@@ -123,7 +160,7 @@ CREATE TABLE `poll_answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `poll_id` int(11) DEFAULT NULL,
   `answer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `total` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `poll_id` (`poll_id`),
   CONSTRAINT `poll_answer_ibfk_1` FOREIGN KEY (`poll_id`) REFERENCES `poll_question` (`id`) ON DELETE CASCADE
@@ -183,7 +220,7 @@ CREATE TABLE `tag` (
 
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-INSERT INTO `tag` VALUES ('Dolor',2),('Ipsum',2),('Jumps Over',1),('Lorem Ipsum DOlor',2),('Pemrogramman',2),('Sit Amet',1),('The Quick Brown Fox',2);
+INSERT INTO `tag` VALUES ('Dolor',2),('Ipsum',2),('Jumps Over',1),('Lorem Ipsum DOlor',2),('MYSQL',1),('Pemrogramman',2),('PHP',1),('Sit Amet',1),('The Quick Brown Fox',2),('Web Developer',1),('Zend Framework',1);
 /*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-10  8:59:52
+-- Dump completed on 2013-01-12 19:16:54

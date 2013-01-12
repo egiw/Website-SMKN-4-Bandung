@@ -714,8 +714,9 @@ body {font-size:13px;line-height:18px;font-family: sans-serif}
 h1, h2, h3, h4, h5, h6 {margin:0}
 h3 {line-height:27px;font-size:18px}
 label, input, button, select, textarea,
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
-.btn {font-size:13px}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{font-size:16px}
+.btn {font-size: 14px}
 .navbar .nav > li > a {text-shadow:none;padding:9px 10px 11px}
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {background:none;color:#fff}
 .navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret,
@@ -837,4 +838,26 @@ input.title {
   .sidebar_hidden .sidebar_switch {margin-left:-832px;left:50%}
   .sidebar_right .sidebar {right:50%;margin-left:0;margin-right:-840px}
   .sidebar_right .sidebar_switch {left:auto;right:50%;margin-left:0;margin-right:-836px}
+}
+
+
+div.tagHandler {
+  display: inline-block;
+  width: 96%;
+}
+
+ul.tags.tagHandlerContainer {
+  margin: 0;
+  position: relative;
+  margin-bottom: 0;
+  min-height: 0;
+  height: 28px;
+  vertical-align: top;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+input.tagInputField.ui-autocomplete-input {
+  margin-top: 0;
 }

@@ -1,76 +1,9 @@
 <div class="row-fluid">
-  <h3>Buat Jajak Pendapat</h3>
+  <h3>Tambah Polling</h3>
+  <h5>Isi Dengan Pertanyaan Dan Minimal 2 Jawaban</h5>
 </div>
 <div class="row-fluid">
-  <form action="" method="post">
-    <?php echo $this->form->question; ?>
-    <div class="control-group">
-      <div class="controls">
-        <div class="input-append">
-          <input type="text" placeholder="Tuliskan Jawaban disini" 
-                 class="span4" style="font-size: 16px" id="answer"/>
-          <div class="add-on title">
-            <a href="javascript:void(0)" onclick="addAnswer($('#answer').val())">
-              <i class="icon-plus"></i></a>
-          </div>
-        </div>
-        <span class="text text-info">Minimal 2 jawaban.</span>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span6">
-        <div class="well" style="height: 250px;overflow-y: auto">
-          <p class="f_legend">Jawaban</p>
-          <?php echo $this->form->answers; ?>
-
-          <ul id="answer-list" class="unstyled">
-
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <?php echo $this->form->submit; ?>
-      <?php echo $this->form->save; ?>
-    </div>
-  </form>
+  <?php echo $this->form; ?>
 </div>
 
-<script type="text/javascript">
-  $("#answer").keypress(function(event){
-    if(event.keyCode == 13) {
-      var answer  = $(this).val();
-      addAnswer(answer);
-      updatePoll();
-      return false;
-    }
-  });
-  
-  function addAnswer(answer) {
-    if('' !== answer) {
-      var list = "<li data-answer='"+answer+"'>"
-      list += "<div class='alert alert-info'>"
-      list += "<a href='javascript:void(0)' class='close' onclick='removePoll($(this));'>&times;</a>"
-      list += "<strong>"+answer+"</strong>"
-      list += "</div>"
-      list += "</li>";
-      
-      $("#answer-list").prepend(list);
-      $("#answer").val(null);
-    }else {
-      alert('Tuliskan jawaban.');
-    }
-  }
-  
-  function removePoll(obj) {
-    $(obj).parents('li').remove();
-    updatePoll();
-    return false;
-  }
-  
-  function updatePoll() {
-    var answers = [];
-    $("#answer-list li").each(function(){answers.push($(this).data('answer'));});
-    $("#answers").val(answers);
-  }
-</script>
+
