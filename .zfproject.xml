@@ -77,6 +77,8 @@
             <controllerFile controllerName="Jobs">
               <actionMethod actionName="index"/>
               <actionMethod actionName="create"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="delete"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
@@ -200,6 +202,12 @@
               <viewControllerScriptsDirectory forControllerName="Jobs">
                 <viewScriptFile forActionName="create"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Jobs">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Jobs">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -310,6 +318,8 @@
               <testApplicationControllerFile forControllerName="Jobs">
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="create"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="delete"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>
