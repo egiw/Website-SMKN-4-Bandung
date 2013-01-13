@@ -48,7 +48,7 @@ class Admin_UserController extends Zend_Controller_Action
         } else {
           switch ($result->getCode()) {
             case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
-              $this->view->messages[] = 'error|Nama User tidak ditemukan.';
+              $this->view->messages[] = 'error|Nama Pengguna tidak ditemukan.';
               break;
             case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
               $this->view->messages[] = 'error|Kata Sandi salah.';
