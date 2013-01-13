@@ -61,7 +61,7 @@ class Admin_Form_Event extends Zend_Form
                             Zend_Validate_NotEmpty::IS_EMPTY => 'Judul kegiatan tidak boleh kosong.')))));
 
     $this->location
-            ->setAttrib('class', 'span4 title')
+            ->setAttrib('class', 'span6 ')
             ->setAttrib('placeholder', 'Lokasi kegiatan')
             ->setRequired(true)
             ->setValidators(array(
@@ -129,6 +129,10 @@ class Admin_Form_Event extends Zend_Form
     $this->from_date->setDecorators(array(
         'ViewHelper', array('Datepicker', array('id' => 'dp_start')), 'ControlGroup'
     ));
+
+    $this->location->setDecorators(array('ViewHelper', array('input', array(
+                'mode' => SITi_Form_Decorator_Input::MODE_PREPEND,
+                'html' => '<i class="icon-map-marker"></i>')), 'ControlGroup'));
 
     $this->until_date->setDecorators(array(
         'ViewHelper', array('Datepicker', array('id' => 'dp_end')), 'ControlGroup'

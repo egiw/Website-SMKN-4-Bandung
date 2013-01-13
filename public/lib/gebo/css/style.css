@@ -853,11 +853,17 @@ ul.tags.tagHandlerContainer {
   min-height: 0;
   height: 28px;
   vertical-align: top;
+  border: 1px solid #ccc;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
 }
 
-input.tagInputField.ui-autocomplete-input {
-  margin-top: 0;
+.tagInputField.ui-autocomplete-input {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-box-shadow: none !important;
+  font-size: 20px !important;
+  top: -8px;
+  height: 30px;
 }

@@ -80,6 +80,9 @@
               <actionMethod actionName="edit"/>
               <actionMethod actionName="delete"/>
             </controllerFile>
+            <controllerFile controllerName="Prakerin">
+              <actionMethod actionName="index"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory>
             <formFile formName="Login"/>
@@ -208,6 +211,9 @@
               <viewControllerScriptsDirectory forControllerName="Jobs">
                 <viewScriptFile forActionName="delete"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Prakerin">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -320,6 +326,9 @@
                 <testApplicationActionMethod forActionName="create"/>
                 <testApplicationActionMethod forActionName="edit"/>
                 <testApplicationActionMethod forActionName="delete"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Prakerin">
+                <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

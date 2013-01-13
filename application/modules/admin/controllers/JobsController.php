@@ -49,13 +49,15 @@ class Admin_JobsController extends Zend_Controller_Action
                 $job->delete();
               }
             }
-            $this->_helper->flashMessenger->addMessage(count($jobs) . "berhasil dihapus.  ");
+            $this->_helper->flashMessenger->addMessage(count($jobs) . " item lowongan pekerjaan berhasil dihapus.");
           }
           break;
 
         default:
           break;
       }
+
+      $this->_helper->redirector('index');
     }
 
     $data = $this->jobs->findAll();

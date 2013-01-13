@@ -58,18 +58,24 @@ class Admin_Form_User extends Zend_Form
     $this->submit->setLabel('Simpan')->setAttribs(array(
         'class' => 'btn btn-gebo'));
 
-    $this->email->setLabel('Email')->setAttribs(array())
+    $this->email
+            ->setLabel('Email')
+            ->setAttribs(array('class', 'span6'))
             ->addValidator('EmailAddress', false, array(
                 'messages' => array(
                     Zend_Validate_EmailAddress::INVALID => 'Format email harus valid. Contoh: user@domain.com.')));
 
-    $this->new_password->setLabel('Kata Sandi Baru')
+    $this->new_password
+            ->setAttrib('class', 'span10')
+            ->setLabel('Kata Sandi Baru')
             ->addValidator('StringLength', false, array(
                 'min' => 6,
                 'messages' => array(
                     Zend_Validate_StringLength::TOO_SHORT => 'Kata sandi harus lebih dari 6 karakter.')));
 
-    $this->confirm_password->setLabel('Konfirmasi Kata Sandi')
+    $this->confirm_password
+            ->setAttrib('class', 'span10')
+            ->setLabel('Konfirmasi Kata Sandi')
             ->addValidator('identical', false, array(
                 'messages' => array(
                     Zend_Validate_Identical::NOT_SAME => 'Kata sandi tidak cocok.')));
@@ -90,6 +96,18 @@ class Admin_Form_User extends Zend_Form
     ));
 
     $this->setElementDecorators(array('ViewHelper', 'ControlGroup'), array('submit', 'avatar'), FALSE);
+    $this->email->setDecorators(array('ViewHelper', array('input', array(
+                'mode' => SITi_Form_Decorator_Input::MODE_PREPEND,
+                'html' => '@')), 'ControlGroup'));
+
+    $this->new_password->setDecorators(array('ViewHelper', array('input', array(
+                'mode' => SITi_Form_Decorator_Input::MODE_PREPEND,
+                'html' => '<i class="icon-lock"></i>')), 'ControlGroup'));
+
+    $this->confirm_password->setDecorators(array('ViewHelper', array('input', array(
+                'mode' => SITi_Form_Decorator_Input::MODE_PREPEND,
+                'html' => '<i class="icon-lock"></i>')), 'ControlGroup'));
+
     $this->submit->setDecorators(array('ViewHelper'));
     $this->avatar->setDecorators(array('File', 'FileUpload'));
   }
