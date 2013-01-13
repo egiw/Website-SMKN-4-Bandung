@@ -14,7 +14,7 @@ class Admin_Form_Login extends Zend_Form
     $this->submit = new Zend_Form_Element_Submit('Login');
 
     $this->username->setRequired(true)->setAttribs(array(
-        'placeholder' => 'Nama User'
+        'placeholder' => 'Nama Pengguna'
     ));
     $this->password->setRequired(true)->setAttribs(array(
         'placeholder' => 'Kata Sandi'
