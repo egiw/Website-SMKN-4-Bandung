@@ -3,6 +3,11 @@
 
 class Admin_UserController extends Zend_Controller_Action
 {
+  const MSG_USER_NOT_FOUND = 'error|Nama Pengguna tidak ditemukan.';
+  const MSG_PASSWORD_INVALID = 'error|Kata Sandi salah.';
+  const MSG_FIELD_EMPTY = 'error|Harap isikan semua field.';
+  const MSG_ACCOUNT_EDITED_SUCCESSFULLY = 'success|Akun berhasil disunting.';
+
   /**
    *
    * @var Admin_Model_DbTable_User
@@ -48,17 +53,17 @@ class Admin_UserController extends Zend_Controller_Action
         } else {
           switch ($result->getCode()) {
             case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
-              $this->view->messages[] = 'error|Nama Pengguna tidak ditemukan.';
+              $this->view->messages[] = self::MSG_USER_NOT_FOUND;
               break;
             case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
-              $this->view->messages[] = 'error|Kata Sandi salah.';
+              $this->view->messages[] = self::MSG_PASSWORD_INVALID;
               break;
             default:
               break;
           }
         }
       } else {
-        $this->view->messages[] = 'error|Harap isikan semua field.';
+        $this->view->messages[] = self::MSG_FIELD_EMPTY;
       }
     }
 
@@ -104,7 +109,7 @@ class Admin_UserController extends Zend_Controller_Action
 
         $auth = Zend_Auth::getInstance()->getStorage()->write($user);
 
-        $this->_helper->flashMessenger->addMessage('success|Akun berhasil disunting.');
+        $this->_helper->flashMessenger->addMessage(self::MSG_ACCOUNT_EDITED_SUCCESSFULLY);
         $this->_helper->redirector('index');
       }
     }

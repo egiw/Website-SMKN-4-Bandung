@@ -7,67 +7,66 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTNj8ia2gmUviCAL5Beyrip_OQSI_hJdw&sensor=false&language=id&region=ES"></script>
     <script type="text/javascript">
       
-      SITi_map = {
-        init:function() {
-          var map;
-          var mapCanvas = document.getElementById('map_canvas');
+      SITi_prakerin_map = {
+        init: function() {
+          var bandung = new google.maps.LatLng(-6.915094541608494, 107.61005401611328);
+          var mapDiv = document.getElementById('map_canvas');
           var mapOptions = {
-            center: new google.maps.LatLng(-6.915094541608494, 107.61005401611328),
+            center: bandung,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoom: 14
+            zoom: 14,
+            disableDefaultUI: true
           }
-      
-          map = new google.maps.Map(mapCanvas, mapOptions);
-          
-          var locations = [
-            new google.maps.LatLng(-6.914327684046259, 107.59743690490723),
-            new google.maps.LatLng(-6.914838922559386, 107.6301383972168),
-            new google.maps.LatLng(-6.907340702276085, 107.60464668273926)
-          ];
-          
-          for(i in locations) {
-            marker= new google.maps.Marker({
-              position: locations[i],
-              map: map
-            });
-          }
-          
-          var info=new google.maps.InfoWindow({
-            content: '',
-            size: new google.maps.Size(500,500)
-          })
-          
-          var infoWindow = new google.maps.InfoWindow({
-            content: 'Change zoom level',
-            position: map.getCenter()
+          map = new google.maps.Map(mapDiv, mapOptions);
+        
+        
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(new SITi_prakerin_map.HomeControl(map, bandung));
+        },
+        HomeControl : function(map, home) {
+          _this = this;
+          this.map = map;
+          this.home = home;
+        
+          // create element named div to wrap our controls UI
+          controlDiv = document.createElement('div');
+        
+          // create a button that used to return to home
+          var goHomeUI = document.createElement('button');
+          goHomeUI.innerHTML = 'Go Home';
+          controlDiv.appendChild(goHomeUI);
+        
+          // create a button that used to set home to current position
+          var setHomeUI = document.createElement('button');
+          setHomeUI.innerHTML = 'Set Home';
+          controlDiv.appendChild(setHomeUI);
+        
+          // when user click on the goHomeUI it will bring to current saved position
+          google.maps.event.addDomListener(goHomeUI, 'click', function(){
+            map.setCenter(_this.getHome());
           });
-          infoWindow.open(map);
-          
-          google.maps.event.addListener(map, 'click', function(event){
-            
-          });
-          
-          google.maps.event.addListener(marker, 'mouseover', function(){
-            info.open(map, marker);
-          });
-          
-          google.maps.event.addListener(map, 'zoom_changed', function(){
-            var zoomLevel= map.getZoom();
-            infoWindow.setContent('zoom: ' + zoomLevel);
+        
+          // when user click on the setHomeUI it will set current position as home
+          google.maps.event.addDomListener(setHomeUI, 'click', function(){
+            _this.setHome(map.getCenter());
           })
-          
-          google.maps.event.addListener(marker, 'mouseout', function(){
-            setTimeout(function(){info.close(map, marker)}, 3000);
-          })
+        
+          return controlDiv;
         }
       }
       
-      window.onload =function() {
-        SITi_map.init();
+      SITi_prakerin_map.HomeControl.prototype.getHome = function() {
+        return this.home;
+      }
+      
+      SITi_prakerin_map.HomeControl.prototype.setHome = function(home){
+        this.home = home;
       }
       
       
       
+      window.onload = function(){
+        SITi_prakerin_map.init();
+      }
       
     </script>
     <style type="text/css">
@@ -80,3 +79,5 @@
     <div id="map_canvas" style="width: 100%;height: 100%"></div>
   </body>
 </html>
+
+<!--center: new google.maps.LatLng(-6.915094541608494, 107.61005401611328),-->

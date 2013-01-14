@@ -2,6 +2,7 @@
 
 class Admin_JobsController extends Zend_Controller_Action
 {
+  
   /**
    * @var Admin_Form_Jobs
    *

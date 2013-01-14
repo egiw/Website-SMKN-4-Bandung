@@ -2,6 +2,26 @@
 
 class Admin_Form_Account extends Zend_Form
 {
+//  Messages
+  const MSG_USERNAME_IS_EMPTY = 'Nama User wajib diisi.';
+  const MSG_USERNAME_TOO_SHORT = 'Nama User harus lebih dari 6 karakter.';
+  const MSG_USERNAME_TOO_LONG = 'Nama User tidak boleh lebih dari 20 karakter.';
+  const MSG_USERNAME_RECORD_FOUND = 'Nama User sudah ada.';
+  const MSG_USERNAME_NOT_VALID = 'Nama User mengandung karakter tidak valid.';
+  const MSG_PASSWORD_IS_EMPTY = 'Kata Sandi wajib diisi.';
+  const MSG_PASSWORD_LENGTH_TOO_SHORT = 'Kata Sandi harus lebih dari 6 karakter.';
+  const MSG_CONFIRM_PASSWORD_IS_EMPTY = 'Konfirmasi Kata Sandi wajib diisi.';
+  const MSG_CONFIRM_PASSWORD_NOT_SAME = 'Kata Sandi tidak cocok.';
+  const MSG_ROLE_IS_EMPTY = 'Pilih salah satu Role.';
+  const MSG_ROLE_NOT_IN_ARRAY = '\'%value%\' bukan role yang benar.';
+
+//  Label
+  const LABEL_USERNAME = 'Nama User';
+  const LABEL_PASSWORD = 'Kata Sandi';
+  const LABEL_CONFIRM_PASSWORD = 'Konfirmasi Kata Sandi';
+  const LABEL_ROLE = 'Role';
+  const LABEL_SUBMIT = 'Buat';
+
   /**
    *
    * @var Zend_Form_Element_Text
@@ -41,55 +61,55 @@ class Admin_Form_Account extends Zend_Form
 
     $this->username
             ->setRequired(true)
-            ->setLabel('Nama User')
+            ->setLabel(self::LABEL_USERNAME)
             ->setValidators(array(
                 array('NotEmpty', 'false', array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Nama User wajib diisi.'))),
+                            Zend_Validate_NotEmpty::IS_EMPTY => self::MSG_USERNAME_IS_EMPTY))),
                 array('StringLength', 'false', array(
                         'min' => 6,
                         'max' => 20,
                         'messages' => array(
-                            Zend_Validate_StringLength::TOO_SHORT => 'Nama User harus lebih dari 6 karakter.',
-                            Zend_Validate_StringLength::TOO_LONG => 'Nama User tidak boleh lebih dari 20 karakter.'))),
+                            Zend_Validate_StringLength::TOO_SHORT => self::MSG_USERNAME_TOO_SHORT,
+                            Zend_Validate_StringLength::TOO_LONG => self::MSG_USERNAME_TOO_LONG))),
                 array('Db_NoRecordExists', false, array(
                         'table' => 'user',
                         'field' => 'username',
                         'messages' => array(
-                            Zend_Validate_Db_Abstract::ERROR_RECORD_FOUND => 'Nama User sudah ada.'))),
+                            Zend_Validate_Db_Abstract::ERROR_RECORD_FOUND => self::MSG_USERNAME_RECORD_FOUND))),
                 array('Regex', false, array(
                         'pattern' => '/^[A-Za-z0-9]+(?:[_][A-Za-z0-9]+)*$/',
                         'messages' => array(
-                            Zend_Validate_Regex::NOT_MATCH => 'Nama User mengandung karakter tidak valid.')))
+                            Zend_Validate_Regex::NOT_MATCH => self::MSG_USERNAME_NOT_VALID)))
             ));
 
     $this->password
-            ->setLabel('Kata Sandi')
+            ->setLabel(self::LABEL_PASSWORD)
             ->setRequired(true)
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Kata Sandi wajib diisi.'))),
+                            Zend_Validate_NotEmpty::IS_EMPTY => self::MSG_PASSWORD_IS_EMPTY))),
                 array('StringLength', false, array(
                         'min' => 6,
                         'messages' => array(
-                            Zend_Validate_StringLength::TOO_SHORT => 'Kata Sandi harus lebih dari 6 karakter.')))
+                            Zend_Validate_StringLength::TOO_SHORT => self::MSG_PASSWORD_LENGTH_TOO_SHORT)))
             ));
 
     $this->confirm_password
-            ->setLabel('Konfirmasi Kata Sandi')
+            ->setLabel(self::LABEL_CONFIRM_PASSWORD)
             ->setRequired(true)
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Konfirmasi Kata Sandi wajib diisi'))),
+                            Zend_Validate_NotEmpty::IS_EMPTY => self::MSG_CONFIRM_PASSWORD_IS_EMPTY))),
                 array('Identical', false, array(
                         'messages' => array(
-                            Zend_Validate_Identical::NOT_SAME => 'Kata Sandi tidak cocok.')))
+                            Zend_Validate_Identical::NOT_SAME => self::MSG_CONFIRM_PASSWORD_NOT_SAME)))
             ));
 
     $this->role
-            ->setlabel('Role')
+            ->setlabel(self::LABEL_ROLE)
             ->setRequired(true)
             ->setMultiOptions(array(
                 null => '--Pilih Role',
@@ -101,15 +121,15 @@ class Admin_Form_Account extends Zend_Form
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Pilih salah satu Role.'))),
+                            Zend_Validate_NotEmpty::IS_EMPTY => self::MSG_ROLE_IS_EMPTY))),
                 array('InArray', false, array(
                         'haystack' => array_keys($this->role->getMultiOptions()),
                         'messages' => array(
-                            Zend_Validate_InArray::NOT_IN_ARRAY => '\'%value%\' bukan role yang benar.')))
+                            Zend_Validate_InArray::NOT_IN_ARRAY => self::MSG_ROLE_NOT_IN_ARRAY)))
             ));
 
     $this->submit
-            ->setLabel('Buat')
+            ->setLabel(self::LABEL_SUBMIT)
             ->setAttribs(array(
                 'class' => 'btn btn-gebo'
             ));

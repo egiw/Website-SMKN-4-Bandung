@@ -2,6 +2,13 @@
 
 class Admin_ArticleController extends Zend_Controller_Action
 {
+//  messages
+  const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
+  const MSG_ARTICLE_CREATED = 'success|Artikel berhasil dibuat.';
+  const MSG_ARTICLE_EDITED = 'success|Artikel berhasil disunting.';
+  const MSG_ARTICLE_DELETED = 'success|Artikel berhasil dihapus.';
+  const MSG_ARTICLE_RESTORED = 'success|Artikel berhasil dikembalikan.';
+
   /**
    * @var Admin_Form_Article
    *
@@ -52,7 +59,7 @@ class Admin_ArticleController extends Zend_Controller_Action
             }
           }
           $this->_helper->flashMessenger->addMessage(
-                  'info|Artikel yang dipilih berhasil dihapus.');
+                  self::MSG_SELECTED_ARTICLES_DELETED);
           break;
         case 'filter':
           $this->filter->article = $post['filter'];
@@ -113,7 +120,7 @@ class Admin_ArticleController extends Zend_Controller_Action
         ));
 
         $this->_helper->flashMessenger->addMessage
-                ('Artikel berhasil dibuat.');
+                (self::MSG_ARTICLE_CREATED);
         $this->_helper->redirector('index');
       }
     }
@@ -149,7 +156,7 @@ class Admin_ArticleController extends Zend_Controller_Action
             ))->save();
 
             $this->_helper->flashMessenger->addMessage
-                    ('Artikel berhasil disunting.');
+                    (self::MSG_ARTICLE_EDITED);
             $this->_helper->redirector('index');
           }
         }
@@ -170,7 +177,7 @@ class Admin_ArticleController extends Zend_Controller_Action
         $this->tag->save('', $article->tags);
         $article->delete();
         $this->_helper->flashMessenger->addMessage
-                ('Artikel berhasil dihapus.');
+                (self::MSG_ARTICLE_DELETED);
       }
     }
     $this->_helper->redirector('index');
@@ -186,7 +193,7 @@ class Admin_ArticleController extends Zend_Controller_Action
       if (null !== $article && Admin_Model_Status::ARCHIVED === $article->status) {
         $article->status = Admin_Model_Status::DRAFT;
         $article->save();
-        $this->_helper->flashMessenger->addMessage('success|Artikel berhasil dikembalikan.');
+        $this->_helper->flashMessenger->addMessage(self::MSG_ARTICLE_RESTORED);
       }
     }
     $this->_helper->redirector('index');
