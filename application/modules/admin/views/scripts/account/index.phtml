@@ -9,10 +9,11 @@
       </a>
     </div>
     <div class="pull-right">
-
+      <?php echo $this->itemCountPerPageSelect('filter[row]', $this->filter['row']); ?>
+      <?php echo $this->setRowButton('action', 'filter'); ?>
     </div>
   </div>
-
+  <br />
   <div class="row-fluid">
     <div class="row-fluid">
       <div class="pull-left">
@@ -21,6 +22,15 @@
                 value="delete"
                 onclick="return confirm('Apakah anda yakin ingin menghapus semua akun yang dipilih?')">
           <i class="icon-trash"></i>
+        </button>
+        <button class="btn btn-mini" name="action" value="filter" type="submit">
+          <i class="icon-filter"></i>
+          Gunakan Filter
+        </button>
+        <button class="btn btn-mini" 
+                name="action"
+                value="reset">
+          Atur Ulang Filter
         </button>
       </div>
       <div class="pull-right">
@@ -41,11 +51,53 @@
                 }
                      "/>
             </th>
-            <th></th>
-            <th>Nama User</th>
+<!--            <th></th>-->
+            <th colspan="2">Nama User</th>
             <th>Nama Lengkap</th>
             <th>Email</th>
             <th>Role</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th></th>
+            <!--<th></th>-->
+            <th colspan="2">
+              <?php
+              echo $this->formText('filter[username]', $this->filter['username'], array(
+                  'class' => 'span12',
+                  'placeholder' => 'Cari berdasarkan nama pengguna'
+              ));
+              ?>
+            </th>
+            <th>
+              <?php
+              echo $this->formText('filter[fullname]', $this->filter['fullname'], array(
+                  'class' => 'span12',
+                  'placeholder' => 'Cari berdasarkan nama lengkap'
+              ));
+              ?>
+            </th>
+            <th>
+              <?php
+              echo $this->formText('filter[email]', $this->filter['email'], array(
+                  'class' => 'span12',
+                  'placeholder' => 'Cari berdasarkan email'
+              ));
+              ?>
+            </th>
+            <th>
+              <?php
+              echo $this->formSelect('filter[role]', $this->filter['role'], array(
+                  'class' => 'span12'
+                      ), array(
+                  null => "--Tampilkan Semua ({$this->rolesCount['all']})",
+                  Admin_Model_Role::ADMIN => "Admin ({$this->rolesCount['admin']})",
+                  Admin_Model_Role::GURU => "Guru ({$this->rolesCount['guru']})",
+                  Admin_Model_Role::OSIS => "Osis ({$this->rolesCount['osis']})",
+                  Admin_Model_Role::SISWA => "Siswa ({$this->rolesCount['siswa']})"
+              ));
+              ?>
+            </th>
             <th></th>
           </tr>
         </thead>

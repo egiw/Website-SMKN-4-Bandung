@@ -85,6 +85,10 @@
             <controllerFile controllerName="Prakerin">
               <actionMethod actionName="index"/>
             </controllerFile>
+            <controllerFile controllerName="Log">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="clear"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory>
             <formFile formName="Login"/>
@@ -107,6 +111,7 @@
               <dbTableFile dbTableName="Question"/>
               <dbTableFile dbTableName="Answer"/>
               <dbTableFile dbTableName="Jobs"/>
+              <dbTableFile dbTableName="Log"/>
             </dbTableDirectory>
             <modelFile modelName="Status"/>
             <modelFile modelName="Role"/>
@@ -221,6 +226,12 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Account">
                 <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Log">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Log">
+                <viewScriptFile forActionName="clear"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -339,6 +350,10 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Prakerin">
                 <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Log">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="clear"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>
