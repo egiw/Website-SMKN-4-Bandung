@@ -1,6 +1,9 @@
-
 <?php
 
+/**
+ * 
+ * @author Egi Soleh Hasdi <egi.hasdi@sangkuriang.co.id>
+ */
 class Admin_UserController extends Zend_Controller_Action
 {
   const MSG_USER_NOT_FOUND = 'error|Nama Pengguna tidak ditemukan.';

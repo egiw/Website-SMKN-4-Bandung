@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * 
+ * @author Egi Soleh Hasdi <egi.hasdi@sangkuriang.co.id>
+ */
 class Admin_LogController extends Zend_Controller_Action
 {
   const MSG_ALL_LOGS_DELETED = 'success|%d log berhasil dihapus.';
