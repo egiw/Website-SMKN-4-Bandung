@@ -33,8 +33,8 @@ CREATE TABLE `article` (
   `status` enum('archived','draft','pending','publish') COLLATE utf8_unicode_ci DEFAULT 'draft',
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
-  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `article` (
 
 LOCK TABLES `article` WRITE;
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
+INSERT INTO `article` VALUES (1,'Hello World','<p>Lorem Ipsum Dolor</p>','CSS3,Testing','egisolehhasdi','2013-01-14 17:45:21',0,'publish');
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +68,7 @@ CREATE TABLE `event` (
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `event_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,9 +102,9 @@ CREATE TABLE `jobs` (
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
   KEY `updated_by` (`updated_by`),
-  CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`username`) ON DELETE CASCADE,
-  CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `jobs_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`) ON DELETE CASCADE,
+  CONSTRAINT `jobs_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`username`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,6 +114,36 @@ CREATE TABLE `jobs` (
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `module` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `controller` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `action` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `log_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `username` (`username`),
+  CONSTRAINT `log_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=222 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `log`
+--
+
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+INSERT INTO `log` VALUES (191,'egisolehhasdi','admin','log','index','2013-01-15 06:43:59'),(192,'egisolehhasdi','admin','log','index','2013-01-15 06:44:03'),(193,'egisolehhasdi','admin','article','index','2013-01-15 06:44:21'),(194,'egisolehhasdi','admin','news','index','2013-01-15 06:44:24'),(195,'egisolehhasdi','admin','event','index','2013-01-15 06:44:27'),(196,'egisolehhasdi','admin','polling','index','2013-01-15 06:44:30'),(197,'egisolehhasdi','admin','jobs','index','2013-01-15 06:44:34'),(198,'egisolehhasdi','admin','prakerin','index','2013-01-15 06:44:36'),(199,'egisolehhasdi','admin','jobs','index','2013-01-15 06:44:42'),(200,'egisolehhasdi','admin','log','index','2013-01-15 06:44:46'),(201,'egisolehhasdi','admin','log','index','2013-01-15 06:44:52'),(202,'egisolehhasdi','admin','log','index','2013-01-15 06:45:07'),(203,'egisolehhasdi','admin','log','index','2013-01-15 06:45:12'),(204,'egisolehhasdi','admin','jobs','index','2013-01-15 06:46:26'),(205,'egisolehhasdi','admin','article','index','2013-01-15 06:46:32'),(206,'egisolehhasdi','admin','account','index','2013-01-15 06:46:53'),(207,'egisolehhasdi','admin','log','index','2013-01-15 06:47:13'),(208,'egisolehhasdi','admin','article','index','2013-01-15 06:48:52'),(209,'egisolehhasdi','admin','prakerin','index','2013-01-15 06:51:40'),(210,'egisolehhasdi','admin','article','index','2013-01-15 06:51:46'),(211,'egisolehhasdi','admin','article','index','2013-01-15 06:52:12'),(212,'egisolehhasdi','admin','log','index','2013-01-15 06:52:31'),(213,'egisolehhasdi','admin','account','index','2013-01-15 13:06:07'),(214,'egisolehhasdi','admin','account','delete','2013-01-15 13:06:14'),(215,'egisolehhasdi','admin','account','index','2013-01-15 13:06:16'),(216,'egisolehhasdi','admin','account','edit','2013-01-15 13:06:24'),(217,'egisolehhasdi','admin','account','index','2013-01-15 13:06:39'),(218,'egisolehhasdi','admin','article','index','2013-01-15 13:07:59'),(219,'egisolehhasdi','admin','news','index','2013-01-15 13:08:03'),(220,'egisolehhasdi','admin','article','index','2013-01-15 13:08:49'),(221,'egisolehhasdi','admin','log','index','2013-01-15 13:08:53');
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -133,7 +164,7 @@ CREATE TABLE `news` (
   PRIMARY KEY (`id`),
   KEY `created_by` (`created_by`),
   CONSTRAINT `news_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +247,7 @@ CREATE TABLE `tag` (
 
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-INSERT INTO `tag` VALUES ('CSS3',1),('Dolor',2),('HTML5',1),('Ipsum',2),('Jumps Over',1),('Lorem Ipsum DOlor',2),('MYSQL',1),('Pemrogramman',2),('PHP',2),('Sit Amet',1),('The Quick Brown Fox',2),('Web Developer',2),('Zend Framework',2);
+INSERT INTO `tag` VALUES ('CSS3',2),('Dolor',2),('HTML5',1),('Ipsum',2),('Jumps Over',1),('Lorem Ipsum DOlor',2),('MYSQL',1),('Pemrogramman',2),('PHP',2),('Sit Amet',1),('Testing',1),('The Quick Brown Fox',2),('Web Developer',2),('Zend Framework',2);
 /*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +276,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('egisolehhasdi','02045b2d50c0b377db4e4f66eee5b1e4',NULL,NULL,NULL,NULL,'admin'),('jvthaashaar','d63d82fce1036237bfdcef362360b18c',NULL,NULL,NULL,NULL,'admin'),('wildanfath15','70df79a831a068bf314e1962f113aafa',NULL,NULL,NULL,NULL,'admin');
+INSERT INTO `user` VALUES ('egisolehhasdi','02045b2d50c0b377db4e4f66eee5b1e4','Egi Soleh Hasdi','asdf_1358049442.jpg','egi.hasdi@sangkuriang.co.id','Hello world, Lorem ipsum dolor sit amet :)','admin'),('jvthaashaar','d63d82fce1036237bfdcef362360b18c',NULL,NULL,NULL,NULL,'admin'),('wildanfath15','70df79a831a068bf314e1962f113aafa',NULL,NULL,NULL,NULL,'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -258,4 +289,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-01-13 10:47:02
+-- Dump completed on 2013-01-16  8:51:49
