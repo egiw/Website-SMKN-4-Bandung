@@ -3,20 +3,20 @@
 class Admin_Form_Account extends Zend_Form
 {
 //  Messages
-  const MSG_USERNAME_IS_EMPTY = 'Nama User wajib diisi.';
-  const MSG_USERNAME_TOO_SHORT = 'Nama User harus lebih dari 6 karakter.';
-  const MSG_USERNAME_TOO_LONG = 'Nama User tidak boleh lebih dari 20 karakter.';
-  const MSG_USERNAME_RECORD_FOUND = 'Nama User sudah ada.';
-  const MSG_USERNAME_NOT_VALID = 'Nama User mengandung karakter tidak valid.';
-  const MSG_PASSWORD_IS_EMPTY = 'Kata Sandi wajib diisi.';
-  const MSG_PASSWORD_LENGTH_TOO_SHORT = 'Kata Sandi harus lebih dari 6 karakter.';
-  const MSG_CONFIRM_PASSWORD_IS_EMPTY = 'Konfirmasi Kata Sandi wajib diisi.';
-  const MSG_CONFIRM_PASSWORD_NOT_SAME = 'Kata Sandi tidak cocok.';
+  const MSG_USERNAME_IS_EMPTY = 'Nama Pengguna harus diisi.';
+  const MSG_USERNAME_TOO_SHORT = 'Nama Pengguna minimal 6 karakter.';
+  const MSG_USERNAME_TOO_LONG = 'Nama Pengguna maksimal 20 karakter.';
+  const MSG_USERNAME_RECORD_FOUND = 'Nama Pengguna sudah ada.';
+  const MSG_USERNAME_NOT_VALID = 'Nama Pengguna menggunakan karakter tidak valid.';
+  const MSG_PASSWORD_IS_EMPTY = 'Kata Sandi harus diisi.';
+  const MSG_PASSWORD_LENGTH_TOO_SHORT = 'Kata Sandi minimal 6 karakter.';
+  const MSG_CONFIRM_PASSWORD_IS_EMPTY = 'Konfirmasi Kata Sandi harus diisi.';
+  const MSG_CONFIRM_PASSWORD_NOT_SAME = 'Konfirmasi Kata Sandi tidak cocok.';
   const MSG_ROLE_IS_EMPTY = 'Pilih salah satu Role.';
   const MSG_ROLE_NOT_IN_ARRAY = '\'%value%\' bukan role yang benar.';
 
 //  Label
-  const LABEL_USERNAME = 'Nama User';
+  const LABEL_USERNAME = 'Nama Pengguna';
   const LABEL_PASSWORD = 'Kata Sandi';
   const LABEL_CONFIRM_PASSWORD = 'Konfirmasi Kata Sandi';
   const LABEL_ROLE = 'Role';
