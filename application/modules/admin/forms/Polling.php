@@ -1,7 +1,6 @@
 <?php
 
-class Admin_Form_Polling
-        extends Zend_Form
+class Admin_Form_Polling extends Zend_Form
 {
   public $question;
   public $status;
@@ -15,19 +14,18 @@ class Admin_Form_Polling
   public function init()
   {
 
-    $this->addPrefixPath('SITi_Form_Decorator',
-                         'SITi/Form/Decorator', 'Decorator');
+    $this->addPrefixPath('SITi_Form_Decorator', 'SITi/Form/Decorator', 'Decorator');
 
     $this->setName('polling');
     $this->setIsArray(true);
     $this->setDecorators(array('FormElements', 'Form'));
 
     $this->question = new Zend_Form_Element_Text('question');
-    $this->status   = new Zend_Form_Element_Checkbox('showstatus');
-    $this->submit   = new Zend_Form_Element_Submit('Simpan');
+    $this->status = new Zend_Form_Element_Checkbox('showstatus');
+    $this->submit = new Zend_Form_Element_Submit('Simpan');
 
 
-    $this->submit->setAttrib('class', 'btn btn-success');
+    $this->submit->setAttrib('class', 'btn btn-gebo');
     $this->question->setRequired(true);
 
     $this->answerSubForm = new Admin_Form_AnswerForm();
@@ -46,10 +44,9 @@ class Admin_Form_Polling
     $this->question
             ->setLabel('Pertanyaan')
             ->setAttrib('placeholder', 'Tulis Pertanyaan Disini...')
-            ->setAttrib('class', 'span5')
-            ->setAttrib('style',
-                        'font-size:14px;padding: 10px;')
-            ->setDecorators(array('ViewHelper', 'Errors', 'Label'));
+            ->setAttrib('class', 'span5 title')
+            ->setAttrib('style', 'font-size:14px;padding: 10px;')
+            ->setDecorators(array('ViewHelper', 'ControlGroup'));
 
     $this->status->setLabel('Cek Jika Polling Ini Ingin Ditampilkan di Halaman Depan');
     $this->status->setDecorators(array('ViewHelper', 'CheckboxLabel'));
@@ -63,8 +60,7 @@ class Admin_Form_Polling
 
 }
 
-class Admin_Form_AnswerForm
-        extends Zend_Form_SubForm
+class Admin_Form_AnswerForm extends Zend_Form_SubForm
 {
   public function init()
   {
@@ -75,7 +71,7 @@ class Admin_Form_AnswerForm
   {
     $elements = array();
     foreach ($values as $key => $value) {
-      $answer     = new Zend_Form_Element_Hidden("{$key}");
+      $answer = new Zend_Form_Element_Hidden("{$key}");
       $answer->setValue($value)->setLabel($value);
       $elements[] = $answer;
     }

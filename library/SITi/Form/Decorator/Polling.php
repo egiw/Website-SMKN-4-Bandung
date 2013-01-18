@@ -41,13 +41,13 @@ class SITi_Form_Decorator_Polling
           function add() {
             var answer = $("#answer").val();
             if('' == answer) {
-              alert("Answer cannot be empty");
+              alert("Jawaban tidak boleh kosong.");
               return false;
             }
             list  = "<li>";
             list += '<label for="">'+answer+'</label>';
             list += '<input type="hidden" name="polling[answer][]" value="'+answer+'" />';
-            list += '<a href="javascript:void(0)" onclick="$(this).parents(\'li\').remove()">Remove</a>';
+            list += '<a href="javascript:void(0)" onclick="$(this).parents(\'li\').remove()">Hapus</a>';
             list += "</li>";
             
             $("#answers-list").append(list);

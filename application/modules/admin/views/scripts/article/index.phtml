@@ -125,10 +125,12 @@
                     <i class="icon-refresh"></i>
                   </a>
                 <?php endif; ?>
-                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id)); ?>">
+                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id)); ?>"
+                   title="Sunting">
                   <i class="icon-edit"></i>
                 </a>
                 <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $article->id)); ?>"
+                   title="Hapus"
                    onclick="if(!confirm('Apakah anda yakin ingin menghapus artikel'+
                          ' ini?.')) return false">
                   <i class="icon-trash"></i>
