@@ -84,6 +84,7 @@
             </controllerFile>
             <controllerFile controllerName="Prakerin">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="create"/>
             </controllerFile>
             <controllerFile controllerName="Log">
               <actionMethod actionName="index"/>
@@ -99,6 +100,7 @@
             <formFile formName="Event"/>
             <formFile formName="Polling"/>
             <formFile formName="Jobs"/>
+            <formFile formName="Prakerin"/>
           </formsDirectory>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory>
@@ -112,6 +114,7 @@
               <dbTableFile dbTableName="Answer"/>
               <dbTableFile dbTableName="Jobs"/>
               <dbTableFile dbTableName="Log"/>
+              <dbTableFile dbTableName="Prakerin"/>
             </dbTableDirectory>
             <modelFile modelName="Status"/>
             <modelFile modelName="Role"/>
@@ -233,6 +236,9 @@
               <viewControllerScriptsDirectory forControllerName="Log">
                 <viewScriptFile forActionName="clear"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Prakerin">
+                <viewScriptFile forActionName="create"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -350,6 +356,7 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Prakerin">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="create"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Log">
                 <testApplicationActionMethod forActionName="index"/>

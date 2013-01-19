@@ -1,0 +1,163 @@
+<?php
+echo $this->headScript()->prependFile('
+  https://maps.googleapis.com/maps/api/js?key=AIzaSyCTNj8ia2gmUviCAL5Beyrip_OQSI_hJdw&sensor=false&libraries=places');
+?>
+
+<script type="text/javascript">
+  
+  prakerin = {
+    marker: null,
+    infoWindow: null,
+    init: function() {
+      prakerin.map.init();
+      prakerin.autocomplete.init();
+    },
+    map: {
+      map: null,
+      init: function() {
+        var bandung = new google.maps.LatLng(-6.915094541608494, 107.61005401611328);
+        var mapDiv = document.getElementById('map-canvas');
+        var mapOptions = {
+          center: bandung,
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        
+        prakerin.map.map = new google.maps.Map(mapDiv, mapOptions);
+        
+        prakerin.marker = new google.maps.Marker({
+          map: prakerin.map.map
+        });
+        
+        prakerin.infoWindow = new google.maps.InfoWindow({
+          maxWidth: 350,
+          disableAutoPan: false
+        });
+        
+        google.maps.event.addListener(prakerin.map.map, 'click', function(event) {
+          prakerin.infoWindow.close();
+          prakerin.marker.setPosition(event.latLng);
+          prakerin.map.map.panTo(prakerin.marker.getPosition());
+          document.getElementById('lat').value = event.latLng.lat();
+          document.getElementById('lng').value = event.latLng.lng();
+        })
+      }
+    },
+    autocomplete: {
+      init: function() {
+        var inputField = document.getElementById('search-input');
+        var sw = new google.maps.LatLng(-6.972434909746541, 107.52422332763672);
+        var ne = new google.maps.LatLng(-6.864734925101462, 107.71339416503906);
+        var bounds = new google.maps.LatLngBounds(sw, ne);
+        
+        
+        var autocompleteOptions = {
+          types: ['establishment'],
+          bounds: bounds
+        }
+      
+        autocomplete = new google.maps.places.Autocomplete(inputField,autocompleteOptions);
+        
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+          document.getElementById('prakerin-form').reset();
+          var place = autocomplete.getPlace();
+          var content = '';
+          console.log(place);
+          
+          prakerin.infoWindow.close();
+          
+          if(geo = place.geometry) {
+            prakerin.marker.setPosition(geo.location);
+            prakerin.map.map.panTo(geo.location);
+            document.getElementById('lat').value = geo.location.lat();
+            document.getElementById('lng').value = geo.location.lng();
+          }
+          
+          if(name = place.name) {
+            document.getElementById('name').value = name;
+            content += '<h4>'+name+'</h4>';
+          }
+          
+          if(url = place.url) {
+            content += '<a href="'+url+'" target="_blank">Info selengkapnya »</a>';
+          }
+          
+          if(address = place.formatted_address) {
+            document.getElementById('address').value = address;
+            content += '<address>'+address+'<br />'+place.formatted_phone_number+'</address>';
+          }
+          
+          if(phone = place.formatted_phone_number) {
+            document.getElementById('contact').value = phone;
+          }
+          
+          if(website = place.website) {
+            document.getElementById('website').value = website;
+            content += '<a href="'+website+'" target="_blank">'+website+'</a>';
+          }
+          
+          if(id = place.id) {
+            document.getElementById('id').value = id;
+          }
+          
+          prakerin.infoWindow.setContent(content);
+          prakerin.infoWindow.open(prakerin.map.map, prakerin.marker);
+          
+        });
+      }
+    }
+  }
+  
+  google.maps.event.addDomListener(window, 'load', prakerin.init);
+  
+</script>
+
+<style type="text/css">
+
+  #map-canvas {
+    width:100%;
+    height: 400px;
+  }
+
+  /* google maps */    
+  .company_add_form legend {margin-bottom:10px;font-size:15px}
+  #map-canvas img { max-width: none; }
+  #map-canvas label {display:inline;margin:0;color:#000;font-size: 11px;line-height:normal}
+</style>
+
+<div class="row-fluid">
+  <h3>Data Tempat Prakerin</h3>
+</div>
+
+<div class="row-fluid">
+  <form action="" method="post" class="form" id="prakerin-form">
+    <div class="row-fluid">
+      <div class="span8">
+        <div class="input-append well">
+          <input type="text" id="search-input" class="span11" placeholder="Cari Perusahaan..." />
+          <div class="add-on">
+            <i class="icon-map-marker"></i>
+          </div>
+        </div>
+        <div class="well">
+          <div id="map-canvas"></div>
+        </div>
+      </div>
+
+      <div class="span4 well">
+        <p class="f_legend">Data Perusahaan</p>
+        <?php echo $this->form->lat; ?>
+        <?php echo $this->form->lng; ?>
+        <?php echo $this->form->name; ?>
+        <?php echo $this->form->id; ?>
+        <?php echo $this->form->website; ?>
+        <?php echo $this->form->address; ?>
+        <?php echo $this->form->contact; ?>
+        <?php echo $this->form->category; ?>
+        <div class="form-actions">
+          <?php echo $this->form->submit; ?>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
