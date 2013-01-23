@@ -32,20 +32,18 @@ class Admin_PrakerinController extends Zend_Controller_Action
     $this->filter = new Zend_Session_Namespace('filter');
   }
 
-  public function dataAction()
-  {
-    $this->_helper->viewRenderer->setNoRender();
-    $this->_helper->layout->disableLayout();
-    
-    $this->getResponse()->setHeader('Content-Type', 'application/json');
-    echo json_encode(array('A', 'B', 'D'));
-  }
-
   public function indexAction()
   {
     $pageNumber = $this->getParam('page');
 
-    if ($this->getRequest()->isPost()) {
+    if ($this->getRequest()->isXMLHttpRequest() && $this->getRequest()->isGet()) {
+      $this->_helper->viewRenderer->setNoRender();
+      $this->_helper->layout->disableLayout();
+      $this->getResponse()->setHeader('Content-Type', 'application/json');
+      $data = $this->model->findAll();
+      echo json_encode($data->toArray());
+      return;
+    } elseif ($this->getRequest()->isPost()) {
       $post = $this->getRequest()->getPost();
       switch ($post['action']) {
         case 'delete':
@@ -59,11 +57,9 @@ class Admin_PrakerinController extends Zend_Controller_Action
           }
           $this->_helper->FlashMessenger->addMessage(sprintf(self::MSG_SELECTED_DATA_DELETED, $count));
           break;
-        case 'filter':
-          $this->filter->prakerin = $post['filter'];
+        case 'filter': $this->filter->prakerin = $post['filter'];
           break;
-        case 'reset':
-          $this->filter->unsetAll();
+        case 'reset': $this->filter->unsetAll();
           break;
         default:
           break;
