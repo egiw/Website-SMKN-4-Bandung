@@ -173,7 +173,6 @@
                   <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
                 </form>
                 <div id="side_accordion" class="accordion">
-
                   <div class="accordion-group">
                     <div class="accordion-heading">
                       <a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
@@ -182,18 +181,7 @@
                     </div>
                     <div class="accordion-body collapse in" id="collapseOne">
                       <div class="accordion-inner">
-                        <ul class="nav nav-list">
-                          <li><a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'index')); ?>">Artikel</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'news', 'action' => 'index')); ?>">Berita</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'event', 'action' => 'index')); ?>">Kegiatan</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'polling', 'action' => 'index')); ?>">Jajak Pendapat</a></li>
-<!--                          <li><a href="javascript:void(0)">Mading</a></li>
-                          <li><a href="javascript:void(0)">Komentar</a></li>-->
-                          <li><a href="<?php echo $this->url(array('controller' => 'jobs', 'action' => 'index')); ?>">Lowongan Kerja</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'prakerin', 'action' => 'index')); ?>">Info Prakerin</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index')); ?>">Akun</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'log', 'action' => 'index')); ?>">Log</a></li>
-                        </ul>
+                        <?php echo $this->navigation()->menu()->setUlClass('nav nav-list'); ?>
                       </div>
                     </div>
                   </div>
@@ -207,10 +195,10 @@
                     <div class="accordion-body collapse" id="collapseTwo">
                       <div class="accordion-inner">
                         <ul class="nav nav-list">
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'jobs', 'action' => 'index')); ?>">Lowongan Kerja</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'prakerin', 'action' => 'index')); ?>">Info Prakerin</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index')); ?>">Akun</a></li>
+                          <li><a href="<?php echo $this->url(array('controller' => 'log', 'action' => 'index')); ?>">Log</a></li>
                         </ul>
                       </div>
                     </div>

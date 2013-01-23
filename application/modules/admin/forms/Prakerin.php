@@ -64,7 +64,6 @@ class Admin_Form_Prakerin extends Zend_Form
 
     $this->addPrefixPath('SITi_Form_Decorator', 'SITi/Form/Decorator', 'Decorator');
 
-    $this->id = new Zend_Form_Element_Hidden('id');
     $this->name = new Zend_Form_Element_Text('name');
     $this->address = new Zend_Form_Element_Textarea('address');
     $this->website = new Zend_Form_Element_Text('website');
@@ -73,6 +72,8 @@ class Admin_Form_Prakerin extends Zend_Form
     $this->lat = new Zend_Form_Element_Hidden('lat');
     $this->lng = new Zend_Form_Element_Hidden('lng');
     $this->submit = new Zend_Form_Element_Submit('submit');
+
+
     $this->name
             ->setRequired(true)
             ->setLabel(self::LABEL_NAME)
@@ -127,9 +128,6 @@ class Admin_Form_Prakerin extends Zend_Form
                 'TITL' => "Teknik Instalasi Tenaga Listrik",
                 'AV' => "Teknik Audio Video"
             ))
-            ->setAttribs(array(
-                'class' => 'span12'
-            ))
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
@@ -151,7 +149,6 @@ class Admin_Form_Prakerin extends Zend_Form
             ));
 
     $this->addElements(array(
-        $this->id,
         $this->name,
         $this->lat,
         $this->lng,
@@ -168,7 +165,12 @@ class Admin_Form_Prakerin extends Zend_Form
             ->setAttrib('class', 'btn btn-gebo')
             ->setLabel('Simpan')
             ->setDecorators(array('ViewHelper'));
-    $this->id->setDecorators(array('ViewHelper'));
+  }
+
+  public function populate(array $values)
+  {
+    $values['category'] = explode(',', $values['category']);
+    parent::populate($values);
   }
 
 }

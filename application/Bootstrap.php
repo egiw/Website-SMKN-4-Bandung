@@ -14,4 +14,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     Zend_Controller_Action_HelperBroker::addHelper(new SITi_Controller_Action_Helper_UserActivity);
   }
 
+  protected function _initNavigation()
+  {
+    $this->bootstrap('layout');
+    $layout = $this->getResource('layout');
+    $view = $layout->getView();
+    $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'nav');
+    $navigation = new Zend_Navigation($config);
+    $view->navigation($navigation);
+
+    $acl = new Zend_Acl();
+    $acl->addRole(new Zend_Acl_Role('admin'));
+    $acl->addRole(new Zend_Acl_Role('siswa'));
+    $acl->add(new Zend_Acl_Resource('content'));
+    $acl->add(new Zend_Acl_Resource('admin'));
+
+
+    $view->navigation()->setAcl($acl)->setRole('admin');
+  }
+
 }
