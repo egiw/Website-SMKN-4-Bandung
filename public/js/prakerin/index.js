@@ -47,6 +47,7 @@ $(function(){
           var _data = this;
           var position = new google.maps.LatLng(this.lat, this.lng);
           var marker = _this.addMarker(position);
+          marker.labelContent = this.name;
           google.maps.event.addListener(marker, 'click', function() {
             _this.displayInfo(this, _data);
           });
@@ -56,9 +57,14 @@ $(function(){
   }
   
   PrakerinMap.prototype.addMarker = function(position) {
-    return new google.maps.Marker({
+    return new MarkerWithLabel({
       position: position,
-      map: this.map
+      map: this.map,
+      draggable: false,
+      raiseOnDrag: false,
+      labelAnchor: new google.maps.Point(50, 55),
+      labelClass: "label label-info label-mini",
+      labelInBackground: false
     });
   }
   
