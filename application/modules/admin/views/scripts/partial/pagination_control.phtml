@@ -4,11 +4,21 @@
     <ul>
       <?php if (isset($this->previous)): ?>
         <li>
+          <a href="<?php echo $this->url(array('page' => $this->first)) ?>">
+            &lt;&lt; Utama
+          </a>
+        </li>
+        <li>
           <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">
             &lt; Sebelumnya
           </a>
         </li>
       <?php else: ?>
+        <li class="disabled">
+          <a>
+            &lt;&lt; Utama
+          </a>
+        </li>
         <li class="disabled"><a>&lt; Sebelumnya</a></li>
       <?php endif; ?>
 
@@ -28,8 +38,16 @@
             Berikutnya &gt; 
           </a>
         </li>
+        <li>
+          <a href="<?php echo $this->url(array('page' => $this->last)) ?>">
+            Akhir &gt;&gt;
+          </a>
+        </li>
       <?php else: ?>
         <li class="disabled"><a>Berikutnya &gt;</a></li>
+        <li class="disabled">
+          <a>Akhir</a>
+        </li>
       <?php endif; ?>
     </ul>
 

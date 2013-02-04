@@ -2,6 +2,14 @@
 
 class Admin_ArticleController extends Zend_Controller_Action
 {
+//  messages
+  const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
+  const MSG_ARTICLE_CREATED = 'success|Artikel berhasil dibuat.';
+  const MSG_ARTICLE_ARCHIVED = 'success|Artikel dipindahkan ke arsip.';
+  const MSG_ARTICLE_EDITED = 'success|Artikel berhasil disunting.';
+  const MSG_ARTICLE_DELETED = 'success|Artikel berhasil dihapus.';
+  const MSG_ARTICLE_RESTORED = 'success|Artikel berhasil dikembalikan.';
+
   /**
    * @var Admin_Form_Article
    *
@@ -52,7 +60,7 @@ class Admin_ArticleController extends Zend_Controller_Action
             }
           }
           $this->_helper->flashMessenger->addMessage(
-                  'info|Artikel yang dipilih berhasil dihapus.');
+                  self::MSG_SELECTED_ARTICLES_DELETED);
           break;
         case 'filter':
           $this->filter->article = $post['filter'];
@@ -113,7 +121,7 @@ class Admin_ArticleController extends Zend_Controller_Action
         ));
 
         $this->_helper->flashMessenger->addMessage
-                ('Artikel berhasil dibuat.');
+                (self::MSG_ARTICLE_CREATED);
         $this->_helper->redirector('index');
       }
     }
@@ -145,11 +153,13 @@ class Admin_ArticleController extends Zend_Controller_Action
                 'title' => $this->form->title->getValue(),
                 'content' => $this->form->content->getValue(),
                 'tags' => $this->form->tags->getValue(),
-                'status' => $status
+                'status' => $status,
+                'updated_by' => Zend_Auth::getInstance()->getIdentity()->username,
+                'updated_on' => Date('Y-m-d H:i:s')
             ))->save();
 
             $this->_helper->flashMessenger->addMessage
-                    ('Artikel berhasil disunting.');
+                    (self::MSG_ARTICLE_EDITED);
             $this->_helper->redirector('index');
           }
         }
@@ -167,10 +177,17 @@ class Admin_ArticleController extends Zend_Controller_Action
     if (null !== $id) {
       $article = $this->article->find($id)->current();
       if (null !== $article) {
-        $this->tag->save('', $article->tags);
-        $article->delete();
-        $this->_helper->flashMessenger->addMessage
-                ('Artikel berhasil dihapus.');
+        if (Admin_Model_Status::ARCHIVED === $article->status) {
+          $this->tag->save('', $article->tags);
+          $article->delete();
+          $this->_helper->flashMessenger->addMessage
+                  (self::MSG_ARTICLE_DELETED);
+        } else {
+          $article->status = Admin_Model_Status::ARCHIVED;
+          $article->save();
+          $this->_helper->flashMessenger->addMessage
+                  (self::MSG_ARTICLE_ARCHIVED);
+        }
       }
     }
     $this->_helper->redirector('index');
@@ -186,7 +203,7 @@ class Admin_ArticleController extends Zend_Controller_Action
       if (null !== $article && Admin_Model_Status::ARCHIVED === $article->status) {
         $article->status = Admin_Model_Status::DRAFT;
         $article->save();
-        $this->_helper->flashMessenger->addMessage('success|Artikel berhasil dikembalikan.');
+        $this->_helper->flashMessenger->addMessage(self::MSG_ARTICLE_RESTORED);
       }
     }
     $this->_helper->redirector('index');

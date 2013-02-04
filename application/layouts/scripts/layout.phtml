@@ -1,415 +1,478 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/prettify.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/docs.css')); ?>
-        <?php $this->headScript()->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js')); ?>
-        <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js')); ?>
-
-        <?php echo $this->headLink(); ?>
-        <?php echo $this->headScript(); ?>
-
-        <script>
-                !function($){
-                $(function(){
-                    $('#myCarousel').carousel()
-                })
-            }(window.jQuery)
-        </script>
-        <style type="text/css">
-
-            /*            Global Styles*/
-
-
-            /*            body{
-                            padding-bottom: 40px;
-                            color: #5a5a5a;
-            
-                        }
-                        
-                        
-            
-                        For Navbar
-            
-                        .navbar-wrapper{
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            z-index: 10;
-                            margin-top: 20px;
-                            margin-bottom: -90px;
-                        }
-            
-                        .navbar-wrapper .navbar{
-            
-                        }
-            
-                        .navbar .navbar-inner{
-                            border: 0;
-                            -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.5);
-                            -moz-box-shadow: 0 2px 10px rgba(0,0,0,.5);
-                            box-shadow: 0 2px 10px rgba(0,0,0,.5);
-                        }
-            
-                        .navbar .brand{
-                            padding: 14px 20px 16px;
-                            font-size: 16px;
-                            font-weight: bold;
-                            text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-                        }
-            
-                        .navbar .nav > li > a{
-                            padding : 15px 20px;
-                        }
-            
-                        .navbar .btn-navbar{
-                            margin-top: 10px;
-                        }
-            
-            
-                                    Carousel base class
-            
-                        .carousel{
-                            margin-bottom: 60px;
-            
-                        }
-            
-                        .carousel .container{
-                            position: relative;
-                            z-index: 9px;
-                        }
-            
-                        .carousel-control{
-                            height: 80px;
-                            margin-top: 0;
-                            font-size: 120px;
-                            background-color: transparent;
-                            text-shadow: 0 1px 1px rgba(0,0,0,.4);
-                            border: 0;
-                        }
-            
-                        .carousel .item{
-                            height: 500px;
-            
-                        }
-            
-                        .carousel img{
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            min-width: 100%;
-                            height: 500px;
-            
-            
-                        }
-            
-                        .carousel-caption{
-                            background-color: transparent;
-                            position: static;
-                            max-width: 550px;
-                            padding: 0 20px;
-                            margin-top: 200px;
-            
-                        }
-            
-                        .carousel-caption h1, 
-                        .carousel-caption .lead{
-                            margin: 0;
-                            line-height: 1.25;
-                            color: #fff;
-                            text-shadow: 0 1px 1px rgba(0,0,0,.1);
-            
-                        }
-            
-                        .carousel-caption .btn{
-                            margin-top: 10px;
-            
-                        }
-            
-                        .marketing .span4{
-                            text-align: center;
-            
-                        }
-            
-                        .marketing h2{
-                            font-weight: normal;
-                        }
-            
-                        .marketing .span4 p{
-                            margin-left: 10px;
-                            margin-right: 10px;
-                        }
-            
-                        .featurette-divider{
-                            margin: 80px 0;
-            
-                        }
-            
-                        .featurette{
-                            padding-top: 120px;
-                            overflow: hidden;
-                        }
-            
-                        .featurette-image{
-                            margin-top: -120px;
-                        }
-            
-                        .featurette-image.pull-right{
-                            margin-left: 40px;
-                        }
-            
-                        .featurette-image.pull-left{
-                            margin-right: 40px;
-                        }
-            
-                        .featurette-heading{
-                            font-size: 50px;
-                            font-weight: 300;
-                            line-height: 1;
-                            letter-spacing: -1px;
-            
-                        }
-            
-                                    Responsive CSS
-            
-                        @media(max-width: 979px){
-                            .container.navbar-inner{
-                                margin-bottom: 0;
-                                width: auto;
-                            }
-                            
-                            .navbar-inner{
-                                border-radius: 0;
-                                margin: -20px 0;
-                            }
-                            
-                            .carousel .item{
-                                height: 500;
-                            }
-                            
-                            .carousel img{
-                                width: auto;
-                                height: 500px;
-                            }
-                            
-                            .featurette{
-                                height: auto;
-                                padding: 0;
-                            }
-                            
-                            .featurette-image.pull-left,
-                            .featurette-image.pull-right{
-                                display: block;
-                                float: none;
-                                max-width: 40%;
-                                margin: 0 auto 20px;
-                                    
-                            }
-            
-                        }
-                        
-                        @media(max-width: 767px){
-                            .navbar-inner{
-                                margin: -20px;
-                                
-                            }
-                            
-                            .carousel {
-                                margin-left: -20px;
-                                margin-right: -20px;
-                            }
-                            
-                            .carousel .container{
-                                
-                            }
-                            
-                            .carousel .item{
-                                height: 300px;
-                            }
-                            .carousel img{
-                                height: 300px;
-                            }
-                            .carousel-caption{
-                                width: 65%;
-                                padding: 0 70px;
-                                margin-top: 100px;
-                            }
-                            
-                            .carousel-caption h1{
-                                font-size: 30px;
-                            }
-                            
-                            .carousel-caption .lead,
-                            .carousel-caption .btn{
-                                font-size: 18px;
-                            }
-                            
-                            .marketing.span4 + .span4{
-                                margin-top: 40px;
-                            }
-                            
-                            .featurette-heading{
-                                font-size: 30px;
-                            }
-                            
-                            .featurette .lead{
-                                font-size: 18px;
-                                line-height: 1.5;
-                            }
-                        }*/
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css')); ?>
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('css/front_layout.css')); ?>
+    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css')); ?>
 
 
 
+    <?php $this->headScript()->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js')); ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js')); ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js')); ?>
 
+    <?php echo $this->headLink(); ?>
+    <?php echo $this->headScript(); ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*            html,body{
-                            height: 100%;
-                        }
-                        
-                        .wrap{
-                            min-height: 100%;
-                            height: auto !important;
-                            height: 100%;
-                            margin: 0 auto 60px;
-                        }
-                        
-                        .push,
-                        .footer{
-                            height: 60px;
-                            
-                        }
-                        
-                        .footer{
-                            background-color: #f5f5f5;
-                            
-                        }
-                        
-                        @media(max-width: 767px){
-                            .footer{
-                                margin-left: -20px;
-                                margin-right: -20px;
-                                padding-left: 20px;
-                                padding-right: 20px;
-                            }
-                        }
-                        
-                        .container{
-                            width: auto;
-                            max-width: 680px;
-                        }
-                        
-                        .container .credit{
-                            margin: 20px 0;
-                        }*/
-
-            /*            body{
-                            padding-top: 40px;
-                            padding-bottom: 40px;
-                            background-color: #f5f5f5;
-                        }*/
-
-            /*        .container-narrow{
-                        margin: 0 auto;
-                        max-width: 700px
-                    }
-                    
-                    .container-narrow > hr{
-                        margin: 30px 0;
-                    }
-                    
-                    .jumbotron{
-                        margin: 60px 0;
-                        text-align: center;
-                    }
-                    .jumbotron h1 {
-                        font-size: 72px;
-                        line-height: 1;
-                    }
-                    
-                    .jumbotron .btn{
-                        font-size: 21px;
-                        padding: 14px 24px;
-                        
-                    }
-                    
-                    .marketing{
-                        margin: 60px 0;
-                        
-                    }
-                    
-                    .marketing p + h4{
-                        margin-top: 28px;
-                    }*/
-
-            /*            .form-signin{
-                            max-width: 300px;
-                            padding: 19px 29px 29px;
-                            margin: 0 auto 20px;
-                            background-color: #fff;
-                            border: 1 solid #e5e5e5;
-                            
-                            -webkit-border-radius: 5px;
-                            -moz-border-radius: 5px;
-                            border-radius: 5px;
-                            
-                            -webkit-box-shadow: 0 1px 2px rgba(0,0,0.05);
-                            -moz-box-shadow: 0 1px 2px rgba(0,0,0.05);
-                            box-shadow: 0 1px 2px rgba(0,0,0.05);
-            
-                        }
-                        .form-signin .form-signin-heading, form-signin .checkbox{
-                            margin-bottom: 10px;
-                        }
-                        
-                        .form-signin input[type="text"],
-                        .form-signin input[type="password"]{
-                            font-size: 16px;
-                            height: auto;
-                            margin-bottom: 15px;
-                            padding: 7px 9px;
-                        }*/
-        </style>
+    <script type="text/javascript">
+      $(function(){
+        initCarousel();
+      })
+      
+      function initCarousel() {
+        var visible;
+        if($(window).width() > 979) {
+          visible = 3;
+        } else if($(window).width() < 979 && $(window).width() > 767) {
+          visible = 2;
+        } else if ($(window).width() < 767 && $(window).width() > 480){
+          visible = 3;
+        } else if($(window).width() < 480) {
+          visible = 1;
+        }
         
+        $('.jcarousel').jcarousel({
+          scroll: 1,
+          visible: visible,
+          initCallback: function(carousel) {
+            $("#control-right").bind('click', function(){
+              carousel.next();
+              return false;
+            })
+            $("#control-left").bind('click', function(){
+              carousel.prev();
+              return false;
+            })
+          },
+          itemFallbackDimension: 120
+        });
+      }
+      
+      $(window).resize(function(){
+        initCarousel();
+      });
+    </script>
 
-        <title></title>
-    </head>
-    <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
-        <?php echo $this->layout()->content; ?>
-    </body>
+    <title></title>
+  </head>
+  <body>
+    <div class="main container top-blue">
+      <header>
+        <div class="header row-fluid">
+          <div class="inner">
+            <div class="logo pull-left">
+              <h3>
+                <a href="#" class="brand">
+                  <img src="/img/logo.png" alt="" class="pull-left" width="85"/>
+                  <p class="pull-right" style="margin-left: 10px;margin-top: 5px">SMK NEGERI 4 <br />Bandung</p>
+                </a>
+              </h3>
+            </div>
+            <div class="info pull-right">
+              <!--social-icon-->
+              <ul class="social-icon inline">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-rss"></i></a></li>
+              </ul>
+              <!--address/contact-->
+              <address id="school-address">
+                Jalan Kliningan No.6 Buah Batu Bandung<br />
+                (022) 7303736
+              </address>
+              <!--search form-->
+              <form method="get"
+                    action="<?php echo $this->url(array('controller' => 'search')); ?>"
+                    class="search form">
+                <div class="input-append">
+                  <input type="text" name="keyword" placeholder="Pencarian..."/>
+                  <div class="add-on">
+                    <button class="btn btn-link btn-mini"><i class="icon-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </header>
+      <nav>
+        <div class="main navbar navbar-inverse">
+          <div class="navbar-inner">
+            <a class="btn btn-navbar" style="text-align: center"
+               data-toggle="collapse"
+               data-target=".nav-collapse">
+              <i class="icon-bar"></i>
+              <i class="icon-bar"></i>
+              <i class="icon-bar"></i>
+            </a>
+            <div class="nav-collapse in collapse">
+              <ul class="nav">
+                <li class="active">
+                  <a href="#">
+                    <i class="icon-home icon-white"></i>
+                    Beranda
+                  </a>
+                </li>
+                <li><a href="#">Profil</a></li>
+                <li><a href="#">Kegiatan Sekolah</a></li>
+                <li><a href="#">Informasi</a></li>
+                <li><a href="#">Galeri</a></li>
+                <li><a href="#">Buku Tamu</a></li>
+              </ul>
+
+              <ul class="nav pull-right">
+                <li id="fat-menu" class="dropdown">
+                  <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
+                  <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'login')); ?>" class="login dropdown-menu" method="post" autocomplete="off">
+                    <div>
+                      <input type="text" placeholder="Nama Pengguna" name="username"/>
+                    </div>
+                    <div>
+                      <input type="password" name="password" id="" placeholder="Kata Sandi"/>
+                    </div>
+                    <label for="rememberme" class="checkbox pull-left">
+                      <input type="checkbox" name="" id="rememberme" />
+                      Ingatkan saya
+                    </label>
+                    <button class="btn btn-info pull-right">Masuk</button>
+                  </form>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section>
+        <div class="content">
+          <div class="main row-fluid">
+            <div class="span8">
+              <div id="highlight" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="active item">
+                    <img src="/../upload/highlight/angklung.jpeg" alt="" />
+                  </div>
+                  <div class="item"><img src="/../upload/highlight/smkn4bdg.jpg" alt="" /></div>
+                </div>
+
+                <a href="#highlight" class="carousel-control left" data-slide="prev">&lsaquo;</a>
+                <a href="#highlight" class="carousel-control right" data-slide="next">&rsaquo;</a>
+              </div>
+            </div>
+            <div class="post span4 top-green" style="">
+              <div class="inner">
+                <h4>Berita Terbaru</h4>
+                <ul class="news-list">
+                  <li><a href="#">Festival Paduan Angklung ITB XII</a></li>
+                  <li><a href="#">Study Tour TIK SMKN 4 Bandung</a></li>
+                  <li><a href="#">Pengembangan Sistem Informasi Terintegrasi</a></li>
+                  <li><a href="#">Renovasi ulang gedung sekolah</a></li>
+                  <li><a href="#">Tutorial dan pengenalan Zend Framework</a></li>
+                  <li><a href="#">Masjid SMK Negeri 4 Bandung Belum siap dipakai</a></li>
+                  <li><a href="#">Siswa mengeluhkan tidak adanya air untuk wudhu</a></li>
+                  <li><a href="#">Suasana pada saat siswa disibukan Tugas Akhir</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="jurusan row-fluid">
+            <div class="inner">
+              <div class="span4">
+                <i class="icon-desktop icon-2x"></i>
+                <h3>Teknik Informatika</h3>
+                <p>Rekayasa Perangkat Lunak, Teknik Komputer dan Jaringan, dan Multimedia.</p>
+              </div>
+              <div class="span4">
+                <i class="icon-bolt icon-2x" style="margin-left: 10px;"></i>
+                <h3>Ketenaga Listrikan</h3>
+                <p>Teknik Instalasi Tenaga Listrik, dan Teknik Otomasi Industri.</p>
+              </div>
+              <div class="span4">
+                <i class="icon-facetime-video icon-2x"></i>
+                <h3>Audio Video</h3>
+                <p>Teknik yang bekerja di bidang elektronika khususnya Audio dan Video.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row-fluid row-fluid-bordered">
+            <div class="content-inner">
+              <div class="span3">
+                <h4><i class="icon-picture"></i> Galeri</h4>
+                <p>Pelatihan teknis website Lamanbudaya di hotel Gren Alia Cikini.
+                  <a href="javascript:void(0)" id="control-left"><i class="icon-chevron-left" ></i></a>
+                  <a href="javascript:void(0)" id="control-right"><i class="icon-chevron-right" ></i></a>
+                </p>
+
+              </div>
+              <div class="span9">
+                <div class="jcarousel">
+                  <ul>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto1.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto2.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto3.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto3.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto2.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                    <li><img class="thumbnail" src="<?php echo $this->baseUrl('timthumb.php?src=upload/gallery/foto1.jpg&w=320&h=260&q=100'); ?>" alt="" /></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="main row-fluid">
+            <div class="span8">
+              <div class="content-inner">
+                <h4><i class="icon-pushpin"></i> Artikel</h4>
+                <ul class="unstyled article">
+                  <li>
+                    <article>
+                      <div class="pull-left">
+                        <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
+                        <div class="date">
+                          <span class="day">29</span>
+                          <span class="month">Des</span>
+                        </div>
+                      </div>
+                      <div class="article-content">
+                        <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
+                        <p>
+                          Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+                      <div class="article-footer">
+                        <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
+                        <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
+                        <i class="icon-comments"></i> 192 &nbsp;&nbsp;
+                        <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
+                        <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
+                      </div>
+                    </article>
+                    <hr />
+                  </li>
+                  <li>
+                    <article>
+                      <div class="pull-left">
+                        <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
+                        <div class="date">
+                          <span class="day">29</span>
+                          <span class="month">Des</span>
+                        </div>
+                      </div>
+                      <div class="article-content">
+                        <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
+                        <p>
+                          Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+                      <div class="article-footer">
+                        <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
+                        <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
+                        <i class="icon-comments"></i> 192 &nbsp;&nbsp;
+                        <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
+                        <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
+                      </div>
+                    </article>
+                    <hr />
+                  </li>
+                  <li>
+                    <article>
+                      <div class="pull-left">
+                        <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
+                        <div class="date">
+                          <span class="day">29</span>
+                          <span class="month">Des</span>
+                        </div>
+                      </div>
+                      <div class="article-content">
+                        <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
+                        <p>
+                          Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </div>
+                      <div class="article-footer">
+                        <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
+                        <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
+                        <i class="icon-comments"></i> 192 &nbsp;&nbsp;
+                        <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
+                        <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+                <br />
+                <br />
+                <br />
+
+                <h4><i class="icon-rss"></i>&nbsp; Rubrik Edukasi</h4>
+                <ul class="unstyled">
+                  <?php $feed = Zend_Feed_Reader::import('http://www.kompas.com/getrss/edukasi'); ?>
+                  <?php foreach ($feed as $index => $news): ?>
+                    <?php if ($index < 5): ?>
+                      <li>
+                        <h5>
+                          <a href="<?php echo $news->getLink(); ?>" target="_blank">
+                            <?php echo $news->getTitle(); ?>
+                          </a>
+                        </h5>
+                        <?php echo $news->getDescription(); ?>
+                        <div class="clearfix"></div>
+                        <?php if ($index != 4): ?>
+                          <hr />
+                        <?php endif; ?>
+                      </li>
+                    <?php else: ?>
+                      <!--we only display 5 latest news-->
+                    <?php endif; ?>
+
+                  <?php endforeach; ?>
+                </ul>
+                <br />
+                <br />
+                <br />
+              </div>
+            </div>
+            <div class = "sidebar span4 well" style = "">
+              <div class = "push"></div>
+              <div class = "inner">
+                <div class = "agenda widget top-gray">
+                  <div class = "widget-header">
+                    <h4><i class = "icon-info-sign"></i> Pengumuman</h4>
+                  </div>
+                  <div class = "widget-content">
+                    <ul class = "list_a" style = "list-style: square">
+                      <li><a href = "#">Kisi-Kisi Ujian Nasional 2012/2013</a></li>
+                      <li><a href = "#">Lomba Menulis Surat Remaja Nasional Kemkominfo</a></li>
+                      <li><a href = "#">Prosedur Operasi Standar (POS) Ujian Nasional 2012/2013</a></li>
+                      <li><a href = "#">Permendikbud Nomor 3 Tahun 2013 Tentang Kriteria Kelulusan dan Penyelenggaraan Ujian Nasional</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class = "agenda widget top-blue">
+                  <div class = "widget-header">
+                    <h4><i class = "icon-calendar"></i> Agenda</h4>
+                  </div>
+                  <div class = "widget-content">
+                    <ul class = "unstyled">
+                      <li>
+                        <div class = "time">16 Feb 2012 s/d 18 Feb 2013</div>
+                        <a href = "">Pelatihan Lomba Keterampilan Siswa (LKS)</a>
+                      </li>
+                      <li>
+                        <div class = "time">18 Feb 2012 s/d 20 Feb 2013</div>
+                        <a href = "">Kontes angklung harpa 4</a>
+                      </li>
+                      <li>
+                        <div class = "time">16 Feb 2012</div>
+                        <a href = "">Pelatihan Lomba Keterampilan Siswa (LKS)</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class = "agenda widget top-red">
+                  <div class = "widget-header">
+                    <h4><i class = "icon-briefcase"></i> Lowongan Kerja</h4>
+                  </div>
+                  <div class = "widget-content">
+                    <ul class = "unstyled">
+                      <li>
+                        <a href = "#"><strong>Web Developer</strong></a><br />
+                        <small>- PT. Sangkuriang Internasional</small>
+                      </li>
+                      <li>
+                        <a href = "#"><strong>UI Designer</strong></a><br />
+                        <small>- PT. Melvar Lintas Nusa</small>
+                      </li>
+                      <li>
+                        <a href = "#"><strong>System Analyst</strong></a><br />
+                        <small>- PT. Sangkuriang Internasional</small>
+                      </li>
+                      <li>
+                        <a href = "#"><strong>Online Marketer</strong></a><br />
+                        <small>- PT. INTI</small>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class = "widget top-green">
+                  <div class = "widget-header">
+                    <h4><i class = "icon-list-alt"></i> Jajak Pendapat</h4>
+                  </div>
+                  <div class = "widget-content">
+                    <form action = "" method = "post">
+                      <p>Bagaimana menurut anda website SMKN 4 Bandung?</p>
+                      <ul class = "unstyled">
+                        <li>
+                          <label for = "vote1" class = "radio">
+                            <input type = "radio" name = "vote" id = "vote1" />
+                            Sangat Baik
+                          </label>
+                        </li>
+                        <li>
+                          <label for = "vote2" class = "radio">
+                            <input type = "radio" name = "vote" id = "vote2" />
+                            Cukup
+                          </label>
+                        </li>
+                        <li>
+                          <label for = "vote3" class = "radio">
+                            <input type = "radio" name = "vote" id = "vote3" />
+                            Kurang
+                          </label>
+                        </li>
+                        <li>
+                          <label for = "vote4" class = "radio">
+                            <input type = "radio" name = "vote" id = "vote4" />
+                            Jelek
+                          </label>
+                        </li>
+                      </ul>
+                      <input type = "submit" class = "btn btn-success pull-right" value = "Kirim" />
+                      <div class = "clearfix"></div>
+                    </form>
+                  </div>
+                  <div class = "widget-footer">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <!--<div class = "footer row-fluid">
+        <div class = "content-inner">
+        <div class = "span3">
+        SMKN 4 Bandung
+        </div>
+        <div class = "span3">Kontak Kami</div>
+        <div class = "span3">Foto Terbaru</div>
+        <div class = "span3">Twitter</div>
+        </div>
+        </div>-->
+        <div class = "copyright row-fluid">
+          <div class = "inner">
+            <div class = "copyright pull-left">
+              &copy;
+              Copyright 2013 SMK NEGERI 4 Bandung.<br />Hak Cipta Dilindungi oleh Undang-Undang.
+            </div>
+            <div class = "pull-right" style = "margin: 0">
+              <ul class = "inline">
+                <li><a href = "#">FAQ's</a></li>
+                <li><a href="#">Peta Situs</a></li>
+                <li><a href="#">Kontak</a></li>
+                <li><a href="#">Kembali Keatas</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>

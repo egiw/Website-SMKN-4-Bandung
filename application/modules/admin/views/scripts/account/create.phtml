@@ -2,16 +2,5 @@
   <h3>Buat Akun</h3>
 </div>
 <div class="row-fluid">
-  <form action="" method="post" autocomplete="off" class="form form-horizontal well">
-    <fieldset>
-      <legend class="f_legend">Informasi Akun</legend>
-      <?php echo $this->form->username; ?>
-      <?php echo $this->form->password; ?>
-      <?php echo $this->form->confirm_password; ?>
-      <?php echo $this->form->role; ?>
-      <div class="form-actions">
-        <?php echo $this->form->submit; ?>
-      </div>
-    </fieldset>
-  </form>
+  <?php echo $this->render('account/form.phtml'); ?>
 </div>

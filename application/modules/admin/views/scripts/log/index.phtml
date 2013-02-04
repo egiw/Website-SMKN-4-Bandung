@@ -1,0 +1,56 @@
+<?php echo $this->flashMessenger($this->messages); ?>
+<form action="" method="post">
+  <div class="row-fluid" style="margin-bottom: 20px">
+    <div class="pull-left">
+      <h3>Log</h3>
+    </div>
+    <div class="pull-right">
+      <?php echo $this->itemCountPerPageSelect('filter[row]', $this->filter['row']); ?>
+      <?php echo $this->setRowButton('action', 'filter'); ?>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="row-fluid">
+      <div class="pull-left">
+        <button class="btn btn-mini btn-danger"
+                name="action"
+                value="clear"
+                onclick="return confirm('Apakah anda yakin ingin menghapus semua Log?')">
+          <i class="icon-refresh"></i>
+          Bersihkan Log
+        </button>
+      </div>
+      <div class="pull-right">
+        <?php echo $this->paginationControl($this->logs, 'sliding', 'partial/pagination_control.phtml'); ?>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nama Pengguna</th>
+            <th>Modul</th>
+            <th>Halaman</th>
+            <th>Aksi</th>
+            <th>Tanggal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($this->logs as $index => $log): ?>
+            <tr>
+              <td>
+                <a href="#">
+                  <strong><?php echo $log->username; ?></strong>
+                </a>
+              </td>
+              <td><?php echo $log->module; ?></td>
+              <td><?php echo $log->controller; ?></td>
+              <td><?php echo $log->action; ?></td>
+              <td><?php echo Date('d-m-Y H:i', strtotime($log->log_date)); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

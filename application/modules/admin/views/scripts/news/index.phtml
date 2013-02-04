@@ -3,7 +3,7 @@
   <div class="row-fluid" style="margin-bottom: 20px">
     <div class="pull-left">
       <h3 style="display: inline">Berita</h3>
-      <a href="<?php echo $this->url(['action' => 'create']); ?>" 
+      <a href="<?php echo $this->url(array('action' => 'create')); ?>" 
          class="btn btn-link label label-success">Posting Berita</a>
     </div>
     <div class="pull-right">
@@ -25,7 +25,7 @@
   <div class="row-fluid">
     <div class="row-fluid">
       <div class="pull-left">
-        <button class="btn btn-mini" name="action" value="delete"
+        <button class="btn btn-mini btn-danger" name="action" value="delete"
                 onclick="return confirm('Apakah anda yakin ingin menghapus berita yang dipilih?')">
           <i class="icon-trash"></i>
         </button>
@@ -111,6 +111,7 @@
                    title="Sunting">
                   <i class="icon-edit"></i></a>
                 <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $news->id)); ?>"
+                   title="Hapus"
                    onclick="return confirm('Apakah anda yakin ingin menghapus berita ini?')">
                   <i class="icon-trash"></i></a>
               </td>

@@ -714,8 +714,9 @@ body {font-size:13px;line-height:18px;font-family: sans-serif}
 h1, h2, h3, h4, h5, h6 {margin:0}
 h3 {line-height:27px;font-size:18px}
 label, input, button, select, textarea,
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
-.btn {font-size:13px}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{font-size:16px}
+.btn {font-size: 14px}
 .navbar .nav > li > a {text-shadow:none;padding:9px 10px 11px}
 .navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {background:none;color:#fff}
 .navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret,
@@ -819,6 +820,11 @@ input.title {
   .vcard > .thumbnail {display:none}
   .vcard > ul {margin:0}
   .item-list .thumbnail {float:none;display:inline-block;margin:0 10px 10px 0}
+  .thumbnails > li {
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
 }
 
 @media (max-width: 479px) {
@@ -837,4 +843,91 @@ input.title {
   .sidebar_hidden .sidebar_switch {margin-left:-832px;left:50%}
   .sidebar_right .sidebar {right:50%;margin-left:0;margin-right:-840px}
   .sidebar_right .sidebar_switch {left:auto;right:50%;margin-left:0;margin-right:-836px}
+}
+
+
+div.tagHandler {
+  display: inline-block;
+  width: 96%;
+}
+
+ul.tags.tagHandlerContainer {
+  margin: 0;
+  position: relative;
+  margin-bottom: 0;
+  min-height: 0;
+  height: 28px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.tagInputField.ui-autocomplete-input {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-box-shadow: none !important;
+  font-size: 20px !important;
+  top: -8px;
+  height: 30px;
+}
+
+
+/*edited*/
+#map-canvas {
+  width:100%;
+  height: 400px;
+}
+
+/* google maps */    
+.company_add_form legend {margin-bottom:10px;font-size:15px}
+#map-canvas img { max-width: none; }
+#map-canvas label {display:inline;margin:0;color:#000;font-size: 11px;line-height:normal}
+
+.ui-multiselect-checkboxes label input {
+  position: relative;
+  top: -1px;
+  margin: 0;
+  margin-right: 2px;
+}
+
+/*gallery*/
+.thumbnails.gallery-grid figure div {
+  height: 150px;
+  overflow: hidden;
+  -webkit-transition: opacity ease-out .2s;
+}
+.thumbnails.gallery-grid figure {
+  margin: 0;
+  text-align: center;
+  transition: opacity ease-out .2s;
+}
+
+.thumbnails.gallery-grid figcaption {
+  border-top: 5px solid #e4e4e4;
+  padding: 10px;
+  background: white;
+  min-height: 60px;
+  transition: border-top-color linear .2s;
+  -webkit-transition: border-top-color linear .2s;
+}
+.thumbnails.gallery-grid li {
+  width: 230px;
+  box-shadow: 0 1px 3px rgba(50, 50, 50, 0.2);
+}
+
+.thumbnails.gallery-grid a {
+  color: #232323;
+}
+
+.thumbnails.gallery-grid a:hover {
+  text-decoration: none;
+}
+.thumbnails.gallery-grid a:hover figure div{
+  opacity: 0.8;
+}
+
+.thumbnails.gallery-grid a:hover figcaption {
+  border-top-color: #169fe6;
 }

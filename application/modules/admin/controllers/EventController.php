@@ -2,6 +2,7 @@
 
 class Admin_EventController extends Zend_Controller_Action
 {
+  
   /**
    * @var Admin_Model_DbTable_Event
    *

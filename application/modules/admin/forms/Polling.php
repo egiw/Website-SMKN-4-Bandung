@@ -2,74 +2,99 @@
 
 class Admin_Form_Polling extends Zend_Form
 {
-  /**
-   *
-   * @var Zend_Form_Element_Text
-   */
   public $question;
-  /**
-   *
-   * @var Zend_Form_Element_Hidden
-   */
-  public $answers;
-  /**
-   *
-   * @var Zend_Form_Element_Checkbox
-   */
-  public $active;
-  /**
-   *
-   * @var Zend_Form_Element_Submit
-   */
+  public $status;
   public $submit;
   /**
    *
-   * @var Zend_Form_Element_Submit
+   * @var Admin_Form_AnswerForm
    */
-  public $save;
+  public $answerSubForm;
 
   public function init()
   {
-    /* Form Elements & Other Definitions Here ... */
 
     $this->addPrefixPath('SITi_Form_Decorator', 'SITi/Form/Decorator', 'Decorator');
 
+    $this->setName('polling');
+    $this->setIsArray(true);
+    $this->setDecorators(array('FormElements', 'Form'));
+
     $this->question = new Zend_Form_Element_Text('question');
-    $this->answers = new Zend_Form_Element_Hidden('answers');
-    $this->active = new Zend_Form_Element_Checkbox('active');
-    $this->submit = new Zend_Form_Element_Submit('submit');
-    $this->save = new Zend_Form_Element_Submit('save');
+    $this->status = new Zend_Form_Element_Checkbox('showstatus');
+    $this->submit = new Zend_Form_Element_Submit('Simpan');
+
+
+    $this->submit->setAttrib('class', 'btn btn-gebo');
+    $this->question->setRequired(true);
+
+    $this->answerSubForm = new Admin_Form_AnswerForm();
+
+    $this->answerSubForm->setDecorators(array(
+        'FormElements',
+        'Polling',
+    ));
+
+    $this->answerSubForm->setElementDecorators(array(
+        'ViewHelper',
+        'Label',
+        'PollingAnswer',
+    ));
 
     $this->question
-            ->setAttrib('class', 'span6 title')
-            ->setAttrib('placeholder', 'Tuliskan pertanyaan...');
+            ->setLabel('Pertanyaan')
+            ->setAttrib('placeholder', 'Tulis Pertanyaan Disini...')
+            ->setAttrib('class', 'span5 title')
+            ->setAttrib('style', 'font-size:14px;padding: 10px;')
+            ->setDecorators(array('ViewHelper', 'ControlGroup'));
 
-    $this->submit
-            ->setAttrib('class', 'btn btn-gebo')
-            ->setLabel('Posting');
+    $this->status->setLabel('Cek Jika Polling Ini Ingin Ditampilkan di Halaman Depan');
+    $this->status->setDecorators(array('ViewHelper', 'CheckboxLabel'));
 
-    $this->save
-            ->setAttrib('class', 'btn')
-            ->setLabel('Simpan');
 
-    $this->addElements(array(
-        $this->question,
-        $this->answers,
-        $this->active,
-        $this->save,
-    ));
+    $this->addElement($this->question);
+    $this->addElement($this->status);
+    $this->addSubForm($this->answerSubForm, 'answer');
+    $this->addElement($this->submit);
+  }
 
-    $this->setElementDecorators(array(
-        'ViewHelper', 'ControlGroup'
-    ));
+}
 
-    $this->submit->setDecorators(array(
-        'ViewHelper'
-    ));
+class Admin_Form_AnswerForm extends Zend_Form_SubForm
+{
+  public function init()
+  {
     
-    $this->save->setDecorators(array(
-        'ViewHelper'
+  }
+
+  public function populate(array $values)
+  {
+    $elements = array();
+    foreach ($values as $key => $value) {
+      $answer = new Zend_Form_Element_Hidden("{$key}");
+      $answer->setValue($value)->setLabel($value);
+      $elements[] = $answer;
+    }
+    $this->setElements($elements);
+    $this->setElementDecorators(array(
+        'ViewHelper',
+        'Label',
+        'PollingAnswer',
     ));
+  }
+
+  public function isValid($data)
+  {
+    if (isset($data['answer'])) {
+      $this->populate($data['answer']);
+      if (sizeof($data['answer']) < 2) {
+        $this->addError('Minimal 2 Jawaban');
+      }
+    } else {
+      $this->addError('Jawaban Tidak Boleh Kosong');
+      $this->clearElements();
+    }
+    return parent::isValid($data);
   }
 
 }
