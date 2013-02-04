@@ -2,9 +2,9 @@
 
 class Admin_GalleryController extends Zend_Controller_Action
 {
-  const MSG_PHOTO_DELETED = '';
-  const MSG_NO_PHOTO_DELETED = '';
-  const MSG_PHOTOS_DELETED = '';
+  const MSG_PHOTO_DELETED = 'success|Foto berhasil dihapus.';
+  const MSG_NO_PHOTO_DELETED = 'warning|Tidak ada foto terpilih.';
+  const MSG_PHOTOS_DELETED = 'success|%s foto berhasil dihapus.';
 
   /**
    * @var Zend_Gdata_Photos
