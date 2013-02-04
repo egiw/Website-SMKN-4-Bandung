@@ -1,13 +1,24 @@
 <?php echo $this->flashMessenger($this->messages); ?>
 <form action="" method="post">
-  <div class="row-fluid">
+  <div class="row-fluid" style="margin-bottom: 25px;">
     <div class="pull-left">
       <h3 style="display: inline">Lowongan Kerja</h3>
       <a href="<?php echo $this->url(array('action' => 'create')); ?>"
          class="btn btn-link label label-success">Posting Baru</a>
     </div>
     <div class="pull-right">
-
+      <?php
+      echo $this->formSelect('filter[row]', $this->filter['row'], array(
+          'style' => 'width: 60px'), array(
+          5 => 5,
+          10 => 10,
+          15 => 15,
+          25 => 25,
+          50 => 50,
+          100 => 100
+      ));
+      ?>
+      <button class="btn" name="action" value="filter">Set</button>
     </div>
   </div>
   <div class="row-fluid">
@@ -18,6 +29,17 @@
                 value="delete"
                 onclick="return confirm('Apakah anda yakin ingin menghapus lowongan kerja yang dipilih ?')">
           <i class="icon-trash"></i>
+        </button>
+        <button class="btn btn-mini"
+                name="action"
+                value="filter">
+          <i class="icon-filter"></i>
+          Gunakan Filter
+        </button>
+        <button class="btn btn-mini"
+                name="action"
+                value="reset">
+          Atur Ulang Filter
         </button>
       </div>
       <div class="pull-right">
@@ -38,11 +60,33 @@
                 }
                      "/>
             </th>
-            <th></th>
+            <!--<th></th>-->
             <th>Posisi</th>
             <th>Perusahaan</th>
             <th>Website</th>
-            <th>Tags</th>
+            <!--<th>Tags</th>-->
+            <th></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th>
+              <?php
+              echo $this->formText('filter[position]', $this->filter['position'], array(
+                  'class' => 'span12',
+                  'placeholder' => 'Posisi pekerjaan...'
+              ));
+              ?>
+            </th>
+            <th>
+              <?php
+              echo $this->formText('filter[company]', $this->filter['company'], array(
+                  'class' => 'span12',
+                  'placeholder' => 'Nama perusahaan...'
+              ));
+              ?>
+            </th>
+            <th></th>
+            <!--<th></th>-->
             <th></th>
           </tr>
         </thead>
@@ -50,7 +94,7 @@
           <?php foreach ($this->jobs as $index => $job): ?>
             <tr>
               <td><input type="checkbox" name="jobs[]" value="<?php echo $job->id; ?>" /></td>
-              <td><?php echo $this->thumbnail('company-logo', $job->logo, 'default.png', 50, 50); ?></td>
+              <!--<td><?php echo $this->thumbnail('company-logo', $job->logo, 'default.png', 50, 50); ?></td>-->
               <td>
                 <a href="#">
                   <strong><?php echo $job->title; ?></strong>
@@ -62,7 +106,7 @@
                   <?php echo $job->website; ?>
                 </a>
               </td>
-              <td><?php echo $this->tags($job->tags); ?></td>
+              <!--<td><?php echo $this->tags($job->tags); ?></td>-->
               <td>
                 <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $job->id)); ?>">
                   <i class="icon-edit"></i>
@@ -79,3 +123,5 @@
     </div>
   </div>
 </form>
+
+

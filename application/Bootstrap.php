@@ -26,11 +26,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     $acl = new Zend_Acl();
     $acl->addRole(new Zend_Acl_Role('admin'));
     $acl->addRole(new Zend_Acl_Role('siswa'));
-    $acl->add(new Zend_Acl_Resource('content'));
-    $acl->add(new Zend_Acl_Resource('admin'));
+    $acl->add(new Zend_Acl_Resource('event'));
+    $acl->add(new Zend_Acl_Resource('news'));
 
-
-    $view->navigation()->setAcl($acl)->setRole('admin');
+    $view->navigation()->setAcl($acl)->setRole('siswa');
   }
 
 }

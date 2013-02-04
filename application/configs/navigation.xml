@@ -25,6 +25,12 @@
       <controller>polling</controller>
       <action>index</action>
     </polling>
+    <gallery>
+      <label>Galeri</label>
+      <module>admin</module>
+      <controller>gallery</controller>
+      <action>index</action>
+    </gallery>
   </nav>
   <admin>
     <jobs>

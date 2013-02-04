@@ -1,0 +1,10 @@
+#photos input[type="checkbox"] {
+  display: none;
+}
+#photos input[type="checkbox"]:checked + img {
+  background-color:#167fe6;
+}
+
+.row-fluid .thumbnails {
+  margin-left: -20px;
+}

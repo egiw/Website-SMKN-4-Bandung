@@ -2,7 +2,11 @@
 
 class Admin_JobsController extends Zend_Controller_Action
 {
-  
+  const MSG_SELECTED_JOBS_DELETED = 'success|%s lowongan kerja berhasil dihapus.';
+  const MSG_JOB_DELETED = 'success|Informasi lowongan pekerjaan berhasil dihapus.';
+  const MSG_JOB_CREATED = 'success|Informasi lowongan pekerjaan berhasil diposting.';
+  const MSG_JOB_EDITED = 'success|Informasi lowongan pekerjaan berhasil disunting.';
+
   /**
    * @var Admin_Form_Jobs
    *
@@ -23,6 +27,11 @@ class Admin_JobsController extends Zend_Controller_Action
    *
    */
   protected $tag = null;
+  /**
+   *
+   * @var Zend_Session_Namespace
+   */
+  protected $filter;
 
   public function init()
   {
@@ -31,6 +40,7 @@ class Admin_JobsController extends Zend_Controller_Action
     $this->form = new Admin_Form_Jobs();
     $this->jobs = new Admin_Model_DbTable_Jobs();
     $this->tag = new Admin_Model_DbTable_Tag();
+    $this->filter = new Zend_Session_Namespace('filter');
   }
 
   public function indexAction()
@@ -50,10 +60,15 @@ class Admin_JobsController extends Zend_Controller_Action
                 $job->delete();
               }
             }
-            $this->_helper->flashMessenger->addMessage(count($jobs) . " item lowongan pekerjaan berhasil dihapus.");
+            $this->_helper->flashMessenger->addMessage(sprintf(self::MSG_SELECTED_JOBS_DELETED, count($jobs)));
           }
           break;
-
+        case 'filter':
+          $this->filter->jobs = $post['filter'];
+          break;
+        case 'reset':
+          $this->filter->unsetAll();
+          break;
         default:
           break;
       }
@@ -61,13 +76,21 @@ class Admin_JobsController extends Zend_Controller_Action
       $this->_helper->redirector('index');
     }
 
-    $data = $this->jobs->findAll();
+    var_dump($this->filter->jobs);
+
+    $data = $this->jobs->findAll($this->filter->jobs);
     $paginator = Zend_Paginator::factory($data);
     $paginator->setCurrentPageNumber($pageNumber);
+    $paginator->setDefaultItemCountPerPage(5);
+    if ($row = $this->filter->jobs['row']) {
+      $paginator->setItemCountPerPage($row);
+    }
 
     $messages = $this->_helper->flashMessenger->getMessages();
     $this->view->messages = $messages;
     $this->view->jobs = $paginator;
+
+    $this->view->filter = $this->filter->jobs;
   }
 
   public function createAction()
@@ -98,7 +121,7 @@ class Admin_JobsController extends Zend_Controller_Action
 
         $job->save();
 
-        $this->_helper->flashMessenger->addMessage('success|Lowongan pekerjaan berhasil diposting');
+        $this->_helper->flashMessenger->addMessage(self::MSG_JOB_CREATED);
         $this->_helper->redirector('index');
       }
     }
@@ -141,7 +164,7 @@ class Admin_JobsController extends Zend_Controller_Action
 
             $job->save();
 
-            $this->_helper->flashMessenger('Lowongan Kerja berhasil disunting.');
+            $this->_helper->flashMessenger(self::MSG_JOB_EDITED);
             $this->_helper->redirector('index');
           }
         }
@@ -163,7 +186,7 @@ class Admin_JobsController extends Zend_Controller_Action
       $job = $this->jobs->find($id)->current();
       if (null !== $job) {
         $job->delete();
-        $this->_helper->flashMessenger->addMessage('Lowongan kerja berhasil dihapus.');
+        $this->_helper->flashMessenger->addMessage(self::MSG_JOB_DELETED);
       }
     }
     $this->_helper->redirector('index');

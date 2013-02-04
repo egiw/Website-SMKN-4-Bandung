@@ -820,6 +820,11 @@ input.title {
   .vcard > .thumbnail {display:none}
   .vcard > ul {margin:0}
   .item-list .thumbnail {float:none;display:inline-block;margin:0 10px 10px 0}
+  .thumbnails > li {
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
 }
 
 @media (max-width: 479px) {
@@ -885,4 +890,44 @@ ul.tags.tagHandlerContainer {
   top: -1px;
   margin: 0;
   margin-right: 2px;
+}
+
+/*gallery*/
+.thumbnails.gallery-grid figure div {
+  height: 150px;
+  overflow: hidden;
+  -webkit-transition: opacity ease-out .2s;
+}
+.thumbnails.gallery-grid figure {
+  margin: 0;
+  text-align: center;
+  transition: opacity ease-out .2s;
+}
+
+.thumbnails.gallery-grid figcaption {
+  border-top: 5px solid #e4e4e4;
+  padding: 10px;
+  background: white;
+  min-height: 60px;
+  transition: border-top-color linear .2s;
+  -webkit-transition: border-top-color linear .2s;
+}
+.thumbnails.gallery-grid li {
+  width: 230px;
+  box-shadow: 0 1px 3px rgba(50, 50, 50, 0.2);
+}
+
+.thumbnails.gallery-grid a {
+  color: #232323;
+}
+
+.thumbnails.gallery-grid a:hover {
+  text-decoration: none;
+}
+.thumbnails.gallery-grid a:hover figure div{
+  opacity: 0.8;
+}
+
+.thumbnails.gallery-grid a:hover figcaption {
+  border-top-color: #169fe6;
 }
