@@ -57,8 +57,6 @@ class Admin_NewsController extends Zend_Controller_Action
       $this->_helper->redirector('index');
     }
 
-    var_dump($this->filter->news);
-
     $pageNumber = $this->getParam('page');
     $messages = $this->_helper->flashMessenger->getMessages();
     $username = Zend_Auth::getInstance()->getIdentity()->username;
