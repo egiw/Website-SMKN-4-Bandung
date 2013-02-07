@@ -2,6 +2,8 @@
 
 class Admin_Form_Album extends Zend_Form
 {
+  const MSG_ALBUM_IS_EMPTY = 'Nama album tidak boleh kosong.';
+
   /**
    *
    * @var Zend_Form_Element_Text
@@ -20,7 +22,20 @@ class Admin_Form_Album extends Zend_Form
     $this->submit = new Zend_Form_Element_Submit('Submit');
     $this->title->setLabel('Nama Album');
 
-    $this->submit->setAttrib('class', 'btn btn-gebo');
+    $this->title
+            ->setRequired(true)
+            ->addValidator('NotEmpty', false, array(
+                'messages' => array(
+                    Zend_Validate_NotEmpty::IS_EMPTY => self::MSG_ALBUM_IS_EMPTY
+                )
+            ))
+            ->setAttrib('class', 'span6 title')
+            ->setAttrib('placeholder', 'Tuliskan nama album...');
+
+    $this->submit
+            ->setLabel('Simpan')
+            ->setAttrib('class', 'btn btn-gebo');
+
     $this->addElements(array(
         $this->title,
         $this->submit

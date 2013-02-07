@@ -94,10 +94,10 @@ $(function(){
       raiseOnDrag: false,
       labelAnchor: new google.maps.Point(50, 55),
       labelClass: "label label-info label-mini",
-      labelInBackground: false,
-      icon: image,
-      shadow: shadow,
-      shape: shape
+      labelInBackground: false
+//      icon: image,
+//      shadow: shadow,
+//      shape: shape
     });
   }
   
