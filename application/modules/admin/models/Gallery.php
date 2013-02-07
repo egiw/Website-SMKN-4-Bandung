@@ -55,9 +55,10 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $album['photos'] = array();
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
+        $thumbnails= $photoEntry->getMediaGroup()->getThumbnail();
       $album['photos'][] = array(
           'id' => $photoEntry->getGphotoId()->getText(),
-          'src' => $photoEntry->getMediaGroup()->getThumbnail()[0]->getUrl()
+          'src' => $thumbnails[0]->getUrl()
       );
     }
     return $album;
@@ -73,7 +74,8 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $albumFeed = $this->getAlbumFeed($query);
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-      $photos[] = $photoEntry->getMediaGroup()->getThumbnail()[0]->url;
+      $thumbnails=$photoEntry->getMediaGroup()->getThumbnail();
+        $photos[] = $thumbnails[0]->url;
     }
     return $photos;
   }

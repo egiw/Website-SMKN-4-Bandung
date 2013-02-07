@@ -55,7 +55,7 @@ class Admin_Form_Article extends Zend_Form
     $this->draft->setAttribs(array(
         'class' => 'btn'))->setLabel('Simpan Sebagai Draft');
     $this->submit->setAttribs(array(
-        'class' => 'btn btn-gebo'))->setLabel('Posting');
+        'class' => 'btn btn-gebo'))->setLabel('Tambah');
 
     $this->addElements(array(
         $this->tags,

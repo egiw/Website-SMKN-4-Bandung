@@ -7,7 +7,7 @@
       <h3 style="display: inline">Artikel</h3>
       <a href="<?php echo $this->url(array('action' => 'create')); ?>"
          class="btn btn-link label label-success">
-        Posting Artikel
+        Tambah Artikel
       </a>
     </div>
     <div class="pull-right">
@@ -79,15 +79,15 @@
             <th>
               <?php
               echo $this->formText('filter[title]', $this->filter['title'], array(
-                  'placeholder' => 'Ketikan nama judul untuk pencarian...'));
+                  'placeholder' => 'Ketikan judul untuk pencarian'));
               ?>
             </th>
             <th>
               <?php
               echo $this->formSelect('filter[status]', $this->filter['status'], array(), array(
-                  null => '--Tampilkan semua status.',
+                  null => '-Tampilkan semua status-',
                   Admin_Model_Status::ARCHIVED => "Diarsipkan ({$this->countStatus['archived']})",
-                  Admin_Model_Status::DRAFT => "Draft ({$this->countStatus['draft']})",
+                  Admin_Model_Status::DRAFT => "Konsep ({$this->countStatus['draft']})",
                   Admin_Model_Status::PENDING => "Menunggu Persetujuan ({$this->countStatus['pending']})",
                   Admin_Model_Status::PUBLISH => "Diterbitkan ({$this->countStatus['publish']})"
               ));
@@ -96,7 +96,7 @@
             <th>
               <?php
               echo $this->formText('filter[tag]', $this->filter['tag'], array(
-                  'placeholder' => 'Ketikan nama tag untuk pencarian...'));
+                  'placeholder' => 'Ketikan tag untuk pencarian'));
               ?>
             </th>
             <th></th>
