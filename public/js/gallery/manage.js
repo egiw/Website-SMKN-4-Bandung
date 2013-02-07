@@ -1,8 +1,9 @@
 $(function(){
+  var album_id = $("#album_id").val();
   $("#photo_upload").pluploadQueue({
     // General settings
     runtimes : 'html5,flash,silverlight',
-    url : '/admin/gallery/upload',
+    url : '/admin/gallery/upload/id/' + album_id,
     max_file_size : '10mb',
     chunk_size : '1mb',
     unique_names : true,
@@ -28,7 +29,7 @@ $(function(){
 
   uploader.bind('FileUploaded', function() {
     if (uploader.files.length == (uploader.total.uploaded + uploader.total.failed)) {
-//      location.reload();
+          location.reload();
     }
   });
 })

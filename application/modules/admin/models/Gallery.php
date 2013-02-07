@@ -55,7 +55,7 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $album['photos'] = array();
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-        $thumbnails= $photoEntry->getMediaGroup()->getThumbnail();
+      $thumbnails = $photoEntry->getMediaGroup()->getThumbnail();
       $album['photos'][] = array(
           'id' => $photoEntry->getGphotoId()->getText(),
           'src' => $thumbnails[0]->getUrl()
@@ -74,8 +74,7 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $albumFeed = $this->getAlbumFeed($query);
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-      $thumbnails=$photoEntry->getMediaGroup()->getThumbnail();
-        $photos[] = $thumbnails[0]->url;
+      $photos[] = $photoEntry->getMediaGroup()->getThumbnail()[0]->url;
     }
     return $photos;
   }
@@ -87,7 +86,7 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $photoQuery->setPhotoId($photo_id);
     $photoQuery->setType('entry');
     $photoEntry = $this->getPhotoEntry($photoQuery);
-    $this->deletePhotoEntry($photoEntry, true);
+    $photoEntry->delete();
   }
 
   public function uploadPhoto($album_id, $tmp_name, $type, $title)
@@ -101,8 +100,17 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $albumQuery = new Zend_Gdata_Photos_AlbumQuery();
     $albumQuery->setAlbumId($album_id);
     $albumEntry = $this->getAlbumEntry($albumQuery);
-
     $this->insertPhotoEntry($photoEntry, $albumEntry);
+  }
+
+  public function updateTitle($album_id, $title)
+  {
+    $albumQuery = new Zend_Gdata_Photos_AlbumQuery();
+    $albumQuery->setAlbumId($album_id);
+    $albumQuery->setType('entry');
+    $albumEntry = $this->getAlbumEntry($albumQuery);
+    $albumEntry->setTitle(new Zend_Gdata_App_Extension_Title($title));
+    $albumEntry->save();
   }
 
 }

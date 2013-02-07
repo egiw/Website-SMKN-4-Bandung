@@ -2,9 +2,12 @@
 <?php $this->headScript()->appendFile($this->baseUrl('lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.full.js')) ?>
 <?php $this->headScript()->appendFile($this->baseUrl('lib/plupload/js/i18n/id.js')); ?>
 <?php $this->headScript()->appendFile($this->baseUrl('js/gallery/manage.js')); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('lib/plupload/js/jquery.plupload.queue/css/plupload-gebo.css')); ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl('css/gallery/manage.css')); ?>
 <?php echo $this->flashMessenger($this->messages); ?>
+
 <form action="" method="post">
+  <input type="hidden" name="album_id" id="album_id" value="<?php echo $this->album['id']; ?>" />
   <div class="row-fluid" style="margin-bottom: 25px">
     <div class="pull-left">
       <h3>Sunting Album <strong>(<?php echo $this->album['title']; ?>)</strong></h3>
@@ -18,6 +21,21 @@
               onclick="return confirm('Apakah anda yakin ingin menghapus foto yang dipilih?')">
         <i class="icon-trash"></i>
       </button>
+      <a href="#upload-window" data-toggle="modal" class="btn btn-mini btn-success">
+        <i class="icon-plus"></i>
+        Tambah Foto
+      </a>
+      <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $this->album['id'])); ?>"
+         class="btn btn-mini">
+        <i class="icon-edit"></i>
+        Ubah nama album
+      </a>
+      <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $this->album['id'])); ?>"
+         class="btn btn-danger btn-mini"
+         onclick="return confirm('Apakah anda yakin ingin menghapus album ini?')">
+        <i class="icon-remove"></i>
+        Hapus album
+      </a>
     </div>
     <div class="pull-right">
       <?php echo $this->paginationControl($this->album['photos'], 'sliding', 'partial/pagination_control.phtml'); ?>
@@ -40,10 +58,7 @@
       <?php endforeach; ?>
     </ul>
   </div>
-  <hr />
-  <div class="row-fluid">
-    <div id="photo_upload">
-
-    </div>
+  <div class="modal hide fade" id="upload-window">
+    <div id="photo_upload" class="gebo-upload"></div>
   </div>
 </form>
