@@ -23,11 +23,6 @@
                 <?php foreach ($this->eventLatest as $eventL): ?>
                     <li>
 
-                        <!--                        <div class="time">
-                        <?php // echo Date("d/m/Y", strtotime($event->from_date)); ?> s/d <?php // echo Date("d/m/Y", strtotime($event->until_date)); ?>
-                                                </div>
-                                                <a href="#"><?php // echo $event->title;      ?></a>-->
-
                         <del>
                             <div class="time">
                                 <?php echo date("d M Y", strtotime($eventL->from_date)); ?> s/d <?php echo date("d M Y", strtotime($eventL->from_date)); ?>
