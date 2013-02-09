@@ -1,0 +1,44 @@
+#highlight-images .well {
+  padding: 5px;
+  margin-bottom: 5px;
+  position: relative;
+}
+#highlight-images .handle {
+  float: left;
+  width: 20px;
+  height: 100px;
+  background: url('/img/drag-handle.png');
+  cursor: move;
+}
+
+#highlight-images img {
+  margin-left: 5px;
+}
+
+#highlight-images .sortable-placeholder {
+  /*height: 112px;*/
+  height: 112px;
+  margin-bottom: 5px;
+  visibility: hidden;
+}
+
+#highlight-images .pull-left {
+  margin-right: 10px;
+}
+
+#highlight-images .dropdown.controls {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+#highlight-images .dropdown .dropdown-menu {
+  border-radius: 0;
+  left: -125px;
+}
+
+#highlight-images .dropdown-toggle {
+  width: 10px;
+  height: 10px;
+  display: block;
+}

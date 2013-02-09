@@ -21,14 +21,12 @@
 //                foreach ($this->news as $news) {
 //                    echo '<li><a href="#">'.$news['title'].'</a></li>';
 //                }
-                
-                
                 ?>
-                
-                <?php foreach($this->news as $news): ?>
-                <li><a href="#"><?php echo $news->title; ?></a></li>
+
+                <?php foreach ($this->news as $news): ?>
+                    <li><a href="#"><?php echo $news->title; ?></a></li>
                 <?php endforeach; ?>
-                
+
                 <!--                <li><a href="#">Festival Paduan Angklung ITB XII</a></li>
                                 <li><a href="#">Study Tour TIK SMKN 4 Bandung</a></li>
                                 <li><a href="#">Pengembangan Sistem Informasi Terintegrasi</a></li>
@@ -170,16 +168,36 @@
             <br />
 
             <h4><i class="icon-rss"></i>&nbsp; Rubrik Edukasi</h4>
-            hahahaha edukasi
+            <ul class="unstyled">
+<?php $feed = Zend_Feed_Reader::import('http://www.kompas.com/getrss/edukasi'); ?>
+                <?php foreach ($feed as $index => $news): ?>
+                    <?php if ($index < 5): ?>
+                        <li>
+                            <h5>
+                                <a href="<?php echo $news->getLink(); ?>" target="_blank">
+        <?php echo $news->getTitle(); ?>
+                                </a>
+                            </h5>
+        <?php echo $news->getDescription(); ?>
+                            <div class="clearfix"></div>
+                            <?php if ($index != 4): ?>
+                                <hr />
+                            <?php endif; ?>
+                        </li>
+                        <?php else: ?>
+                        <!--we only display 5 latest news-->
+                    <?php endif; ?>
 
+                <?php endforeach; ?>
+            </ul>
             <br />
             <br />
             <br />
         </div>
     </div>
     <div class="sidebar span4 well">
-        <?php
-        echo $this->render('sidebar.phtml');
-        ?>
+<?php
+echo $this->render('sidebar.phtml');
+?>
     </div>
 </div>
