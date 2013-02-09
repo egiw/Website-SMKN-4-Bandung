@@ -5,7 +5,7 @@ class SITi_Controller_Action_Helper_UserActivity extends Zend_Controller_Action_
   public function postDispatch()
   {
     $auth = Zend_Auth::getInstance();
-    if ($auth->hasIdentity()) {
+    if ($auth->hasIdentity() && $this->getRequest() !== 'error') {
       $log = new Admin_Model_DbTable_Log();
       $log->createRow(array(
           'username' => $auth->getIdentity()->username,

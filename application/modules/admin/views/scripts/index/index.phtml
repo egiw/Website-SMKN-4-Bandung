@@ -1,1 +1,67 @@
-<h1>Index</h1>
+<?php $this->headScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
+<?php $this->headScript()->appendFile($this->baseUrl('js/index/index.js')); ?>
+<div class="row-fluid">
+  <h1>Dashboard</h1>
+</div>
+
+<div id="widgets" class="row-fluid">
+<!--  <div class="span4 ui-sortable">
+    <div class="w-box" id="w_sort01">
+      <div class="w-box-header">
+        Lorem ipsum
+        <div class="pull-right"><span class="label label-success">123</span></div>
+      </div>
+      <div class="w-box-content cnt_a">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vehicula diam in lorem commodo tristique. Proin pellentesque odio et quam gravida non vehicula lectus viverra. Nunc in consequat dolor. Nam dui mi, porta id vulputate eu, rutrum a enim. Fusce condimentum auctor fermentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id augue eget urna consequat interdum. Donec est odio, facilisis vitae mattis ac, commodo id risus
+      </div>
+      <div class="w-box-footer">
+        <div class="pagination pagination-centered">
+          <ul>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  <div class="span8 ui-sortable">
+    <div class="w-box" id="w_sort02" style="">
+      <div class="w-box-header">
+        <i class="icon-comments"></i>&nbsp;Buku tamu
+        <div class="pull-right">
+          <div class="btn-group">
+            <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
+              <i class="icon-cog"></i> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="w-box-content cnt_a">
+        <ul class="unstyled" id="guestbook-list">
+          <?php foreach ($this->guestbooks as $index => $guestbook): ?>
+            <li>
+              <blockquote <?php echo ($index % 2 == 0) ? 'class="pull-right"' : '' ?>>
+                <p><?php echo $guestbook['message']; ?></p>
+                <small>
+                  Dari
+                  <cite title="<?php echo $guestbook['email'] ?>">
+                    <a href="mailto:<?php echo $guestbook['email'] ?>" target="_blank"><?php echo $guestbook['name']; ?> </a>
+                  </cite> 
+                  pada <?php echo Date('j M H:i', strtotime($guestbook['created_on'])); ?>
+                </small>
+              </blockquote>
+
+              <?php // echo $guestbook['email']; ?>
+              <div class="clearfix"></div>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
