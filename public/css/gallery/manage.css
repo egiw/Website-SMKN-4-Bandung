@@ -5,6 +5,14 @@
   background-color:#167fe6;
 }
 
-.row-fluid .thumbnails {
-  margin-left: -20px;
+.plupload_container {
+  padding: 0;
+}
+
+.plupload_scroll .plupload_filelist {
+  overflow: auto;
+}
+
+.gebo-upload {
+  margin-bottom: 0;
 }

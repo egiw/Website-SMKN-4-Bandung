@@ -12,10 +12,12 @@ class Admin_GalleryController extends Zend_Controller_Action
    *
    *
    *
+   *
    */
   protected $service = null;
   /**
    * @var Admin_Model_Gallery
+   *
    *
    *
    */
@@ -110,14 +112,38 @@ class Admin_GalleryController extends Zend_Controller_Action
   {
     $this->_helper->Layout->disableLayout();
     $this->_helper->ViewRenderer->setNoRender();
+    $album_id = $this->getParam('id');
     if ($this->getRequest()->isPost()) {
       $file = $_FILES['file'];
       $type = $file['type'];
       $name = $file['name'];
       $tmp_name = $file['tmp_name'];
-      $this->gallery->uploadPhoto("5839637132157003521", $tmp_name, $type, $name);
+      $this->gallery->uploadPhoto($album_id, $tmp_name, $type, $name);
     } else {
       $this->_helper->Redirector('index');
+    }
+  }
+
+  public function editAction()
+  {
+    $album_id = $this->getParam('id');
+    if (null !== $album_id) {
+      $album = $this->gallery->getAlbum($album_id);
+      $form = new Admin_Form_Album();
+      $form->submit->setLabel('Simpan');
+      $form->title->setValue($album['title']);
+
+      if ($this->getRequest()->isPost()) {
+        $data = $this->getRequest()->getPost();
+        if ($form->isValid($data)) {
+          $this->gallery->updateTitle($album_id, $form->title->getValue());
+          $this->_helper->redirector('manage', 'gallery', 'admin', array(
+              'id' => $album_id
+          ));
+        }
+      }
+
+      $this->view->form = $form;
     }
   }
 

@@ -86,7 +86,7 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $photoQuery->setPhotoId($photo_id);
     $photoQuery->setType('entry');
     $photoEntry = $this->getPhotoEntry($photoQuery);
-    $this->deletePhotoEntry($photoEntry, true);
+    $photoEntry->delete();
   }
 
   public function uploadPhoto($album_id, $tmp_name, $type, $title)
@@ -100,8 +100,17 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $albumQuery = new Zend_Gdata_Photos_AlbumQuery();
     $albumQuery->setAlbumId($album_id);
     $albumEntry = $this->getAlbumEntry($albumQuery);
-
     $this->insertPhotoEntry($photoEntry, $albumEntry);
+  }
+
+  public function updateTitle($album_id, $title)
+  {
+    $albumQuery = new Zend_Gdata_Photos_AlbumQuery();
+    $albumQuery->setAlbumId($album_id);
+    $albumQuery->setType('entry');
+    $albumEntry = $this->getAlbumEntry($albumQuery);
+    $albumEntry->setTitle(new Zend_Gdata_App_Extension_Title($title));
+    $albumEntry->save();
   }
 
 }

@@ -31,6 +31,12 @@
       <controller>gallery</controller>
       <action>index</action>
     </gallery>
+    <highlight>
+      <label>Highlight</label>
+      <module>admin</module>
+      <controller>highlight</controller>
+      <action>index</action>
+    </highlight>
   </nav>
   <admin>
     <jobs>

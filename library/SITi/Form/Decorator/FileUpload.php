@@ -8,7 +8,22 @@ class SITi_Form_Decorator_FileUpload extends Zend_Form_Decorator_Abstract
     $element->addDecorator('HtmlTag', array('tag' => 'div', 'class' => 'fileupload'));
 
     $data_image = $element->getAttrib('data-image');
-    $image = "<img src='http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image'/>";
+
+    $w = $this->getOption('w');
+    $h = $this->getOption('h');
+    $text = $this->getOption('text');
+
+    if (null == $w) {
+      $w = 200;
+    }
+    if (null == $h) {
+      $h = 150;
+    }
+    if (null == $text) {
+      $text = "{$w}+x+{$h}";
+    }
+
+    $image = "<img src='http://www.placehold.it/{$w}x{$h}/EFEFEF/AAAAAA&text={$text}'/>";
     if (null != $data_image) {
       $image = "<img src='{$data_image}'/>";
     }
@@ -37,11 +52,11 @@ class SITi_Form_Decorator_FileUpload extends Zend_Form_Decorator_Abstract
 
     $fileupload_new_thumbnail = $tag->clearOptions()->setTag('div')->setOptions(array(
                 'class' => 'fileupload-new thumbnail',
-                'style' => 'width:200px;height:150px'))->render($image);
+                'style' => "width:{$w}px;height:{$h}px"))->render($image);
 
     $fileupload_exists_thumbnail = $tag->clearOptions()->setTag('div')->setOptions(array(
                 'class' => 'fileupload-preview fileupload-exists thumbnail',
-                'style' => 'width: 200px; height: 150px; line-height:20px',
+                'style' => "width: {$w}px; height: {$h}px; line-height:20px",
             ))->render('');
 
     $fileupload = $tag->clearOptions()->setTag('div')->setOptions(array(
