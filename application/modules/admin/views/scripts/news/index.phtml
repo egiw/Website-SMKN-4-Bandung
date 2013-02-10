@@ -4,7 +4,7 @@
     <div class="pull-left">
       <h3 style="display: inline">Berita</h3>
       <a href="<?php echo $this->url(array('action' => 'create')); ?>" 
-         class="btn btn-link label label-success">Posting Berita</a>
+         class="btn btn-link label label-success">Tambah Berita</a>
     </div>
     <div class="pull-right">
       <?php
@@ -18,7 +18,7 @@
           100 => 100
       ));
       ?>
-      <button class="btn" name="action" value="filter">Set</button>
+      <button class="btn" name="action" value="filter">Atur</button>
     </div>
   </div>
 
@@ -70,9 +70,9 @@
             <th>
               <?php
               echo $this->formSelect('filter[status]', $this->filter['status'], array(), array(
-                  null => '--Tampilkan semua status.',
+                  null => '-Tampilkan semua status-',
                   Admin_Model_Status::ARCHIVED => "Diarsipkan ({$this->countStatus['archived']})",
-                  Admin_Model_Status::DRAFT => "Draft ({$this->countStatus['draft']})",
+                  Admin_Model_Status::DRAFT => "Konsep ({$this->countStatus['draft']})",
                   Admin_Model_Status::PENDING => "Menunggu Persetujuan ({$this->countStatus['pending']})",
                   Admin_Model_Status::PUBLISH => "Diterbitkan ({$this->countStatus['publish']})"
               ));

@@ -43,7 +43,7 @@ class Admin_Form_News extends Zend_Form
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Judul berita tidak boleh kosong.')))));
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Judul tidak boleh kosong')))));
 
     $this->content
             ->setAttrib('rows', '20')
@@ -51,16 +51,16 @@ class Admin_Form_News extends Zend_Form
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Konten berita tidak boleh kosong.')))));
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Konten tidak boleh kosong')))));
 
 
     $this->submit
             ->setAttrib('class', 'btn btn-gebo')
-            ->setLabel('Posting');
+            ->setLabel('Tambah');
 
     $this->draft
             ->setAttrib('class', 'btn')
-            ->setLabel('Simpan Sebagai Draft');
+            ->setLabel('Simpan sebagai Konsep');
 
     $this->addElements(array(
         $this->title,
