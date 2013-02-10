@@ -146,10 +146,12 @@
               <dbTableFile dbTableName="Log"/>
               <dbTableFile dbTableName="Prakerin"/>
               <dbTableFile dbTableName="Highlight"/>
+              <dbTableFile dbTableName="Guestbook"/>
             </dbTableDirectory>
             <modelFile modelName="Status"/>
             <modelFile modelName="Role"/>
             <modelFile modelName="Gallery"/>
+            <modelFile modelName="Analytics"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
