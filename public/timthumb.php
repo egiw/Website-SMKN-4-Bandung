@@ -27,10 +27,12 @@ if (!defined('DEBUG_LEVEL')) define('DEBUG_LEVEL', 1);        // Debug level 1 i
 if (!defined('MEMORY_LIMIT')) define('MEMORY_LIMIT', '30M');       // Set PHP memory limit
 if (!defined('BLOCK_EXTERNAL_LEECHERS')) define('BLOCK_EXTERNAL_LEECHERS', false);    // If the image or webshot is being loaded on an external site, display a red "No Hotlinking" gif.
 
+
+
   
 //Image fetching and caching
 if (!defined('ALLOW_EXTERNAL')) define('ALLOW_EXTERNAL', TRUE);      // Allow image fetching from external websites. Will check against ALLOWED_SITES if ALLOW_ALL_EXTERNAL_SITES is false
-if (!defined('ALLOW_ALL_EXTERNAL_SITES')) define('ALLOW_ALL_EXTERNAL_SITES', false);    // Less secure. 
+if (!defined('ALLOW_ALL_EXTERNAL_SITES')) define('ALLOW_ALL_EXTERNAL_SITES', true);    // Less secure. 
 if (!defined('FILE_CACHE_ENABLED')) define('FILE_CACHE_ENABLED', TRUE);     // Should we store resized/modified images on disk to speed things up?
 if (!defined('FILE_CACHE_TIME_BETWEEN_CLEANS')) define('FILE_CACHE_TIME_BETWEEN_CLEANS', 86400); // How often the cache is cleaned 
 
@@ -42,10 +44,14 @@ if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 10485760);      // 10 Meg
 if (!defined('CURL_TIMEOUT')) define('CURL_TIMEOUT', 20);       // Timeout duration for Curl. This only applies if you have Curl installed and aren't using PHP's default URL fetching mechanism.
 if (!defined('WAIT_BETWEEN_FETCH_ERRORS')) define('WAIT_BETWEEN_FETCH_ERRORS', 3600);    // Time to wait between errors fetching remote file
 
+
+
   
 //Browser caching
 if (!defined('BROWSER_CACHE_MAX_AGE')) define('BROWSER_CACHE_MAX_AGE', 864000);    // Time to cache in the browser
 if (!defined('BROWSER_CACHE_DISABLE')) define('BROWSER_CACHE_DISABLE', false);    // Use for testing if you want to disable all browser caching
+
+
 
   
 //Image size and defaults
@@ -59,6 +65,8 @@ if (!defined('DEFAULT_ZC')) define('DEFAULT_ZC', 1);         // Default zoom/cro
 if (!defined('DEFAULT_F')) define('DEFAULT_F', '');         // Default image filters. Allows overrid in timthumb-config.php
 if (!defined('DEFAULT_S')) define('DEFAULT_S', 0);         // Default sharpen value. Allows overrid in timthumb-config.php
 if (!defined('DEFAULT_CC')) define('DEFAULT_CC', 'ffffff');       // Default canvas colour. Allows overrid in timthumb-config.php
+
+
 
 
   
@@ -123,6 +131,8 @@ if (!defined('WEBSHOT_PROXY')) define('WEBSHOT_PROXY', '');    //In case you're 
 if (!defined('WEBSHOT_XVFB_RUNNING')) define('WEBSHOT_XVFB_RUNNING', false);   //ADVANCED: Enable this if you've got Xvfb running in the background.
 
 
+
+
   
 // If ALLOW_EXTERNAL is true and ALLOW_ALL_EXTERNAL_SITES is false, then external images will only be fetched from these domains and their subdomains. 
 if (!isset($ALLOWED_SITES)) {
@@ -136,6 +146,8 @@ if (!isset($ALLOWED_SITES)) {
       'imgur.com',
       'imageshack.us',
       'tinypic.com',
+      'googleusercontent.com',
+      'assets.kompas.com'
   );
 }
 // -------------------------------------------------------------

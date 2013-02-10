@@ -20,44 +20,23 @@
     </div>
     <div class = "widget-content">
       <ul class = "unstyled">
-        <?php foreach ($this->eventLatest as $eventL): ?>
+        <?php foreach ($this->Widget()->getUpcomingEvent() as $eventUC): ?>
           <li>
-
-            <!--                        <div class="time">
-            <?php // echo Date("d/m/Y", strtotime($event->from_date)); ?> s/d <?php // echo Date("d/m/Y", strtotime($event->until_date)); ?>
-                                    </div>
-                                    <a href="#"><?php // echo $event->title;       ?></a>-->
-
-            <del>
-              <div class="time">
-                <?php echo date("d M Y", strtotime($eventL->from_date)); ?> s/d <?php echo date("d M Y", strtotime($eventL->from_date)); ?>
-              </div>
-              <a href="#"><?php echo $eventL->title; ?></a>
-            </del>
-
-
-
-
-
-
+            <div class="time">
+              <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?>
+            </div>
+            <a href="#"><?php echo $eventUC['title']; ?></a>
           </li>
         <?php endforeach; ?>
-
-        <?php foreach ($this->eventUpComing as $eventUC): ?>
+        <?php foreach ($this->Widget()->getLatestEvent() as $eventL): ?>
           <li>
-
-
-            <div class="time">
-              <?php echo date("d M Y", strtotime($eventUC->from_date)); ?> s/d <?php echo date("d M Y", strtotime($eventUC->from_date)); ?>
-            </div>
-            <a href="#"><?php echo $eventUC->title; ?></a>
-
-
-
-
+            <del>
+              <div class="time">
+                <?php echo date("d M Y", strtotime($eventL['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventL['from_date'])); ?>
+              </div>
+              <a href="#"><?php echo $eventL['title']; ?></a>
+            </del>
           </li>
-
-
         <?php endforeach; ?>
       </ul>
     </div>
