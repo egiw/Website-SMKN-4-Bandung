@@ -100,82 +100,41 @@
 <div class="main row-fluid">
   <div class="span8">
     <div class="content-inner">
-      <h4><i class="icon-pushpin"></i> Artikel</h4>
+      <div class="row-fluid">
+        <div class="pull-left">
+          <h4><i class="icon-pushpin"></i> Artikel</h4>
+        </div>
+        <div class="pull-right">
+          <a href="#">Lihat Semua Artikel</a>
+        </div>
+      </div>
       <ul class="unstyled article">
-        <li>
-          <article>
-            <div class="pull-left">
-              <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
-              <div class="date">
-                <span class="day">29</span>
-                <span class="month">Des</span>
+        <?php foreach ($this->latestArticles as $index => $article): ?>
+          <li>
+            <article>
+              <div class="pull-left">
+                <?php echo $this->thumbnail('avatar', $article['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+                <div class="date">
+                  <span class="day"><?php echo Date('j', strtotime($article['created_on'])); ?></span>
+                  <span class="month"><?php echo Date('M', strtotime($article['created_on'])); ?></span>
+                </div>
               </div>
-            </div>
-            <div class="article-content">
-              <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
-              <p>
-                Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div class="article-footer">
-              <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
-              <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
-              <i class="icon-comments"></i> 192 &nbsp;&nbsp;
-              <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
-              <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
-            </div>
-          </article>
-          <hr />
-        </li>
-        <li>
-          <article>
-            <div class="pull-left">
-              <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
-              <div class="date">
-                <span class="day">29</span>
-                <span class="month">Des</span>
+              <div class="article-content">
+                <h5><a href="#"><?php echo $article['title']; ?></a></h5>
+                <?php echo $this->truncate($article['content'], 250, '&nbsp;<a href="#">[...]</a>', true, true); ?>
               </div>
-            </div>
-            <div class="article-content">
-              <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
-              <p>
-                Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div class="article-footer">
-              <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
-              <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
-              <i class="icon-comments"></i> 192 &nbsp;&nbsp;
-              <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
-              <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
-            </div>
-          </article>
-          <hr />
-        </li>
-        <li>
-          <article>
-            <div class="pull-left">
-              <img src="/../upload/avatar/asdf.jpg" alt="" width="50" height="50"/>
-              <div class="date">
-                <span class="day">29</span>
-                <span class="month">Des</span>
+              <div class="article-footer">
+                <i class="icon-user"></i>&nbsp;<a href="#"><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;
+                <i class="icon-eye-open"></i>&nbsp;<?php echo $article['views']; ?>&nbsp;&nbsp;
+                <i class="icon-comments"></i>&nbsp;<?php echo rand(0, 1000); ?> &nbsp;&nbsp;
+                <i class="icon-thumbs-up"></i>&nbsp;<?php echo $article['likes']; ?> &nbsp;&nbsp;
+                <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($article['tags']); ?>&nbsp;&nbsp;
               </div>
-            </div>
-            <div class="article-content">
-              <h5><a href="#">Tutorial membuat halaman login berbasis PHP dan MYSql</a></h5>
-              <p>
-                Lorem ipsum dolor sit amet,aliquip ex ea commodo consequat. cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-            <div class="article-footer">
-              <i class="icon-user"></i> <a href="#">Egi Soleh Hasdi</a>&nbsp;&nbsp;
-              <i class="icon-eye-open"></i> 1012 &nbsp;&nbsp;
-              <i class="icon-comments"></i> 192 &nbsp;&nbsp;
-              <i class="icon-thumbs-up"></i> 50 &nbsp;&nbsp;
-              <i class="icon-tags"></i> <a href="#">MySQL</a>, <a href="#">PHP</a>&nbsp;&nbsp;
-            </div>
-          </article>
-        </li>
+            </article>
+            <div class="clearfix"></div>
+            <hr />
+          </li>
+        <?php endforeach; ?>
       </ul>
       <br />
       <br />

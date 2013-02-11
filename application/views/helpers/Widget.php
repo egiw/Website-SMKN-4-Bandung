@@ -15,9 +15,18 @@ class Application_View_Helper_Widget extends Zend_View_Helper_Abstract
     $this->cache = Zend_Cache::factory($frontend, $backend);
   }
 
-  public function Widget()
+  /**
+   * 
+   * @param Boolean $cache Default true(artinya fungsi akan di cache), false sebaliknya
+   * @return Application_View_Helper_Widget
+   */
+  public function Widget($cache = true)
   {
-    return $this->cache;
+    if ($cache) {
+      return $this->cache;
+    } else {
+      return $this;
+    }
   }
 
   public function getUpcomingEvent()
@@ -32,6 +41,20 @@ class Application_View_Helper_Widget extends Zend_View_Helper_Abstract
     $eventLatest = new Application_Model_DbTable_Event();
     $dataEventLatest = $eventLatest->findLatestEvent(2);
     return $dataEventLatest->toArray();
+  }
+
+  public function getLatestJobs($limit = 5)
+  {
+    $jobs = new Application_Model_DbTable_Jobs();
+    $latestJobs = $jobs->findLatestJobs($limit);
+    return $latestJobs->toArray();
+  }
+
+  public function getActivePolling()
+  {
+    $polling = new Application_Model_DbTable_Polling();
+    $activePolling = $polling->findActive();
+    return $activePolling->toArray();
   }
 
 }

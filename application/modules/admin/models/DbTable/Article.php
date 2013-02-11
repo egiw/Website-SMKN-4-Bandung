@@ -28,6 +28,8 @@ class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
         $select->where("{$this->_name}.status = ?", $filter['status']);
       }
     }
+    
+    $select->order("{$this->_name}.created_on DESC");
 
     $result = $this->fetchAll($select);
     return $result;
