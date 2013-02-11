@@ -16,10 +16,10 @@ class PollingController extends Zend_Controller_Action
   {
     $this->_helper->layout->disableLayout();
     $this->_helper->viewRenderer->setNoRender();
-    if ($this->getRequest()->isPost()) {
+    if ($this->getRequest()->isPost() && !$this->getRequest()->getCookie('polls')) {
+      $return_uri = $this->getParam('return_uri');
       $post = $this->getRequest()->getPost();
       $polling = new Application_Model_DbTable_Polling();
-      $return_uri = $post['return_uri'];
       $qid = $post['question_id'];
       $aid = $post['vote'];
       if ($activePolling = $polling->findActive($qid)) {
@@ -27,8 +27,11 @@ class PollingController extends Zend_Controller_Action
         $polling->getAdapter()
                 ->update('poll_answer', $data, array('id = ?' => $aid));
       };
+      setcookie('polls', true, time() + 60 * 60 * 24 * 30, '/');
       $this->redirect($return_uri . '#polling-widget');
+      return;
     }
+    $this->redirect('index');
   }
 
 }

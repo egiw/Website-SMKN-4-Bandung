@@ -57,41 +57,72 @@
       </ul>
     </div>
   </div>
-
-  <?php if ($activePolling = $this->Widget(true)->getActivePolling()): ?>
+  <?php if ($polling = $this->Widget()->getActivePolling()): ?>
+    <?php
+    $polls = Zend_Controller_Front::getInstance()->getRequest()->getCookie('polls');
+    ?>
     <div class = "widget top-green" id="polling-widget">
       <div class = "widget-header">
         <h4><i class = "icon-list-alt"></i> Jajak Pendapat</h4>
       </div>
       <div class = "widget-content">
-        <form action="<?php echo $this->url(array('controller' => 'polling', 'action' => 'vote')); ?>" method = "post">
-          <p><?php echo $activePolling[0]['question']; ?></p>
-          <input type="hidden"
-                 name="question_id"
-                 value="<?php echo $activePolling[0]['poll_id']; ?>" />
-          <input type="hidden"
-                 name="return_uri"
-                 value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); ?>"/>
-          <ul class = "unstyled">
-            <?php foreach ($activePolling as $index => $polling): ?>
+        <p><?php echo $polling[0]['question']; ?></p>
+        <?php if ($polls): ?>
+          <ul class="unstyled">
+            <?php foreach ($polling as $key => $result): ?>
+              <?php
+              $percent = strstr($result['percent'], '%', true);
+              if ($percent <= 10) $class = 'progress-danger';
+              elseif ($percent <= 20) $class = 'progress-warning';
+              elseif ($percent <= 30) $class = 'progress-info';
+              elseif ($percent > 40) $class = 'progress-success';
+              ?>
               <li>
-                <label for="<?php echo 'vote' . $polling['id']; ?>" class="radio">
-                  <input type = "radio" 
-                         name = "vote" 
-                         id="<?php echo 'vote' . $polling['id'] ?>" 
-                         value="<?php echo $polling['id']; ?>" />
-                         <?php echo $polling['answer']; ?>
-                </label>
+                <?php echo $result['answer']; ?>
+                <span class="text-info pull-right">
+                  <?php echo $result['total']; ?> Pemilih
+                </span>
+                <div class="progress <?php echo $class ?>">
+                  <div class="bar"
+                       style="width: <?php echo $result['percent'] ?>">
+                         <?php echo round($result['percent']) . '%' ?>
+                  </div>
+                </div>
               </li>
             <?php endforeach; ?>
           </ul>
-          <input type = "submit" class = "btn btn-success pull-right" value = "Kirim" />
-          <div class = "clearfix"></div>
-        </form>
+        <?php else: ?>
+          <form action="<?php echo $this->url(array('controller' => 'polling', 'action' => 'vote')); ?>" method = "post">
+            <input type="hidden"
+                   name="question_id"
+                   value="<?php echo $polling[0]['qid']; ?>" />
+            <input type="hidden"
+                   name="return_uri"
+                   value="<?php echo $this->url() ?>"/>
+            <ul class = "unstyled">
+              <?php foreach ($polling as $index => $polling): ?>
+                <li>
+                  <label for="<?php echo 'vote' . $polling['aid']; ?>" class="radio">
+                    <input type = "radio" 
+                           name = "vote" 
+                           id="<?php echo 'vote' . $polling['aid'] ?>" 
+                           value="<?php echo $polling['aid']; ?>" />
+                           <?php echo $polling['answer']; ?>
+                  </label>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+            <input type = "submit" class = "btn btn-success pull-right" value = "Kirim" />
+            <div class = "clearfix"></div>
+          </form>
+
+        <?php endif; ?>
+
       </div>
       <div class = "widget-footer">
 
       </div>
     </div>
   <?php endif; ?>
+
 </div>
