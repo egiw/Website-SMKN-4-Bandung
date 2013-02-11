@@ -67,6 +67,7 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
   public function getPhotos($album_id, $limit, $thumbsize = 230)
   {
     $photos = array();
+    $pEntry = getMediaGroup()->getThumbnail();
     $query = new Zend_Gdata_Photos_AlbumQuery();
     $query->setAlbumId($album_id);
     $query->setThumbsize(230);
@@ -74,7 +75,7 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
     $albumFeed = $this->getAlbumFeed($query);
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-      $photos[] = $photoEntry->getMediaGroup()->getThumbnail()[0]->url;
+      $photos[] = $photoEntry->$pEntry[0]->url;
     }
     return $photos;
   }
@@ -116,7 +117,8 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
   function getLatestAlbum()
   {
     $latestAlbumWithPhotos = null;
-    if ($latestAlbum = $this->getAlbums()[0]) {
+    $getAlbum= $this->getAlbums();
+    if ($latestAlbum = $getAlbum[0]) {
       $photos = $this->getPhotos($latestAlbum['id'], 10, 320);
       $latestAlbumWithPhotos = array(
           'title' => $latestAlbum['title'],
