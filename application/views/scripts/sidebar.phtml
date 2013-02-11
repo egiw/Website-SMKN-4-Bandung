@@ -59,7 +59,7 @@
   </div>
 
   <?php if ($activePolling = $this->Widget(true)->getActivePolling()): ?>
-    <div class = "widget top-green">
+    <div class = "widget top-green" id="polling-widget">
       <div class = "widget-header">
         <h4><i class = "icon-list-alt"></i> Jajak Pendapat</h4>
       </div>
@@ -69,6 +69,9 @@
           <input type="hidden"
                  name="question_id"
                  value="<?php echo $activePolling[0]['poll_id']; ?>" />
+          <input type="hidden"
+                 name="return_uri"
+                 value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getRequestUri(); ?>"/>
           <ul class = "unstyled">
             <?php foreach ($activePolling as $index => $polling): ?>
               <li>

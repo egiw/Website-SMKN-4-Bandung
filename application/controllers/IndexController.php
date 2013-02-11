@@ -12,7 +12,7 @@ class IndexController extends Zend_Controller_Action
     $frontend = new Zend_Cache_Frontend_Class(array(
                 'cached_entity' => $this,
                 'lifetime' => 1800,
-                'caching' => false
+                'caching' => true
             ));
     $backend = new Zend_Cache_Backend_File();
     $backend->setCacheDir(APPLICATION_PATH . '/cache/');
