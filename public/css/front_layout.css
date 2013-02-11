@@ -370,15 +370,15 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 }
 
 .top-red {
-  border-top: 5px solid red;
+  border-top: 5px solid rgb(168, 24, 24);
 }
 
 .top-green {
-  border-top: 5px solid green;
+  border-top: 5px solid rgb(32,109,19);
 }
 
 .top-blue {
-  border-top: 5px solid blue;
+  border-top: 5px solid rgb(33, 124, 146);
 }
 
 .top-gray {
@@ -445,3 +445,9 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 #back-to-top:hover {
   text-decoration: none;
 }
+
+
+/* google maps */    
+.company_add_form legend {margin-bottom:10px;font-size:15px}
+#map-canvas img { max-width: none; }
+#map-canvas label {display:inline;margin:0;color:#000;font-size: 11px;line-height:normal}

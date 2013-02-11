@@ -15,6 +15,9 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="vote"/>
         </controllerFile>
+        <controllerFile controllerName="Prakerin">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -29,6 +32,7 @@
           <dbTableFile dbTableName="Article"/>
           <dbTableFile dbTableName="Jobs"/>
           <dbTableFile dbTableName="Polling"/>
+          <dbTableFile dbTableName="Prakerin"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
@@ -346,6 +350,9 @@
           <viewControllerScriptsDirectory forControllerName="Polling">
             <viewScriptFile forActionName="vote"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Prakerin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -386,6 +393,9 @@
           <testApplicationControllerFile forControllerName="Polling">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="vote"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Prakerin">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
         <testApplicationModulesDirectory>

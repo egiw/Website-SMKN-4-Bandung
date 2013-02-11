@@ -11,6 +11,11 @@
       <controller>profile</controller>
       <action>index</action>
     </profile>
+    <prakerin>
+      <label>{icon-map-marker} Info Prakerin</label>
+      <controller>prakerin</controller>
+      <action>index</action>
+    </prakerin>
   </frontend>
   <admin>
     <article>

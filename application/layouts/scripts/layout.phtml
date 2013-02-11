@@ -17,7 +17,7 @@
             ->headTitle()->setSeparator(' - ')
             ->headTitle('SMKN 4 Bandung');
 
-    echo $this
+    $this
             ->minifyHeadLink()
             ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
             ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
@@ -25,12 +25,15 @@
             ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'))
             ->appendStylesheet($this->baseUrl('css/front_layout.css'))
             ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
-    echo $this
+    $this
             ->minifyHeadScript()
             ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
             ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
             ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
             ->appendFile($this->baseUrl('js/frontend.js'));
+    
+    echo $this->minifyHeadLink();
+    echo $this->minifyHeadScript();
     ?>
     <link rel="shortcut icon" href="/img/favico.png" />
   </head>
@@ -164,19 +167,19 @@
       <i class="icon-circle-arrow-up icon-3x"></i>
     </a>
     <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38322604-1']);
-      _gaq.push(['_trackPageview']);
-      _gaq.push(['_setDomainName', 'none']);
-
-      (function() {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-      })();  
+//      var _gaq = _gaq || [];
+//      _gaq.push(['_setAccount', 'UA-38322604-1']);
+//      _gaq.push(['_trackPageview']);
+//      _gaq.push(['_setDomainName', 'none']);
+//
+//      (function() {
+//        var ga = document.createElement('script');
+//        ga.type = 'text/javascript';
+//        ga.async = true;
+//        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//        var s = document.getElementsByTagName('script')[0];
+//        s.parentNode.insertBefore(ga, s);
+//      })();  
     </script>
   </body>
 </html>
