@@ -4,7 +4,7 @@ class SITi_Controller_Plugin_AuthPlugin extends Zend_Controller_Plugin_Abstract
 {
   public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
   {
-    if ('admin' === $request->getModuleName()) {
+    if ('admin' == $request->getModuleName()) {
       $auth = Zend_Auth::getInstance();
       if (!$auth->hasIdentity()) {
         if ('login' != $request->getActionName()

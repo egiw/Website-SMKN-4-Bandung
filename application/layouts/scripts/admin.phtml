@@ -42,6 +42,15 @@
     <?php echo $this->headLink(); ?>
     <?php echo $this->headScript(); ?>
 
+    <?php
+    $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
+    $navigation = new Zend_Navigation($config);
+    $this->navigation($navigation);
+    $menu = $this->navigation()->menu()->setUlClass('nav nav-list');
+    $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
+    ?>
+
+
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -198,7 +207,7 @@
                     </div>
                     <div class="accordion-body collapse in" id="collapseOne">
                       <div class="accordion-inner">
-                        <?php echo $this->navigation()->menu()->setUlClass('nav nav-list'); ?>
+                        <?php echo $menu; ?>
                       </div>
                     </div>
                   </div>

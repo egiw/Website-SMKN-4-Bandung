@@ -11,6 +11,13 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
+        <controllerFile controllerName="Polling">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="vote"/>
+        </controllerFile>
+        <controllerFile controllerName="Prakerin">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -22,6 +29,10 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="News"/>
           <dbTableFile dbTableName="Highlight"/>
+          <dbTableFile dbTableName="Article"/>
+          <dbTableFile dbTableName="Jobs"/>
+          <dbTableFile dbTableName="Polling"/>
+          <dbTableFile dbTableName="Prakerin"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
@@ -333,6 +344,15 @@
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Polling">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Polling">
+            <viewScriptFile forActionName="vote"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Prakerin">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -368,6 +388,13 @@
       <testApplicationDirectory>
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Polling">
+            <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="vote"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Prakerin">
             <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>

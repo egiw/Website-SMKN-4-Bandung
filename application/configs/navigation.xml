@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configdata>
-  <nav>
+  <frontend>
+    <home>
+      <label>{icon-home} Beranda</label>
+      <controller>index</controller>
+      <action>index</action>
+    </home>
+    <profile>
+      <label>Profil</label>
+      <controller>profile</controller>
+      <action>index</action>
+    </profile>
+    <prakerin>
+      <label>{icon-map-marker} Info Prakerin</label>
+      <controller>prakerin</controller>
+      <action>index</action>
+    </prakerin>
+  </frontend>
+  <admin>
     <article>
       <label>Artikel</label>
       <module>admin</module>
@@ -37,19 +54,5 @@
       <controller>highlight</controller>
       <action>index</action>
     </highlight>
-  </nav>
-  <admin>
-    <jobs>
-      <label>Lowongan Kerja</label>
-      <module>admin</module>
-      <controller>jobs</controller>
-      <action>index</action>
-    </jobs>
-    <prakerin>
-      <label>Info Prakerin</label>
-      <module>admin</module>
-      <controller>prakerin</controller>
-      <action>index</action>
-    </prakerin>
   </admin>
 </configdata>

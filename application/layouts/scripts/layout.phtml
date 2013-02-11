@@ -4,34 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
     <?php
-    $this->minifyHeadLink()
-//    $this->HeadLink()
+    $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'frontend');
+    $navigation = new Zend_Navigation($config);
+    $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>'
+            , $this->navigation($navigation)->menu()->setUlClass('nav'));
+    $result = $this->navigation()->findActive($navigation);
+    $currentPage = $result['page'];
+    $currentLabel = preg_replace('#\{(.*)\}#', '', $currentPage->getLabel());
+
+    echo $this
+            ->headTitle($currentLabel)
+            ->headTitle()->setSeparator(' - ')
+            ->headTitle('SMKN 4 Bandung');
+
+    $this
+            ->minifyHeadLink()
             ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
             ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
             ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
             ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'))
             ->appendStylesheet($this->baseUrl('css/front_layout.css'))
             ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
-    $this->minifyHeadScript()
-//    $this->HeadScript()
+    $this
+            ->minifyHeadScript()
             ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
             ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
             ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
             ->appendFile($this->baseUrl('js/frontend.js'));
-
+    
     echo $this->minifyHeadLink();
-//    echo $this->HeadLink();
     echo $this->minifyHeadScript();
-//    echo $this->HeadScript();
-    
     ?>
-    
-    <style type="text/css">
-      .nav-tabs {
-        border-bottom: 1px solid #ddd;
-      }
-    </style>
-    <title></title>
+    <link rel="shortcut icon" href="/img/favico.png" />
   </head>
   <body>
     <div class="main container top-blue">
@@ -84,19 +88,20 @@
               <i class="icon-bar"></i>
             </a>
             <div class="nav-collapse in collapse">
-              <ul class="nav">
-                <li class="active">
-                  <a href="#">
-                    <i class="icon-home icon-white"></i>
-                    Beranda
-                  </a>
-                </li>
-                <li><a href="<?php echo $this->url(array('controller' => 'profil', 'action' => 'index')); ?>">Profil</a></li>
-                <li><a href="#">Kegiatan Sekolah</a></li>
-                <li><a href="#">Informasi</a></li>
-                <li><a href="#">Galeri</a></li>
-                <li><a href="#">Buku Tamu</a></li>
-              </ul>
+              <?php echo $menu; ?>
+              <!--<ul class="nav">-->
+              <!--                <li class="active">
+                                <a href="#">
+                                  <i class="icon-home icon-white"></i>
+                                  Beranda
+                                </a>
+                              </li>
+                              <li><a href="<?php echo $this->url(array('controller' => 'profil', 'action' => 'index')); ?>">Profil</a></li>
+                              <li><a href="#">Kegiatan Sekolah</a></li>
+                              <li><a href="#">Informasi</a></li>
+                              <li><a href="#">Galeri</a></li>
+                              <li><a href="#">Buku Tamu</a></li>-->
+              <!--</ul>-->
 
               <ul class="nav pull-right">
                 <li id="fat-menu" class="dropdown">
@@ -158,8 +163,23 @@
         </div>
       </footer>
     </div>
-    <!--    <a id="back-to-top" title="Back to top" href="#">
-          <img src="your-back-to-top-image.png" alt="Back to Top" />
-        </a>-->
+    <a id="back-to-top" title="Kembali ke atas" href="#top">
+      <i class="icon-circle-arrow-up icon-3x"></i>
+    </a>
+    <script type="text/javascript">
+//      var _gaq = _gaq || [];
+//      _gaq.push(['_setAccount', 'UA-38322604-1']);
+//      _gaq.push(['_trackPageview']);
+//      _gaq.push(['_setDomainName', 'none']);
+//
+//      (function() {
+//        var ga = document.createElement('script');
+//        ga.type = 'text/javascript';
+//        ga.async = true;
+//        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//        var s = document.getElementsByTagName('script')[0];
+//        s.parentNode.insertBefore(ga, s);
+//      })();  
+    </script>
   </body>
 </html>

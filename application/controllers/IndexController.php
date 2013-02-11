@@ -11,7 +11,8 @@ class IndexController extends Zend_Controller_Action
   {
     $frontend = new Zend_Cache_Frontend_Class(array(
                 'cached_entity' => $this,
-                'lifetime' => 1800
+                'lifetime' => 1800,
+                'caching' => true
             ));
     $backend = new Zend_Cache_Backend_File();
     $backend->setCacheDir(APPLICATION_PATH . '/cache/');
@@ -21,6 +22,14 @@ class IndexController extends Zend_Controller_Action
     $this->view->latestAlbumWithPhotos = $cache->getCachedLatestAlbum();
     $this->view->feeds = $cache->getCachedFeed();
     $this->view->news = $cache->getCachedLatestNews();
+    $this->view->latestArticles = $cache->getCachedLatestArticle();
+  }
+
+  public function getCachedLatestArticle()
+  {
+    $article = new Application_Model_DbTable_Article();
+    $latestArticles = $article->findLatestArticles(5);
+    return $latestArticles->toArray();
   }
 
   public function getCachedLatestNews()
