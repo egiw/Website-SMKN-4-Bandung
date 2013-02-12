@@ -1,7 +1,12 @@
+<?php
+$this->minifyHeadLink()
+        ->appendStylesheet($this->baseUrl('css/application/article/view.css'));
+?>
+
 <div class="main row-fluid">
   <div class="span8">
     <div class="content-inner">
-      <blockquote style="margin-left: 10px;">
+      <blockquote id="article-title">
         <h4><?php echo $this->article['title']; ?> Lorem ipsum dolor sit amet the quick brown fox jumps over the lazy dog</h4>
         <small> 
           <cite>
@@ -19,19 +24,61 @@
       </blockquote>
       <?php echo $this->article['content']; ?>
       <?php if (null !== $this->article['tags']): ?>
-        <i class="icon-tags"></i><?php echo $this->tags($this->article['tags']); ?>
+        <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($this->article['tags']); ?>
       <?php endif; ?>
-      <hr />
 
-      <form action="" method="post">
-        <div class="input-prepend">
-          <div class="add-on" style="background: none;border: none;">
-            <img src="/upload/avatar/asdf.jpg" alt="" width="50" height="50" style="display: block"/>
-            <input type="submit" value="Kirim" style="margin-top: 5px" class="btn" />
+      <hr id="comment"/>
+
+      <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
+        <form action="<?php echo $this->url(); ?>#comment" method="post" id="comment-form">
+          <div class="input-prepend">
+            <div class="add-on">
+              <?php
+              echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
+                      , 50, 50, 100, '');
+              ?>
+              <?php echo $this->form->submit; ?>
+            </div>
+            <?php echo $this->form->content; ?>
           </div>
-          <textarea name="" id="" style="width: 85%;height: 89px;max-width: 85%;max-height: 200px;margin-left: 2%;box-sizing: border-box"></textarea>
+        </form>
+      <?php else: ?>
+        <?php
+        $loginUrl = $this->url(array(
+            'controller' => 'user',
+            'action' => 'login',
+            'module' => 'admin'), null, true);
+        ?>
+        <div class="alert">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+          Anda harus <a href="<?php echo $loginUrl ?>">
+            Login</a> untuk memberikan komentar.
         </div>
-      </form>
+      <?php endif; ?>
+
+      <?php echo $this->paginationControl($this->comments, 'sliding', 'pagination_control.phtml'); ?>
+
+      <ul id="comment" class="media-list">
+        <?php foreach ($this->comments as $index => $comment): ?>
+          <li class="media">
+            <a href="" class="pull-left">
+              <?php echo $this->thumbnail('avatar', $comment['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+            </a>
+            <div class="media-body">
+              <blockquote>
+                <p>
+                  <?php echo $comment['content']; ?>
+                </p>
+                <small>
+                  <cite><a href="#">egisolehhasdi</a></cite>
+                  <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
+                </small>
+              </blockquote>
+            </div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+
     </div>
   </div>
   <div class="span4 sidebar well">
