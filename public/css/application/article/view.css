@@ -1,0 +1,33 @@
+#comment-form .add-on {
+  background: none;border: none;
+}
+
+#comment-form .add-on img {
+  display: block;
+}
+
+#comment-form .add-on input {
+  margin-top: 5px; 
+}
+
+#comment-form textarea {
+  width: 85%;
+  height: 89px;
+  max-width: 85%;
+  max-height: 200px;
+  margin-left: 2%;
+  box-sizing: border-box;
+}
+
+.pagination.pull-right a {
+  padding: 0px 8px;
+  font-size: 11px;
+  min-width: 8px;
+  color: #222;
+}
+
+.pagination.pull-right ul li:first-child a,
+.pagination.pull-right ul li:last-child a
+{
+  border-radius: 0;
+}

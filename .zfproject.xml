@@ -27,6 +27,7 @@
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Guestbook"/>
+        <formFile formName="Comment"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -42,6 +43,7 @@
           <dbTableFile dbTableName="Polling"/>
           <dbTableFile dbTableName="Prakerin"/>
           <dbTableFile dbTableName="Guestbook"/>
+          <dbTableFile dbTableName="Comment"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
