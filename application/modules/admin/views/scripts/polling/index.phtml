@@ -20,7 +20,7 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
           <button class="btn btn-mini btn-danger" type="submit"
                   name="delete"
                   onclick="if(!confirm(
-                    'Apakah anda yakin ingin menghapus Jajak Pendapat yang dipilih?'))
+                    'Apakah anda yakin ingin menghapus polling yang dipilih?'))
                     return false;">
             <i class="icon-trash"></i>
           </button>          
@@ -102,7 +102,7 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
                   </a>
 
                   <a title="Hapus" 
-                     onclick="if(!confirm('Apakah anda yakin ?'))
+                     onclick="if(!confirm('Apakah anda yakin?'))
                        return false;"
                      href="<?php echo $delete; ?>">
                     <i class="icon-trash"></i>
