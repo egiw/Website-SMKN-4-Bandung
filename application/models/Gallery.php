@@ -74,7 +74,8 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
     $albumFeed = $this->getAlbumFeed($query);
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-      $photos[] = $photoEntry->getMediaGroup()->getThumbnail()[0]->url;
+      $thumbnail = $photoEntry->getMediaGroup()->getThumbnail()[0];
+      $photos[] = $thumbnail->url;
     }
     return $photos;
   }

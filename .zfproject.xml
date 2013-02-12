@@ -21,9 +21,13 @@
         <controllerFile controllerName="Guestbook">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Article">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Guestbook"/>
+        <formFile formName="Comment"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -39,6 +43,7 @@
           <dbTableFile dbTableName="Polling"/>
           <dbTableFile dbTableName="Prakerin"/>
           <dbTableFile dbTableName="Guestbook"/>
+          <dbTableFile dbTableName="Comment"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
@@ -362,6 +367,9 @@
           <viewControllerScriptsDirectory forControllerName="Guestbook">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -407,6 +415,9 @@
             <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Guestbook">
+            <testApplicationActionMethod forActionName="index"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Article">
             <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
