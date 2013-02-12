@@ -56,7 +56,7 @@ class Admin_AccountController extends Zend_Controller_Action
     $data = $this->user->findAll($this->filter->account);
     $users = Zend_Paginator::factory($data);
     $users->setCurrentPageNumber($pageNumber);
-    
+
     $rolesCount = $this->user->countRoles();
 
     if ($rowPerPage = $this->filter->account['row']) {
@@ -82,7 +82,7 @@ class Admin_AccountController extends Zend_Controller_Action
       if ($form->isValid($data)) {
         $this->user->createRow(array(
             'username' => $form->username->getValue(),
-            'password' => md5($form->username->getValue()),
+            'password' => md5($form->password->getValue()),
             'role' => $form->role->getValue()
         ))->save();
         $this->_helper->flashMessenger->addMessage(sprintf(self::MSG_ACCOUNT_CREATED, $form->username->getValue()));
