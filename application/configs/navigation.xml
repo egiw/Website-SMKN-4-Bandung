@@ -7,7 +7,7 @@
       <action>index</action>
     </home>
     <profile>
-      <label>Profil</label>
+      <label>{icon-info-sign} Profil</label>
       <controller>profile</controller>
       <action>index</action>
     </profile>
@@ -16,6 +16,17 @@
       <controller>prakerin</controller>
       <action>index</action>
     </prakerin>
+    <article>
+      <label>{icon-pushpin} Artikel</label>
+      <controller>article</controller>
+      <action>index</action>
+    </article>
+    <guestbook>
+      <label>{icon-book} Buku Tamu</label>
+      <controller>guestbook</controller>
+      <action>index</action>
+    </guestbook>
+  
   </frontend>
   <admin>
     <article>
@@ -24,7 +35,7 @@
       <controller>article</controller>
       <action>index</action>
     </article>
-    <news>W
+    <news>
       <label>Berita</label>
       <module>admin</module>
       <controller>news</controller>

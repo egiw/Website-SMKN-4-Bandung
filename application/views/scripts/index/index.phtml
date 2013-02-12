@@ -105,11 +105,14 @@
           <h4><i class="icon-pushpin"></i> Artikel</h4>
         </div>
         <div class="pull-right">
-          <a href="#">Lihat Semua Artikel</a>
+          <!--<a href="#">Lihat Semua Artikel</a>-->
         </div>
       </div>
       <ul class="unstyled article">
         <?php foreach ($this->latestArticles as $index => $article): ?>
+          <?php
+          $link = $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $article['id']));
+          ?>
           <li>
             <article>
               <div class="pull-left">
@@ -120,8 +123,12 @@
                 </div>
               </div>
               <div class="article-content">
-                <h5><a href="#"><?php echo $article['title']; ?></a></h5>
-                <?php echo $this->truncate($article['content'], 250, '&nbsp;<a href="#">[...]</a>', true, true); ?>
+                <h5>
+                  <a href="<?php echo $link ?>">
+                    <?php echo $article['title']; ?>
+                  </a>
+                </h5>
+                <?php echo $this->truncate($article['content'], 250, "&nbsp;<a href='{$link}'>[...]</a>", true, true); ?>
               </div>
               <div class="article-footer">
                 <i class="icon-user"></i>&nbsp;<a href="#"><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;

@@ -75,7 +75,7 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
       $thumbnail = $photoEntry->getMediaGroup()->getThumbnail()[0];
-        $photos[] = ->url;
+      $photos[] = $thumbnail->url;
     }
     return $photos;
   }
@@ -117,8 +117,7 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
   function getLatestAlbum()
   {
     $latestAlbumWithPhotos = null;
-    $getAlbum= $this->getAlbums();
-    if ($latestAlbum = $getAlbum[0]) {
+    if ($latestAlbum = $this->getAlbums()[0]) {
       $photos = $this->getPhotos($latestAlbum['id'], 10, 320);
       $latestAlbumWithPhotos = array(
           'title' => $latestAlbum['title'],
