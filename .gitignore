@@ -1,5 +1,8 @@
 Zend
 /public/cache/
 /application/cache/
+<<<<<<< HEAD
 /public/file-manager/upload/.thumbs/
+=======
+>>>>>>> 6bf705681c46070bb703bea16f88bb29e0ca0b9b
 /application/cache
