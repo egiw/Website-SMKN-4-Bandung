@@ -1,197 +1,185 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('css/front_layout.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css')); ?>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <?php
+    $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'frontend');
+    $navigation = new Zend_Navigation($config);
+    $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>'
+            , $this->navigation($navigation)->menu()->setUlClass('nav'));
+    $result = $this->navigation()->findActive($navigation);
+    $currentPage = $result['page'];
+    $currentLabel = preg_replace('#\{(.*)\}#', '', $currentPage->getLabel());
+    
+    echo $this
+            ->headTitle($currentLabel)
+            ->headTitle()->setSeparator(' - ')
+            ->headTitle('SMKN 4 Bandung');
 
-
-
-        <?php $this->headScript()->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js')); ?>
-        <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js')); ?>
-        <?php $this->headScript()->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js')); ?>
-        <?php $this->headScript()->appendFile($this->baseUrl('js/frontend.js')); ?>
-
-        <?php echo $this->headLink(); ?>
-        <?php echo $this->headScript(); ?>
-
-        <script type="text/javascript">
-            $(function(){
-                initCarousel();
-            })
-      
-            function initCarousel() {
-                var visible;
-                if($(window).width() > 979) {
-                    visible = 3;
-                } else if($(window).width() < 979 && $(window).width() > 767) {
-                    visible = 2;
-                } else if ($(window).width() < 767 && $(window).width() > 480){
-                    visible = 3;
-                } else if($(window).width() < 480) {
-                    visible = 1;
-                }
-        
-                $('.jcarousel').jcarousel({
-                    scroll: 1,
-                    visible: visible,
-                    initCallback: function(carousel) {
-                        $("#control-right").bind('click', function(){
-                            carousel.next();
-                            return false;
-                        })
-                        $("#control-left").bind('click', function(){
-                            carousel.prev();
-                            return false;
-                        })
-                    },
-                    itemFallbackDimension: 120
-                });
-            }
-      
-            $(window).resize(function(){
-                initCarousel();
-            });
-        </script>
-        <style type="text/css">
-            .nav-tabs {
-                border-bottom: 1px solid #ddd;
-            }
-        </style>
-        <title></title>
-    </head>
-    <body>
-        <div class="main container top-blue">
-            <header>
-                <div class="header row-fluid">
-                    <div class="inner">
-                        <div class="logo pull-left">
-                            <h3>
-                                <a href="#" class="brand">
-                                    <img src="/img/logo.png" alt="" class="pull-left" width="85"/>
-                                    <p class="pull-right" style="margin-left: 10px;margin-top: 5px">SMK NEGERI 4 <br />Bandung</p>
-                                </a>
-                            </h3>
-                        </div>
-                        <div class="info pull-right">
-                            <!--social-icon-->
-                            <ul class="social-icon inline">
-                                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-rss"></i></a></li>
-                            </ul>
-                            <!--address/contact-->
-                            <address id="school-address">
-                                Jalan Kliningan No.6 Buah Batu Bandung<br />
-                                (022) 7303736
-                            </address>
-                            <!--search form-->
-                            <form method="get"
-                                  action="<?php echo $this->url(array('controller' => 'search')); ?>"
-                                  class="search form">
-                                <div class="input-append">
-                                    <input type="text" name="keyword" placeholder="Pencarian..."/>
-                                    <div class="add-on">
-                                        <button class="btn btn-link btn-mini"><i class="icon-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+    $this
+            ->minifyHeadLink()
+            ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
+            ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+            ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+            ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'))
+            ->appendStylesheet($this->baseUrl('css/front_layout.css'))
+            ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
+    $this
+            ->minifyHeadScript()
+            ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
+            ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
+            ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
+            ->appendFile($this->baseUrl('js/frontend.js'));
+    
+    echo $this->minifyHeadLink();
+    echo $this->minifyHeadScript();
+    ?>
+    <link rel="shortcut icon" href="/img/favico.png" />
+  </head>
+  <body>
+    <div class="main container top-blue">
+      <header>
+        <div class="header row-fluid">
+          <div class="inner">
+            <div class="logo pull-left">
+              <h3>
+                <a href="#" class="brand">
+                  <img src="/img/logo.png" alt="" class="pull-left" width="85"/>
+                  <p class="pull-right" style="margin-left: 10px;margin-top: 5px">SMK NEGERI 4 <br />Bandung</p>
+                </a>
+              </h3>
+            </div>
+            <div class="info pull-right">
+              <!--social-icon-->
+              <ul class="social-icon inline">
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-rss"></i></a></li>
+              </ul>
+              <!--address/contact-->
+              <address id="school-address">
+                Jalan Kliningan No.6 Buah Batu Bandung<br />
+                (022) 7303736
+              </address>
+              <!--search form-->
+              <form method="get"
+                    action="<?php echo $this->url(array('controller' => 'search')); ?>"
+                    class="search form">
+                <div class="input-append">
+                  <input type="text" name="keyword" placeholder="Pencarian..."/>
+                  <div class="add-on">
+                    <button class="btn btn-link btn-mini"><i class="icon-search"></i></button>
+                  </div>
                 </div>
-            </header>
-            <nav>
-                <div class="main navbar navbar-inverse">
-                    <div class="navbar-inner">
-                        <a class="btn btn-navbar" style="text-align: center"
-                           data-toggle="collapse"
-                           data-target=".nav-collapse">
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                            <i class="icon-bar"></i>
-                        </a>
-                        <div class="nav-collapse in collapse">
-                            <ul class="nav">
-                                <li class="active">
-                                    <a href="#">
-                                        <i class="icon-home icon-white"></i>
-                                        Beranda
-                                    </a>
-                                </li>
-                                <li><a href="<?php echo $this->url(array('controller' => 'profil', 'action' => 'index')); ?>">Profil</a></li>
-                                <li><a href="#">Kegiatan Sekolah</a></li>
-                                <li><a href="#">Informasi</a></li>
-                                <li><a href="#">Galeri</a></li>
-                                <li><a href="#">Buku Tamu</a></li>
-                            </ul>
-
-                            <ul class="nav pull-right">
-                                <li id="fat-menu" class="dropdown">
-                                    <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Login <b class="caret"></b></a>
-                                    <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'login')); ?>" class="login dropdown-menu" method="post" autocomplete="off">
-                                        <div>
-                                            <input type="text" placeholder="Nama Pengguna" name="username"/>
-                                        </div>
-                                        <div>
-                                            <input type="password" name="password" id="" placeholder="Kata Sandi"/>
-                                        </div>
-                                        <label for="rememberme" class="checkbox pull-left">
-                                            <input type="checkbox" name="" id="rememberme" />
-                                            Ingatkan saya
-                                        </label>
-                                        <button class="btn btn-info pull-right">Masuk</button>
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <section>
-                <div class="content">
-                    <?php
-                    echo $this->layout()->content;
-                    ?>
-
-                </div>
-            </section>
-            <footer>
-                <!--<div class = "footer row-fluid">
-                <div class = "content-inner">
-                <div class = "span3">
-                SMKN 4 Bandung
-                </div>
-                <div class = "span3">Kontak Kami</div>
-                <div class = "span3">Foto Terbaru</div>
-                <div class = "span3">Twitter</div>
-                </div>
-                </div>-->
-                <div class = "copyright row-fluid">
-                    <div class = "inner">
-                        <div class = "copyright pull-left">
-                            &copy;
-                            Copyright 2013 SMK NEGERI 4 Bandung.<br />Hak Cipta Dilindungi oleh Undang-Undang.
-                        </div>
-                        <div class = "pull-right" style = "margin: 0">
-                            <ul class = "inline">
-                                <li><a href = "#">FAQ's</a></li>
-                                <li><a href="#">Peta Situs</a></li>
-                                <li><a href="#">Kontak</a></li>
-                                <li><a href="#">Kembali Keatas</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+              </form>
+            </div>
+          </div>
         </div>
-        <a id="back-to-top" title="Back to top" href="#">
-            <img src="your-back-to-top-image.png" alt="Back to Top" />
-        </a>
-    </body>
+      </header>
+      <nav>
+        <div class="main navbar navbar-inverse">
+          <div class="navbar-inner">
+            <a class="btn btn-navbar" style="text-align: center"
+               data-toggle="collapse"
+               data-target=".nav-collapse">
+              <i class="icon-bar"></i>
+              <i class="icon-bar"></i>
+              <i class="icon-bar"></i>
+            </a>
+            <div class="nav-collapse in collapse">
+              <?php echo $menu; ?>
+              <!--<ul class="nav">-->
+              <!--                <li class="active">
+                                <a href="#">
+                                  <i class="icon-home icon-white"></i>
+                                  Beranda
+                                </a>
+                              </li>
+                              <li><a href="<?php echo $this->url(array('controller' => 'profil', 'action' => 'index')); ?>">Profil</a></li>
+                              <li><a href="#">Kegiatan Sekolah</a></li>
+                              <li><a href="#">Informasi</a></li>
+                              <li><a href="#">Galeri</a></li>
+                              <li><a href="#">Buku Tamu</a></li>-->
+              <!--</ul>-->
+
+              <ul class="nav pull-right">
+                <li id="fat-menu" class="dropdown">
+                  <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-lock"></i> Login <b class="caret"></b></a>
+                  <form action="<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'login')); ?>" class="login dropdown-menu" method="post" autocomplete="off">
+                    <div>
+                      <input type="text" placeholder="Nama Pengguna" name="username"/>
+                    </div>
+                    <div>
+                      <input type="password" name="password" id="" placeholder="Kata Sandi"/>
+                    </div>
+                    <label for="rememberme" class="checkbox pull-left">
+                      <input type="checkbox" name="" id="rememberme" />
+                      Ingatkan saya
+                    </label>
+                    <button class="btn btn-info pull-right">Masuk</button>
+                  </form>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section>
+        <div class="content">
+          <?php
+          echo $this->layout()->content;
+          ?>
+
+        </div>
+      </section>
+      <footer>
+        <!--<div class = "footer row-fluid">
+        <div class = "content-inner">
+        <div class = "span3">
+        SMKN 4 Bandung
+        </div>
+        <div class = "span3">Kontak Kami</div>
+        <div class = "span3">Foto Terbaru</div>
+        <div class = "span3">Twitter</div>
+        </div>
+        </div>-->
+        <div class = "copyright row-fluid">
+          <div class = "inner">
+            <div class = "copyright pull-left">
+              &copy;
+              Copyright 2013 SMK NEGERI 4 Bandung.<br />Hak Cipta Dilindungi oleh Undang-Undang.
+            </div>
+            <div class = "pull-right" style = "margin: 0">
+              <ul class = "inline">
+                <li><a href = "#">FAQ's</a></li>
+                <li><a href="#">Peta Situs</a></li>
+                <li><a href="#">Kontak</a></li>
+                <li><a href="#">Kembali Keatas</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <a id="back-to-top" title="Kembali ke atas" href="#top">
+      <i class="icon-circle-arrow-up icon-3x"></i>
+    </a>
+    <script type="text/javascript">
+//      var _gaq = _gaq || [];
+//      _gaq.push(['_setAccount', 'UA-38322604-1']);
+//      _gaq.push(['_trackPageview']);
+//      _gaq.push(['_setDomainName', 'none']);
+//
+//      (function() {
+//        var ga = document.createElement('script');
+//        ga.type = 'text/javascript';
+//        ga.async = true;
+//        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+//        var s = document.getElementsByTagName('script')[0];
+//        s.parentNode.insertBefore(ga, s);
+//      })();  
+    </script>
+  </body>
 </html>

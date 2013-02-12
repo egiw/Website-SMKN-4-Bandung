@@ -152,7 +152,11 @@ address#school-address {
   max-height: 300px;
   color: #fff;
   min-height: 300px;
+  background-color:#111111;
   background-image: -webkit-linear-gradient(top, #111111, #222222);
+  background-image: -moz-linear-gradient(top, #111111, #222222);
+  background-image: -html-linear-gradient(top, #111111, #222222);
+  background-image: -o-linear-gradient(top, #111111, #222222);
   border-top: solid 5px rgb(32, 109, 19);
 }
 
@@ -251,7 +255,7 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
     width: 1020px;
   }
   .main.row-fluid .span8 {
-    width: 68.3791%;
+    width: 68.379%;;
   }
 
   .jcarousel img {
@@ -262,6 +266,10 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 @media (min-width: 979px) and (max-width: 1200px) {
   .main.row-fluid .span8 {
     width: 68.088428497%;
+  }
+
+  .item img {
+    min-height: 300px;
   }
 
   .jcarousel img {
@@ -362,15 +370,15 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 }
 
 .top-red {
-  border-top: 5px solid red;
+  border-top: 5px solid rgb(168, 24, 24);
 }
 
 .top-green {
-  border-top: 5px solid green;
+  border-top: 5px solid rgb(32,109,19);
 }
 
 .top-blue {
-  border-top: 5px solid blue;
+  border-top: 5px solid rgb(33, 124, 146);
 }
 
 .top-gray {
@@ -427,9 +435,34 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 /*back to top*/
 /*jang top*/
 #back-to-top{
-  display: block;
+  display: none;
   position: fixed;
   right: 20px;
-  top: 20px;
-  opacity: 0;
+  bottom: 20px;
+  color: #222;
+}
+
+#back-to-top:hover {
+  text-decoration: none;
+}
+
+
+/* google maps */    
+.company_add_form legend {margin-bottom:10px;font-size:15px}
+#map-canvas img { max-width: none; }
+#map-canvas label {display:inline;margin:0;color:#000;font-size: 11px;line-height:normal}
+
+#profil-tabs {
+  background-image: -webkit-linear-gradient(#111, #222);
+  margin-top: -1px;
+}
+
+#profil-tabs li a {
+  border-radius: 0;
+  color: #999;
+}
+
+#profil-tabs li.active a {
+  border-radius: 0;
+  color: #222;
 }

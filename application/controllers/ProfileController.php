@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class ProfilController extends Zend_Controller_Action {
+class ProfileController extends Zend_Controller_Action {
     
     public function init(){
         
