@@ -451,3 +451,18 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 .company_add_form legend {margin-bottom:10px;font-size:15px}
 #map-canvas img { max-width: none; }
 #map-canvas label {display:inline;margin:0;color:#000;font-size: 11px;line-height:normal}
+
+#profil-tabs {
+  background-image: -webkit-linear-gradient(#111, #222);
+  margin-top: -1px;
+}
+
+#profil-tabs li a {
+  border-radius: 0;
+  color: #999;
+}
+
+#profil-tabs li.active a {
+  border-radius: 0;
+  color: #222;
+}
