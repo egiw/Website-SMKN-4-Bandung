@@ -70,7 +70,7 @@ $this->minifyHeadLink()
                   <?php echo $comment['content']; ?>
                 </p>
                 <small>
-                  <cite><a href="#">egisolehhasdi</a></cite>
+                  <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
                   <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
                 </small>
               </blockquote>
