@@ -72,9 +72,10 @@ class Admin_Model_Gallery extends Zend_Gdata_Photos
     $query->setThumbsize(230);
     $query->setMaxResults($limit);
     $albumFeed = $this->getAlbumFeed($query);
+    $pEntry= getMediaGroup()->getThumbnail();
     foreach ($albumFeed as $photoEntry) {
       /* @var $photoEntry Zend_Gdata_Photos_PhotoEntry */
-      $photos[] = $photoEntry->getMediaGroup()->getThumbnail()[0]->url;
+      $photos[] = $photoEntry->$pEntry[0]->url;
     }
     return $photos;
   }

@@ -4,7 +4,7 @@ class Admin_ArticleController extends Zend_Controller_Action
 {
 //  messages
   const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
-  const MSG_ARTICLE_CREATED = 'success|Artikel berhasil dibuat.';
+  const MSG_ARTICLE_CREATED = 'success|Artikel berhasil ditambahkan.';
   const MSG_ARTICLE_ARCHIVED = 'success|Artikel dipindahkan ke arsip.';
   const MSG_ARTICLE_EDITED = 'success|Artikel berhasil disunting.';
   const MSG_ARTICLE_DELETED = 'success|Artikel berhasil dihapus.';
