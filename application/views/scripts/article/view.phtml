@@ -1,0 +1,42 @@
+<div class="main row-fluid">
+  <div class="span8">
+    <div class="content-inner">
+      <blockquote style="margin-left: 10px;">
+        <h4><?php echo $this->article['title']; ?> Lorem ipsum dolor sit amet the quick brown fox jumps over the lazy dog</h4>
+        <small> 
+          <cite>
+            Diposting oleh <a href="#"><?php echo $this->article['created_by']; ?></a>
+            pada tanggal 
+            <?php echo Date('j M Y', strtotime($this->article['created_on'])); ?>
+            <?php echo Date('H:i', strtotime($this->article['created_on'])); ?>
+          </cite>
+          <div class="pull-right">
+            <i class="icon-eye-open"></i> <?php echo $this->article['views']; ?> &nbsp;&nbsp;
+            <i class="icon-thumbs-up"></i> <?php echo $this->article['likes']; ?> &nbsp;&nbsp;
+            <i class="icon-comments"></i> <?php echo rand(0, 1000) ?> &nbsp;&nbsp;
+          </div>
+        </small>
+      </blockquote>
+      <?php echo $this->article['content']; ?>
+      <?php if (null !== $this->article['tags']): ?>
+        <i class="icon-tags"></i><?php echo $this->tags($this->article['tags']); ?>
+      <?php endif; ?>
+      <hr />
+
+      <form action="" method="post">
+        <div class="input-prepend">
+          <div class="add-on" style="background: none;border: none;">
+            <img src="/upload/avatar/asdf.jpg" alt="" width="50" height="50" style="display: block"/>
+            <input type="submit" value="Kirim" style="margin-top: 5px" class="btn" />
+          </div>
+          <textarea name="" id="" style="width: 85%;height: 89px;max-width: 85%;max-height: 200px;margin-left: 2%;box-sizing: border-box"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="span4 sidebar well">
+    <?php
+    echo $this->render('sidebar.phtml');
+    ?>
+  </div>
+</div>
