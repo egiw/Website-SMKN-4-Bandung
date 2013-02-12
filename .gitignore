@@ -2,3 +2,4 @@ Zend
 /public/cache/
 /application/cache/
 /public/file-manager/upload/.thumbs/
+/application/cache
