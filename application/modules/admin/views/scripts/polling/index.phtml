@@ -1,14 +1,13 @@
 <?php
 $create = $this->url(array('action' => 'create'));
-$control = $this->paginationControl($this->paginator, 'Sliding',
-        'partial/pagination_control.phtml');
+$control = $this->paginationControl($this->paginator, 'Sliding', 'partial/pagination_control.phtml');
 ?>
 
 <div class="row-fluid">
   <h3 style="display: inline">Jajak Pendapat</h3>
   <a href="<?php echo $this->url(array('action' => 'create')); ?>"
-    class="btn btn-link label label-success">
-   Tambah Baru
+     class="btn btn-link label label-success">
+    Tambah Baru
   </a>
 </div>
 
@@ -16,7 +15,7 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
   <div class="span8">
     <form action="" method="post" name="del">
       <div class="row-fluid">
-        <div class="span2">
+        <div class="pull-left">
           <button class="btn btn-mini btn-danger" type="submit"
                   name="delete"
                   onclick="if(!confirm(
@@ -25,7 +24,7 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
             <i class="icon-trash"></i>
           </button>          
         </div>
-        <div class="span5 offset5">
+        <div class="pull-right">
           <?php echo $control; ?>
         </div>
       </div>
@@ -62,15 +61,15 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
               <?php
               $delete = $this->url(array('action' => 'delete', 'id'
                   => $polling->id));
-              $update  = $this->url(array('action'  => 'edit', 'id'
+              $update = $this->url(array('action' => 'edit', 'id'
                   => $polling->id));
               $activate = $this->url(array(
-                  'action'    => 'activate',
-                  'id'        => $polling->id));
+                  'action' => 'activate',
+                  'id' => $polling->id));
               $deactivate = $this->url(array(
                   'action' => 'deactivate',
-                  'id'     => $polling->id));
-              $view    = $this->url(array(
+                  'id' => $polling->id));
+              $view = $this->url(array(
                   'currentPolling' => $polling->id));
               ?>
 
@@ -132,32 +131,28 @@ $control = $this->paginationControl($this->paginator, 'Sliding',
           <?php foreach ($this->currentPollingResult as $key => $result): ?>
             <?php
             $percent = strstr($result['percent'], '%', true);
-            if ($percent <= 10)
-              $class   = 'progress-danger';
-            elseif ($percent <= 20)
-              $class   = 'progress-warning';
-            elseif ($percent <= 30)
-              $class   = 'progress-info';
-            elseif ($percent > 40)
-              $class   = 'progress-success';
+            if ($percent <= 10) $class = 'progress-danger';
+            elseif ($percent <= 20) $class = 'progress-warning';
+            elseif ($percent <= 30) $class = 'progress-info';
+            elseif ($percent > 40) $class = 'progress-success';
             ?>
             <li>
-              <?php echo $result['answer']; ?>
+            <?php echo $result['answer']; ?>
               <span class="text-info pull-right">
-                <?php echo $result['total']; ?> Vote
+            <?php echo $result['total']; ?> Vote
               </span>
               <div class="progress <?php echo $class ?>">
                 <div class="bar"
                      style="width: <?php echo $result['percent'] ?>">
-                  <?php echo round($result['percent']) . '%' ?>
+                <?php echo round($result['percent']) . '%' ?>
                 </div>
               </div>
             </li>
-          <?php endforeach; ?>
+                <?php endforeach; ?>
         </ul>
       </div
 
     </div>
-  <?php endif; ?>
+        <?php endif; ?>
 </div>
 

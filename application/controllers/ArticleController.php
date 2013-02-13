@@ -38,7 +38,7 @@ class ArticleController extends Zend_Controller_Action
 
 
         $comments = Zend_Paginator::factory($comment->findArticleComments($article->id));
-        $comments->setItemCountPerPage(5);
+        $comments->setItemCountPerPage(15);
         $comments->setCurrentPageNumber($pageNumber);
 
         $this->view->comments = $comments;
