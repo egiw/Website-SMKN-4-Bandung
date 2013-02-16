@@ -1,3 +1,5 @@
+<?php $this->minifyHeadScript()->appendFile($this->baseUrl('js/application/index.js')); ?>
+
 <div class="main row-fluid">
     <div class="span8">
         <div id="highlight" class="carousel slide">
@@ -34,24 +36,9 @@
         <div class="inner">
             <h4>Berita Terbaru</h4>
             <ul class="news-list">
-                <?php
-//                foreach ($this->news as $news) {
-//                    echo '<li><a href="#">'.$news['title'].'</a></li>';
-//                }
-                ?>
-
                 <?php foreach ($this->news as $news): ?>
                     <li><a href="#"><?php echo $news['title']; ?></a></li>
                 <?php endforeach; ?>
-
-                <!--                <li><a href="#">Festival Paduan Angklung ITB XII</a></li>
-                                <li><a href="#">Study Tour TIK SMKN 4 Bandung</a></li>
-                                <li><a href="#">Pengembangan Sistem Informasi Terintegrasi</a></li>
-                                <li><a href="#">Renovasi ulang gedung sekolah</a></li>
-                                <li><a href="#">Tutorial dan pengenalan Zend Framework</a></li>
-                                <li><a href="#">Masjid SMK Negeri 4 Bandung Belum siap dipakai</a></li>
-                                <li><a href="#">Siswa mengeluhkan tidak adanya air untuk wudhu</a></li>
-                                <li><a href="#">Suasana pada saat siswa disibukan Tugas Akhir</a></li>-->
             </ul>
         </div>
     </div>
@@ -111,7 +98,7 @@
             <ul class="unstyled article">
                 <?php foreach ($this->latestArticles as $index => $article): ?>
                     <?php
-                    $link = $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $article['id']));
+                    $link = $this->url(array('controller' => 'article', 'action'     => 'view', 'id'         => $article['id']));
                     ?>
                     <li>
                         <article>
@@ -133,8 +120,9 @@
                             <div class="article-footer">
                                 <i class="icon-user"></i>&nbsp;<a href="#"><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;
                                 <i class="icon-eye-open"></i>&nbsp;<?php echo $article['views']; ?>&nbsp;&nbsp;
-                                <i class="icon-comments"></i>&nbsp;<?php echo rand(0, 1000); ?> &nbsp;&nbsp;
-                                <i class="icon-thumbs-up"></i>&nbsp;<?php echo $article['likes']; ?> &nbsp;&nbsp;
+                                <i class="icon-comments"></i>&nbsp;<?php echo $article['comments']; ?> &nbsp;&nbsp;
+                                <i class="icon-thumbs-up"></i>&nbsp;
+                                <?php echo (null != $article['likes']) ? count(explode(',', $article['likes'])) : 0; ?> &nbsp;&nbsp;
                                 <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($article['tags']); ?>&nbsp;&nbsp;
                             </div>
                         </article>

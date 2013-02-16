@@ -19,6 +19,7 @@ class ArticleController extends Zend_Controller_Action
     {
         $id = $this->getParam('id');
         $pageNumber = $this->getParam('page');
+        
         if (null !== $id) {
             $form = new Application_Form_Comment();
             $model = new Application_Model_DbTable_Article();

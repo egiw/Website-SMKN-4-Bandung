@@ -20,6 +20,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
         ->from($this->_name)
         ->where("{$this->_name}.status = ?", 'publish')
         ->order("{$this->_name}.created_on DESC")
+        ->columns(array('comments' => "(SELECT COUNT(*) FROM comment WHERE article_id = {$this->_name}.id)"))
         ->join($this->_user, "{$this->_name}.created_by = {$this->_user}.username", array(
             'avatar'));
         $result = $this->fetchAll($select);
