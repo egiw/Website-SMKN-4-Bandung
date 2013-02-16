@@ -113,11 +113,18 @@
                                             </li>
                                         </ul>
                                     <?php else: ?>
+                                        <?php
+                                        $formAction = array(
+                                            'module'     => 'admin',
+                                            'controller' => 'user',
+                                            'action'     => 'login',
+                                            'return'     => str_replace('/', '|', $this->url()));
+                                        ?>
                                         <a href="#"
                                            class="dropdown-toggle"
                                            data-toggle="dropdown">
                                             <i class="icon-lock"></i> Login <b class="caret"></b></a>
-                                        <form action="<?php echo $this->url(array('module'     => 'admin', 'controller' => 'user', 'action'     => 'login')); ?>"
+                                        <form action="<?php echo $this->url($formAction); ?>"
                                               class="login dropdown-menu" method="post" autocomplete="off">
                                             <div>
                                                 <input type="text" placeholder="Nama Pengguna" name="username"/>

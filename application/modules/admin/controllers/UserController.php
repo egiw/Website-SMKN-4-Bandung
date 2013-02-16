@@ -73,6 +73,7 @@ class Admin_UserController extends Zend_Controller_Action
             }
         }
 
+        $this->view->return = $this->getParam('return');
         $this->view->form = $form;
     }
 
