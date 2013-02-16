@@ -1,4 +1,28 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Article</b> and script/action name <b>index</b></p>
+<div class="main row-fluid">
+    <div class="span8">
+        <div class="content-inner">
+            <h3>Artikel</h3>
+            <ul class="media-list">
+                <?php foreach ($this->articles as $index => $article): ?>
+                    <li class="media">
+                        <a href="#" class="pull-left">
+                            <img src="/upload/avatar/asdf.jpg" 
+                                 alt="" 
+                                 width="50"
+                                 height="50"
+                                 class="media-object" />
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><?php echo $article['title']; ?></h4>
+                            <?php echo $this->truncate($article['content'], 500); ?>
+                        </div>
+                        <br class="clearfix" />
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <div class="span4 well sidebar">
+        <?php echo $this->render('sidebar.phtml'); ?>
+    </div>
 </div>
