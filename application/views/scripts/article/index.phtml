@@ -1,25 +1,94 @@
 <div class="main row-fluid">
     <div class="span8">
         <div class="content-inner">
-            <h3>Artikel</h3>
-            <ul class="media-list">
+            <div class="row-fluid">
+                <div class="pull-left">
+                    <span class="label label-info" style="font-size: 30px; line-height: 47px; padding: 3px 11px; margin-top: -13px;">Artikel</span>
+                </div>
+
+            </div>
+
+            <br />
+            <br />
+
+            <ul class="unstyled article">
                 <?php foreach ($this->articles as $index => $article): ?>
-                    <li class="media">
-                        <a href="#" class="pull-left">
-                            <img src="/upload/avatar/asdf.jpg" 
-                                 alt="" 
-                                 width="50"
-                                 height="50"
-                                 class="media-object" />
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading"><?php echo $article['title']; ?></h4>
-                            <?php echo $this->truncate($article['content'], 500); ?>
-                        </div>
-                        <br class="clearfix" />
+                    <?php
+                    $link = $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $article['id']));
+                    ?>
+                    <li>
+                        <article>
+                            <div class="pull-left">
+                                <img src="/upload/avatar/asdf.jpg" 
+                                     alt="" 
+                                     width="50"
+                                     height="50"
+                                     class="media-object" />
+                                     <?php // echo $this->thumbnail('avatar', $article['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+                                <!--                                <div class="date">
+                                                                    <span class="day"><?php echo Date('j', strtotime($article['created_on'])); ?></span>
+                                                                    <span class="month"><?php echo Date('M', strtotime($article['created_on'])); ?></span>
+                                                                </div>-->
+                            </div>
+                            <div class="article-content">
+                                <h5>
+                                    <div class="well well-small" style="min-height:20px; padding: 7px;">
+                                        <a style="color: #000;" href="<?php echo $link ?>">
+                                            <?php echo $article['title']; ?>
+                                        </a>
+                                    </div>
+                                </h5>
+                                <?php echo $this->truncate($article['content'], 250, "&nbsp;<a href='{$link}'>[...]</a>", true, true); ?>
+                            </div>
+                            <div class="article-footer">
+                                <i class="icon-eye-open"></i>&nbsp;<?php echo $article['views']; ?>&nbsp;&nbsp;
+                                <i class="icon-comments"></i>&nbsp;<?php echo rand(0, 1000); ?> &nbsp;&nbsp;
+                                <i class="icon-thumbs-up"></i>&nbsp;<?php echo $article['likes']; ?> &nbsp;&nbsp;
+                                <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($article['tags']); ?>&nbsp;&nbsp;
+                            </div>
+                            <div class="article-footer pull-right">
+                                <span class="day"><?php echo Date('j', strtotime($article['created_on'])); ?></span>
+                                <span class="month"><?php echo Date('M', strtotime($article['created_on'])); ?></span>
+                                by&nbsp;<a href="#"><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;
+                            </div>
+                        </article>
+                        <div class="clearfix"></div>
+                        <hr />
                     </li>
                 <?php endforeach; ?>
             </ul>
+            <br />
+            <br />
+            <br />
+
+
+            <!--            <hr class="divider-vertical" />-->
+
+            <!--            <ul class="media-list ">
+            <?php // foreach ($this->articles as $index => $article): ?>
+                                <li class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="/upload/avatar/asdf.jpg" 
+                                             alt="" 
+                                             width="50"
+                                             height="50"
+                                             class="media-object" />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><?php // echo $article['title'];     ?></h4>
+            <?php // echo $this->truncate($article['content'], 500); ?>
+                                    </div>
+                                    <br class="clearfix" />  
+                                    haha
+                                </li>
+            
+            
+            
+            <?php // endforeach; ?>
+                        </ul>-->
+
+
+
         </div>
     </div>
     <div class="span4 well sidebar">
