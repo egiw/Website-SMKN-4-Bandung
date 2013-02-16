@@ -53,12 +53,12 @@ class Admin_Form_Event extends Zend_Form
 
     $this->title
             ->setAttrib('class', 'span8 title')
-            ->setAttrib('placeholder', 'Tulis judul kegiatan...')
+            ->setAttrib('placeholder', 'Nama Kegiatan')
             ->setRequired(true)
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Judul kegiatan tidak boleh kosong.')))));
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Nama kegiatan tidak boleh kosong.')))));
 
     $this->location
             ->setAttrib('class', 'span6 ')
@@ -77,7 +77,7 @@ class Admin_Form_Event extends Zend_Form
                 array('date', false, array(
                         'format' => 'dd/mm/yyyy',
                         'messages' => array(
-                            Zend_Validate_Date::FALSEFORMAT => 'Format tanggal salah'))),
+                            Zend_Validate_Date::FALSEFORMAT => 'Format tanggal tidak sesuai (dd/mm/yyyy).'))),
                 array('NotEmpty', false, array(
                         'messages' => array(
                             Zend_Validate_NotEmpty::IS_EMPTY => 'Tentukan tanggal dimulainya kegiatan.')))));
@@ -90,7 +90,7 @@ class Admin_Form_Event extends Zend_Form
                 array('date', false, array(
                         'format' => 'dd/mm/yyyy',
                         'messages' => array(
-                            Zend_Validate_Date::FALSEFORMAT => 'Format tanggal salah'))),
+                            Zend_Validate_Date::FALSEFORMAT => 'Format tanggal tidak sesuai (dd/mm/yyyy).'))),
                 array('NotEmpty', false, array(
                         'messages' => array(
                             Zend_Validate_NotEmpty::IS_EMPTY => 'Tentukan tanggal selesainya kegiatan.')))));
@@ -101,14 +101,14 @@ class Admin_Form_Event extends Zend_Form
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Tuliskan sedikitnya informasi kegiatan.')))));
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Tuliskan informasi kegiatan.')))));
 
     $this->submit
-            ->setLabel('Posting')
+            ->setLabel('Tambah')
             ->setAttrib('class', 'btn btn-gebo');
 
     $this->draft
-            ->setLabel('Simpan sebagai draft')
+            ->setLabel('Simpan sebagai konsep')
             ->setAttrib('class', 'btn');
 
     $this->addElements(array(

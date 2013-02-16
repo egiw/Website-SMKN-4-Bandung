@@ -53,9 +53,9 @@ class Admin_Form_Article extends Zend_Form
                 'isEmpty' => 'Konten tidak boleh kosong'));
 
     $this->draft->setAttribs(array(
-        'class' => 'btn'))->setLabel('Simpan Sebagai Draft');
+        'class' => 'btn'))->setLabel('Simpan sebagai Konsep');
     $this->submit->setAttribs(array(
-        'class' => 'btn btn-gebo'))->setLabel('Posting');
+        'class' => 'btn btn-gebo'))->setLabel('Tambah');
 
     $this->addElements(array(
         $this->tags,

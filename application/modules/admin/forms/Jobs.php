@@ -61,7 +61,7 @@ class Admin_Form_Jobs extends Zend_Form
             ->addValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Isikan nama lowongan pekerjaan.')))
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Isikan posisi lowongan pekerjaan.')))
             ));
 
 
@@ -92,7 +92,7 @@ class Admin_Form_Jobs extends Zend_Form
             ->addValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Isikan sedikitnya informasi tentang lowongan pekerjaan.')))
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Isikan informasi lowongan pekerjaan.')))
             ))
             ->setAttribs(array(
                 'rows' => '15',
@@ -100,7 +100,7 @@ class Admin_Form_Jobs extends Zend_Form
             ));
 
     $this->submit->setAttrib('class', 'btn btn-gebo')
-            ->setLabel('Posting');
+            ->setLabel('Tambah');
 
     $this->addElements(array(
         $this->title,

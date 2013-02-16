@@ -24,6 +24,12 @@
         <controllerFile controllerName="Article">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Books">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Mading">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Guestbook"/>
@@ -368,6 +374,12 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Books">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Mading">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>

@@ -2,7 +2,10 @@
 
 class Admin_NewsController extends Zend_Controller_Action
 {
-  /**
+    const MSG_SELECTED_NEWS_DELETED = 'success|Semua berita yang dipilih berhasil dihapus.';
+    const MSG_NEWS_CREATED = 'success|Berita berhasil ditambahkan.';
+    
+    /**
    * @var Admin_Model_DbTable_News
    *
    *
@@ -42,7 +45,7 @@ class Admin_NewsController extends Zend_Controller_Action
                 }
               }
             }
-            $this->_helper->flashMessenger->addMessage('success|Semua berita yang dipilih berhasil dihapus.');
+            $this->_helper->flashMessenger->addMessage(self::MSG_SELECTED_NEWS_DELETED);
           }
           break;
         case 'filter':
@@ -101,7 +104,7 @@ class Admin_NewsController extends Zend_Controller_Action
             'status' => $status
         ))->save();
 
-        $this->_helper->flashMessenger->addMessage('success|Berita berhasil diposting.');
+        $this->_helper->flashMessenger->addMessage(self::MSG_NEWS_CREATED);
         $this->_helper->redirector('index');
       }
     }

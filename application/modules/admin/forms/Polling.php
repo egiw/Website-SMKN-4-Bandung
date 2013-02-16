@@ -43,12 +43,12 @@ class Admin_Form_Polling extends Zend_Form
 
     $this->question
             ->setLabel('Pertanyaan')
-            ->setAttrib('placeholder', 'Tulis Pertanyaan Disini...')
+            ->setAttrib('placeholder', 'Tulis pertanyaan')
             ->setAttrib('class', 'span5 title')
             ->setAttrib('style', 'font-size:14px;padding: 10px;')
             ->setDecorators(array('ViewHelper', 'ControlGroup'));
 
-    $this->status->setLabel('Cek Jika Polling Ini Ingin Ditampilkan di Halaman Depan');
+    $this->status->setLabel('Cek jika polling ingin ditampilkan pada Halaman Utama');
     $this->status->setDecorators(array('ViewHelper', 'CheckboxLabel'));
 
 
@@ -88,10 +88,10 @@ class Admin_Form_AnswerForm extends Zend_Form_SubForm
     if (isset($data['answer'])) {
       $this->populate($data['answer']);
       if (sizeof($data['answer']) < 2) {
-        $this->addError('Minimal 2 Jawaban');
+        $this->addError('Minimal 2 jawaban');
       }
     } else {
-      $this->addError('Jawaban Tidak Boleh Kosong');
+      $this->addError('Jawaban tidak boleh kosong');
       $this->clearElements();
     }
     return parent::isValid($data);
