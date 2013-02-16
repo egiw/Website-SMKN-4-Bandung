@@ -44,7 +44,6 @@ class ArticleController extends Zend_Controller_Action
                     $article->save();
                     setcookie('view_article_' . $id, true, time() + 60 * 60 * 24, '/');
                 }
-
                 $comments = Zend_Paginator::factory($comment->findArticleComments($article->id));
                 $comments->setItemCountPerPage(15);
                 $comments->setCurrentPageNumber($pageNumber);
