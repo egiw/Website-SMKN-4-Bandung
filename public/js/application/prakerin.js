@@ -1,3 +1,3 @@
-$(function(){
-  $("#map-canvas").prakerinMap({dataUrl: '/prakerin/get'});
+$(function() {
+    $("#map-canvas").prakerinMap({dataUrl: '/prakerin/get'});
 })
