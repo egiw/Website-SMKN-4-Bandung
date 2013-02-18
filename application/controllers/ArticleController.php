@@ -9,16 +9,20 @@ class ArticleController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $pageNumber = $this->getParam('page');
         $model = new Application_Model_DbTable_Article();
         $data = $model->findAll();
         $articles = Zend_Paginator::factory($data);
+        $articles->setCurrentPageNumber($pageNumber);
         $this->view->articles = $articles;
+        
     }
 
     public function viewAction()
     {
         $id = $this->getParam('id');
         $pageNumber = $this->getParam('page');
+        
         if (null !== $id) {
             $form = new Application_Form_Comment();
             $model = new Application_Model_DbTable_Article();
@@ -44,7 +48,6 @@ class ArticleController extends Zend_Controller_Action
                     $article->save();
                     setcookie('view_article_' . $id, true, time() + 60 * 60 * 24, '/');
                 }
-
                 $comments = Zend_Paginator::factory($comment->findArticleComments($article->id));
                 $comments->setItemCountPerPage(15);
                 $comments->setCurrentPageNumber($pageNumber);

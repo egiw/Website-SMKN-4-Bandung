@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" class="login_page">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php echo $this->headTitle('Login - SMKN 4 Bandung'); ?>
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/gebo/css/style.css')); ?>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <?php echo $this->headTitle('Login - SMKN 4 Bandung'); ?>
+        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
+        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/gebo/css/style.css')); ?>
 
-    <?php echo $this->headLink(); ?>
-    <?php echo $this->headScript(); ?>
+        <?php echo $this->headLink(); ?>
+        <?php echo $this->headScript(); ?>
 
-    <link rel="shortcut icon" href="favico.ico" />
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+        <link rel="shortcut icon" href="favico.ico" />
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
 
-    <!--[if lte IE 8]>
-        <script src="js/ie/html5.js"></script>
-        <script src="js/ie/respond.min.js"></script>
-    <![endif]-->
+        <!--[if lte IE 8]>
+            <script src="js/ie/html5.js"></script>
+            <script src="js/ie/respond.min.js"></script>
+        <![endif]-->
 
-    <style type="text/css">
-      body {
-        background:url('/img/pattern-bg.jpg') repeat;
-      }
-      .login_page .login_box {
-        top: 10%;
-        margin-top: 0;
-        
-      }
-    </style>
+        <style type="text/css">
+            body {
+                background:url('/img/pattern-bg.jpg') repeat;
+            }
+            .login_page .login_box {
+                top: 10%;
+                margin-top: 0;
 
-  </head>
-  <body>
+            }
+        </style>
 
-    <div class="login_box">
+    </head>
+    <body>
 
-      <form action="" method="post" id="login_form" autocomplete="off">
-        <div class="top_b">
-          <h2>
-            <img src="/img/favico.png" width="32" alt="" />
-            SMK Negeri 4 Bandung
-          </h2>
-        </div>
-        <?php echo $this->flashMessenger($this->messages, 'alert-login'); ?>
-        <div class="cnt_b">
-          <div class="formRow">
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-user"></i></span>
-              <?php echo $this->form->username; ?>
+        <div class="login_box">
+
+            <form action="" method="post" id="login_form" autocomplete="off">
+                <div class="top_b">
+                    <h2>
+                        <img src="/img/favico.png" width="32" alt="" />
+                        SMK Negeri 4 Bandung
+                    </h2>
+                </div>
+                <?php echo $this->flashMessenger($this->messages, 'alert-login'); ?>
+                <div class="cnt_b">
+                    <div class="formRow">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-user"></i></span>
+                            <?php echo $this->form->username; ?>
+                        </div>
+                    </div>
+                    <div class="formRow">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-lock"></i></span>
+                            <?php echo $this->form->password; ?>
+                        </div>
+                    </div>
+                    <div class="formRow clearfix">
+                        <label class="checkbox"><input type="checkbox" /> Ingatkan saya</label>
+                    </div>
+                </div>
+                <div class="btm_b clearfix">
+                    <?php echo $this->form->submit; ?>
+                    <span>
+                        <a href="<?php echo ($this->return) ? str_replace('|', '/', $this->return) : '/'; ?>">
+                            <i class="icon-chevron-left"></i>
+                            Kembali
+                        </a>
+                    </span>
+                </div>
+            </form>
+            <div class="links_b links_btm clearfix">
+                &COPY; 2013 SMKN 4 Bandung.
             </div>
-          </div>
-          <div class="formRow">
-            <div class="input-prepend">
-              <span class="add-on"><i class="icon-lock"></i></span>
-              <?php echo $this->form->password; ?>
-            </div>
-          </div>
-          <div class="formRow clearfix">
-            <label class="checkbox"><input type="checkbox" /> Ingatkan saya</label>
-          </div>
         </div>
-        <div class="btm_b clearfix">
-          <?php echo $this->form->submit; ?>
-          <span>
-            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index')); ?>">
-              <i class="icon-chevron-left"></i> 
-              Ke halaman depan
-            </a>
-          </span>
-        </div> 
-      </form>
-      <div class="links_b links_btm clearfix">
-        &COPY; 2013 SMKN 4 Bandung.
-      </div>
-    </div>
 
-  </body>
+    </body>
 </html>

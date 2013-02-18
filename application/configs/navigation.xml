@@ -1,69 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configdata>
-  <frontend>
-    <home>
-      <label>{icon-home} Beranda</label>
-      <controller>index</controller>
-      <action>index</action>
-    </home>
-    <profile>
-      <label>{icon-info-sign} Profil</label>
-      <controller>profile</controller>
-      <action>index</action>
-    </profile>
-    <prakerin>
-      <label>{icon-map-marker} Info Prakerin</label>
-      <controller>prakerin</controller>
-      <action>index</action>
-    </prakerin>
-    <article>
-      <label>{icon-pushpin} Artikel</label>
-      <controller>article</controller>
-      <action>index</action>
-    </article>
-    <guestbook>
-      <label>{icon-book} Buku Tamu</label>
-      <controller>guestbook</controller>
-      <action>index</action>
-    </guestbook>
-  
-  </frontend>
-  <admin>
-    <article>
-      <label>Artikel</label>
-      <module>admin</module>
-      <controller>article</controller>
-      <action>index</action>
-    </article>
-    <news>
-      <label>Berita</label>
-      <module>admin</module>
-      <controller>news</controller>
-      <action>index</action>
-    </news>
-    <event>
-      <label>Kegiatan</label>
-      <module>admin</module>
-      <controller>event</controller>
-      <action>index</action>
-    </event>
-    <polling>
-      <label>Jajak Pendapat</label>
-      <module>admin</module>
-      <controller>polling</controller>
-      <action>index</action>
-    </polling>
-    <gallery>
-      <label>Galeri</label>
-      <module>admin</module>
-      <controller>gallery</controller>
-      <action>index</action>
-    </gallery>
-    <highlight>
-      <label>Highlight</label>
-      <module>admin</module>
-      <controller>highlight</controller>
-      <action>index</action>
-    </highlight>
-  </admin>
+    <frontend>
+        <home>
+            <label>{icon-home} Beranda</label>
+            <controller>index</controller>
+            <action>index</action>
+        </home>
+        <profile>
+            <label>{icon-info-sign} Profil</label>
+            <controller>profile</controller>
+            <action>index</action>
+        </profile>
+        <prakerin>
+            <label>{icon-map-marker} Info Prakerin</label>
+            <controller>prakerin</controller>
+            <action>index</action>
+        </prakerin>
+        <article>
+            <label>{icon-pushpin} Artikel</label>
+            <controller>article</controller>
+            <action>index</action>
+        </article>
+        <gallery>
+            <label>{icon-picture} Galeri</label>
+            <controller>gallery</controller>
+            <action>index</action>
+        </gallery>
+        <guestbook>
+            <label>{icon-book} Buku Tamu</label>
+            <controller>guestbook</controller>
+            <action>index</action>
+        </guestbook>
+
+    </frontend>
+    <admin>
+        <article>
+            <label>Artikel</label>
+            <module>admin</module>
+            <controller>article</controller>
+            <action>index</action>
+        </article>
+        <news>
+            <label>Berita</label>
+            <module>admin</module>
+            <controller>news</controller>
+            <action>index</action>
+        </news>
+        <event>
+            <label>Kegiatan</label>
+            <module>admin</module>
+            <controller>event</controller>
+            <action>index</action>
+        </event>
+        <polling>
+            <label>Jajak Pendapat</label>
+            <module>admin</module>
+            <controller>polling</controller>
+            <action>index</action>
+        </polling>
+        <gallery>
+            <label>Galeri</label>
+            <module>admin</module>
+            <controller>gallery</controller>
+            <action>index</action>
+        </gallery>
+        <highlight>
+            <label>Highlight</label>
+            <module>admin</module>
+            <controller>highlight</controller>
+            <action>index</action>
+        </highlight>
+    </admin>
 </configdata>

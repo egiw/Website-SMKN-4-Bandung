@@ -59,7 +59,8 @@ $auth = Zend_Auth::getInstance();
                 $loginUrl = $this->url(array(
                     'controller' => 'user',
                     'action'     => 'login',
-                    'module'     => 'admin'), null, true);
+                    'module'     => 'admin',
+                    'return'     => "article|view|id|{$this->article['id']}#comment"), null, true);
                 ?>
                 <div class="alert">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
