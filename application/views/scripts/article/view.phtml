@@ -8,7 +8,7 @@ $auth = Zend_Auth::getInstance();
     <div class="span8">
         <div class="content-inner">
             <blockquote id="article-title">
-                <h4><?php echo $this->article['title']; ?> Lorem ipsum dolor sit amet the quick brown fox jumps over the lazy dog</h4>
+                <h4><?php echo $this->article['title']; ?></h4>
                 <small>
                     <cite>
                         Diposting oleh <a href="#"><?php echo $this->article['created_by']; ?></a>
@@ -19,7 +19,8 @@ $auth = Zend_Auth::getInstance();
                 </small>
             </blockquote>
             <?php echo $this->article['content']; ?>
-            <br id="comment"/>
+            <div class="clearfix"></div>
+            <br id="comment" class="clearfix"/>
             <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
                 <li><i class="icon-eye-open"></i> <?php echo $this->article['views']; ?> &nbsp;&nbsp;</li>
                 <li>
