@@ -32,6 +32,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
         $select = $this->select()
         ->from($this->_name)
         ->where("{$this->_name}.id = ?", $article_id)
+//        ->where("{$this->_name}.status =", Admin_Model_Status::PUBLISH)
         ->columns(array('comments_count' => "(SELECT COUNT(*) FROM comment WHERE article_id = {$article_id})"));
         $result = $this->fetchRow($select);
         return $result;

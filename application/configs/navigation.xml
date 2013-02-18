@@ -16,6 +16,11 @@
             <controller>prakerin</controller>
             <action>index</action>
         </prakerin>
+        <news>
+            <label>{icon-rss} Berita</label>
+            <controller>News</controller>
+            <action>index</action>
+        </news>
         <article>
             <label>{icon-pushpin} Artikel</label>
             <controller>article</controller>
