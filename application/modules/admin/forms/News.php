@@ -51,7 +51,9 @@ class Admin_Form_News extends Zend_Form
             ->setValidators(array(
                 array('NotEmpty', false, array(
                         'messages' => array(
-                            Zend_Validate_NotEmpty::IS_EMPTY => 'Konten tidak boleh kosong')))));
+                            Zend_Validate_NotEmpty::IS_EMPTY => 'Konten tidak boleh kosong')))))
+            
+            ->addFilter(new SITi_Filter_PurifyHTML());
 
 
     $this->submit

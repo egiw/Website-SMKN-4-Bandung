@@ -9,10 +9,13 @@ class ArticleController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $pageNumber = $this->getParam('page');
         $model = new Application_Model_DbTable_Article();
         $data = $model->findAll();
         $articles = Zend_Paginator::factory($data);
+        $articles->setCurrentPageNumber($pageNumber);
         $this->view->articles = $articles;
+        
     }
 
     public function viewAction()
