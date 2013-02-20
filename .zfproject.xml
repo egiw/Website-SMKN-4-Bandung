@@ -40,6 +40,9 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="view"/>
         </controllerFile>
+        <controllerFile controllerName="Search">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Guestbook"/>
@@ -406,6 +409,9 @@
           <viewControllerScriptsDirectory forControllerName="Gallery">
             <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Search">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -459,6 +465,9 @@
           <testApplicationControllerFile forControllerName="Gallery">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="view"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Search">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
         <testApplicationModulesDirectory>

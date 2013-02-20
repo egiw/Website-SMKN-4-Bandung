@@ -95,8 +95,14 @@ $auth = Zend_Auth::getInstance();
         </div>
     </div>
     <div class="span4 sidebar well">
-        <?php
-        echo $this->render('sidebar.phtml');
-        ?>
+        <div class="widget top-blue">
+            <div class="widget-header">
+                <h4>Tag</h4>
+            </div>
+            <div class="widget-content">
+                <?php echo $this->widget()->getTagCloud(); ?>
+            </div>
+        </div>
+        <?php echo $this->render('sidebar.phtml'); ?>
     </div>
 </div>
