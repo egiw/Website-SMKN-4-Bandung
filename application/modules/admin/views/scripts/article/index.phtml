@@ -58,6 +58,7 @@
                 <col width="1%"/>
                 <col width="10%"/>
                 <col width="3%"/>
+                <col width="10%"/>
                 <col width="5%"/>
                 <col width="5%"/>
                 <col width="5%"/>
@@ -78,6 +79,7 @@
                         </th>
                         <th>Judul</th>
                         <th>Status</th>
+                        <th>Tanggal</th>
                         <th><i class="icon-tags"></i></th>
                         <th><i class="icon-eye-open"></i></th>
                         <th><i class="icon-thumbs-up"></i></th>
@@ -104,6 +106,7 @@
                             ));
                             ?>
                         </th>
+                        <th></th>
                         <th>
                             <?php
                             echo $this->formText('filter[tag]', $this->filter['tag'], array(
@@ -118,17 +121,27 @@
                 </thead>
                 <tbody>
                     <?php foreach ($this->articles as $index => $article): ?>
+                        <?php
+                        $viewUrl = $this->url(array(
+                            'module'     => 'default',
+                            'action'     => 'view',
+                            'controller' => 'article',
+                            'id'         => $article->id
+                        ));
+                        ?>
+
                         <tr>
                             <td>
                                 <input type="checkbox" name="articles[]"
                                        value="<?php echo $article->id; ?>"/>
                             </td>
                             <td>
-                                <a href="#" target="_blank">
+                                <a href="<?php echo $viewUrl; ?>" target="_blank">
                                     <strong><?php echo $article->title; ?></strong>
                                 </a>
                             </td>
                             <td><?php echo $this->status($article->status); ?></td>
+                            <td><?php echo Date('d/m/Y', strtotime($article->created_on)); ?></td>
                             <td><?php echo $this->tags($article->tags); ?></td>
                             <td><span class="badge badge-info"><?php echo $article->views; ?></span></td>
                             <td><span class="badge badge-success"><?php echo (null !== $article->likes) ? count(explode(',', $article->likes)) : 0; ?></span></td>

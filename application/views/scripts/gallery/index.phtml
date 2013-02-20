@@ -1,0 +1,31 @@
+<?php $this->minifyHeadlink()->appendStylesheet($this->baseUrl('css/application/gallery.css')); ?>
+<div class="main row-fluid">
+    <div class="span8">
+        <div class="content-inner">
+            <ul class="thumbnails gallery-grid">
+                <?php foreach ($this->albums as $index => $album): ?>
+                    <li>
+                        <a href="<?php echo $this->url(array('action' => 'view', 'id'     => $album['id'])); ?>">
+                            <figure>
+                                <div>
+                                    <?php if (isset($album['photos'][0])): ?>
+                                        <?php echo $this->timthumb($album['photos'][0], 230, 150, 100); ?>
+                                    <?php else: ?>
+                                        <img src="http://www.placehold.it/250x180/FFFFFF/AAAAAA&text=Tidak+ada+foto" alt="" />
+                                    <?php endif; ?>
+                                </div>
+                                <figcaption>
+                                    <h5><?php echo $album['title']; ?></h5>
+                                    <span><?php echo Date('d F Y', strtotime($album['date'])); ?></span>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <div class="span4 sidebar well">
+        <?php echo $this->render('sidebar.phtml'); ?>
+    </div>
+</div>

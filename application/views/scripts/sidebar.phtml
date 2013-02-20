@@ -1,131 +1,139 @@
 
 <div class = "push"></div>
 <div class = "inner">
-  <center>
-           <img src="<?php echo $this->baseUrl('timthumb.php?src=upload/mading/angklung.jpg&w=300&q=100'); ?>" 
-           alt="" style="margin-bottom: 10px;box-shadow: 0px 1px 4px rgba(50,50,50,0.25);"/>
-       </center>
-  <div class = "agenda widget top-gray">
-    <div class = "widget-header">
-      <h4><i class = "icon-info-sign"></i> Pengumuman</h4>
+    <div class="widget top-blue">
+        <div class="widget-header">
+            <h4>Tag Cloud</h4>
+        </div>
+        <div class="widget-content">
+            <?php echo $this->widget()->getTagCloud(); ?>
+        </div>
     </div>
-    <div class = "widget-content">
-      <ul class = "list_a" style = "list-style: square">
-        <li><a href = "#">Kisi-Kisi Ujian Nasional 2012/2013</a></li>
-        <li><a href = "#">Lomba Menulis Surat Remaja Nasional Kemkominfo</a></li>
-        <li><a href = "#">Prosedur Operasi Standar (POS) Ujian Nasional 2012/2013</a></li>
-        <li><a href = "#">Permendikbud Nomor 3 Tahun 2013 Tentang Kriteria Kelulusan dan Penyelenggaraan Ujian Nasional</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class = "agenda widget top-blue">
-    <div class = "widget-header">
-      <h4><i class = "icon-calendar"></i> Agenda</h4>
-    </div>
-    <div class = "widget-content">
-      <ul class = "unstyled">
-        <?php foreach ($this->Widget()->getUpcomingEvent() as $eventUC): ?>
-          <li>
-            <div class="time">
-              <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?>
-            </div>
-            <a href="#"><?php echo $eventUC['title']; ?></a>
-          </li>
-        <?php endforeach; ?>
-        <?php foreach ($this->Widget()->getLatestEvent() as $eventL): ?>
-          <li>
-            <del>
-              <div class="time">
-                <?php echo date("d M Y", strtotime($eventL['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventL['from_date'])); ?>
-              </div>
-              <a href="#"><?php echo $eventL['title']; ?></a>
-            </del>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </div>
-
-  <div class = "agenda widget top-red">
-    <div class = "widget-header">
-      <h4><i class = "icon-briefcase"></i> Lowongan Kerja</h4>
-    </div>
-    <div class = "widget-content">
-      <ul class = "unstyled">
-        <?php foreach ($this->Widget()->getLatestJobs() as $index => $job): ?>
-          <li>
-            <a href="#"><?php echo $job['title']; ?></a><br />
-            <small>- <?php echo $job['company']; ?></small>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </div>
-  <?php if ($polling = $this->Widget()->getActivePolling()): ?>
-    <?php
-    $polls = Zend_Controller_Front::getInstance()->getRequest()->getCookie('polls');
-    ?>
-    <div class = "widget top-green" id="polling-widget">
-      <div class = "widget-header">
-        <h4><i class = "icon-list-alt"></i> Jajak Pendapat</h4>
-      </div>
-      <div class = "widget-content">
-        <p><?php echo $polling[0]['question']; ?></p>
-        <?php if ($polls): ?>
-          <ul class="unstyled">
-            <?php foreach ($polling as $key => $result): ?>
-              <?php
-              $percent = strstr($result['percent'], '%', true);
-              if ($percent <= 10) $class = 'progress-danger';
-              elseif ($percent <= 20) $class = 'progress-warning';
-              elseif ($percent <= 30) $class = 'progress-info';
-              elseif ($percent > 40) $class = 'progress-success';
-              ?>
-              <li>
-                <?php echo $result['answer']; ?>
-                <span class="text-info pull-right">
-                  <?php echo $result['total']; ?> Pemilih
-                </span>
-                <div class="progress <?php echo $class ?>">
-                  <div class="bar"
-                       style="width: <?php echo $result['percent'] ?>">
-                         <?php echo round($result['percent']) . '%' ?>
-                  </div>
-                </div>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        <?php else: ?>
-          <form action="<?php echo $this->url(array('controller' => 'polling', 'action' => 'vote')); ?>" method = "post">
-            <input type="hidden"
-                   name="question_id"
-                   value="<?php echo $polling[0]['qid']; ?>" />
-            <input type="hidden"
-                   name="return_uri"
-                   value="<?php echo $this->url() ?>"/>
-            <ul class = "unstyled">
-              <?php foreach ($polling as $index => $polling): ?>
-                <li>
-                  <label for="<?php echo 'vote' . $polling['aid']; ?>" class="radio">
-                    <input type = "radio" 
-                           name = "vote" 
-                           id="<?php echo 'vote' . $polling['aid'] ?>" 
-                           value="<?php echo $polling['aid']; ?>" />
-                           <?php echo $polling['answer']; ?>
-                  </label>
-                </li>
-              <?php endforeach; ?>
+    <center>
+        <img src="<?php echo $this->baseUrl('timthumb.php?src=upload/mading/angklung.jpg&w=300&q=100'); ?>"
+             alt="" style="margin-bottom: 10px;box-shadow: 0px 1px 4px rgba(50,50,50,0.25);"/>
+    </center>
+    <div class = "agenda widget top-gray">
+        <div class = "widget-header">
+            <h4><i class = "icon-info-sign"></i> Pengumuman</h4>
+        </div>
+        <div class = "widget-content">
+            <ul class = "list_a" style = "list-style: square">
+                <li><a href = "#">Kisi-Kisi Ujian Nasional 2012/2013</a></li>
+                <li><a href = "#">Lomba Menulis Surat Remaja Nasional Kemkominfo</a></li>
+                <li><a href = "#">Prosedur Operasi Standar (POS) Ujian Nasional 2012/2013</a></li>
+                <li><a href = "#">Permendikbud Nomor 3 Tahun 2013 Tentang Kriteria Kelulusan dan Penyelenggaraan Ujian Nasional</a></li>
             </ul>
-            <input type = "submit" class = "btn btn-success pull-right" value = "Kirim" />
-            <div class = "clearfix"></div>
-          </form>
-
-        <?php endif; ?>
-
-      </div>
-      <div class = "widget-footer">
-
-      </div>
+        </div>
     </div>
-  <?php endif; ?>
+    <div class = "agenda widget top-blue">
+        <div class = "widget-header">
+            <h4><i class = "icon-calendar"></i> Agenda</h4>
+        </div>
+        <div class = "widget-content">
+            <ul class = "unstyled">
+                <?php foreach ($this->Widget()->getUpcomingEvent() as $eventUC): ?>
+                    <li>
+                        <div class="time">
+                            <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?>
+                        </div>
+                        <a href="#"><?php echo $eventUC['title']; ?></a>
+                    </li>
+                <?php endforeach; ?>
+                <?php foreach ($this->Widget()->getLatestEvent() as $eventL): ?>
+                    <li>
+                        <del>
+                            <div class="time">
+                                <?php echo date("d M Y", strtotime($eventL['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventL['from_date'])); ?>
+                            </div>
+                            <a href="#"><?php echo $eventL['title']; ?></a>
+                        </del>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+
+    <div class = "agenda widget top-red">
+        <div class = "widget-header">
+            <h4><i class = "icon-briefcase"></i> Lowongan Kerja</h4>
+        </div>
+        <div class = "widget-content">
+            <ul class = "unstyled">
+                <?php foreach ($this->Widget()->getLatestJobs() as $index => $job): ?>
+                    <li>
+                        <a href="#"><?php echo $job['title']; ?></a><br />
+                        <small>- <?php echo $job['company']; ?></small>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <?php if ($polling = $this->Widget()->getActivePolling()): ?>
+        <?php
+        $polls = Zend_Controller_Front::getInstance()->getRequest()->getCookie('polls');
+        ?>
+        <div class = "widget top-green" id="polling-widget">
+            <div class = "widget-header">
+                <h4><i class = "icon-list-alt"></i> Jajak Pendapat</h4>
+            </div>
+            <div class = "widget-content">
+                <p><?php echo $polling[0]['question']; ?></p>
+                <?php if ($polls): ?>
+                    <ul class="unstyled">
+                        <?php foreach ($polling as $key => $result): ?>
+                            <?php
+                            $percent = strstr($result['percent'], '%', true);
+                            if ($percent <= 10) $class = 'progress-danger';
+                            elseif ($percent <= 20) $class = 'progress-warning';
+                            elseif ($percent <= 30) $class = 'progress-info';
+                            elseif ($percent > 40) $class = 'progress-success';
+                            ?>
+                            <li>
+                                <?php echo $result['answer']; ?>
+                                <span class="text-info pull-right">
+                                    <?php echo $result['total']; ?> Pemilih
+                                </span>
+                                <div class="progress <?php echo $class ?>">
+                                    <div class="bar"
+                                         style="width: <?php echo $result['percent'] ?>">
+                                             <?php echo round($result['percent']) . '%' ?>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <form action="<?php echo $this->url(array('controller' => 'polling', 'action'     => 'vote')); ?>" method = "post">
+                        <input type="hidden"
+                               name="question_id"
+                               value="<?php echo $polling[0]['qid']; ?>" />
+                        <input type="hidden"
+                               name="return_uri"
+                               value="<?php echo $this->url() ?>"/>
+                        <ul class = "unstyled">
+                            <?php foreach ($polling as $index => $polling): ?>
+                                <li>
+                                    <label for="<?php echo 'vote' . $polling['aid']; ?>" class="radio">
+                                        <input type = "radio"
+                                               name = "vote"
+                                               id="<?php echo 'vote' . $polling['aid'] ?>"
+                                               value="<?php echo $polling['aid']; ?>" />
+                                               <?php echo $polling['answer']; ?>
+                                    </label>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <input type = "submit" class = "btn btn-success pull-right" value = "Kirim" />
+                        <div class = "clearfix"></div>
+                    </form>
+
+                <?php endif; ?>
+
+            </div>
+            <div class = "widget-footer">
+
+            </div>
+        </div>
+    <?php endif; ?>
 </div>

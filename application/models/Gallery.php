@@ -35,9 +35,11 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
             /* @var $albumEntry Zend_Gdata_Photos_AlbumEntry */
             $id = $albumEntry->getGphotoId()->getText();
             $title = $albumEntry->getTitle()->getText();
+            $date = $albumEntry->getUpdated()->getText();
             $albums[] = array(
                 'id'    => $id,
-                'title' => $title
+                'title' => $title,
+                'date'  => $date
             );
         }
         return $albums;
@@ -63,7 +65,7 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
         return $album;
     }
 
-    public function getPhotos($album_id , $thumbsize = 230)
+    public function getPhotos($album_id, $thumbsize = 230)
     {
         $photos = array();
         $query = new Zend_Gdata_Photos_AlbumQuery();
@@ -74,7 +76,6 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
         }
         return $photos;
     }
-
 
     function getLatestAlbum()
     {
