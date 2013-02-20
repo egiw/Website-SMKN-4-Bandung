@@ -18,7 +18,7 @@
         </prakerin>
         <news>
             <label>{icon-rss} Berita</label>
-            <controller>News</controller>
+            <controller>news</controller>
             <action>index</action>
         </news>
         <article>
