@@ -1,0 +1,57 @@
+<div class = "agenda widget top-gray span4">
+    <div class = "widget-header">
+        <h4><i class = "icon-info-sign"></i> Pengumuman</h4>
+    </div>
+    <div class = "widget-content">
+        <ul class = "list_a" style = "list-style: square">
+            <li><a href = "#">Kisi-Kisi Ujian Nasional 2012/2013</a></li>
+            <li><a href = "#">Lomba Menulis Surat Remaja Nasional Kemkominfo</a></li>
+            <li><a href = "#">Prosedur Operasi Standar (POS) Ujian Nasional 2012/2013</a></li>
+            <li><a href = "#">Permendikbud Nomor 3 Tahun 2013 Tentang Kriteria Kelulusan dan Penyelenggaraan Ujian Nasional</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class = "agenda widget top-blue span4">
+    <div class = "widget-header">
+        <h4><i class = "icon-calendar"></i> Agenda</h4>
+    </div>
+    <div class = "widget-content">
+        <ul class = "unstyled">
+            <?php foreach ($this->Widget()->getUpcomingEvent() as $eventUC): ?>
+                <li>
+                    <div class="time">
+                        <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?>
+                    </div>
+                    <a href="#"><?php echo $eventUC['title']; ?></a>
+                </li>
+            <?php endforeach; ?>
+            <?php foreach ($this->Widget()->getLatestEvent() as $eventL): ?>
+                <li>
+                    <del>
+                        <div class="time">
+                            <?php echo date("d M Y", strtotime($eventL['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventL['from_date'])); ?>
+                        </div>
+                        <a href="#"><?php echo $eventL['title']; ?></a>
+                    </del>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+
+<div class = "agenda widget top-red span4">
+    <div class = "widget-header">
+        <h4><i class = "icon-briefcase"></i> Lowongan Kerja</h4>
+    </div>
+    <div class = "widget-content">
+        <ul class = "unstyled">
+            <?php foreach ($this->Widget()->getLatestJobs() as $index => $job): ?>
+                <li>
+                    <a href="#"><?php echo $job['title']; ?></a><br />
+                    <small>- <?php echo $job['company']; ?></small>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
