@@ -5,10 +5,19 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
     protected $_name = 'article';
     protected $_user = 'user';
 
-    public function findAll()
+    public function findAll($tag = null)
     {
         $select = $this->select()
-        ->from($this->_name);
+        ->setIntegrityCheck(false)
+        ->from($this->_name)
+        ->columns(array('comments' => "(SELECT COUNT(*) FROM comment WHERE article_id = {$this->_name}.id)"))
+        ->join($this->_user, "{$this->_name}.created_by = {$this->_user}.username", array('avatar'))
+        ->order('created_on DESC');
+
+        if (null !== $tag) {
+            $select->where("{$this->_name}.tags LIKE ?", "%{$tag}%");
+        }
+
         $result = $this->fetchall($select);
         return $result;
     }

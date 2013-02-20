@@ -1,0 +1,25 @@
+<?php
+$this->minifyHeadlink()->appendStylesheet($this->baseUrl('lib/colorbox/colorbox.css'));
+$this->minifyHeadscript()
+->appendFile($this->baseUrl('lib/colorbox/jquery.colorbox-min.js'))
+->appendFile($this->baseUrl('js/application/gallery.js'));
+?>
+<div class="main row-fluid">
+    <div class="span8">
+        <div class="content-inner">
+            <h4>Galeri #<?php echo $this->album['title']; ?></h4>
+            <ul class="thumbnails" style="margin-top: 40px">
+                <?php foreach ($this->album['photos'] as $index => $photo): ?>
+                    <li class="thumbnail">
+                        <a href="<?php echo $photo['src']; ?>" class="colorbox">
+                            <?php echo $this->timthumb($photo['src'], 150, 150, 100); ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <div class="span4 sidebar well">
+        <?php echo $this->render('sidebar.phtml'); ?>
+    </div>
+</div>

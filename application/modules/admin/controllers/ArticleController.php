@@ -74,8 +74,6 @@ class Admin_ArticleController extends Zend_Controller_Action
       $this->_helper->redirector('index');
     }
 
-    var_dump($this->filter->article);
-// action body
     $messages = $this->_helper->flashMessenger->getMessages();
     $username = Zend_Auth::getInstance()->getIdentity()->username;
     $data = $this->article->findAll($username, $this->filter->article);
