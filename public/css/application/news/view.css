@@ -1,0 +1,22 @@
+/* 
+    Document   : view
+    Created on : Feb 20, 2013, 9:08:47 PM
+    Author     : Fath Malik
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.line-heading{
+    border: #0088CC solid;
+}
+
+cite{
+    font-size: 13px;
+    color: #666;
+}
+
+cite > div{
+    font-size: 12px;
+}
+
+

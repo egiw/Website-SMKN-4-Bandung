@@ -1,0 +1,58 @@
+<?php
+$this->minifyHeadLink()
+        ->appendStylesheet($this->baseUrl('css/application/news/view.css'));
+$auth = Zend_Auth::getInstance();
+?>
+
+
+<div class="main row-fluid">
+
+    <div class="span8">
+        <div class="content-inner" style="margin-top: 2px;">
+
+            <ul class="unstyled">
+
+                <li>
+                    <ul class="inline pull-right">
+                        <li >
+                            <a href="#" title="Bagikan di Facebook">fb</a>
+                        </li>
+                        <li>
+
+                            <a href="#" title="Bagikan di Twitter">tw</a>
+                        </li>
+                        
+                    </ul>
+                    <div class="clearfix"></div>
+                </li>
+                <li>
+
+                    <h2 class="">
+                        <?php echo $this->news['title'] ?>
+                    </h2>
+                </li>
+                <li>
+
+                    <cite>Diposting oleh : <a href="#"><b><?php echo $this->news['created_by']; ?></b></a>
+                        <br />
+                        <div><?php echo Date('F j, Y', strtotime($this->news['created_on'])); ?></div>
+                    </cite>
+
+                </li>
+
+            </ul>
+
+
+
+
+            <hr class="line-heading"/>
+
+            <?php echo $this->news['content'] ?>
+        </div>
+
+    </div>
+
+    <div class="span4 sidebar well">
+        <?php echo $this->render('sidebar.phtml'); ?>
+    </div>
+</div>
