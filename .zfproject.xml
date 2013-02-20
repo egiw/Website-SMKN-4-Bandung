@@ -186,6 +186,7 @@
               <dbTableFile dbTableName="Prakerin"/>
               <dbTableFile dbTableName="Highlight"/>
               <dbTableFile dbTableName="Guestbook"/>
+              <dbTableFile dbTableName="Comment"/>
             </dbTableDirectory>
             <modelFile modelName="Status"/>
             <modelFile modelName="Role"/>

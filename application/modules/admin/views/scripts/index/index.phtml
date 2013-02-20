@@ -1,45 +1,61 @@
 <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
 <div class="row-fluid">
-  <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
 </div>
 
 <div id="widgets" class="row-fluid">
-  <div class="span8 ui-sortable">
-    <div class="w-box" id="w_sort02" style="">
-      <div class="w-box-header">
-        <i class="icon-comments"></i>&nbsp;Buku tamu
-        <div class="pull-right">
-          <div class="btn-group">
-            <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
-              <i class="icon-cog"></i> <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="w-box-content cnt_a">
-        <ul class="unstyled" id="guestbook-list">
-          <?php foreach ($this->guestbooks as $index => $guestbook): ?>
-            <li>
-              <blockquote <?php echo ($index % 2 == 0) ? 'class="pull-right"' : '' ?>>
-                <p><?php echo $guestbook['message']; ?></p>
-                <small>
-                  Dari
-                  <cite title="<?php echo $guestbook['email'] ?>">
-                    <a href="mailto:<?php echo $guestbook['email'] ?>" target="_blank"><?php echo $guestbook['name']; ?> </a>
-                  </cite> 
-                  pada <?php echo Date('j M H:i', strtotime($guestbook['created_on'])); ?>
-                </small>
-              </blockquote>
+    <div class="span8 ui-sortable">
+        <div class="w-box" id="w_sort02" style="">
+            <div class="w-box-header">
+                <i class="icon-book"></i>&nbsp;Buku tamu
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
+                            <i class="icon-cog"></i> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="w-box-content cnt_a">
+                <ul class="unstyled" id="guestbook-list">
+                    <?php foreach ($this->guestbooks as $index => $guestbook): ?>
+                        <li>
+                            <blockquote <?php echo ($index % 2 == 0) ? 'class="pull-right"' : '' ?>>
+                                <p><?php echo $guestbook['message']; ?></p>
+                                <small>
+                                    Dari
+                                    <cite title="<?php echo $guestbook['email'] ?>">
+                                        <a href="mailto:<?php echo $guestbook['email'] ?>" target="_blank"><?php echo $guestbook['name']; ?> </a>
+                                    </cite>
+                                    pada <?php echo Date('j M H:i', strtotime($guestbook['created_on'])); ?>
+                                </small>
+                            </blockquote>
 
-              <div class="clearfix"></div>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+                            <div class="clearfix"></div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+<div class="row-fluid">
+    <div class="span8">
+        <div class="w-box">
+            <div class="w-box-header">
+                <i class="icon-comments"></i>&nbsp;Komentar Terbaru
+            </div>
+            <div class="w-box-content cnt_a">
+                <ul class="unstyled">
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

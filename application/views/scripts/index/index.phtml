@@ -1,11 +1,6 @@
-<?php $this->minifyHeadScript()->appendFile($this->baseUrl('js/application/index.js')); ?>
 <?php $this->minifyHeadlink()->appendStylesheet($this->baseUrl('lib/colorbox/colorbox.css')); ?>
 <?php $this->minifyHeadScript()->appendFile($this->baseUrl('lib/colorbox/jquery.colorbox-min.js')); ?>
-<script type="text/javascript">
-    $(function() {
-        $('.colorbox').colorbox({rel: 'colorbox'});
-    });
-</script>
+<?php $this->minifyHeadScript()->appendFile($this->baseUrl('js/application/index.js')); ?>
 <div class="main row-fluid">
     <div class="span8">
         <div id="highlight" class="carousel slide">
