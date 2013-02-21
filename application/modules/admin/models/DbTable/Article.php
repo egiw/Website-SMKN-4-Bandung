@@ -6,9 +6,10 @@ class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
 
     public function findAll($user = null, $filter = NULL)
     {
-        $select = $this->select()->setIntegrityCheck(false)
-        ->from($this->_name)
-        ->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"));
+        $select = $this->select()->setIntegrityCheck(false)->from($this->_name);
+        
+        // Add comments count column :)
+        $select->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"));
 
         if (null !== $user) {
             $select->where("{$this->_name}.created_by = ?", $user);
