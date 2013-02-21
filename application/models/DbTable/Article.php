@@ -42,7 +42,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract
         ->setIntegrityCheck(false)
         ->where("{$this->_name}.title LIKE ?", "%{$q}%")
         ->where("{$this->_name}.status = ?", Admin_Model_Status::PUBLISH)
-        ->columns(array('comments' => "(SELECT COUNT(*) FROM comment WHERE article_id = {$this->_name}.id)"))
+        ->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"))
         ->join($this->_user, "{$this->_name}.created_by = {$this->_user}.username");
         $result = $this->fetchAll($select);
         return $result;
