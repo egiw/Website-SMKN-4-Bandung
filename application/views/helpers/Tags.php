@@ -12,7 +12,7 @@ class Application_View_Helper_Tags extends Zend_View_Helper_Abstract
           'controller' => 'article',
           'action' => 'index',
           'tag' => $tag), null, true);
-      $links[] = "<small><a href='{$url}'>{$tag}</a></small>";
+      $links[] = "<a href='{$url}'>{$tag}</a>";
     }
     return implode(', ', $links);
   }

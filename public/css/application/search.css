@@ -1,0 +1,8 @@
+.search-result .media-heading a{
+    color: #222;
+}
+
+.search-result .media-heading a:hover {
+    text-decoration: none;
+    background-color: #f4f4f4;
+}
