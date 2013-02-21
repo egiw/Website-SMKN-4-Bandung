@@ -8,7 +8,7 @@ class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
     {
         $select = $this->select()->setIntegrityCheck(false)
         ->from($this->_name)
-        ->columns(array('comments' => "(SELECT COUNT(*) FROM comment WHERE article_id = {$this->_name}.id)"));
+        ->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"));
 
         if (null !== $user) {
             $select->where("{$this->_name}.created_by = ?", $user);

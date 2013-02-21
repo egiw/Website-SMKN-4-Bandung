@@ -34,12 +34,18 @@ class ArticleController extends Zend_Controller_Action
                 if ($this->getRequest()->isPost()) {
                     $data = $this->getRequest()->getPost();
                     if ($form->isValid($data)) {
-                        $comment->insert(array(
+
+                        $id = $comment->insert(array(
                             'user'       => Zend_Auth::getInstance()->getIdentity()->username,
                             'created_on' => Date('Y-m-d H:i:s'),
                             'content'    => $form->content->getValue(),
-                            'article_id' => $article->id
                         ));
+
+                        $comment->getAdapter()->insert('article_comments', array(
+                            'article_id' => $article->id,
+                            'comment_id' => $id
+                        ));
+
                         $form->content->setValue('');
                     }
                 }

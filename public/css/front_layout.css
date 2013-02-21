@@ -17,6 +17,7 @@ input[type="text"], input[type="password"] {
     color: #005580;
     line-height: 1.3;
     margin-top: 5px;
+    font-size: 19.5px;
 }
 
 .header.row-fluid {
@@ -215,6 +216,7 @@ address#school-address {
     box-shadow: none;
     margin-bottom: 0;
     padding: 0;
+    padding-bottom: 15px;
 }
 
 .sidebar.span4 .content-inner {
