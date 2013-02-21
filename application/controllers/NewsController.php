@@ -20,24 +20,23 @@ class NewsController extends Zend_Controller_Action {
         $id = $this->getParam('id');
 
         if (null != $id) {
+            $form = new Application_Form_Comment();
             $model = new Application_Model_DbTable_News;
-
+            $comment = new Application_Model_DbTable_Comment();
             $news = $model->find($id)->current();
-            
-            if(null != $news){
-                
-                if($this->getRequest()->isPost()){
-                    
+
+            if (null != $news) {
+
+                if ($this->getRequest()->isPost()) {
+
                     $data = $this->getRequest()->getPost();
-                    
-                    
                 }
-                
+
                 $this->view->auth = Zend_Auth::getInstance();
                 $this->view->news = $news->toArray();
-                
+                $this->view->form = $form;
+                $this->view->comments = $comment;
             }
-            
         }
     }
 
