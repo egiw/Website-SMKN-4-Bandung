@@ -10,9 +10,14 @@
         , $this->navigation($navigation)->menu()->setUlClass('nav'));
         $request = Zend_Controller_Front::getInstance()->getRequest();
         $this->headTitle()
-        ->headTitle(ucfirst($request->getControllerName()))
-        ->setSeparator(' - ')
-        ->headTitle('SMKN 4 Bandung');
+//        ->headTitle(ucfirst($request->getControllerName()))
+//        ->setSeparator(' - ')
+        ->headTitle('TI SMKN 4 Bandung');
+
+        $searchAction = $this->url(array(
+            'controller' => 'search',
+            'module'     => 'default',
+            'action'     => 'index'), null, true);
 
         $this
         ->minifyHeadLink()
@@ -44,7 +49,11 @@
                             <h3>
                                 <a href="#" class="brand">
                                     <img src="/img/logo.png" alt="" class="pull-left" width="85"/>
-                                    <p class="pull-right" style="margin-left: 10px;margin-top: 5px">SMK NEGERI 4 <br />Bandung</p>
+                                    <p class="pull-right" style="margin-left: 10px;margin-top: 15px">
+                                        TEKNIK INFORMATIKA<br />
+                                        SMK NEGERI 4
+                                        BANDUNG
+                                    </p>
                                 </a>
                             </h3>
                         </div>
@@ -62,10 +71,14 @@
                             </address>
                             <!--search form-->
                             <form method="get"
-                                  action="<?php echo $this->url(array('controller' => 'search')); ?>"
+                                  action="<?php echo $searchAction; ?>"
                                   class="search form">
                                 <div class="input-append">
-                                    <input type="text" name="keyword" placeholder="Pencarian..."/>
+                                    <?php
+                                    echo $this->formText('q', $this->keyword, array(
+                                        'placeholder' => 'Pencarian...'
+                                    ));
+                                    ?>
                                     <div class="add-on">
                                         <button class="btn btn-link btn-mini"><i class="icon-search"></i></button>
                                     </div>
@@ -87,18 +100,18 @@
                         </a>
                         <div class="nav-collapse in collapse">
                             <?php echo $menu; ?>
-<!--                            <ul class="nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon-folder-close"></i> Konten <i class="caret"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><i class="icon-info-sign"></i>&nbsp;Pengumuman</a></li>
-                                        <li><a href="#"><i class="icon-calendar"></i>&nbsp;Agenda</a></li>
-                                        <li><a href="#"><i class="icon-briefcase"></i>&nbsp;Lowongan Kerja</a></li>
-                                    </ul>
-                                </li>
-                            </ul>-->
+                            <!--                            <ul class="nav">
+                                                            <li class="dropdown">
+                                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                                    <i class="icon-folder-close"></i> Konten <i class="caret"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                    <li><a href="#"><i class="icon-info-sign"></i>&nbsp;Pengumuman</a></li>
+                                                                    <li><a href="#"><i class="icon-calendar"></i>&nbsp;Agenda</a></li>
+                                                                    <li><a href="#"><i class="icon-briefcase"></i>&nbsp;Lowongan Kerja</a></li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>-->
                             <ul class="nav pull-right">
                                 <li class="dropdown">
                                     <?php
