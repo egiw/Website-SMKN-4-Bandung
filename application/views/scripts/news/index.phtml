@@ -1,3 +1,5 @@
+
+
 <div class="main row-fluid">
 
     <div class="span8">
@@ -14,6 +16,9 @@
 
             <ul class="unstyled article">
                 <?php foreach ($this->newss as $index => $news): ?>
+                <?php
+                    $link = $this->url(array('controller' => 'news', 'action'     => 'view', 'id'         => $news['id']));
+                    ?>
                     <li>
                         <article>
                             <div class="pull-left">
@@ -29,7 +34,7 @@
                             <div class="article-content">
                                 <h5>
                                     <div class="well well-small" style="min-height:20px; padding: 7px;">
-                                        <a style="color: #000;" href="#">
+                                        <a style="color: #000;" href="<?php echo $link ?>">
                                             <?php echo $news['title']; ?>
                                         </a>
                                     </div>
@@ -43,7 +48,6 @@
                                 <i class="icon-eye-open"></i>&nbsp;<?php // echo $article['views'];      ?>&nbsp;&nbsp;
                                 <i class="icon-comments"></i>&nbsp;<?php // echo rand(0, 1000);      ?> &nbsp;&nbsp;
                                 <i class="icon-thumbs-up"></i>&nbsp;<?php // echo $article['likes'];      ?> &nbsp;&nbsp;
-                                <i class="icon-tags"></i>&nbsp;<?php // echo $this->tags($article['tags']);      ?>&nbsp;&nbsp;
                             </div>
 
 

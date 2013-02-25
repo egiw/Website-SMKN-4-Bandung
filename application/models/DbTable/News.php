@@ -21,7 +21,12 @@ class Application_Model_DbTable_News extends Zend_Db_Table_Abstract {
 
     public function findAll() {
         $select = $this->select()
-                ->from($this->_name);
+                ->setIntegrityCheck(false)
+                ->from($this->_name)
+                ->columns(array('comments' => "(SELECT COUNT(*) FROM news_comments WHERE news_id = {$this->_name}.id)"))
+                ->join($this->_user, "{$this->_name}.created_by = {$this->_user}.username", array('avatar'))
+                ->order('created_on DESC');
+
         $result = $this->fetchall($select);
         return $result;
     }
@@ -33,7 +38,7 @@ class Application_Model_DbTable_News extends Zend_Db_Table_Abstract {
                 ->where("{$this->_name}.id =", $news_id);
 
         $result = $this->fetchRow($select);
-        
+
         return $result;
     }
 
