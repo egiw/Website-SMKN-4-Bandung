@@ -1,14 +1,12 @@
 <?php
 
-class ArticleController extends Zend_Controller_Action
-{
-    public function init()
-    {
+class ArticleController extends Zend_Controller_Action {
+
+    public function init() {
         /* Initialize action controller here */
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         $tag = $this->getParam('tag');
         $pageNumber = $this->getParam('page');
         $model = new Application_Model_DbTable_Article();
@@ -20,8 +18,7 @@ class ArticleController extends Zend_Controller_Action
         $this->view->auth = Zend_Auth::getInstance();
     }
 
-    public function viewAction()
-    {
+    public function viewAction() {
         $id = $this->getParam('id');
         $pageNumber = $this->getParam('page');
 
@@ -48,6 +45,14 @@ class ArticleController extends Zend_Controller_Action
                         ));
 
                         $form->content->setValue('');
+
+                        $action = $this->getRequest()->getActionName();
+                        $controller = $this->getRequest()->getControllerName();
+                        $module = $this->getRequest()->getModuleName();
+                        $this->_helper->redirector
+                        ->gotoSimple($action, $controller, $module, array(
+                            'id' => $article->id)
+                        );
                     }
                 }
 
@@ -68,8 +73,7 @@ class ArticleController extends Zend_Controller_Action
         }
     }
 
-    public function likeAction()
-    {
+    public function likeAction() {
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender();
         $id = $this->getParam('id');
