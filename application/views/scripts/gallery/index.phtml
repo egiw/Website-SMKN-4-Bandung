@@ -16,7 +16,11 @@
                                 </div>
                                 <figcaption>
                                     <h5><?php echo $album['title']; ?></h5>
-                                    <span><?php echo Date('d F Y', strtotime($album['date'])); ?></span>
+                                    <small style="font-size: 11px">
+                                        <i class="icon-calendar"></i>&nbsp;<?php echo Date('d F Y', strtotime($album['date'])); ?>&nbsp;&nbsp;
+                                        <i class="icon-picture"></i>&nbsp;<?php echo count($album['photos']); ?> Foto
+                                    </small>
+
                                 </figcaption>
                             </figure>
                         </a>
