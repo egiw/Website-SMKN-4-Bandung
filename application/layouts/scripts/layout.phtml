@@ -9,7 +9,7 @@
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>'
         , $this->navigation($navigation)->menu()->setUlClass('nav'));
         $request = Zend_Controller_Front::getInstance()->getRequest();
-        $this->headTitle()
+        $this->HeadTitle()
 //        ->headTitle(ucfirst($request->getControllerName()))
 //        ->setSeparator(' - ')
         ->headTitle('TI SMKN 4 Bandung');
@@ -20,7 +20,7 @@
             'action'     => 'index'), null, true);
 
         $this
-        ->minifyHeadLink()
+        ->MinifyHeadLink()
         ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
         ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
         ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
@@ -28,15 +28,15 @@
         ->appendStylesheet($this->baseUrl('css/front_layout.css'))
         ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
         $this
-        ->minifyHeadScript()
+        ->MinifyHeadScript()
         ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
         ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
         ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
         ->appendFile($this->baseUrl('js/frontend.js'));
 
-        echo $this->headTitle();
-        echo $this->minifyHeadLink();
-        echo $this->minifyHeadScript();
+        echo $this->HeadTitle();
+        echo $this->MinifyHeadLink();
+        echo $this->MinifyHeadScript();
         ?>
         <link rel="shortcut icon" href="/img/favico.png" />
     </head>
