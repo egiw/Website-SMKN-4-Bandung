@@ -1,9 +1,9 @@
-<?php $this->headScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('lib/Tag-Handler/js/jquery.taghandler.js')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/Tag-Handler/js/jquery.taghandler.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
 <?php
-$this->headScript()->appendScript('
+$this->MinifyHeadScript()->appendScript('
   SITi_tinyMCE.init();
   SITi_tag_handler.init();');
 ?>
