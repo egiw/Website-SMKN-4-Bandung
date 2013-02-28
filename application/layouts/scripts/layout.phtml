@@ -7,36 +7,36 @@
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'frontend');
         $navigation = new Zend_Navigation($config);
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>'
-        , $this->navigation($navigation)->menu()->setUlClass('nav'));
+                , $this->navigation($navigation)->menu()->setUlClass('nav'));
         $request = Zend_Controller_Front::getInstance()->getRequest();
-        $this->headTitle()
+        $this->HeadTitle()
 //        ->headTitle(ucfirst($request->getControllerName()))
 //        ->setSeparator(' - ')
-        ->headTitle('TI SMKN 4 Bandung');
+                ->headTitle('TI SMKN 4 Bandung');
 
         $searchAction = $this->url(array(
             'controller' => 'search',
-            'module'     => 'default',
-            'action'     => 'index'), null, true);
+            'module' => 'default',
+            'action' => 'index'), null, true);
 
         $this
-        ->minifyHeadLink()
-        ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
-        ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
-        ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
-        ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'))
-        ->appendStylesheet($this->baseUrl('css/front_layout.css'))
-        ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
+                ->MinifyHeadLink()
+                ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
+                ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+                ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+                ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'))
+                ->appendStylesheet($this->baseUrl('css/front_layout.css'))
+                ->appendStylesheet($this->baseUrl('lib/jCarousel/skins/tango/skin.css'));
         $this
-        ->minifyHeadScript()
-        ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
-        ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
-        ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
-        ->appendFile($this->baseUrl('js/frontend.js'));
+                ->MinifyHeadScript()
+                ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
+                ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
+                ->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.js'))
+                ->appendFile($this->baseUrl('js/frontend.js'));
 
-        echo $this->headTitle();
-        echo $this->minifyHeadLink();
-        echo $this->minifyHeadScript();
+        echo $this->HeadTitle();
+        echo $this->MinifyHeadLink();
+        echo $this->MinifyHeadScript();
         ?>
         <link rel="shortcut icon" href="/img/favico.png" />
     </head>
@@ -127,9 +127,9 @@
                                                 <?php
                                                 $logoutUrl = array(
                                                     'controller' => 'user',
-                                                    'action'     => 'logout',
-                                                    'module'     => 'admin',
-                                                    'return'     => str_replace('/', '|', $this->url()));
+                                                    'action' => 'logout',
+                                                    'module' => 'admin',
+                                                    'return' => str_replace('/', '|', $this->url()));
                                                 ?>
                                                 <a href="<?php echo $this->url($logoutUrl, null, true); ?>">
                                                     <i class="icon-off"></i>&nbsp;Keluar</a>
@@ -138,10 +138,10 @@
                                     <?php else: ?>
                                         <?php
                                         $formAction = array(
-                                            'module'     => 'admin',
+                                            'module' => 'admin',
                                             'controller' => 'user',
-                                            'action'     => 'login',
-                                            'return'     => str_replace('/', '|', $this->url()));
+                                            'action' => 'login',
+                                            'return' => str_replace('/', '|', $this->url()));
                                         ?>
                                         <a href="#"
                                            class="dropdown-toggle"
@@ -205,6 +205,8 @@
                     </div>
                 </div>
             </footer>
+
+            
         </div>
         <a id="back-to-top" title="Kembali ke atas" href="#top">
             <i class="icon-circle-arrow-up icon-3x"></i>
@@ -223,6 +225,12 @@
             //        var s = document.getElementsByTagName('script')[0];
             //        s.parentNode.insertBefore(ga, s);
             //      })();
+            
+            
+          
+            
+            
+            
         </script>
     </body>
 </html>

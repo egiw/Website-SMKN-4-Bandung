@@ -15,7 +15,10 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
 
         if (null !== $tag) {
             $select->where("{$this->_name}.tags LIKE ?", "%{$tag}%");
+            
         }
+        
+        $select->where("{$this->_name}.status = ?", 'publish');
 
         $result = $this->fetchall($select);
         return $result;
