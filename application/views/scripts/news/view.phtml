@@ -7,6 +7,18 @@ $auth = Zend_Auth::getInstance();
 ?>
 
 
+<?php
+$permaLink = $this->url(array(
+    'controller' => 'news',
+    'action' => 'view',
+    'module' => 'default',
+    'id' => $this->news['id']));
+
+
+$tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
+?>
+
+
 <div class="main row-fluid">
 
     <div class="span8">
@@ -21,7 +33,9 @@ $auth = Zend_Auth::getInstance();
                         </li>
                         <li>
 
-                            <a href="#" title="Bagikan di Twitter">tw</a>
+
+                            <a id="shareTwitter" href="<?php echo $tweet ?>">Share Twitter</a>
+
                         </li>
 
                     </ul>
@@ -50,6 +64,12 @@ $auth = Zend_Auth::getInstance();
             <hr class="line-heading"/>
 
             <?php echo $this->news['content'] ?>
+
+            <iframe src="http://www.facebook.com/plugins/like.php?href=http://local.smkn4bdg.sch.id/news/view/id/8"
+                    scrolling="no" frameborder="0"
+                    style="border:none; width:450px; height:80px">
+            
+            </iframe>
             <div class="clearfix"></div>
 
             <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
@@ -71,33 +91,33 @@ $auth = Zend_Auth::getInstance();
 
 
 
-                <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
-                    <form action="<?php echo $this->url(); ?>#comment" method="post" id="comment-form">
-                        <div class="input-prepend">
-                            <div class="add-on">
-                                <?php
-                                echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
-                                        , 50, 50, 100, '');
-                                ?>
-                                <?php echo $this->form->submit; ?>
-                            </div>
-                            <?php echo $this->form->content; ?>
+            <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
+                <form action="<?php echo $this->url(); ?>#comment" method="post" id="comment-form">
+                    <div class="input-prepend">
+                        <div class="add-on">
+                            <?php
+                            echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
+                                    , 50, 50, 100, '');
+                            ?>
+                            <?php echo $this->form->submit; ?>
                         </div>
-                    </form>
-                <?php else: ?>
-                    <?php
-                    $loginUrl = $this->url(array(
-                        'controller' => 'user',
-                        'action' => 'login',
-                        'module' => 'admin',
-                        'return' => "news|view|id|{$this->news['id']}#comment"), null, true);
-                    ?>
-                    <div class="alert">
-                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                        Anda harus <a href="<?php echo $loginUrl ?>">
-                            Login</a> untuk memberikan komentar.
+                        <?php echo $this->form->content; ?>
                     </div>
-                <?php endif; ?>
+                </form>
+            <?php else: ?>
+                <?php
+                $loginUrl = $this->url(array(
+                    'controller' => 'user',
+                    'action' => 'login',
+                    'module' => 'admin',
+                    'return' => "news|view|id|{$this->news['id']}#comment"), null, true);
+                ?>
+                <div class="alert">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    Anda harus <a href="<?php echo $loginUrl ?>">
+                        Login</a> untuk memberikan komentar.
+                </div>
+            <?php endif; ?>
 
 
 
@@ -111,3 +131,23 @@ $auth = Zend_Auth::getInstance();
         <?php echo $this->render('sidebar.phtml'); ?>
     </div>
 </div>
+
+<script>
+
+
+    $('#shareTwitter').click(function(event){
+        event.preventDefault();
+        
+        var w = 700;
+        var h = 500;
+        var x = screen.width/2 - w/2;
+        var y = screen.height/2 - h/2;
+        
+        window.open($(this).attr('href'),'1362073567533','width='+w+',height='+h+',toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left='+x+',top='+y+'');return false;
+    })
+
+    
+    
+
+
+</script>
