@@ -32,7 +32,7 @@
     <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.plugins.js')); ?>
     <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.debouncedresize.min.js')); ?>
     <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.actual.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.cookie.min.js')); ?>
+    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/cookie.js')); ?>
     <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.js')); ?>
     <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/antiscroll/antiscroll.js')); ?>
     <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/antiscroll/jquery-mousewheel.js')); ?>
@@ -101,7 +101,7 @@
           <div class="navbar-inner">
             <div class="container-fluid">
               <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index')); ?>">
-                <!--<i class="icon-home icon-white"></i>--> 
+                <!--<i class="icon-home icon-white"></i>-->
                 <img src="/img/favico.png" width="32" alt="" />
                 SMKN 4 Bandung
               </a>
@@ -124,7 +124,7 @@
                     </li>
                     <li>
                       <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">
-                        <i class="icon-user"></i> Profil                      
+                        <i class="icon-user"></i> Profil
                       </a>
                     </li>
                     <li>

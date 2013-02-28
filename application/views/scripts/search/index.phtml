@@ -4,36 +4,36 @@
         <div class="content-inner">
             <h4>Hasil pencarian artikel dengan kata kunci #<?php echo $this->keyword; ?></h4>
             <ul class="unstyled media-list search-result article">
-                <?php foreach ($this->articles as $index => $article): ?>
+                <?php foreach ($this->posts as $index => $post): ?>
                     <?php
                     $url = $this->url(array(
                         'module'     => 'default',
-                        'controller' => 'article',
                         'action'     => 'view',
-                        'id'         => $article['id']
+                        'controller' => $post['type'],
+                        'id'         => $post['id']
                     ), null, true);
                     ?>
                     <li class="media">
                         <div class="date media-object pull-left" style="margin-top: 0">
-                            <span class="day"><?php echo Date('d', strtotime($article['created_on'])); ?></span>
-                            <span class="month"><?php echo Date('M', strtotime($article['created_on'])); ?></span>
+                            <span class="day"><?php echo Date('d', strtotime($post['created_on'])); ?></span>
+                            <span class="month"><?php echo Date('M', strtotime($post['created_on'])); ?></span>
                         </div>
                         <div class="media-body">
                             <blockquote>
                                 <h4 class="media-heading">
                                     <a href="<?php echo $url; ?>">
-                                        <?php echo $article['title']; ?>
+                                        <?php echo $post['title']; ?>
                                     </a>
                                 </h4>
-                                <?php echo strip_tags($this->truncate($article['content'], 250)); ?>
+                                <?php echo strip_tags($this->truncate($post['content'], 250)); ?>
                                 <small style="margin-top: 10px;
                                        ">
-                                    <i class="icon-user"></i><cite><a href="#"><?php echo $article['created_by']; ?></a></cite></a>&nbsp;&nbsp;
-                                    <i class="icon-eye-open"></i>&nbsp;<?php echo $article['views']; ?>&nbsp;&nbsp;
-                                    <i class="icon-comments"></i>&nbsp;<?php echo $article['comments']; ?> &nbsp;&nbsp;
+                                    <i class="icon-user"></i><cite><a href="#"><?php echo $post['created_by']; ?></a></cite></a>&nbsp;&nbsp;
+                                    <i class="icon-eye-open"></i>&nbsp;<?php echo $post['views']; ?>&nbsp;&nbsp;
+                                    <i class="icon-comments"></i>&nbsp;<?php echo $post['comments']; ?> &nbsp;&nbsp;
                                     <i class="icon-thumbs-up"></i>&nbsp;
-                                    <?php echo (null != $article['likes']) ? count(explode(',', $article['likes'])) : 0; ?> &nbsp;&nbsp;
-                                    <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($article['tags']); ?>
+                                    <?php echo (null != $post['likes']) ? count(explode(',', $post['likes'])) : 0; ?> &nbsp;&nbsp;
+                                    <i class="icon-tags"></i>&nbsp;<?php echo $this->tags($post['tags']); ?>
                                 </small>
                             </blockquote>
                         </div>
