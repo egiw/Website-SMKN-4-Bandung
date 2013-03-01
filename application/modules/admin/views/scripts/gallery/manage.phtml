@@ -1,7 +1,7 @@
-<?php $this->headScript()->appendFile($this->baseUrl('lib/plupload/js/plupload.full.js')) ?>
-<?php $this->headScript()->appendFile($this->baseUrl('lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.full.js')) ?>
-<?php $this->headScript()->appendFile($this->baseUrl('lib/plupload/js/i18n/id.js')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('js/gallery/manage.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/plupload/js/plupload.full.js')) ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/plupload/js/jquery.plupload.queue/jquery.plupload.queue.full.js')) ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/plupload/js/i18n/id.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('js/gallery/manage.js')); ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/plupload/js/jquery.plupload.queue/css/plupload-gebo.css')); ?>
 <?php $this->headLink()->appendStylesheet($this->baseUrl('css/gallery/manage.css')); ?>
 <?php echo $this->flashMessenger($this->messages); ?>

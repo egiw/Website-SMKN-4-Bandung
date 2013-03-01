@@ -32,7 +32,7 @@ class Application_Form_Comment extends Zend_Form
             ))
             ->setFilters(array(
                 array('StringTrim'),
-                array('StripNewLines'),
+                array('StripNewlines'),
                 array('HtmlEntities'),
             ));
 

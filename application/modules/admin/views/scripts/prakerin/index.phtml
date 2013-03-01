@@ -3,7 +3,7 @@ $key = "AIzaSyCTNj8ia2gmUviCAL5Beyrip_OQSI_hJdw";
 $sensor = "false";
 $libraries = "places";
 
-$this->headScript()
+$this->MinifyHeadScript()
         ->prependFile($this->baseUrl('js/prakerin_map.js'))
         ->prependFile("https://maps.googleapis.com/maps/api/js?key={$key}&sensor={$sensor}&libraries={$libraries}")
         ->prependFile($this->baseUrl('lib/multiselect/jquery.multiselect.js'))
@@ -48,7 +48,7 @@ $this->headLink()
   <div class="row-fluid">
     <div class="row-fluid">
       <div class="pull-left">
-        <button type="submit" 
+        <button type="submit"
                 name="action"
                 value="delete"
                 class="btn btn-mini btn-danger"
@@ -56,10 +56,10 @@ $this->headLink()
                     ' Prakerin yang dipilih?')">
           <i class="icon-trash"></i>
         </button>
-        <button class="btn btn-mini btn-info" 
+        <button class="btn btn-mini btn-info"
                 data-toggle="button"
-                type="button"
-                onclick="$('#map').slideToggle(200)">
+                id="button-map"
+                type="button">
           <i class="icon-map-marker"></i>
           Tampilkan Peta
         </button>
@@ -100,7 +100,7 @@ $this->headLink()
                          $(checkboxes).attr('checked', true);
                        } else {
                          $(checkboxes).removeAttr('checked');
-                       }  
+                       }
                      "/>
             </th>
             <th>Nama Perusahaan</th>

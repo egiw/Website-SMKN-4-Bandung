@@ -3,7 +3,7 @@ $key = "AIzaSyCTNj8ia2gmUviCAL5Beyrip_OQSI_hJdw";
 $sensor = "false";
 $libraries = "places";
 
-$this->headScript()
+$this->MinifyHeadScript()
         ->prependFile("https://maps.googleapis.com/maps/api/js?key={$key}&sensor={$sensor}&libraries={$libraries}")
         ->prependFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js'))
         ->appendFile($this->baseUrl('lib/multiselect/jquery.multiselect.js'))

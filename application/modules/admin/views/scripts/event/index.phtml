@@ -1,9 +1,9 @@
 <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/datepicker/datepicker.css')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('lib/datepicker/bootstrap-datepicker.js')); ?>
-<?php $this->headScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/datepicker/bootstrap-datepicker.js')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
 
 <?php
-$this->headScript()->appendScript(
+$this->MinifyHeadScript()->appendScript(
         <<<SCRIPT
  $(function(){
    SITi_datepicker.init();

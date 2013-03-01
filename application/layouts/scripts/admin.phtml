@@ -1,284 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php echo $this->headTitle('TI SMKN 4 Bandung - Admin'); ?>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <?php echo $this->headTitle('TI SMKN 4 Bandung - Admin'); ?>
 
-    <!-- Bootstrap framework -->
-    <?php $this->headLink()->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
+        <?php
+        $this->MinifyHeadLink()
+        ->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
+        ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+        ->appendStylesheet($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.css'))
+        ->prependStylesheet($this->baseUrl('lib/Tag-Handler/css/jquery.taghandler.css'))
+        ->appendStylesheet($this->baseUrl('lib/jquery-ui/css/Aristo/Aristo.css'))
+        ->appendStylesheet($this->baseUrl('lib/gebo/css/blue.css'))
+        ->appendStylesheet($this->baseUrl('lib/gebo/css/style.css'))
+        ->appendStylesheet('http://fonts.googleapis.com/css?family=PT+Sans')
+        ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'));
 
-    <!-- Tooltips -->
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.css')); ?>
+        $this
+        ->MinifyHeadScript()
+        ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
+        ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
+        ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.plugins.js'), 'text/javascript', array('minify_disabled' => true))
+        ->appendFile($this->baseUrl('lib/jquery/jquery.debouncedresize.min.js'))
+        ->appendFile($this->baseUrl('lib/jquery/jquery.actual.min.js'))
+        ->appendFile($this->baseUrl('lib/jquery/cookie.js'))
+        ->appendFile($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.js'))
+        ->appendFile($this->baseUrl('lib/jquery/antiscroll/antiscroll.js'))
+        ->appendFile($this->baseUrl('lib/jquery/antiscroll/jquery-mousewheel.js'))
+        ->appendFile($this->baseUrl('lib/other/ios-orientationchange-fix.js'))
+        ->appendFile($this->baseUrl('lib/gebo/js/gebo_common.js'));
+        ?>
 
-    <?php // $this->headLink()->appendStylesheet($this->baseUrl('lib/plupload/js/jquery.plupload.queue/css/jquery.plupload.queue.css')  ); ?>
-    <?php $this->headLink()->prependStylesheet($this->baseUrl('lib/Tag-Handler/css/jquery.taghandler.css')); ?>
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/jquery-ui/css/Aristo/Aristo.css')); ?>
+        <?php echo $this->MinifyHeadLink(); ?>
+        <?php echo $this->MinifyHeadScript(); ?>
 
-    <!-- Blue Theme -->
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/gebo/css/blue.css')); ?>
-
-    <!-- Main Styles -->
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/gebo/css/style.css')); ?>
-    <?php $this->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=PT+Sans'); ?>
-
-    <!-- Main Jquery -->
-    <?php $this->headScript()->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js')); ?>
-
-    <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css')); ?>
-
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.plugins.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.debouncedresize.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.actual.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/jquery.cookie.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/antiscroll/antiscroll.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/jquery/antiscroll/jquery-mousewheel.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/other/ios-orientationchange-fix.js')); ?>
-    <?php $this->headScript()->appendFile($this->baseUrl('lib/gebo/js/gebo_common.js')); ?>
-
-    <?php echo $this->headLink(); ?>
-    <?php echo $this->headScript(); ?>
-
-    <?php
-    $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
-    $navigation = new Zend_Navigation($config);
-    $this->navigation($navigation);
-    $menu = $this->navigation()->menu()->setUlClass('nav nav-list');
-    $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
-    ?>
+        <?php
+        $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
+        $navigation = new Zend_Navigation($config);
+        $this->navigation($navigation);
+        $menu = $this->navigation()->menu()->setUlClass('nav nav-list');
+        $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
+        ?>
 
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-38322604-1']);
-      _gaq.push(['_trackPageview']);
-      _gaq.push(['_setDomainName', 'none']);
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-38322604-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_setDomainName', 'none']);
 
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
 
-    </script>
+        </script>
 
-    <link rel="shortcut icon" href="/img/favico.png" />
+        <link rel="shortcut icon" href="/img/favico.png" />
 
-    <style type="text/css">
-      form select, select {
-        margin-bottom: 0;
-      }
+        <style type="text/css">
+            form select, select {
+                margin-bottom: 0;
+            }
 
-      .table thead th {
-        vertical-align: middle;
-      }
-      .table thead input {
-        margin-bottom: 0;
-      }
-    </style>
+            .table thead th {
+                vertical-align: middle;
+            }
+            .table thead input {
+                margin-bottom: 0;
+            }
+        </style>
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/ie.css" />
-        <script src="js/ie/html5.js"></script>
-        <script src="js/ie/respond.min.js"></script>
-    <![endif]-->
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/ie.css" />
+            <script src="js/ie/html5.js"></script>
+            <script src="js/ie/respond.min.js"></script>
+        <![endif]-->
 
-    <script>
-      //* hide all elements & show preloader
-      document.documentElement.className += 'js';
-    </script>
-  </head>
-  <body>
-    <div id="loading_layer" style="display:none"><img src="/img/ajax_loader.gif" alt="" /></div>
-    <div id="maincontainer" class="clearfix">
-      <!-- header -->
-      <header>
-        <div class="navbar navbar-fixed-top">
-          <div class="navbar-inner">
-            <div class="container-fluid">
-              <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index')); ?>">
-                <!--<i class="icon-home icon-white"></i>--> 
-                <img src="/img/favico.png" width="32" alt="" />
-                SMKN 4 Bandung
-              </a>
-              <ul class="nav user_menu pull-right">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <?php echo $this->thumbnail('avatar', Zend_Auth::getInstance()->getIdentity()->avatar, 'no-avatar.jpg', 20, 20, 100, null); ?>
-                    <?php if (null == Zend_Auth::getInstance()->getIdentity()->fullname): ?>
-                      <?php echo Zend_Auth::getInstance()->getIdentity()->username; ?>
-                    <?php else: ?>
-                      <?php echo Zend_Auth::getInstance()->getIdentity()->fullname; ?>
-                    <?php endif; ?>
-                    <b class="caret"></b>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index')); ?>">
-                        <i class="icon-home"></i> Ke halaman depan
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">
-                        <i class="icon-user"></i> Profil                      
-                      </a>
-                    </li>
-                    <li>
-                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'setting')); ?>">
-                        <i class="icon-cog"></i> Sunting Akun
-                      </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                      <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">
-                        <i class="icon-off"></i> Keluar
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
-                <span class="icon-align-justify icon-white"></span>
-              </a>
-              <nav>
-                <div class="nav-collapse">
-                  <!--                  <ul class="nav">
-                                      <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                        </ul>
-                                      </li>
-                                      <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                        </ul>
-                                      </li>
-                                      <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                          <li><a href="#">menu section</a></li>
-                                        </ul>
-                                      </li>
-                                    </ul>-->
+        <script>
+            //* hide all elements & show preloader
+            document.documentElement.className += 'js';
+        </script>
+    </head>
+    <body>
+        <div id="loading_layer" style="display:none"><img src="/img/ajax_loader.gif" alt="" /></div>
+        <div id="maincontainer" class="clearfix">
+            <!-- header -->
+            <header>
+                <div class="navbar navbar-fixed-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action'     => 'index')); ?>">
+                              <!--<i class="icon-home icon-white"></i>-->
+                                <img src="/img/favico.png" width="32" alt="" />
+                                SMKN 4 Bandung
+                            </a>
+                            <ul class="nav user_menu pull-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <?php echo $this->thumbnail('avatar', Zend_Auth::getInstance()->getIdentity()->avatar, 'no-avatar.jpg', 20, 20, 100, null); ?>
+                                        <?php if (null == Zend_Auth::getInstance()->getIdentity()->fullname): ?>
+                                            <?php echo Zend_Auth::getInstance()->getIdentity()->username; ?>
+                                        <?php else: ?>
+                                            <?php echo Zend_Auth::getInstance()->getIdentity()->fullname; ?>
+                                        <?php endif; ?>
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="<?php echo $this->url(array('module'     => 'default', 'controller' => 'index', 'action'     => 'index')); ?>">
+                                                <i class="icon-home"></i> Ke halaman depan
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'index')); ?>">
+                                                <i class="icon-user"></i> Profil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'setting')); ?>">
+                                                <i class="icon-cog"></i> Sunting Akun
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'logout')); ?>">
+                                                <i class="icon-off"></i> Keluar
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
+                                <span class="icon-align-justify icon-white"></span>
+                            </a>
+                            <nav>
+                                <div class="nav-collapse">
+                                    <!--                  <ul class="nav">
+                                                        <li class="dropdown">
+                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
+                                                          <ul class="dropdown-menu">
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                          </ul>
+                                                        </li>
+                                                        <li class="dropdown">
+                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
+                                                          <ul class="dropdown-menu">
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                          </ul>
+                                                        </li>
+                                                        <li class="dropdown">
+                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
+                                                          <ul class="dropdown-menu">
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                            <li><a href="#">menu section</a></li>
+                                                          </ul>
+                                                        </li>
+                                                      </ul>-->
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
+            </header>
 
-      <!-- main content -->
-      <div id="contentwrapper">
-        <div class="main_content">
+            <!-- main content -->
+            <div id="contentwrapper">
+                <div class="main_content">
 
-          <?php echo $this->layout()->content; ?>
+                    <?php echo $this->layout()->content; ?>
 
-        </div>
-      </div>
-
-      <!-- sidebar -->
-      <a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" title="Hide Sidebar">Sidebar switch</a>
-      <div class="sidebar">
-        <div class="antiScroll">
-          <div class="antiscroll-inner">
-            <div class="antiscroll-content">
-              <div class="sidebar_inner">
-                <form action="search_page.html" class="input-append" method="post" >
-                  <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
-                </form>
-                <div id="side_accordion" class="accordion">
-                  <div class="accordion-group">
-                    <div class="accordion-heading">
-                      <a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                        <i class="icon-folder-close"></i> Konten
-                      </a>
-                    </div>
-                    <div class="accordion-body collapse in" id="collapseOne">
-                      <div class="accordion-inner">
-                        <?php echo $menu; ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-group">
-                    <div class="accordion-heading">
-                      <a href="#collapseTwo" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                        <i class="icon-lock"></i>
-                        Admin
-                      </a>
-                    </div>
-                    <div class="accordion-body collapse" id="collapseTwo">
-                      <div class="accordion-inner">
-                        <ul class="nav nav-list">
-                          <li><a href="<?php echo $this->url(array('controller' => 'jobs', 'action' => 'index')); ?>">Lowongan Kerja</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'prakerin', 'action' => 'index')); ?>">Info Prakerin</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'account', 'action' => 'index')); ?>">Akun</a></li>
-                          <li><a href="<?php echo $this->url(array('controller' => 'log', 'action' => 'index')); ?>">Log</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-group">
-                    <div class="accordion-heading">
-                      <a href="#collapseThree" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                        <i class="icon-user"></i>
-                        Akun
-                      </a>
-                    </div>
-                    <div class="accordion-body collapse" id="collapseThree">
-                      <div class="accordion-inner">
-                        <ul class="nav nav-list">
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-group">
-                    <div class="accordion-heading">
-                      <a href="#collapseFour" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                        <i class="icon-wrench"></i>
-                        Pengaturan
-                      </a>
-                    </div>
-                    <div class="accordion-body collapse" id="collapseFour">
-                      <div class="accordion-inner">
-                        <ul class="nav nav-list">
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                          <li><a href="javascript:void(0)">Side menu</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+
+            <!-- sidebar -->
+            <a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" title="Hide Sidebar">Sidebar switch</a>
+            <div class="sidebar">
+                <div class="antiScroll">
+                    <div class="antiscroll-inner">
+                        <div class="antiscroll-content">
+                            <div class="sidebar_inner">
+                                <form action="search_page.html" class="input-append" method="post" >
+                                    <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
+                                </form>
+                                <div id="side_accordion" class="accordion">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                <i class="icon-folder-close"></i> Konten
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body collapse in" id="collapseOne">
+                                            <div class="accordion-inner">
+                                                <?php echo $menu; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="#collapseTwo" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                <i class="icon-lock"></i>
+                                                Admin
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body collapse" id="collapseTwo">
+                                            <div class="accordion-inner">
+                                                <ul class="nav nav-list">
+                                                    <li><a href="<?php echo $this->url(array('controller' => 'jobs', 'action'     => 'index')); ?>">Lowongan Kerja</a></li>
+                                                    <li><a href="<?php echo $this->url(array('controller' => 'prakerin', 'action'     => 'index')); ?>">Info Prakerin</a></li>
+                                                    <li><a href="<?php echo $this->url(array('controller' => 'account', 'action'     => 'index')); ?>">Akun</a></li>
+                                                    <li><a href="<?php echo $this->url(array('controller' => 'log', 'action'     => 'index')); ?>">Log</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="#collapseThree" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                <i class="icon-user"></i>
+                                                Akun
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body collapse" id="collapseThree">
+                                            <div class="accordion-inner">
+                                                <ul class="nav nav-list">
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading">
+                                            <a href="#collapseFour" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                                <i class="icon-wrench"></i>
+                                                Pengaturan
+                                            </a>
+                                        </div>
+                                        <div class="accordion-body collapse" id="collapseFour">
+                                            <div class="accordion-inner">
+                                                <ul class="nav nav-list">
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                    <li><a href="javascript:void(0)">Side menu</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                $(document).ready(function() {
+                    //* show all elements & remove preloader
+                    setTimeout('$("html").removeClass("js")', 1000);
+                });
+            </script>
+
         </div>
-      </div>
-
-      <script>
-        $(document).ready(function() {
-          //* show all elements & remove preloader
-          setTimeout('$("html").removeClass("js")',1000);
-        });
-      </script>
-
-    </div>
-  </body>
+    </body>
 </html>
