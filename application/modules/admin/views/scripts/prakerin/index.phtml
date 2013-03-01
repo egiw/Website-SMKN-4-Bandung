@@ -11,7 +11,7 @@ $this->MinifyHeadScript()
         ->appendFile('http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.0.1/src/markerwithlabel_packed.js')
         ->appendFile($this->baseUrl('js/prakerin/index.js'));
 
-$this->headLink()
+$this->MinifyHeadLink()
         ->appendStylesheet($this->baseUrl('lib/multiselect/jquery.multiselect.css'));
 ?>
 <?php echo $this->flashMessenger($this->messages); ?>
