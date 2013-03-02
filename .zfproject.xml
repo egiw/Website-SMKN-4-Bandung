@@ -23,6 +23,7 @@
         </controllerFile>
         <controllerFile controllerName="Article">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="comment"/>
         </controllerFile>
         <controllerFile controllerName="Books">
           <actionMethod actionName="index"/>
@@ -412,6 +413,9 @@
           <viewControllerScriptsDirectory forControllerName="Search">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Article">
+            <viewScriptFile forActionName="comment"/>
+          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -461,6 +465,7 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Article">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="comment"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Gallery">
             <testApplicationActionMethod forActionName="index"/>
