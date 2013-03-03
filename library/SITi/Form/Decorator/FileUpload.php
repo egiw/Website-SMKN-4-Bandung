@@ -52,7 +52,7 @@ class SITi_Form_Decorator_FileUpload extends Zend_Form_Decorator_Abstract
 
     $fileupload_new_thumbnail = $tag->clearOptions()->setTag('div')->setOptions(array(
                 'class' => 'fileupload-new thumbnail',
-                'style' => "width:{$w}px;height:{$h}px"))->render($image);
+                'style' => "max-width:{$w}px;max-height:{$h}px"))->render($image);
 
     $fileupload_exists_thumbnail = $tag->clearOptions()->setTag('div')->setOptions(array(
                 'class' => 'fileupload-preview fileupload-exists thumbnail',
