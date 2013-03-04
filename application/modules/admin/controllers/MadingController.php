@@ -43,4 +43,17 @@ class Admin_MadingController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
+    public function orderAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        $model = new Admin_Model_DbTable_Mading();
+        if ($this->getRequest()->isPost()) {
+            $post = $this->getRequest()->getPost();
+            $mading = $post['mading'];
+            foreach ($mading as $index => $id) {
+                $model->update(array('sort' => $index), array('id = ?' => $id));
+            }
+        }
+    }
+
 }
