@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="/css/jcarousel-skin-mading.css" />
+
 <div class="widget" style="padding: 0; border-radius: 5px;height: 600px;">
-        <a class="twitter-timeline" width="100%" height="100%" href="https://twitter.com/smk4bdg" data-widget-id="307192253972090881">Tweets by @smk4bdg</a>
-    </div>
+    <a class="twitter-timeline" width="100%" height="100%" href="https://twitter.com/smk4bdg" data-widget-id="307192253972090881">Tweets by @smk4bdg</a>
+</div>
 
 <div class = "agenda widget top-blue">
     <div class = "widget-header">
@@ -30,10 +32,17 @@
     </div>
 </div>
 
-<center>
-    <img src="<?php echo $this->baseUrl('timthumb.php?src=upload/mading/angklung.jpg&w=300&q=100'); ?>"
-         alt="" style="margin-top: 10px;box-shadow: 0px 1px 4px rgba(50,50,50,0.25);"/>
-</center>
+<div class="widget" style="padding: 0;text-align: center;">
+    <ul id="mading" class="jcarousel-skin-mading">
+        <?php foreach ($this->widget(false)->getActiveMading() as $index => $mading): ?>
+            <li>
+                <?php
+                echo $this->timthumb($this->baseUrl('upload/mading/' . $mading['image']), 300, 400, 100);
+                ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
 
 <div class = "agenda widget top-red">
     <div class = "widget-header">
@@ -117,7 +126,8 @@
         </div>
     </div>
 
-    <script>!function(d, s, id) {
+    <script>
+        !function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (!d.getElementById(id)) {
                 js = d.createElement(s);
@@ -128,12 +138,17 @@
         }(document, "script", "twitter-wjs");
 
         $(function() {
-            var style = document.createElement('link');
-            style.href = '/css/twidget.css';
-            style.rel = 'stylesheet';
-            style.type = 'text/css';
-        })
+            $("#mading").jcarousel({
+                visible: 1,
+                scroll: 1,
+                wrap: 'last',
+                auto: 5,
+                initCallback: function(carousel) {
 
+                }
+    //                vertical: true
+            });
+        });
     </script>
 
     <style type="text/css">
@@ -141,6 +156,7 @@
             width: 100%;
             height: 600px;
         }
+
     </style>
 
 <?php endif; ?>

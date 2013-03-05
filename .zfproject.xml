@@ -65,6 +65,7 @@
           <dbTableFile dbTableName="Guestbook"/>
           <dbTableFile dbTableName="Comment"/>
           <dbTableFile dbTableName="Tag"/>
+          <dbTableFile dbTableName="Mading"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory>
