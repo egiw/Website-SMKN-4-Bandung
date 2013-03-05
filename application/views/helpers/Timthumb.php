@@ -4,7 +4,7 @@ class Application_View_Helper_Timthumb extends Zend_View_Helper_Abstract {
 
     protected $format = '<img src="%s" %s/>';
 
-    public function Timthumb($src, $w, $h, $q, array $options = null) {
+    public function Timthumb($src, $w, $h, $q, array $options = array()) {
         $timthumb = $this->view->baseUrl('timthumb.php?src=' . $src . '&w=' . $w . '&h=' . $h . '&q=' . $q);
         $result = sprintf($this->format, $timthumb, $this->htmlAttribs($options));
         return $result;
