@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="/css/jcarousel-skin-mading.css" />
+<?php $this->MinifyHeadLink()->appendStylesheet($this->baseUrl('lib/colorbox/colorbox.css')); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/colorbox/jquery.colorbox-min.js')); ?>
+<?php $this->minifyHeadLink()->appendStylesheet($this->baseUrl('css/jcarousel-skin-mading.css')); ?>
+<?php $this->minifyHeadScript()->appendFile($this->baseUrl('js/sidebar.js')); ?>
 
 <div class="widget" style="padding: 0; border-radius: 5px;height: 600px;">
     <a class="twitter-timeline" width="100%" height="100%" href="https://twitter.com/smk4bdg" data-widget-id="307192253972090881">Tweets by @smk4bdg</a>
@@ -36,9 +39,13 @@
     <ul id="mading" class="jcarousel-skin-mading">
         <?php foreach ($this->widget(false)->getActiveMading() as $index => $mading): ?>
             <li>
-                <?php
-                echo $this->timthumb($this->baseUrl('upload/mading/' . $mading['image']), 300, 400, 100);
-                ?>
+                <a href="<?php echo $this->baseUrl('upload/mading/' . $mading['image']); ?>"
+                   class="mading"
+                   title="<?php echo $mading['title']; ?>">
+                       <?php
+                       echo $this->timthumb($this->baseUrl('upload/mading/' . $mading['image']), 300, 400, 100);
+                       ?>
+                </a>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -125,38 +132,5 @@
 
         </div>
     </div>
-
-    <script>
-        !function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (!d.getElementById(id)) {
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//platform.twitter.com/widgets.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }
-        }(document, "script", "twitter-wjs");
-
-        $(function() {
-            $("#mading").jcarousel({
-                visible: 1,
-                scroll: 1,
-                wrap: 'last',
-                auto: 5,
-                initCallback: function(carousel) {
-
-                }
-    //                vertical: true
-            });
-        });
-    </script>
-
-    <style type="text/css">
-        #twitter-widget-0 {
-            width: 100%;
-            height: 600px;
-        }
-
-    </style>
 
 <?php endif; ?>
