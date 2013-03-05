@@ -164,6 +164,8 @@
             <controllerFile controllerName="Mading">
               <actionMethod actionName="index"/>
               <actionMethod actionName="create"/>
+              <actionMethod actionName="delete"/>
+              <actionMethod actionName="edit"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
@@ -374,6 +376,12 @@
               <viewControllerScriptsDirectory forControllerName="Mading">
                 <viewScriptFile forActionName="create"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Mading">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Mading">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -583,6 +591,8 @@
               <testApplicationControllerFile forControllerName="Mading">
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="create"/>
+                <testApplicationActionMethod forActionName="delete"/>
+                <testApplicationActionMethod forActionName="edit"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

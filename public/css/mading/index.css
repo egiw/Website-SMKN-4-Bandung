@@ -138,10 +138,18 @@
 }
 
 #mading figcaption {
-    text-align: center;
+    /*text-align: center;*/
+}
+
+#mading .dropdown-menu {
+
 }
 
 .sortable-placeholder {
     width: 200px;
     margin-right: 17px;
+}
+
+.jcarousel-skin-tango .jcarousel-item:nth-child(4) ~ .jcarousel-item{
+    opacity: .6;
 }

@@ -1,0 +1,23 @@
+<?php
+$this->MinifyHeadScript()
+->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js'), 'text/javascript', array('minify_disabled' => true))
+->appendScript("$(function(){
+    tinyMCE.init({
+        mode: 'textareas',
+        theme: 'simple',
+        width: '100%'
+    });
+});");
+?>
+<form action="" method="post" enctype="multipart/form-data" class="">
+    <div class="row-fluid">
+        <div class="span8">
+            <?php echo $this->form->title; ?>
+            <?php echo $this->form->description; ?>
+        </div>
+        <div class="span4">
+            <?php echo $this->form->image; ?>
+        </div>
+    </div>
+    <?php echo $this->form->submit; ?>
+</form>

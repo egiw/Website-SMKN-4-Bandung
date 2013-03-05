@@ -1,23 +1,40 @@
 <?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/jquery-ui/jquery-ui-1.8.23.custom.min.js')); ?>
 <?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/jCarousel/lib/jquery.jcarousel.min.js')); ?>
-
-<link rel="stylesheet" href="/css/mading/index.css" type="text/css" />
+<?php $this->MinifyHeadLink()->appendStylesheet($this->baseUrl('css/mading/index.css')); ?>
+<?php echo $this->flashMessenger($this->messages); ?>
 
 <div class="row-fluid">
-    <h3 style="display: inline">Majalah Dinding</h3>
-    <a href="<?php echo $this->url(array('action' => 'create')); ?>"
-       class="btn btn-link label label-success">
-        Tambah Mading
-    </a>
+    <div class="pull-left">
+        <h3 style="display: inline">Majalah Dinding</h3>
+        <a href="<?php echo $this->url(array('action' => 'create')); ?>"
+           class="btn btn-link label label-success">
+            Tambah Mading
+        </a>
+    </div>
+    <div class="pull-right">
+        <img id="ajax-process" src="/img/ajax_loader.gif" style="display: none;" alt="" />
+        <p class="alert alert-info" id="ajax-message" style="display: none;"></p>
+    </div>
 </div>
 <div class="row-fluid">
     <div class="span12">
+
         <ul class="jcarousel-skin-tango thumbnails" id='mading'>
             <?php foreach ($this->mading as $index => $mading): ?>
+                <?php
+                $updateUrl = $this->url(array(
+                    'controller' => 'mading',
+                    'module'     => 'admin',
+                    'action'     => 'edit',
+                    'id'         => $mading['id']
+                ));
+                ?>
                 <li id="<?php echo 'mading_' . $mading['id']; ?>">
                     <div class="well well-small">
                         <div class="handle">
-                            <strong><?php echo $mading['title']; ?></strong>
+                            <strong title="<?php echo $mading['title']; ?>">
+                                <?php echo $this->truncate($mading['title'], 30); ?>
+                            </strong>
                         </div>
                         <figure>
                             <?php
@@ -27,6 +44,15 @@
                                 Dibuat oleh <a href="#"><?php echo $mading['created_by']; ?></a>
                                 <br />
                                 <?php echo Date('d F Y', strtotime($mading['created_on'])); ?>
+                                <div class="pull-right">
+                                    <a href="<?php echo $updateUrl; ?>" title="Sunting">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                    <a href="#" title="Hapus" class="remove-mading"
+                                       data-remove-id="<?php echo $mading['id']; ?>">
+                                        <i class="icon-remove"></i>
+                                    </a>
+                                </div>
                             </figcaption>
                         </figure>
                     </div>
@@ -61,5 +87,34 @@
             scroll: 1,
             visible: 4
         });
+
+        $('#mading .remove-mading').click(function(event) {
+            var id = $(this).data('remove-id');
+
+            event.preventDefault();
+            if (!confirm('Apakah anda yakin?'))
+                return false;
+
+            $.ajax({
+                url: '/admin/mading/delete',
+                type: 'post',
+                data: 'id=' + id,
+                cache: false,
+                success: function(response, status, xhr) {
+                    if ('success' == status) {
+                        $("#mading_" + id).fadeOut(300, function() {
+                            $(this).remove();
+                        });
+                    }
+                }
+            });
+        });
+
+        $(document).ajaxStart(function() {
+            $("#ajax-process").show();
+        }).ajaxStop(function() {
+            $("#ajax-process").hide();
+        })
+
     })
 </script>

@@ -58,7 +58,8 @@ class Admin_Form_Mading extends Zend_Form {
 
         $this->description
         ->setLabel('Deskripsi')
-        ->setAttrib('style', 'height: 325px');
+        ->setAttrib('style', 'height: 325px')
+        ->addFilter(new SITi_Filter_PurifyHTML());
 
         $this->image
         ->setRequired(true)
@@ -82,7 +83,7 @@ class Admin_Form_Mading extends Zend_Form {
 
 
 
-//        $this->image->getValidator('File_Upload')->setMessage(self::IMAGE_NO_FILE, Zend_Validate_File_Upload::NO_FILE);
+        $this->image->getValidator('File_Upload')->setMessage(self::IMAGE_NO_FILE, Zend_Validate_File_Upload::NO_FILE);
 
         $this->submit->setAttrib('class', 'btn btn-gebo');
 
@@ -99,6 +100,16 @@ class Admin_Form_Mading extends Zend_Form {
         $this->image->setDecorators(array('File', array('FileUpload', array(
                     'w'    => 300, 'h'    => 400, 'text' => '300+x+400')), 'ControlGroup'));
         $this->submit->setDecorators(array('ViewHelper'));
+    }
+
+    public function populate(array $values) {
+        if (null != $values['image']) {
+            if (file_exists(UPLOAD_FOLDER . 'mading/' . $values['image'])) {
+                $data_image = $this->getView()->baseUrl("upload/mading/" . $values['image']);
+                $this->image->setAttrib('data-image', $data_image);
+            }
+        }
+        parent::populate($values);
     }
 
 }
