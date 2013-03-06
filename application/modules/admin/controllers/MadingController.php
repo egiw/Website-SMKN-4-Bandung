@@ -66,22 +66,29 @@ class Admin_MadingController extends Zend_Controller_Action {
 
     public function deleteAction() {
         $request = $this->getRequest();
-        if ($request->isXMLHttpRequest() && $request->isPost()) {
-            $id = $request->getPost('id');
-            if (null !== $id) {
-                $model = new Admin_Model_DbTable_Mading();
-                $mading = $model->find($id)->current();
-                if (null !== $mading) {
-                    $path = UPLOAD_FOLDER . 'mading/' . $mading->image;
-                    if ($mading->delete()) {
-                        if (file_exists($path)) {
-                            unlink($path);
-                        }
+
+        $id = $request->getPost('id');
+        if ($this->getRequest()->isGet()) {
+            $id = $request->getParam('id');
+        }
+        if (null !== $id) {
+            $model = new Admin_Model_DbTable_Mading();
+            $mading = $model->find($id)->current();
+            if (null !== $mading) {
+                $path = UPLOAD_FOLDER . 'mading/' . $mading->image;
+                if ($mading->delete()) {
+                    if (file_exists($path)) {
+                        unlink($path);
+                    }
+                    if ($request->isXMLHttpRequest() && $request->isPost()) {
                         $this->_helper->json->sendJson(array(
                             'message' => 'success'
                         ));
-                    };
-                }
+                    } else {
+                        $this->_helper->flashMessenger->addMessage('success|Mading berhasil dihapus.');
+                        $this->_helper->Redirector('index');
+                    }
+                };
             }
         }
     }

@@ -1,0 +1,17 @@
+<?php /* @var $this Zend_Paginator */ ?>
+<?php if ($this->pageCount): ?>
+    <ul class="unstyled inline">
+        <?php foreach ($this->pagesInRange as $index => $page): ?>
+            <?php if ($page == $this->current): ?>
+                <li>
+                    <?php echo $page; ?>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a href="<?php echo $this->q ?>"><?php echo $page; ?></a>
+                </li>
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

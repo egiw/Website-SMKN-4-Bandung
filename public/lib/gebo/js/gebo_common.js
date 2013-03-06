@@ -1,15 +1,15 @@
 /* [ ---- Gebo Admin Panel - common ---- ] */
 
-	//* detect touch devices 
+	//* detect touch devices
     function is_touch_device() {
 	  return !!('ontouchstart' in window);
 	}
 	$(document).ready(function() {
 		//* search typeahead
-		$('.search_query').typeahead({
-			source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],
-			items: 4
-		});
+//		$('.search_query').typeahead({
+//			source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],
+//			items: 4
+//		});
 		//* accordion change actions
 		$('#side_accordion').on('hidden shown', function () {
 			gebo_sidebar.make_active();
@@ -53,14 +53,14 @@
 		gebo_nav_mouseover.init();
 		//* top submenu
 		gebo_submenu.init();
-		
+
 		gebo_sidebar.make_scroll();
 		gebo_sidebar.update_scroll();
-		
+
 		//* style switcher
 		gebo_style_sw.init();
 	});
-    
+
     gebo_sidebar = {
         init: function() {
 			// sidebar onload state
@@ -188,14 +188,14 @@
 			}
 		}
 	};
-    
+
     //* popovers
     gebo_popOver = {
         init: function() {
             $(".pop_over").popover({trigger: 'hover'});
         }
     };
-    
+
     //* breadcrumbs
     gebo_crumbs = {
         init: function() {
@@ -211,7 +211,7 @@
 			}
         }
     };
-	
+
 	//* external links
 	gebo_external_links = {
 		init: function() {
@@ -220,12 +220,12 @@
 			})
 		}
 	};
-	
+
 	//* accordion icons
 	gebo_acc_icons = {
 		init: function() {
 			var accordions = $('.main_content .accordion');
-			
+
 			accordions.find('.accordion-group').each(function(){
 				var acc_active = $(this).find('.accordion-body').filter('.in');
 				acc_active.prev('.accordion-heading').find('.accordion-toggle').addClass('acc-in');
@@ -236,10 +236,10 @@
 			});
 			accordions.on('hide', function(option) {
 				$(option.target).prev('.accordion-heading').find('.accordion-toggle').removeClass('acc-in');
-			});	
+			});
 		}
 	};
-	
+
 	//* main menu mouseover
 	gebo_nav_mouseover = {
 		init: function() {
@@ -254,7 +254,7 @@
 			});
 		}
 	};
-    
+
 	//* single image colorbox
 	gebo_colorbox_single = {
 		init: function() {
@@ -262,13 +262,13 @@
 				$('.cbox_single').colorbox({
 					maxWidth	: '80%',
 					maxHeight	: '80%',
-					opacity		: '0.2', 
+					opacity		: '0.2',
 					fixed		: true
 				});
 			}
 		}
 	};
-	
+
 	//* submenu
 	gebo_submenu = {
 		init: function() {
@@ -279,32 +279,32 @@
 					$this.children('ul').addClass('sub-menu');
 				}
 			});
-			
+
 			$('.sub-dropdown').on('mouseenter',function(){
 				$(this).addClass('active').children('ul').addClass('sub-open');
 			}).on('mouseleave', function() {
 				$(this).removeClass('active').children('ul').removeClass('sub-open');
 			})
-			
+
 		}
 	};
-	
+
 	//* style switcher
 	gebo_style_sw = {
 		init: function() {
 			if($('.style_switcher').length) {
 				$('body').append('<a class="ssw_trigger" href="javascript:void(0)"><i class="icon-cog icon-white"></i></a>');
 				var defLink = $('#link_theme').clone();
-				
-				
+
+
 				$('input[name=ssw_sidebar]:first,input[name=ssw_layout]:first,input[name=ssw_menu]:first').attr('checked', true);
-				
+
 				$(".ssw_trigger").click(function(){
 					$(".style_switcher").toggle("fast");
 					$(this).toggleClass("active");
 					return false;
 				});
-				
+
 				// colors
 				$('.style_switcher .jQclr').click(function() {
 					$(this).closest('div').find('.style_item').removeClass('style_active');
@@ -312,7 +312,7 @@
 					var style_selected = $(this).attr('title');
 					$('#link_theme').attr('href','css/'+style_selected+'.css');
 				});
-				
+
 				// backgrounds
 				$('.style_switcher .jQptrn').click(function(){
 					$(this).closest('div').find('.style_item').removeClass('style_active');
@@ -336,7 +336,7 @@
 					var menu_show = $(this).val();
 					$('body').removeClass('menu_hover').addClass(menu_show);
 				});
-				
+
 				//* reset
 				$('#resetDefault').click(function(){
 					$('body').attr('class', '');
@@ -346,7 +346,7 @@
 					$(".style_switcher").hide();
 					return false;
 				});
-				
+
 				$('#showCss').on('click',function(e){
 					var themeLink = $('#link_theme').attr('href'),
 						bodyClass = $('body').attr('class');
