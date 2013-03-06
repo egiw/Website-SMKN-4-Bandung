@@ -142,32 +142,6 @@
                             </a>
                             <nav>
                                 <div class="nav-collapse">
-                                    <!--                  <ul class="nav">
-                                                        <li class="dropdown">
-                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                                          <ul class="dropdown-menu">
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                          </ul>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                                          <ul class="dropdown-menu">
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                          </ul>
-                                                        </li>
-                                                        <li class="dropdown">
-                                                          <a data-toggle="dropdown" class="dropdown-toggle" href="#"> menu <b class="caret"></b></a>
-                                                          <ul class="dropdown-menu">
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                            <li><a href="#">menu section</a></li>
-                                                          </ul>
-                                                        </li>
-                                                      </ul>-->
                                 </div>
                             </nav>
                         </div>
@@ -178,9 +152,7 @@
             <!-- main content -->
             <div id="contentwrapper">
                 <div class="main_content">
-
                     <?php echo $this->layout()->content; ?>
-
                 </div>
             </div>
 
@@ -191,7 +163,7 @@
                     <div class="antiscroll-inner">
                         <div class="antiscroll-content">
                             <div class="sidebar_inner">
-                                <form action="search_page.html" class="input-append" method="post" >
+                                <form action="<?php echo $this->url(array('controller' => 'search')); ?>" class="input-append" method="get" >
                                     <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
                                 </form>
                                 <div id="side_accordion" class="accordion">
