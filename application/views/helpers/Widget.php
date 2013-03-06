@@ -67,4 +67,10 @@ class Application_View_Helper_Widget extends Zend_View_Helper_Abstract {
         return $cloud->render();
     }
 
+    public function getActiveMading() {
+        $model = new Application_Model_DbTable_Mading();
+        $mading = $model->findActive();
+        return $mading->toArray();
+    }
+
 }

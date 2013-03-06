@@ -75,5 +75,11 @@
             <controller>highlight</controller>
             <action>index</action>
         </highlight>
+        <mading>
+            <label>Mading</label>
+            <module>admin</module>
+            <controller>mading</controller>
+            <action>index</action>
+        </mading>
     </admin>
 </configdata>
