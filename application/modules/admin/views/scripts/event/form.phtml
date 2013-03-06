@@ -1,7 +1,12 @@
-<?php $this->headLink()->appendStylesheet($this->baseUrl('lib/datepicker/datepicker.css')); ?>
-<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js')); ?>
-<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/datepicker/bootstrap-datepicker.js')); ?>
-<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('lib/datepicker/datepicker.css'));?>
+
+<?php $this->MinifyHeadScript()
+        ->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js'), 'text/javascript', array('minify_disabled' => true)) 
+        ->appendFile($this->baseUrl('lib/datepicker/bootstrap-datepicker.js'))
+        ->appendFile($this->baseUrl('js/SITi_admin.js'))
+
+
+?>
 
 <?php
 $this->MinifyHeadScript()->appendScript(
