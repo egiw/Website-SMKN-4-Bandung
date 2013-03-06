@@ -15,6 +15,7 @@ class ArticleController extends Zend_Controller_Action {
         $articles->setCurrentPageNumber($pageNumber);
         $this->view->articles = $articles;
         $this->view->tag = $tag;
+        $this->view->auth = Zend_Auth::getInstance();
     }
 
     public function viewAction() {

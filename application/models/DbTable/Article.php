@@ -40,7 +40,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
         $articles = $this->select()
         ->setIntegrityCheck(false)
         ->from($this->_name, array('id', 'title', 'views', 'likes', 'tags',
-            'created_on', 'created_by', 'content'))
+            'created_on', 'created_by', 'content','status'))
         ->columns(array(
             'type'     => "('article')",
             'comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = article.id)"
@@ -50,7 +50,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
         ->setIntegrityCheck(false)
         ->from($this->_news, array(
             'id', 'title', 'views', 'likes' => '(null)', 'tags'  => '(null)',
-            'created_on', 'created_by', 'content'
+            'created_on', 'created_by', 'content','status'
         ))
         ->columns(array(
             'type'     => "('news')",
@@ -61,10 +61,12 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
         ->setIntegrityCheck(false)
         ->from(array(
             'search' => $this->select()->union(array($articles, $news))
-        ));
+        ))
+                ->where("search.status = ?",'publish');
+        
 
         $select->where("search.title like ?", "%{$q}%")
-        ->order('search.created_on DESC');
+        ->order('search.type DESC');
 
         return $this->fetchAll($select);
     }

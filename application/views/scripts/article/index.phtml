@@ -1,3 +1,7 @@
+<?php
+//$auth = Zend_Auth::getInstance();
+?>
+
 <div class="main row-fluid">
 
     <div class="span8">
@@ -5,6 +9,11 @@
             <div class="row-fluid">
                 <div class="pull-left">
                     <span class="label label-info" style="font-size: 30px; line-height: 47px; padding: 3px 11px; margin-top: -13px;">Artikel</span>
+                    <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
+                    <?php $linkPosting = $this->url(array('controller'=> 'news', 'module'=>'admin', 'action' => 'create')) ?>
+                        <a href="<?php echo $linkPosting; ?>" 
+                           class="btn btn-link label label-success">Tambah Berita</a>
+                    <?php endif; ?>
                 </div>
                 <div class="pull-right">
                     <?php if (null !== $this->tag): ?>
@@ -19,7 +28,7 @@
             <ul class="unstyled article">
                 <?php foreach ($this->articles as $index => $article): ?>
                     <?php
-                    $link = $this->url(array('controller' => 'article', 'action'     => 'view', 'id'         => $article['id']));
+                    $link = $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $article['id']));
                     ?>
                     <li>
                         <article>

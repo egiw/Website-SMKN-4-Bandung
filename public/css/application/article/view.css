@@ -11,9 +11,9 @@
 }
 
 #comment-form textarea {
-    width: 89%;
+    width: 80%;
     height: 89px;
-    max-width: 89%;
+    max-width: 85%;
     max-height: 200px;
     margin-left: 2%;
     box-sizing: border-box;
@@ -34,12 +34,4 @@
 
 #like-link:hover {
     text-decoration: none;
-}
-
-@media (max-width: 480px) {
-    #comment-form textarea {
-    width: 80%;
-    max-width: 80%;
-}
-
 }
