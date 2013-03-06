@@ -13,7 +13,7 @@ class Admin_HighlightController extends Zend_Controller_Action
   /**
    * @var Admin_Model_DbTable_Highlight
    */
-  protected $model = null;
+    protected $model = null;
 
   public function init()
   {

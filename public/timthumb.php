@@ -3,13 +3,13 @@
  * TimThumb by Ben Gillbanks and Mark Maunder
  * Based on work done by Tim McDaniels and Darren Hoyt
  * http://code.google.com/p/timthumb/
- * 
+ *
  * GNU General Public License, version 2
  * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * Examples and documentation available on the project homepage
  * http://www.binarymoon.co.uk/projects/timthumb/
- * 
+ *
  * $Rev$
  */
 /*
@@ -19,7 +19,7 @@
  * loaded by timthumb. This will save you having to re-edit these variables
  * everytime you download a new version
  */
-define('VERSION', '2.8.11');                  // Version of this script 
+define('VERSION', '2.8.11');                  // Version of this script
 //Load a config file if it exists. Otherwise, use the values below
 if (file_exists(dirname(__FILE__) . '/timthumb-config.php')) require_once('timthumb-config.php');
 if (!defined('DEBUG_ON')) define('DEBUG_ON', false);        // Enable debug logging to web server error log (STDERR)
@@ -29,37 +29,37 @@ if (!defined('BLOCK_EXTERNAL_LEECHERS')) define('BLOCK_EXTERNAL_LEECHERS', false
 
 
 
-  
+
 //Image fetching and caching
 if (!defined('ALLOW_EXTERNAL')) define('ALLOW_EXTERNAL', TRUE);      // Allow image fetching from external websites. Will check against ALLOWED_SITES if ALLOW_ALL_EXTERNAL_SITES is false
-if (!defined('ALLOW_ALL_EXTERNAL_SITES')) define('ALLOW_ALL_EXTERNAL_SITES', true);    // Less secure. 
+if (!defined('ALLOW_ALL_EXTERNAL_SITES')) define('ALLOW_ALL_EXTERNAL_SITES', true);    // Less secure.
 if (!defined('FILE_CACHE_ENABLED')) define('FILE_CACHE_ENABLED', TRUE);     // Should we store resized/modified images on disk to speed things up?
-if (!defined('FILE_CACHE_TIME_BETWEEN_CLEANS')) define('FILE_CACHE_TIME_BETWEEN_CLEANS', 86400); // How often the cache is cleaned 
+if (!defined('FILE_CACHE_TIME_BETWEEN_CLEANS')) define('FILE_CACHE_TIME_BETWEEN_CLEANS', 86400); // How often the cache is cleaned
 
 if (!defined('FILE_CACHE_MAX_FILE_AGE')) define('FILE_CACHE_MAX_FILE_AGE', 86400);    // How old does a file have to be to be deleted from the cache
 if (!defined('FILE_CACHE_SUFFIX')) define('FILE_CACHE_SUFFIX', '.timthumb.txt');   // What to put at the end of all files in the cache directory so we can identify them
 if (!defined('FILE_CACHE_PREFIX')) define('FILE_CACHE_PREFIX', 'timthumb');    // What to put at the beg of all files in the cache directory so we can identify them
 if (!defined('FILE_CACHE_DIRECTORY')) define('FILE_CACHE_DIRECTORY', './cache');    // Directory where images are cached. Left blank it will use the system temporary directory (which is better for security)
-if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 10485760);      // 10 Megs is 10485760. This is the max internal or external file size that we'll process.  
+if (!defined('MAX_FILE_SIZE')) define('MAX_FILE_SIZE', 10485760);      // 10 Megs is 10485760. This is the max internal or external file size that we'll process.
 if (!defined('CURL_TIMEOUT')) define('CURL_TIMEOUT', 20);       // Timeout duration for Curl. This only applies if you have Curl installed and aren't using PHP's default URL fetching mechanism.
 if (!defined('WAIT_BETWEEN_FETCH_ERRORS')) define('WAIT_BETWEEN_FETCH_ERRORS', 3600);    // Time to wait between errors fetching remote file
 
 
 
-  
+
 //Browser caching
 if (!defined('BROWSER_CACHE_MAX_AGE')) define('BROWSER_CACHE_MAX_AGE', 864000);    // Time to cache in the browser
 if (!defined('BROWSER_CACHE_DISABLE')) define('BROWSER_CACHE_DISABLE', false);    // Use for testing if you want to disable all browser caching
 
 
 
-  
+
 //Image size and defaults
 if (!defined('MAX_WIDTH')) define('MAX_WIDTH', 1500);         // Maximum image width
 if (!defined('MAX_HEIGHT')) define('MAX_HEIGHT', 1500);        // Maximum image height
-if (!defined('NOT_FOUND_IMAGE')) define('NOT_FOUND_IMAGE', '');        // Image to serve if any 404 occurs 
-if (!defined('ERROR_IMAGE')) define('ERROR_IMAGE', '');         // Image to serve if an error occurs instead of showing error message 
-if (!defined('PNG_IS_TRANSPARENT')) define('PNG_IS_TRANSPARENT', FALSE);      // Define if a png image should have a transparent background color. Use False value if you want to display a custom coloured canvas_colour 
+if (!defined('NOT_FOUND_IMAGE')) define('NOT_FOUND_IMAGE', '');        // Image to serve if any 404 occurs
+if (!defined('ERROR_IMAGE')) define('ERROR_IMAGE', '');         // Image to serve if an error occurs instead of showing error message
+if (!defined('PNG_IS_TRANSPARENT')) define('PNG_IS_TRANSPARENT', FALSE);      // Define if a png image should have a transparent background color. Use False value if you want to display a custom coloured canvas_colour
 if (!defined('DEFAULT_Q')) define('DEFAULT_Q', 90);         // Default image quality. Allows overrid in timthumb-config.php
 if (!defined('DEFAULT_ZC')) define('DEFAULT_ZC', 1);         // Default zoom/crop setting. Allows overrid in timthumb-config.php
 if (!defined('DEFAULT_F')) define('DEFAULT_F', '');         // Default image filters. Allows overrid in timthumb-config.php
@@ -69,12 +69,12 @@ if (!defined('DEFAULT_CC')) define('DEFAULT_CC', 'ffffff');       // Default can
 
 
 
-  
+
 //Image compression is enabled if either of these point to valid paths
-//These are now disabled by default because the file sizes of PNGs (and GIFs) are much smaller than we used to generate. 
+//These are now disabled by default because the file sizes of PNGs (and GIFs) are much smaller than we used to generate.
 //They only work for PNGs. GIFs and JPEGs are not affected.
 if (!defined('OPTIPNG_ENABLED')) define('OPTIPNG_ENABLED', false);
-if (!defined('OPTIPNG_PATH')) define('OPTIPNG_PATH', '/usr/bin/optipng'); //This will run first because it gives better compression than pngcrush. 
+if (!defined('OPTIPNG_PATH')) define('OPTIPNG_PATH', '/usr/bin/optipng'); //This will run first because it gives better compression than pngcrush.
 if (!defined('PNGCRUSH_ENABLED')) define('PNGCRUSH_ENABLED', false);
 if (!defined('PNGCRUSH_PATH')) define('PNGCRUSH_PATH', '/usr/bin/pngcrush'); //This will only run if OPTIPNG_PATH is not set or is not valid
 
@@ -116,7 +116,7 @@ if (!defined('PNGCRUSH_PATH')) define('PNGCRUSH_PATH', '/usr/bin/pngcrush'); //T
 
  */
 if (!defined('WEBSHOT_ENABLED')) define('WEBSHOT_ENABLED', false);   //Beta feature. Adding webshot=1 to your query string will cause the script to return a browser screenshot rather than try to fetch an image.
-if (!defined('WEBSHOT_CUTYCAPT')) define('WEBSHOT_CUTYCAPT', '/usr/local/bin/CutyCapt'); //The path to CutyCapt. 
+if (!defined('WEBSHOT_CUTYCAPT')) define('WEBSHOT_CUTYCAPT', '/usr/local/bin/CutyCapt'); //The path to CutyCapt.
 if (!defined('WEBSHOT_XVFB')) define('WEBSHOT_XVFB', '/usr/bin/xvfb-run');  //The path to the Xvfb server
 if (!defined('WEBSHOT_SCREEN_X')) define('WEBSHOT_SCREEN_X', '1024');   //1024 works ok
 if (!defined('WEBSHOT_SCREEN_Y')) define('WEBSHOT_SCREEN_Y', '768');   //768 works ok
@@ -127,14 +127,14 @@ if (!defined('WEBSHOT_USER_AGENT')) define('WEBSHOT_USER_AGENT', "Mozilla/5.0 (W
 if (!defined('WEBSHOT_JAVASCRIPT_ON')) define('WEBSHOT_JAVASCRIPT_ON', true);   //Setting to false might give you a slight speedup and block ads. But it could cause other issues.
 if (!defined('WEBSHOT_JAVA_ON')) define('WEBSHOT_JAVA_ON', false);   //Have only tested this as fase
 if (!defined('WEBSHOT_PLUGINS_ON')) define('WEBSHOT_PLUGINS_ON', true);   //Enable flash and other plugins
-if (!defined('WEBSHOT_PROXY')) define('WEBSHOT_PROXY', '');    //In case you're behind a proxy server. 
+if (!defined('WEBSHOT_PROXY')) define('WEBSHOT_PROXY', '');    //In case you're behind a proxy server.
 if (!defined('WEBSHOT_XVFB_RUNNING')) define('WEBSHOT_XVFB_RUNNING', false);   //ADVANCED: Enable this if you've got Xvfb running in the background.
 
 
 
 
-  
-// If ALLOW_EXTERNAL is true and ALLOW_ALL_EXTERNAL_SITES is false, then external images will only be fetched from these domains and their subdomains. 
+
+// If ALLOW_EXTERNAL is true and ALLOW_ALL_EXTERNAL_SITES is false, then external images will only be fetched from these domains and their subdomains.
 if (!isset($ALLOWED_SITES)) {
   $ALLOWED_SITES = array(
       'flickr.com',
@@ -223,7 +223,7 @@ class timthumb
     } else {
       $this->cacheDirectory = sys_get_temp_dir();
     }
-    //Clean the cache before we do anything because we don't want the first visitor after FILE_CACHE_TIME_BETWEEN_CLEANS expires to get a stale image. 
+    //Clean the cache before we do anything because we don't want the first visitor after FILE_CACHE_TIME_BETWEEN_CLEANS expires to get a stale image.
     $this->cleanCache();
 
     $this->myHost = preg_replace('/^www\./i', '', $_SERVER['HTTP_HOST']);
@@ -560,7 +560,7 @@ class timthumb
       );
     }
 
-    // get standard input properties		
+    // get standard input properties
     $new_width = (int) abs($this->param('w', 0));
     $new_height = (int) abs($this->param('h', 0));
     $zoom_crop = (int) $this->param('zc', DEFAULT_ZC);
@@ -630,7 +630,7 @@ class timthumb
     $canvas_color_B = hexdec(substr($canvas_color, 4, 2));
 
     // Create a new transparent color for image
-    // If is a png and PNG_IS_TRANSPARENT is false then remove the alpha transparency 
+    // If is a png and PNG_IS_TRANSPARENT is false then remove the alpha transparency
     // (and if is set a canvas color show it in the background)
     if (preg_match('/^image\/png$/i', $mimeType) && !PNG_IS_TRANSPARENT && $canvas_trans) {
       $color = imagecolorallocatealpha($canvas, $canvas_color_R, $canvas_color_G, $canvas_color_B, 127);
@@ -829,7 +829,7 @@ class timthumb
     $tempfile4 = tempnam($this->cacheDirectory, 'timthumb_tmpimg_');
     $context = stream_context_create();
     $fp = fopen($tempfile, 'r', 0, $context);
-    file_put_contents($tempfile4, $this->filePrependSecurityBlock . $imgType . ' ?' . '>'); //6 extra bytes, first 3 being image type 
+    file_put_contents($tempfile4, $this->filePrependSecurityBlock . $imgType . ' ?' . '>'); //6 extra bytes, first 3 being image type
     file_put_contents($tempfile4, $fp, FILE_APPEND);
     fclose($fp);
     @unlink($tempfile);
@@ -994,8 +994,8 @@ class timthumb
       return $this->error("Invalid URL supplied.");
     }
     $url = preg_replace('/[^A-Za-z0-9\-\.\_\~:\/\?\#\[\]\@\!\$\&\'\(\)\*\+\,\;\=]+/', '', $url); //RFC 3986
-    //Very important we don't allow injection of shell commands here. URL is between quotes and we are only allowing through chars allowed by a the RFC 
-    // which AFAIKT can't be used for shell injection. 
+    //Very important we don't allow injection of shell commands here. URL is between quotes and we are only allowing through chars allowed by a the RFC
+    // which AFAIKT can't be used for shell injection.
     if (WEBSHOT_XVFB_RUNNING) {
       putenv('DISPLAY=:100.0');
       $command = "$cuty $proxy --max-wait=$timeout --user-agent=\"$ua\" --javascript=$jsOn --java=$javaOn --plugins=$pluginsOn --js-can-open-windows=off --url=\"$url\" --out-format=$format --out=$tempfile";
@@ -1130,7 +1130,7 @@ class timthumb
 
   protected function securityChecks()
   {
-    
+
   }
 
   protected function param($property, $default = '')

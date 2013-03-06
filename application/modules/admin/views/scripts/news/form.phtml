@@ -1,8 +1,6 @@
-<?php $this->MinifyHeadScript()
-        ->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js'), 'text/javascript', array('minify_disabled' => true))
-        ->appendFile($this->baseUrl('js/SITi_admin.js'))
-        ->appendScript("$(function(){SITi_tinyMCE.init();})");
-?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('lib/tiny_mce/tiny_mce.js'), 'text/javascript', array('minify_disabled' => true)); ?>
+<?php $this->MinifyHeadScript()->appendFile($this->baseUrl('js/SITi_admin.js')); ?>
+<?php $this->MinifyHeadScript()->appendScript("$(function(){SITi_tinyMCE.init();})") ?>
 <form action="" method="post">
     <?php echo $this->form->title; ?>
     <div class="row-fluid">

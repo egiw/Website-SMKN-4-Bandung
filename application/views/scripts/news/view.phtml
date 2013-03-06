@@ -16,6 +16,9 @@ $permaLink = $this->url(array(
 
 
 $tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
+
+$fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url();
+
 ?>
 
 
@@ -29,8 +32,37 @@ $tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
                 <li>
                     <ul class="inline pull-right">
                         <li >
-                            <a href="#" title="Bagikan di Facebook">fb</a>
+                            <script src='http://connect.facebook.net/en_US/all.js'></script>
+                            <a onclick='postToFeed(); return false;'>Post to Feed</a>
+                            <p id='msg'></p>
+                            <script> 
+                                FB.init({appId:547516891937024, status: true, cookie: true});
+
+                                function postToFeed() {
+
+                                    // calling the API ...
+                                    var obj = {
+                                        method: 'feed',
+                                        redirect_uri: '<?php echo $fullUrl; ?>',
+                                        link: '<?php echo $fullUrl; ?>',
+                                        picture: 'http://fbrell.com/f8.jpg',
+                                        name: '<?php echo $this->news['title']; ?>',
+                                        caption: 'Reference Documentation',
+                                        description: 'balalalala'
+                                    };
+
+                                    function callback(response) {
+                                        document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                    }
+
+                                    FB.ui(obj, callback);
+                                }
+    
+                            </script>
                         </li>
+                        <?php echo $this->url(); ?>
+                        <?php echo $this->baseUrl($this->url()); ?>
+                        <?php echo Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url(); ?>
                         <li>
 
 
@@ -65,10 +97,14 @@ $tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
 
             <?php echo $this->news['content'] ?>
 
-            <iframe src="http://www.facebook.com/plugins/like.php?href=http://local.smkn4bdg.sch.id/news/view/id/8"
+            <?php
+            $link = $this->url(array('controller' => 'news', 'action' => 'view', 'id' => $news['id']));
+            ?>
+
+            <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo $link; ?>"
                     scrolling="no" frameborder="0"
                     style="border:none; width:450px; height:80px">
-            
+
             </iframe>
             <div class="clearfix"></div>
 

@@ -38,7 +38,15 @@
             <h4>Berita Terbaru</h4>
             <ul class="news-list">
                 <?php foreach ($this->news as $news): ?>
-                    <li><a href="#"><?php echo $news['title']; ?></a></li>
+                    <?php
+                    $url = $this->url(array(
+                        'module'     => 'default',
+                        'controller' => 'news',
+                        'action'     => 'view',
+                        'id'         => $news['id']
+                    ));
+                    ?>
+                    <li><a href="<?php echo $url; ?>"><?php echo $news['title']; ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -79,7 +87,7 @@
                         <?php foreach ($this->latestAlbumWithPhotos['photos'] as $index => $photo): ?>
                             <li>
                                 <a href="<?php echo $photo; ?>" class="colorbox">
-                                    <img src="<?php echo $this->baseUrl('timthumb.php?src=' . $photo . '&w=320&h=260&q=100'); ?>; ?>" alt="" />
+                                    <?php echo $this->timthumb($photo, 320, 260, 100); ?>
                                 </a>
                             </li>
                         <?php endforeach; ?>

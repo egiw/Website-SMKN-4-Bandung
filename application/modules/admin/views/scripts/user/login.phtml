@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <?php echo $this->headTitle('Login - SMKN 4 Bandung'); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
-        <?php $this->headLink()->appendStylesheet($this->baseUrl('lib/gebo/css/style.css')); ?>
+        <?php $this->MinifyHeadLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css')); ?>
+        <?php $this->MinifyHeadLink()->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css')); ?>
+        <?php $this->MinifyHeadLink()->appendStylesheet($this->baseUrl('lib/gebo/css/style.css')); ?>
 
-        <?php echo $this->headLink(); ?>
+        <?php echo $this->MinifyHeadLink(); ?>
         <?php echo $this->MinifyHeadScript(); ?>
 
         <link rel="shortcut icon" href="favico.ico" />
