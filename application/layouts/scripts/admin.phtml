@@ -163,7 +163,9 @@
                     <div class="antiscroll-inner">
                         <div class="antiscroll-content">
                             <div class="sidebar_inner">
-                                <form action="<?php echo $this->url(array('controller' => 'search')); ?>" class="input-append" method="get" >
+                                <form action="<?php echo $this->url(array('controller' => 'search', 'module'     => 'admin'), null, true); ?>"
+                                      class="input-append" method="get"
+                                      onsubmit="return this.query.value !== ''">
                                     <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
                                 </form>
                                 <div id="side_accordion" class="accordion">
@@ -241,10 +243,10 @@
             </div>
 
             <script>
-                $(document).ready(function() {
-                    //* show all elements & remove preloader
-                    setTimeout('$("html").removeClass("js")', 1000);
-                });
+            $(document).ready(function() {
+                //* show all elements & remove preloader
+                setTimeout('$("html").removeClass("js")', 1000);
+            });
             </script>
 
         </div>
