@@ -1,0 +1,23 @@
+<div class="row-fluid">
+    <h3 class="heading">
+        <small>Hasil pencarian untuk kata</small>
+        <?php echo $this->q; ?>
+    </h3>
+</div>
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="unstyled">
+            <?php foreach ($this->results as $index => $result): ?>
+                <li>
+                    <blockquote>
+                        <span class="label label-info">
+                            <?php echo ucfirst($result->type); ?>
+                        </span>
+                        <?php echo $result->title; ?>
+                        <small><?php echo $result->created_on; ?></small>
+                    </blockquote>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
