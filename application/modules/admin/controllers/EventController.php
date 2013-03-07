@@ -2,7 +2,7 @@
 
 class Admin_EventController extends Zend_Controller_Action
 {
-  
+
   /**
    * @var Admin_Model_DbTable_Event
    *
@@ -69,7 +69,6 @@ class Admin_EventController extends Zend_Controller_Action
       $this->_helper->redirector('index');
     }
 
-    var_dump($this->filter->event);
     $username = Zend_Auth::getInstance()->getIdentity()->username;
     $data = $this->event->findAll($username, $this->filter->event);
     $paginator = Zend_Paginator::factory($data);
