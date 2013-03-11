@@ -22,12 +22,14 @@ class Admin_IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
-        $username = Zend_Auth::getInstance()->getIdentity()->username;
+        $user = Zend_Auth::getInstance()->getIdentity();
+        $username = $user->username;
         $guestbooks = $this->guestbook->findAll(5);
         $latestComments = $this->comment->getUserLatestComments($username);
 
         $this->view->latestComments = $latestComments;
         $this->view->guestbooks = $guestbooks;
+        $this->view->user = $user;
     }
 
 }

@@ -115,6 +115,10 @@ class Admin_MadingController extends Zend_Controller_Action {
                             $form->image->addFilter('Rename', UPLOAD_FOLDER . 'mading/'
                             . $info['filename'] . '_' . time() . '.' . $info['extension']);
                             if ($form->image->receive()) {
+                                $path = UPLOAD_FOLDER . 'mading/' . $mading->image;
+                                if (file_exists($path)) {
+                                    unlink($path);
+                                }
                                 $mading->image = $form->image->getValue();
                             }
                         }

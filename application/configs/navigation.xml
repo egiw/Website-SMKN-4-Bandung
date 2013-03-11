@@ -41,75 +41,97 @@
 
 
     <admin>
+
         <content>
             <label>{icon-folder-close} Konten</label>
             <uri>#collapseOne</uri>
             <pages>
                 <article>
+                    <resource>article</resource>
                     <label>Artikel</label>
                     <module>admin</module>
                     <controller>article</controller>
                     <action>index</action>
-                    <pages>
-                        <create>
-                            <label>Create</label>
-                            <module>admin</module>
-                            <controller>article</controller>
-                            <action>create</action>
-                            <visible>false</visible>
-                        </create>
-                    </pages>
                 </article>
                 <news>
+                    <resource>news</resource>
                     <label>Berita</label>
                     <module>admin</module>
                     <controller>news</controller>
                     <action>index</action>
                 </news>
                 <event>
+                    <resource>event</resource>
                     <label>Kegiatan</label>
                     <module>admin</module>
                     <controller>event</controller>
                     <action>index</action>
                 </event>
-                <polling>
-                    <label>Jajak Pendapat</label>
-                    <module>admin</module>
-                    <controller>polling</controller>
-                    <action>index</action>
-                </polling>
-            </pages>
-        </content>
-        <admin>
-            <label>{icon-lock} Admin</label>
-            <uri>#collapseTwo</uri>
-            <pages>
-                <mading>
-                    <label>Mading</label>
-                    <module>admin</module>
-                    <controller>mading</controller>
-                    <action>index</action>
-                </mading>
-            </pages>
-        </admin>
-        <akun>
-            <label>{icon-user} Akun</label>
-            <uri>#collapseThree</uri>
-            <pages>
                 <gallery>
+                    <resource>gallery</resource>
                     <label>Galeri</label>
                     <module>admin</module>
                     <controller>gallery</controller>
                     <action>index</action>
                 </gallery>
+                <mading>
+                    <resource>mading</resource>
+                    <label>Majalah Dinding</label>
+                    <module>admin</module>
+                    <controller>mading</controller>
+                    <action>index</action>
+                </mading>
+                <polling>
+                    <resource>polling</resource>
+                    <label>Jajak Pendapat</label>
+                    <module>admin</module>
+                    <controller>polling</controller>
+                    <action>index</action>
+                </polling>
                 <highlight>
+                    <resource>highlight</resource>
                     <label>Highlight</label>
                     <module>admin</module>
                     <controller>highlight</controller>
                     <action>index</action>
                 </highlight>
+                <jobs>
+                    <resource>jobs</resource>
+                    <label>Lowongan Kerja</label>
+                    <module>admin</module>
+                    <controller>jobs</controller>
+                    <action>index</action>
+                </jobs>
+                <prakerin>
+                    <resource>prakerin</resource>
+                    <label>Prakerin</label>
+                    <module>admin</module>
+                    <controller>prakerin</controller>
+                    <action>index</action>
+                </prakerin>
             </pages>
-        </akun>
+        </content>
+
+        <admin>
+            <resource>admin</resource>
+            <uri>#collapseTwo</uri>
+            <label>{icon-lock} Admin</label>
+            <pages>
+                <article>
+                    <label>Artikel Siswa</label>
+                    <module>admin</module>
+                    <controller>article2</controller>
+                    <action>index</action>
+                </article>
+                <account>
+                    <label>Akun</label>
+                    <module>admin</module>
+                    <controller>account</controller>
+                    <action>index</action>
+                </account>
+            </pages>
+        </admin>
+
     </admin>
-    
+
 </configdata>

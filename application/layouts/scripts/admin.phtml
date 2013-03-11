@@ -6,6 +6,8 @@
         <?php echo $this->headTitle('SMKN 4 Bandung - Admin'); ?>
 
         <?php
+        $user = Zend_Auth::getInstance()->getIdentity();
+
         $this->MinifyHeadLink()
         ->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
         ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
@@ -38,7 +40,7 @@
         <?php
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
         $navigation = new Zend_Navigation($config);
-        $this->navigation($navigation);
+        $this->navigation($navigation)->setAcl(new SITi_Acl())->setRole($user->role);
         $menu = $this->navigation()->myMenu()->setUlClass('nav nav-list');
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
         ?>
@@ -136,13 +138,13 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
-                                <span class="icon-align-justify icon-white"></span>
-                            </a>
-                            <nav>
-                                <div class="nav-collapse">
-                                </div>
-                            </nav>
+                            <!--                            <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
+                                                            <span class="icon-align-justify icon-white"></span>
+                                                        </a>
+                                                        <nav>
+                                                            <div class="nav-collapse">
+                                                            </div>
+                                                        </nav>-->
                         </div>
                     </div>
                 </div>
