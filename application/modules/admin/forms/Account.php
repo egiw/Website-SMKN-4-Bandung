@@ -111,12 +111,10 @@ class Admin_Form_Account extends Zend_Form {
         ->setlabel(self::LABEL_ROLE)
         ->setRequired(true)
         ->setMultiOptions(array(
-            null                     => '--Pilih Role',
-            SITi_Acl::ROLE_SISWA     => 'Siswa',
-            SITi_Acl::ROLE_GURU      => 'Guru',
-            SITi_Acl::ROLE_HUBIN     => 'Hubin',
-            SITi_Acl::ROLE_KURIKULUM => 'Kurikulum',
-            SITi_Acl::ROLE_KESISWAAN => 'Kesiswaan'
+            null                 => '--Pilih Role',
+            SITi_Acl::ROLE_SISWA => 'Siswa',
+            SITi_Acl::ROLE_GURU  => 'Guru',
+            SITi_Acl::ROLE_ADMIN => 'Admin'
         ))
         ->setValidators(array(
             array('NotEmpty', false, array(

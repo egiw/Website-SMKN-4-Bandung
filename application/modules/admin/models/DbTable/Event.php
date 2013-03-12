@@ -8,9 +8,9 @@ class Admin_Model_DbTable_Event extends Zend_Db_Table_Abstract
   {
     $select = $this->select()->from($this->_name);
 
-    if (null !== $username) {
-      $select->where("{$this->_name}.created_by = ?", $username);
-    }
+//    if (null !== $username) {
+//      $select->where("{$this->_name}.created_by = ?", $username);
+//    }
 
     if (Admin_Model_Status::ARCHIVED != $filter['status']) {
       $select->where("{$this->_name}.status != ?", Admin_Model_Status::ARCHIVED);

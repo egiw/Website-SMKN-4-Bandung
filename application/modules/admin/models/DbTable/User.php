@@ -41,12 +41,10 @@ class Admin_Model_DbTable_User extends Zend_Db_Table_Abstract {
      */
     public function countRoles() {
         $select = $this->select()->from($this->_name, array(
-            'all'                    => 'COUNT(role)',
-            SITi_Acl::ROLE_SISWA     => 'SUM(role = "siswa")',
-            SITi_Acl::ROLE_GURU      => 'SUM(role = "guru")',
-            SITi_Acl::ROLE_HUBIN     => 'SUM(role = "hubin")',
-            SITi_Acl::ROLE_KESISWAAN => 'SUM(role = "kesiswaan")',
-            SITi_Acl::ROLE_KURIKULUM => 'SUM(role = "kurikulum")'
+            'all'                => 'COUNT(role)',
+            SITi_Acl::ROLE_SISWA => 'SUM(role = "siswa")',
+            SITi_Acl::ROLE_GURU  => 'SUM(role = "guru")',
+            SITi_Acl::ROLE_ADMIN => 'SUM(role = "admin")',
         ));
         $result = $this->getAdapter()->fetchRow($select);
         return $result;
