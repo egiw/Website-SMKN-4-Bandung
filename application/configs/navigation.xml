@@ -119,10 +119,10 @@
             <label>{icon-lock} Admin</label>
             <pages>
                 <article>
-                    <label>Artikel Siswa</label>
+                    <label>Setujui Artikel (5)</label>
                     <module>admin</module>
-                    <controller>article2</controller>
-                    <action>index</action>
+                    <controller>article</controller>
+                    <action>approve</action>
                 </article>
                 <account>
                     <label>Akun</label>

@@ -40,7 +40,9 @@
         <?php
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
         $navigation = new Zend_Navigation($config);
-        $this->navigation($navigation)->setAcl(new SITi_Acl())->setRole($user->role);
+        $this->navigation($navigation)
+//        ->setAcl(new SITi_Acl())->setRole($user->role)
+        ;
         $menu = $this->navigation()->myMenu()->setUlClass('nav nav-list');
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
         ?>

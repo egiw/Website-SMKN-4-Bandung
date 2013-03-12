@@ -2,7 +2,7 @@
 
 class Admin_ArticleController extends Zend_Controller_Action {
 
-//  messages
+    //  messages
     const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
     const MSG_ARTICLE_CREATED = 'success|Artikel berhasil diterbitkan.';
     const MSG_ARTICLE_PENDING = 'success|Artikel berhasil dibuat, anda harus menunggu persetujuan admin untuk diterbitkan.';
@@ -16,10 +16,12 @@ class Admin_ArticleController extends Zend_Controller_Action {
      *
      *
      *
+     *
      */
     protected $form = null;
     /**
      * @var Admin_Model_DbTable_Article
+     *
      *
      *
      *
@@ -28,10 +30,12 @@ class Admin_ArticleController extends Zend_Controller_Action {
     /**
      * @var Admin_Model_DbTable_Tag
      *
+     *
      */
     protected $tag = null;
     /**
      * @var Zend_Session_Namespace
+     *
      *
      */
     protected $filter = null;
@@ -209,6 +213,10 @@ class Admin_ArticleController extends Zend_Controller_Action {
             }
         }
         $this->_helper->redirector('index');
+    }
+
+    public function approveAction() {
+        // action body
     }
 
 }
