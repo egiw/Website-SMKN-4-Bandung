@@ -6,6 +6,8 @@
         <?php echo $this->headTitle('SMKN 4 Bandung - Admin'); ?>
 
         <?php
+        $user = Zend_Auth::getInstance()->getIdentity();
+
         $this->MinifyHeadLink()
         ->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
         ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
@@ -38,8 +40,8 @@
         <?php
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
         $navigation = new Zend_Navigation($config);
-        $this->navigation($navigation);
-        $menu = $this->navigation()->menu()->setUlClass('nav nav-list');
+        $this->navigation($navigation)->setAcl(new SITi_Acl())->setRole($user->role);
+        $menu = $this->navigation()->myMenu()->setUlClass('nav nav-list');
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
         ?>
 
@@ -136,13 +138,13 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
-                                <span class="icon-align-justify icon-white"></span>
-                            </a>
-                            <nav>
-                                <div class="nav-collapse">
-                                </div>
-                            </nav>
+                            <!--                            <a data-target=".nav-collapse" data-toggle="collapse" class="btn_menu">
+                                                            <span class="icon-align-justify icon-white"></span>
+                                                        </a>
+                                                        <nav>
+                                                            <div class="nav-collapse">
+                                                            </div>
+                                                        </nav>-->
                         </div>
                     </div>
                 </div>
@@ -168,72 +170,7 @@
                                     <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
                                 </form>
                                 <div id="side_accordion" class="accordion">
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a href="#collapseOne" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                                                <i class="icon-folder-close"></i> Konten
-                                            </a>
-                                        </div>
-                                        <div class="accordion-body collapse in" id="collapseOne">
-                                            <div class="accordion-inner">
-                                                <?php echo $menu; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a href="#collapseTwo" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                                                <i class="icon-lock"></i>
-                                                Admin
-                                            </a>
-                                        </div>
-                                        <div class="accordion-body collapse" id="collapseTwo">
-                                            <div class="accordion-inner">
-                                                <ul class="nav nav-list">
-                                                    <li><a href="<?php echo $this->url(array('controller' => 'jobs', 'action'     => 'index')); ?>">Lowongan Kerja</a></li>
-                                                    <li><a href="<?php echo $this->url(array('controller' => 'prakerin', 'action'     => 'index')); ?>">Info Prakerin</a></li>
-                                                    <li><a href="<?php echo $this->url(array('controller' => 'account', 'action'     => 'index')); ?>">Akun</a></li>
-                                                    <!--<li><a href="<?php echo $this->url(array('controller' => 'log', 'action'     => 'index')); ?>">Log</a></li>-->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a href="#collapseThree" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                                                <i class="icon-user"></i>
-                                                Akun
-                                            </a>
-                                        </div>
-                                        <div class="accordion-body collapse" id="collapseThree">
-                                            <div class="accordion-inner">
-                                                <ul class="nav nav-list">
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-group">
-                                        <div class="accordion-heading">
-                                            <a href="#collapseFour" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                                                <i class="icon-wrench"></i>
-                                                Pengaturan
-                                            </a>
-                                        </div>
-                                        <div class="accordion-body collapse" id="collapseFour">
-                                            <div class="accordion-inner">
-                                                <ul class="nav nav-list">
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                    <li><a href="javascript:void(0)">Side menu</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php echo $menu; ?>
                                 </div>
                             </div>
                         </div>

@@ -26,25 +26,16 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
     <div class="span8">
         <div class="content-inner" style="margin-top: 2px;">
 
-
-
-            <ul class="unstyled">
-
-                <li>
-                    <ul class="inline pull-right">
+            <ul class="nav nav-pills">
+                <li class="dropdown pull-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Share
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
-                            <!-- Link or button to toggle dropdown -->
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                                <li><a tabindex="-1" href="#">Action</a></li>
-                                <li><a tabindex="-1" href="#">Another action</a></li>
-                                <li><a tabindex="-1" href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a tabindex="-1" href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                        <li >
                             <script src='http://connect.facebook.net/en_US/all.js'></script>
-                            <a onclick='postToFeed(); return false;'>Post to Feed</a>
+                            <a href="#" onclick='postToFeed(); return false;'>Facebook</a>
                             <p id='msg'>
 
                             </p>
@@ -77,15 +68,15 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                             </script>
                         </li>
                         <li>
-
-
-                            <a id="shareTwitter" href="<?php echo $tweet ?>">Share Twitter</a>
-
+                            <a id="shareTwitter" href="<?php echo $tweet ?>">Twitter</a>
                         </li>
-
                     </ul>
-                    <div class="clearfix"></div>
                 </li>
+            </ul>
+
+
+            <ul class="unstyled">
+
                 <li>
 
                     <h2 class="">
@@ -161,7 +152,26 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                 </div>
             <?php endif; ?>
 
-
+            <ul id="comment" class="media-list">
+                <?php foreach ($this->comments as $index => $comment): ?>
+                    <li class="media">
+                        <a href="" class="pull-left">
+                            <?php echo $this->thumbnail('avatar', $comment['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+                        </a>
+                        <div class="media-body">
+                            <blockquote>
+                                <p>
+                                    <?php echo $comment['content']; ?>
+                                </p>
+                                <small>
+                                    <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
+                                    <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
+                                </small>
+                            </blockquote>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
 
 
 

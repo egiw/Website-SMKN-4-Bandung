@@ -6,9 +6,9 @@
  */
 class Admin_HighlightController extends Zend_Controller_Action
 {
-  const DELETED_SUCCESSFUL = 'Highlight berhasil dihapus.';
-  const EDITED_SUCCESSFUL = 'Highlight berhasil disunting.';
-  const CREATED_SUCCESSFUL = 'Highlight berhasil dibuat.';
+  const DELETED_SUCCESSFUL = 'success|Highlight berhasil dihapus.';
+  const EDITED_SUCCESSFUL = 'success|Highlight berhasil disunting.';
+  const CREATED_SUCCESSFUL = 'success|Highlight berhasil dibuat.';
 
   /**
    * @var Admin_Model_DbTable_Highlight

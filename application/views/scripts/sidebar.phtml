@@ -80,7 +80,7 @@
         </ul>
     </div>
 </div>
-<?php if ($polling = $this->Widget()->getActivePolling()): ?>
+<?php if ($polling = $this->Widget(false)->getActivePolling()): ?>
     <?php
     $polls = Zend_Controller_Front::getInstance()->getRequest()->getCookie('polls');
     ?>
