@@ -90,12 +90,10 @@
                             echo $this->formSelect('filter[role]', $this->filter['role'], array(
                                 'class' => 'span12'
                             ), array(
-                                null                     => "--Tampilkan Semua ({$this->rolesCount['all']})",
-                                SITi_Acl::ROLE_SISWA     => "Siswa ({$this->rolesCount['siswa']})",
-                                SITi_Acl::ROLE_GURU      => "Guru ({$this->rolesCount['guru']})",
-                                SITi_Acl::ROLE_HUBIN     => "Hubin ({$this->rolesCount['hubin']})",
-                                SITi_Acl::ROLE_KURIKULUM => "Kurikulum ({$this->rolesCount['kurikulum']})",
-                                SITi_Acl::ROLE_KESISWAAN => "Kesiswaan ({$this->rolesCount['kesiswaan']})"
+                                null                 => "--Tampilkan Semua ({$this->rolesCount['all']})",
+                                SITi_Acl::ROLE_SISWA => "Siswa ({$this->rolesCount['siswa']})",
+                                SITi_Acl::ROLE_GURU  => "Guru ({$this->rolesCount['guru']})",
+                                SITi_Acl::ROLE_ADMIN => "Admin ({$this->rolesCount['admin']})",
                             ));
                             ?>
                         </th>

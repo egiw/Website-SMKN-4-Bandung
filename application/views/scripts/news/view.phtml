@@ -108,24 +108,42 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
             <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
 
                 <li>
-                    <i class="icon-thumbs-up"></i>
+                    <i class="icon-eye-open"></i>
+                    <?php echo $this->news['views']; ?> &nbsp;&nbsp;
                 </li>
                 <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
-                <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
-                <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
+                    <?php if ($auth->hasIdentity() && !in_array($auth->getIdentity()->username, explode(',', $this->news['likes']))): ?>
+                        <a id="like-link"
+                           href="<?php echo $this->url(array('action' => 'like', 'id' => $this->news['id'])); ?>"
+                           title="Suka">
+                            <i class="icon-thumbs-up"></i>
+                            <?php echo (null != $this->news['likes'] ? count(explode(',', $this->news['likes'])) : 0); ?> &nbsp;&nbsp;
+                        </a>
+                    <?php else: ?>
+                        <i class="icon-thumbs-up"></i>
+                        <?php echo (null != $this->news['likes'] ? count(explode(',', $this->news['likes'])) : 0); ?> &nbsp;&nbsp;
+                    <?php endif; ?>
 
+                </li>
+                <li>
+                    <i class="icon-comments"></i>
+                    <?php echo $this->comments->getTotalItemCount(); ?> &nbsp;&nbsp;
+                </li>
             </ul>
 
 
 
             <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
-                <form action="<?php echo $this->url(); ?>#comment" method="post" id="comment-form">
+                <?php
+                $commentUrl = $this->url(array(
+                    'action' => 'comment',
+                    'controller' => 'news',
+                    'module' => 'default',
+                    'id' => $this->news['id'],
+                    'return' => str_replace('/', '|', $this->url()) . '#comment'
+                        ));
+                ?>
+                <form action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
                     <div class="input-prepend">
                         <div class="add-on">
                             <?php

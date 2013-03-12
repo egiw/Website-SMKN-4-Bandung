@@ -27,7 +27,7 @@ class Application_Model_DbTable_Comment extends Zend_Db_Table_Abstract
         $select->join($this->_user, "{$this->_name}.user = {$this->_user}.username"
         , array('avatar'))
         ->join($this->_news_comments, "{$this->_name}.id = {$this->_news_comments}.comment_id")
-        ->where("{$this->_news_comments}.article_id = ?", $article_id)
+        ->where("{$this->_news_comments}.news_id = ?", $news_id)
         ->order("{$this->_name}.created_on DESC");
         $result = $this->fetchAll($select);
 
