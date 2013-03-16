@@ -119,12 +119,15 @@
             <label>{icon-lock} Admin</label>
             <pages>
                 <article>
-                    <label>Setujui Artikel (5)</label>
+                    <label>Setujui Artikel (:articleCount)</label>
                     <module>admin</module>
                     <controller>article</controller>
                     <action>approve</action>
+                    <resource>article</resource>
+                    <privilege>approve</privilege>
                 </article>
                 <account>
+                    <resource>account</resource>
                     <label>Akun</label>
                     <module>admin</module>
                     <controller>account</controller>
