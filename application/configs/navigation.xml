@@ -48,6 +48,7 @@
             <pages>
                 <article>
                     <resource>article</resource>
+                    <privilege>index</privilege>
                     <label>Artikel</label>
                     <module>admin</module>
                     <controller>article</controller>
