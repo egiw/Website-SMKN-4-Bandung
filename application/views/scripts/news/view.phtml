@@ -25,7 +25,12 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
 
     <div class="span8">
         <div class="content-inner" style="margin-top: 2px;">
-
+            <?php if ($this->news['status'] !== Admin_Model_Status::PUBLISH): ?>
+                <div class="alert alert-danger">
+                    Artikel ini berstatus <b><?php echo $this->news['status'] ?></b>
+                    yang berarti hanya dapat dilihat oleh anda saja.
+                </div>
+            <?php endif; ?>
             <ul class="nav nav-pills">
                 <li class="dropdown pull-right">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

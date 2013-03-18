@@ -23,7 +23,7 @@ class NewsController extends Zend_Controller_Action {
         if (null != $id) {
             $model = new Application_Model_DbTable_News;
             $news = $model->find($id)->current();
-            if (null !== $news) {
+            if (null !== $news && ($news->status == Admin_Model_Status::PUBLISH || $news->created_by == $user->username || $news->status == Admin_Model_Status::DRAFT || $news->status == Admin_Model_Status::ARCHIVED)) {
                 if (!$this->getRequest()->getCookie('view_news_' . $id)) {
                     $news->views += 1;
                     $news->save();
@@ -43,6 +43,8 @@ class NewsController extends Zend_Controller_Action {
                 $this->view->news = $news->toArray();
                 $this->view->form = $form;
                 $this->view->comments = $comments;
+            } else {
+                throw new Exception('Halaman tidak ditemukan');
             }
         }
     }

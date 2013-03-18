@@ -7,6 +7,13 @@ $auth = Zend_Auth::getInstance();
 <div class="main row-fluid">
     <div class="span8">
         <div class="content-inner">
+            <?php if ($this->article['status'] !== Admin_Model_Status::PUBLISH): ?>
+                <div class="alert alert-danger">
+                    Artikel ini berstatus <b><?php echo $this->article['status'] ?></b>
+                    yang berarti hanya dapat dilihat oleh anda saja.
+                </div>
+            <?php endif; ?>
+
             <blockquote id="article-title">
                 <h4><?php echo $this->article['title']; ?></h4>
                 <small>
@@ -19,90 +26,92 @@ $auth = Zend_Auth::getInstance();
                 </small>
             </blockquote>
             <?php echo $this->article['content']; ?>
-            <div class="clearfix"></div>
-            <br id="comment" class="clearfix"/>
-            <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
-                <li><i class="icon-eye-open"></i> <?php echo $this->article['views']; ?> &nbsp;&nbsp;</li>
-                <li>
-                    <?php if ($auth->hasIdentity() && !in_array($auth->getIdentity()->username, explode(',', $this->article['likes']))): ?>
-                        <a id="like-link"
-                           href="<?php echo $this->url(array('action' => 'like', 'id'     => $this->article['id'])); ?>"
-                           title="Suka">
+            <?php if ($this->article['status'] !== Admin_Model_Status::PENDING): ?>
+                <div class="clearfix"></div>
+                <br id="comment" class="clearfix"/>
+                <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
+                    <li><i class="icon-eye-open"></i> <?php echo $this->article['views']; ?> &nbsp;&nbsp;</li>
+                    <li>
+                        <?php if ($auth->hasIdentity() && !in_array($auth->getIdentity()->username, explode(',', $this->article['likes']))): ?>
+                            <a id="like-link"
+                               href="<?php echo $this->url(array('action' => 'like', 'id'     => $this->article['id'])); ?>"
+                               title="Suka">
+                                <i class="icon-thumbs-up"></i>
+                                <?php echo (null != $this->article['likes'] ? count(explode(',', $this->article['likes'])) : 0); ?> &nbsp;&nbsp;
+                            </a>
+                        <?php else: ?>
                             <i class="icon-thumbs-up"></i>
                             <?php echo (null != $this->article['likes'] ? count(explode(',', $this->article['likes'])) : 0); ?> &nbsp;&nbsp;
-                        </a>
-                    <?php else: ?>
-                        <i class="icon-thumbs-up"></i>
-                        <?php echo (null != $this->article['likes'] ? count(explode(',', $this->article['likes'])) : 0); ?> &nbsp;&nbsp;
+                        <?php endif; ?>
+                    </li>
+                    <li><i class="icon-comments"></i> <?php echo $this->comments->getTotalItemCount() ?> &nbsp;&nbsp;</li>
+                    <?php if (null !== $this->article['tags']): ?>
+                        <li><i class="icon-tags"></i>&nbsp;<?php echo $this->tags($this->article['tags']); ?></li>
                     <?php endif; ?>
-                </li>
-                <li><i class="icon-comments"></i> <?php echo $this->comments->getTotalItemCount() ?> &nbsp;&nbsp;</li>
-                <?php if (null !== $this->article['tags']): ?>
-                    <li><i class="icon-tags"></i>&nbsp;<?php echo $this->tags($this->article['tags']); ?></li>
-                <?php endif; ?>
-            </ul>
-
-            <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
-                <?php
-                $commentUrl = $this->url(array(
-                    'action'     => 'comment',
-                    'controller' => 'article',
-                    'module'     => 'default',
-                    'id'         => $this->article['id'],
-                    'return'     => str_replace('/', '|', $this->url()) . '#comment'
-                ));
-                ?>
-                <form onsubmit="if (this.content.value == '')
-                                return false"
-                      action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
-                    <div class="input-prepend">
-                        <div class="add-on">
-                            <?php
-                            echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
-                            , 50, 50, 100, '');
-                            ?>
-                            <?php echo $this->form->submit; ?>
+                </ul>
+                <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
+                    <?php
+                    $commentUrl = $this->url(array(
+                        'action'     => 'comment',
+                        'controller' => 'article',
+                        'module'     => 'default',
+                        'id'         => $this->article['id'],
+                        'return'     => str_replace('/', '|', $this->url()) . '#comment'
+                    ));
+                    ?>
+                    <form onsubmit="if (this.content.value == '')
+                                        return false"
+                          action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
+                        <div class="input-prepend">
+                            <div class="add-on">
+                                <?php
+                                echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
+                                , 50, 50, 100, '');
+                                ?>
+                                <?php echo $this->form->submit; ?>
+                            </div>
+                            <?php echo $this->form->content; ?>
                         </div>
-                        <?php echo $this->form->content; ?>
+                    </form>
+                <?php else: ?>
+                    <?php
+                    $loginUrl = $this->url(array(
+                        'controller' => 'user',
+                        'action'     => 'login',
+                        'module'     => 'admin',
+                        'return'     => "article|view|id|{$this->article['id']}#comment"), null, true);
+                    ?>
+                    <div class="alert">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        Anda harus <a href="<?php echo $loginUrl ?>">
+                            Login</a> untuk memberikan komentar.
                     </div>
-                </form>
-            <?php else: ?>
-                <?php
-                $loginUrl = $this->url(array(
-                    'controller' => 'user',
-                    'action'     => 'login',
-                    'module'     => 'admin',
-                    'return'     => "article|view|id|{$this->article['id']}#comment"), null, true);
-                ?>
-                <div class="alert">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    Anda harus <a href="<?php echo $loginUrl ?>">
-                        Login</a> untuk memberikan komentar.
-                </div>
+                <?php endif; ?>
+
+                <?php echo $this->paginationControl($this->comments, 'sliding', 'pagination_control.phtml'); ?>
+                <ul id="comment" class="media-list">
+                    <?php foreach ($this->comments as $index => $comment): ?>
+                        <li class="media">
+                            <a href="" class="pull-left">
+                                <?php echo $this->thumbnail('avatar', $comment['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+                            </a>
+                            <div class="media-body">
+                                <blockquote>
+                                    <p>
+                                        <?php echo $comment['content']; ?>
+                                    </p>
+                                    <small>
+                                        <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
+                                        <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
+                                    </small>
+                                </blockquote>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php echo $this->paginationControl($this->comments, 'sliding', 'pagination_control.phtml'); ?>
             <?php endif; ?>
 
-            <?php echo $this->paginationControl($this->comments, 'sliding', 'pagination_control.phtml'); ?>
-            <ul id="comment" class="media-list">
-                <?php foreach ($this->comments as $index => $comment): ?>
-                    <li class="media">
-                        <a href="" class="pull-left">
-                            <?php echo $this->thumbnail('avatar', $comment['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
-                        </a>
-                        <div class="media-body">
-                            <blockquote>
-                                <p>
-                                    <?php echo $comment['content']; ?>
-                                </p>
-                                <small>
-                                    <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
-                                    <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
-                                </small>
-                            </blockquote>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            <?php echo $this->paginationControl($this->comments, 'sliding', 'pagination_control.phtml'); ?>
         </div>
     </div>
     <div class="span4 sidebar well">
