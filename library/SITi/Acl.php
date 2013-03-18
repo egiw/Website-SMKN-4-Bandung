@@ -45,10 +45,6 @@ class SITi_Acl extends Zend_Acl {
 
         $this->allow(self::ROLE_ADMIN);
 
-        $this->allow(self::ROLE_SISWA, array(
-            self::RES_MADING
-        ));
-
         $this->allow(self::ROLE_SISWA, self::RES_ARTICLE, array('index'));
         $this->allow(self::ROLE_GURU, self::RES_ADMIN);
         $this->allow(self::ROLE_GURU, self::RES_ARTICLE, array('index', 'publish', 'approve'));

@@ -274,8 +274,6 @@ class Admin_ArticleController extends Zend_Controller_Action {
                 case 'filter':
                     $this->filter->article = $post['filter'];
                     break;
-                case 'reset':
-                    $this->filter->unsetAll();
                 default:
                     break;
             }
@@ -294,6 +292,54 @@ class Admin_ArticleController extends Zend_Controller_Action {
             $paginator->setItemCountPerPage($this->filter->article['row']);
         }
 
+        $this->view->filter = $this->filter->article;
+        $this->view->articles = $paginator;
+        $this->view->messages = $messages;
+    }
+
+    public function allAction() {
+        $pageNumber = $this->getParam('page');
+
+        if ($this->getRequest()->isPost()) {
+            $post = $this->getRequest()->getPost();
+            switch ($post['action']) {
+                case 'delete':
+                    foreach ($post['articles'] as $id) {
+                        $article = $this->article->find($id)->current();
+                        if (null != $article) {
+                            $article->delete();
+                        }
+                    }
+                    $this->_helper->flashMessenger->addMessage(
+                    self::MSG_SELECTED_ARTICLES_DELETED);
+                    break;
+                case 'filter':
+                    $this->filter->article = $post['filter'];
+                    break;
+                case 'reset':
+                    $this->filter->unsetAll();
+                default:
+                    break;
+            }
+
+            $this->_helper->redirector('index');
+        }
+
+        $messages = $this->_helper->flashMessenger->getMessages();
+        $username = Zend_Auth::getInstance()->getIdentity()->username;
+        $data = $this->article->findAll(null, $this->filter->article);
+
+        $countStatus = $this->article->countStatus($username);
+
+        $paginator = Zend_Paginator::factory($data);
+        $paginator->setCurrentPageNumber($pageNumber);
+        $paginator->setDefaultItemCountPerPage(5);
+
+        if (null != $this->filter->article['row']) {
+            $paginator->setItemCountPerPage($this->filter->article['row']);
+        }
+
+        $this->view->countStatus = $countStatus;
         $this->view->filter = $this->filter->article;
         $this->view->articles = $paginator;
         $this->view->messages = $messages;
