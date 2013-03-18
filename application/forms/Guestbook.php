@@ -53,8 +53,9 @@ class Application_Form_Guestbook extends Zend_Form {
         $dumb->setLabel('Ketikan kata berikut ini secara terbalik <br />');
 
         $this->captcha = new Zend_Form_Element_Captcha('captcha', array('captcha' => $dumb));
-        $this->captcha->setLabel('Ketikan kata berikut ini dari belakang');
+        $this->captcha->setLabel('Ketikan kata berikut ini dari belakang')->setAttribs(array('class'=>'hahas'));
 
+        
         $this->name
         ->setRequired(true)
         ->setLabel('Nama')

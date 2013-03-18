@@ -76,8 +76,6 @@ class Admin_JobsController extends Zend_Controller_Action
       $this->_helper->redirector('index');
     }
 
-    var_dump($this->filter->jobs);
-
     $data = $this->jobs->findAll($this->filter->jobs);
     $paginator = Zend_Paginator::factory($data);
     $paginator->setCurrentPageNumber($pageNumber);

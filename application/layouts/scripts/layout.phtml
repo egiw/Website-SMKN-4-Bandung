@@ -102,8 +102,19 @@
                             <?php echo $menu; ?>
                             <ul class="nav pull-right">
                                 <li class="dropdown">
-                                    <?php
-                                    if (Zend_Auth::getInstance()->hasIdentity() && $user = Zend_Auth::getInstance()->getIdentity()):
+                                    <?php if (Zend_Auth::getInstance()->hasIdentity() && $user = Zend_Auth::getInstance()->getIdentity()): ?>
+                                        <?php
+                                        $logoutUrl = array(
+                                            'controller' => 'user',
+                                            'action'     => 'logout',
+                                            'module'     => 'admin',
+                                            'return'     => str_replace('/', '|', $this->url()));
+
+                                        $adminUrl = $this->url(array(
+                                            'module'     => 'admin',
+                                            'controller' => 'index',
+                                            'action'     => 'index'
+                                        ), null, true);
                                         ?>
                                         <a href="#"
                                            class="dropdown-toggle"
@@ -112,13 +123,11 @@
                                             <?php echo $user->username; ?> <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <?php
-                                                $logoutUrl = array(
-                                                    'controller' => 'user',
-                                                    'action'     => 'logout',
-                                                    'module'     => 'admin',
-                                                    'return'     => str_replace('/', '|', $this->url()));
-                                                ?>
+                                                <a href="<?php echo $adminUrl; ?>">
+                                                    <i class="icon-signin"></i> Halaman admin
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a href="<?php echo $this->url($logoutUrl, null, true); ?>">
                                                     <i class="icon-off"></i>&nbsp;Keluar</a>
                                             </li>
@@ -198,19 +207,19 @@
             <i class="icon-circle-arrow-up icon-3x"></i>
         </a>
         <script type="text/javascript">
-                  var _gaq = _gaq || [];
-                  _gaq.push(['_setAccount', 'UA-38322604-1']);
-                  _gaq.push(['_trackPageview']);
-                  _gaq.push(['_setDomainName', 'none']);
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-38322604-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_setDomainName', 'none']);
 
-                  (function() {
-                    var ga = document.createElement('script');
-                    ga.type = 'text/javascript';
-                    ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(ga, s);
-                  })();
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
         </script>
     </body>
 </html>
