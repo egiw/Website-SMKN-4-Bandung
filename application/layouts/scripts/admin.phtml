@@ -16,7 +16,7 @@
         ->appendStylesheet($this->baseUrl('lib/jquery-ui/css/Aristo/Aristo.css'))
         ->appendStylesheet($this->baseUrl('lib/gebo/css/blue.css'))
         ->appendStylesheet($this->baseUrl('lib/gebo/css/style.css'))
-        ->appendStylesheet('http://fonts.googleapis.com/css?family=PT+Sans')
+//        ->appendStylesheet('http://fonts.googleapis.com/css?family=PT+Sans')
         ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'));
 
         $this
@@ -40,9 +40,19 @@
         <?php
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
         $navigation = new Zend_Navigation($config);
-        $this->navigation($navigation)->setAcl(new SITi_Acl())->setRole($user->role);
+        $this->navigation($navigation)
+        ->setAcl(new SITi_Acl())->setRole($user->role)
+        ;
+
+        $article = new Admin_Model_DbTable_Article();
+        $count = $article->select()
+        ->from('article', array('COUNT(*)'))
+        ->where('status = ?', Admin_Model_Status::PENDING);
+        $count = $article->getAdapter()->fetchOne($count);
+
         $menu = $this->navigation()->myMenu()->setUlClass('nav nav-list');
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
+        $menu = str_replace(':articleCount', $count, $menu);
         ?>
 
 

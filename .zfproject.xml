@@ -88,6 +88,7 @@
               <actionMethod actionName="edit"/>
               <actionMethod actionName="delete"/>
               <actionMethod actionName="restore"/>
+              <actionMethod actionName="approve"/>
             </controllerFile>
             <controllerFile controllerName="Abstract">
               <actionMethod actionName="index"/>
@@ -390,6 +391,9 @@
               <viewControllerScriptsDirectory forControllerName="Search">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Article">
+                <viewScriptFile forActionName="approve"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -522,6 +526,7 @@
                 <testApplicationActionMethod forActionName="edit"/>
                 <testApplicationActionMethod forActionName="delete"/>
                 <testApplicationActionMethod forActionName="restore"/>
+                <testApplicationActionMethod forActionName="approve"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Abstract">
                 <testApplicationActionMethod forActionName="index"/>

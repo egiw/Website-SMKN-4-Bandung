@@ -2,7 +2,7 @@
 
 class Admin_ArticleController extends Zend_Controller_Action {
 
-//  messages
+    //  messages
     const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
     const MSG_ARTICLE_CREATED = 'success|Artikel berhasil diterbitkan.';
     const MSG_ARTICLE_PENDING = 'success|Artikel berhasil dibuat, anda harus menunggu persetujuan admin untuk diterbitkan.';
@@ -10,9 +10,11 @@ class Admin_ArticleController extends Zend_Controller_Action {
     const MSG_ARTICLE_EDITED = 'success|Artikel berhasil disunting.';
     const MSG_ARTICLE_DELETED = 'success|Artikel berhasil dihapus.';
     const MSG_ARTICLE_RESTORED = 'success|Artikel berhasil dikembalikan.';
+    const MSG_SELECTED_ARTICLES_APPROVED = 'success|%s artikel berhasil disetujui.';
 
     /**
      * @var Admin_Form_Article
+     *
      *
      *
      *
@@ -23,15 +25,18 @@ class Admin_ArticleController extends Zend_Controller_Action {
      *
      *
      *
+     *
      */
     protected $article = null;
     /**
      * @var Admin_Model_DbTable_Tag
      *
+     *
      */
     protected $tag = null;
     /**
      * @var Zend_Session_Namespace
+     *
      *
      */
     protected $filter = null;
@@ -136,6 +141,10 @@ class Admin_ArticleController extends Zend_Controller_Action {
     public function editAction() {
 // action body
         $id = $this->getParam('id');
+        $return = $this->getParam('return');
+        if ($return == 'approve') {
+            $this->form->submit->setLabel('Simpan dan terbitkan.');
+        }
         if (null !== $id) {
             $article = $this->article->find($id)->current();
             if (null !== $article) {
@@ -164,7 +173,11 @@ class Admin_ArticleController extends Zend_Controller_Action {
 
                         $this->_helper->flashMessenger->addMessage
                         (self::MSG_ARTICLE_EDITED);
-                        $this->_helper->redirector('index');
+                        if (null !== $return) {
+                            $this->_helper->redirector($return);
+                        } else {
+                            $this->_helper->redirector('index');
+                        }
                     }
                 }
                 $this->view->form = $this->form;
@@ -177,6 +190,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
     public function deleteAction() {
         $this->_helper->viewRenderer->setNoRender();
         $id = $this->getParam('id');
+        $return = $this->getParam('return');
         if (null !== $id) {
             $article = $this->article->find($id)->current();
             if (null !== $article) {
@@ -193,7 +207,12 @@ class Admin_ArticleController extends Zend_Controller_Action {
                 }
             }
         }
-        $this->_helper->redirector('index');
+        if (null !== $return) {
+            $this->_helper->redirector($return);
+        } else {
+
+            $this->_helper->redirector('index');
+        }
     }
 
     public function restoreAction() {
@@ -209,6 +228,121 @@ class Admin_ArticleController extends Zend_Controller_Action {
             }
         }
         $this->_helper->redirector('index');
+    }
+
+    public function approveAction() {
+        $pageNumber = $this->getParam('page');
+        $id = $this->getParam('id');
+
+        if (null !== $id) {
+            $article = $this->article->find($id)->current();
+            $user = Zend_Auth::getInstance()->getIdentity();
+            if (null !== $article && $article->status == Admin_Model_Status::PENDING) {
+                $article->status = Admin_Model_Status::PUBLISH;
+                $article->approved_by = $user->username;
+                $article->approved_on = Date('Y-m-d H:i:s');
+                $article->save();
+                $this->_helper->flashMessenger->addMessage('success|Artikel berhasil disetujui.');
+            }
+            $this->_helper->redirector('approve');
+            exit();
+        }
+
+        if ($this->getRequest()->isPost()) {
+            $post = $this->getRequest()->getPost();
+            switch ($post['action']) {
+                case 'delete':
+                    foreach ($post['articles'] as $id) {
+                        $article = $this->article->find($id)->current();
+                        if (null != $article) {
+                            $article->delete();
+                        }
+                    }
+                    $this->_helper->flashMessenger->addMessage(
+                    self::MSG_SELECTED_ARTICLES_DELETED);
+                    break;
+                case 'approve':
+                    $articles = $post['articles'];
+                    $ids = implode(',', $articles);
+                    $this->article->update(array(
+                        'status' => Admin_Model_Status::PUBLISH
+                    ), array("id IN({$ids})"));
+                    $this->_helper->flashMessenger->addMessage(
+                    sprintf(self::MSG_SELECTED_ARTICLES_APPROVED, count($articles))
+                    );
+                    break;
+                case 'filter':
+                    $this->filter->article = $post['filter'];
+                    break;
+                default:
+                    break;
+            }
+            $this->_helper->redirector('approve');
+        }
+
+        $messages = $this->_helper->flashMessenger->getMessages();
+        $username = Zend_Auth::getInstance()->getIdentity()->username;
+        $data = $this->article->findPendingArticles();
+
+        $paginator = Zend_Paginator::factory($data);
+        $paginator->setCurrentPageNumber($pageNumber);
+        $paginator->setDefaultItemCountPerPage(5);
+
+        if (null != $this->filter->article['row']) {
+            $paginator->setItemCountPerPage($this->filter->article['row']);
+        }
+
+        $this->view->filter = $this->filter->article;
+        $this->view->articles = $paginator;
+        $this->view->messages = $messages;
+    }
+
+    public function allAction() {
+        $pageNumber = $this->getParam('page');
+
+        if ($this->getRequest()->isPost()) {
+            $post = $this->getRequest()->getPost();
+            switch ($post['action']) {
+                case 'delete':
+                    foreach ($post['articles'] as $id) {
+                        $article = $this->article->find($id)->current();
+                        if (null != $article) {
+                            $article->delete();
+                        }
+                    }
+                    $this->_helper->flashMessenger->addMessage(
+                    self::MSG_SELECTED_ARTICLES_DELETED);
+                    break;
+                case 'filter':
+                    $this->filter->article = $post['filter'];
+                    break;
+                case 'reset':
+                    $this->filter->unsetAll();
+                default:
+                    break;
+            }
+
+            $this->_helper->redirector('index');
+        }
+
+        $messages = $this->_helper->flashMessenger->getMessages();
+        $username = Zend_Auth::getInstance()->getIdentity()->username;
+        $data = $this->article->findAll(null, $this->filter->article);
+
+        $countStatus = $this->article->countStatus($username);
+
+        $paginator = Zend_Paginator::factory($data);
+        $paginator->setCurrentPageNumber($pageNumber);
+        $paginator->setDefaultItemCountPerPage(5);
+
+        if (null != $this->filter->article['row']) {
+            $paginator->setItemCountPerPage($this->filter->article['row']);
+        }
+
+        $this->view->countStatus = $countStatus;
+        $this->view->filter = $this->filter->article;
+        $this->view->articles = $paginator;
+        $this->view->messages = $messages;
     }
 
 }

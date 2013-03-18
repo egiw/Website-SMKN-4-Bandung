@@ -118,13 +118,28 @@
             <uri>#collapseTwo</uri>
             <label>{icon-lock} Admin</label>
             <pages>
-                <article>
-                    <label>Artikel Siswa</label>
+                <allArticle>
+                    <label>Semua Artikel</label>
                     <module>admin</module>
-                    <controller>article2</controller>
+                    <controller>article</controller>
+                    <action>all</action>
+                </allArticle>
+                <approveArticle>
+                    <label>Setujui Artikel (:articleCount)</label>
+                    <module>admin</module>
+                    <controller>article</controller>
+                    <action>approve</action>
+                    <resource>article</resource>
+                    <privilege>approve</privilege>
+                </approveArticle>
+                <guestbook>
+                    <label>Buku Tamu</label>
+                    <module>admin</module>
+                    <controller>guestbook</controller>
                     <action>index</action>
-                </article>
+                </guestbook>
                 <account>
+                    <resource>account</resource>
                     <label>Akun</label>
                     <module>admin</module>
                     <controller>account</controller>
