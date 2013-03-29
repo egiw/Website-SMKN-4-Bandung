@@ -14,11 +14,11 @@
             <?php
             echo $this->formSelect('filter[row]', $this->filter['row'], array(
                 'style' => 'width:55px'), array(
-                5   => 5,
-                10  => 10,
-                15  => 15,
-                25  => 25,
-                50  => 50,
+                5 => 5,
+                10 => 10,
+                15 => 15,
+                25 => 25,
+                50 => 50,
                 100 => 100
             ));
             ?>
@@ -78,6 +78,7 @@
                                 }"/>
                         </th>
                         <th>Judul</th>
+                        <th>Dibuat Oleh</th>
                         <th>Status</th>
                         <th>Tanggal</th>
                         <th><i class="icon-tags"></i></th>
@@ -96,13 +97,15 @@
                             ?>
                         </th>
                         <th>
+                        </th>
+                        <th>
                             <?php
                             echo $this->formSelect('filter[status]', $this->filter['status'], array(), array(
-                                null                         => '-Tampilkan semua status-',
+                                null => '-Tampilkan semua status-',
                                 Admin_Model_Status::ARCHIVED => "Diarsipkan ({$this->countStatus['archived']})",
-                                Admin_Model_Status::DRAFT    => "Konsep ({$this->countStatus['draft']})",
-                                Admin_Model_Status::PENDING  => "Menunggu Persetujuan ({$this->countStatus['pending']})",
-                                Admin_Model_Status::PUBLISH  => "Diterbitkan ({$this->countStatus['publish']})"
+                                Admin_Model_Status::DRAFT => "Konsep ({$this->countStatus['draft']})",
+                                Admin_Model_Status::PENDING => "Menunggu Persetujuan ({$this->countStatus['pending']})",
+                                Admin_Model_Status::PUBLISH => "Diterbitkan ({$this->countStatus['publish']})"
                             ));
                             ?>
                         </th>
@@ -123,10 +126,10 @@
                     <?php foreach ($this->articles as $index => $article): ?>
                         <?php
                         $viewUrl = $this->url(array(
-                            'module'     => 'default',
-                            'action'     => 'view',
+                            'module' => 'default',
+                            'action' => 'view',
                             'controller' => 'article',
-                            'id'         => $article->id
+                            'id' => $article->id
                         ));
                         ?>
 
@@ -140,6 +143,9 @@
                                     <strong><?php echo $article->title; ?></strong>
                                 </a>
                             </td>
+                            <td>
+                                <a href="#"><?php echo $article->created_by; ?></a>
+                            </td>
                             <td><?php echo $this->status($article->status); ?></td>
                             <td><?php echo Date('d/m/Y', strtotime($article->created_on)); ?></td>
                             <td><?php echo $this->tags($article->tags); ?></td>
@@ -148,16 +154,16 @@
                             <td><span class="badge badge-warning"><?php echo $article->comments; ?></span></td>
                             <td>
                                 <?php if (Admin_Model_Status::ARCHIVED === $article->status): ?>
-                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id'     => $article->id)); ?>"
+                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $article->id)); ?>"
                                        title="Kembalikan">
                                         <i class="icon-refresh"></i>
                                     </a>
                                 <?php endif; ?>
-                                <a href="<?php echo $this->url(array('action' => 'edit', 'id'     => $article->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id)); ?>"
                                    title="Sunting">
                                     <i class="icon-edit"></i>
                                 </a>
-                                <a href="<?php echo $this->url(array('action' => 'delete', 'id'     => $article->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $article->id)); ?>"
                                    title="Hapus"
                                    onclick="if (!confirm('Apakah anda yakin ingin menghapus artikel' +
                                             ' ini?.'))

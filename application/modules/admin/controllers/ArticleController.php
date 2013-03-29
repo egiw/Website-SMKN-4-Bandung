@@ -322,7 +322,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
                     break;
             }
 
-            $this->_helper->redirector('index');
+            $this->_helper->redirector('all');
         }
 
         $messages = $this->_helper->flashMessenger->getMessages();
