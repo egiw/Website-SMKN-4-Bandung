@@ -18,7 +18,6 @@ $permaLink = $this->url(array(
 $tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
 
 $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url();
-
 ?>
 
 
@@ -26,15 +25,25 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
 
     <div class="span8">
         <div class="content-inner" style="margin-top: 2px;">
-
-            <ul class="unstyled">
-
-                <li>
-                    <ul class="inline pull-right">
-                        <li >
+            <?php if ($this->news['status'] !== Admin_Model_Status::PUBLISH): ?>
+                <div class="alert alert-danger">
+                    Artikel ini berstatus <b><?php echo $this->news['status'] ?></b>
+                    yang berarti hanya dapat dilihat oleh anda saja.
+                </div>
+            <?php endif; ?>
+            <ul class="nav nav-pills">
+                <li class="dropdown pull-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Share
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
                             <script src='http://connect.facebook.net/en_US/all.js'></script>
-                            <a onclick='postToFeed(); return false;'>Post to Feed</a>
-                            <p id='msg'></p>
+                            <a href="#" onclick='postToFeed(); return false;'>Facebook</a>
+                            <p id='msg'>
+
+                            </p>
                             <script> 
                                 FB.init({appId:547516891937024, status: true, cookie: true});
 
@@ -43,16 +52,19 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                                     // calling the API ...
                                     var obj = {
                                         method: 'feed',
-                                        redirect_uri: '<?php echo $fullUrl; ?>',
-                                        link: '<?php echo $fullUrl; ?>',
+                                        //                                        redirect_uri: '<?php echo $fullUrl; ?>',
+                                        //                                        link: '<?php echo $fullUrl; ?>',
+                                        link : 'www.w3schools.com',
                                         picture: 'http://fbrell.com/f8.jpg',
-                                        name: '<?php echo $this->news['title']; ?>',
+                                        //                                        name: '<?php echo $this->news['title']; ?>',
+                                        name: 'haha',
                                         caption: 'Reference Documentation',
-                                        description: 'balalalala'
+                                        //                                        description: '<?php echo strip_tags($this->news['content']); ?>'
+                                        description: 'haha'
                                     };
 
                                     function callback(response) {
-                                        document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                        //                                        document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
                                     }
 
                                     FB.ui(obj, callback);
@@ -60,19 +72,16 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
     
                             </script>
                         </li>
-                        <?php echo $this->url(); ?>
-                        <?php echo $this->baseUrl($this->url()); ?>
-                        <?php echo Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url(); ?>
                         <li>
-
-
-                            <a id="shareTwitter" href="<?php echo $tweet ?>">Share Twitter</a>
-
+                            <a id="shareTwitter" href="<?php echo $tweet ?>">Twitter</a>
                         </li>
-
                     </ul>
-                    <div class="clearfix"></div>
                 </li>
+            </ul>
+
+
+            <ul class="unstyled">
+
                 <li>
 
                     <h2 class="">
@@ -97,38 +106,49 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
 
             <?php echo $this->news['content'] ?>
 
-            <?php
-            $link = $this->url(array('controller' => 'news', 'action' => 'view', 'id' => $news['id']));
-            ?>
 
-            <iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo $link; ?>"
-                    scrolling="no" frameborder="0"
-                    style="border:none; width:450px; height:80px">
 
-            </iframe>
             <div class="clearfix"></div>
 
             <ul class="unstyled inline well" style="border-radius: 0;padding: 5px;">
 
                 <li>
-                    <i class="icon-thumbs-up"></i>
+                    <i class="icon-eye-open"></i>
+                    <?php echo $this->news['views']; ?> &nbsp;&nbsp;
                 </li>
                 <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
-                <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
-                <li>
-                    <i class="icon-thumbs-up"></i>
-                </li>
+                    <?php if ($auth->hasIdentity() && !in_array($auth->getIdentity()->username, explode(',', $this->news['likes']))): ?>
+                        <a id="like-link"
+                           href="<?php echo $this->url(array('action' => 'like', 'id' => $this->news['id'])); ?>"
+                           title="Suka">
+                            <i class="icon-thumbs-up"></i>
+                            <?php echo (null != $this->news['likes'] ? count(explode(',', $this->news['likes'])) : 0); ?> &nbsp;&nbsp;
+                        </a>
+                    <?php else: ?>
+                        <i class="icon-thumbs-up"></i>
+                        <?php echo (null != $this->news['likes'] ? count(explode(',', $this->news['likes'])) : 0); ?> &nbsp;&nbsp;
+                    <?php endif; ?>
 
+                </li>
+                <li>
+                    <i class="icon-comments"></i>
+                    <?php echo $this->comments->getTotalItemCount(); ?> &nbsp;&nbsp;
+                </li>
             </ul>
 
 
 
             <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
-                <form action="<?php echo $this->url(); ?>#comment" method="post" id="comment-form">
+                <?php
+                $commentUrl = $this->url(array(
+                    'action' => 'comment',
+                    'controller' => 'news',
+                    'module' => 'default',
+                    'id' => $this->news['id'],
+                    'return' => str_replace('/', '|', $this->url()) . '#comment'
+                        ));
+                ?>
+                <form action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
                     <div class="input-prepend">
                         <div class="add-on">
                             <?php
@@ -155,7 +175,26 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                 </div>
             <?php endif; ?>
 
-
+            <ul id="comment" class="media-list">
+                <?php foreach ($this->comments as $index => $comment): ?>
+                    <li class="media">
+                        <a href="" class="pull-left">
+                            <?php echo $this->thumbnail('avatar', $comment['avatar'], 'no-avatar.jpg', 50, 50, 100, ''); ?>
+                        </a>
+                        <div class="media-body">
+                            <blockquote>
+                                <p>
+                                    <?php echo $comment['content']; ?>
+                                </p>
+                                <small>
+                                    <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
+                                    <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
+                                </small>
+                            </blockquote>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
 
 
 
