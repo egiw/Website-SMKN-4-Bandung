@@ -10,6 +10,7 @@ class SITi_Acl extends Zend_Acl {
     const ROLE_ANONYMOUS = 'anonymous';
 //    Resources
     const RES_INDEX = 'index';
+    const RES_TAG = 'tag';
     const RES_ARTICLE = 'article';
     const RES_NEWS = 'news';
     const RES_MADING = 'mading';
@@ -23,6 +24,7 @@ class SITi_Acl extends Zend_Acl {
     const RES_ACCOUNT = 'account';
     const RES_ADMIN = 'admin';
     const RES_DASHBOARD_GUESTBOOK = 'dashboard_guestbook';
+    const RES_GUESTBOOK = 'guestbook';
 
     public function __construct() {
         $this->addRole(new Zend_Acl_Role(self::ROLE_SISWA))
@@ -33,6 +35,7 @@ class SITi_Acl extends Zend_Acl {
 //        init resources
         $this->add(new Zend_Acl_Resource(self::RES_ARTICLE))
                 ->add(new Zend_Acl_Resource(self::RES_INDEX))
+                ->add(new Zend_Acl_Resource(self::RES_TAG))
                 ->add(new Zend_Acl_Resource(self::RES_NEWS))
                 ->add(new Zend_Acl_Resource(self::RES_EVENT))
                 ->add(new Zend_Acl_Resource(self::RES_GALLERY))
@@ -44,8 +47,12 @@ class SITi_Acl extends Zend_Acl {
                 ->add(new Zend_Acl_Resource(self::RES_MADING))
                 ->add(new Zend_Acl_Resource(self::RES_ACCOUNT))
                 ->add(new Zend_Acl_Resource(self::RES_ADMIN))
+                ->add(new Zend_Acl_Resource(self::RES_GUESTBOOK))
                 ->add(new Zend_Acl_Resource(self::RES_DASHBOARD_GUESTBOOK));
 
+        $this->allow(null, self::RES_TAG);
+
+        $this->allow(null, self::RES_GUESTBOOK);
 
         $this->allow(self::ROLE_ADMIN);
 

@@ -118,6 +118,12 @@
             <uri>#collapseTwo</uri>
             <label>{icon-lock} Admin</label>
             <pages>
+                <allNews>
+                    <label>Semua Berita</label>
+                    <module>admin</module>
+                    <controller>news</controller>
+                    <action>all</action>
+                </allNews>
                 <allArticle>
                     <label>Semua Artikel</label>
                     <module>admin</module>
@@ -132,12 +138,6 @@
                     <resource>article</resource>
                     <privilege>approve</privilege>
                 </approveArticle>
-                <guestbook>
-                    <label>Buku Tamu</label>
-                    <module>admin</module>
-                    <controller>guestbook</controller>
-                    <action>index</action>
-                </guestbook>
                 <account>
                     <resource>account</resource>
                     <label>Akun</label>

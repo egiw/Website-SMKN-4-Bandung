@@ -4,11 +4,7 @@
 
     <div class="row-fluid" style="margin-bottom: 20px">
         <div class="pull-left">
-            <h3 style="display: inline">Artikel</h3>
-            <a href="<?php echo $this->url(array('action' => 'create')); ?>"
-               class="btn btn-link label label-success">
-                Tambah Artikel
-            </a>
+            <h3 style="display: inline">Semua Artikel</h3>
         </div>
         <div class="pull-right">
             <?php
@@ -46,7 +42,7 @@
                 </button>
                 <button class="btn btn-mini" name="action" value="reset">
                     Atur Ulang Filter
-                </button>
+                </button>   
             </div>
             <div class="pull-right">
                 <?php echo $this->paginationControl($this->articles, 'sliding', 'partial/pagination_control.phtml'); ?>
@@ -104,7 +100,6 @@
                                 null => '-Tampilkan semua status-',
                                 Admin_Model_Status::ARCHIVED => "Diarsipkan ({$this->countStatus['archived']})",
                                 Admin_Model_Status::DRAFT => "Konsep ({$this->countStatus['draft']})",
-                                Admin_Model_Status::PENDING => "Menunggu Persetujuan ({$this->countStatus['pending']})",
                                 Admin_Model_Status::PUBLISH => "Diterbitkan ({$this->countStatus['publish']})"
                             ));
                             ?>
@@ -154,16 +149,16 @@
                             <td><span class="badge badge-warning"><?php echo $article->comments; ?></span></td>
                             <td>
                                 <?php if (Admin_Model_Status::ARCHIVED === $article->status): ?>
-                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $article->id)); ?>"
+                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $article->id, 'return' => 'all')); ?>"
                                        title="Kembalikan">
                                         <i class="icon-refresh"></i>
                                     </a>
                                 <?php endif; ?>
-                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $article->id, 'return' => 'all')); ?>"
                                    title="Sunting">
                                     <i class="icon-edit"></i>
                                 </a>
-                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $article->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $article->id, 'return' => 'all')); ?>"
                                    title="Hapus"
                                    onclick="if (!confirm('Apakah anda yakin ingin menghapus artikel' +
                                             ' ini?.'))

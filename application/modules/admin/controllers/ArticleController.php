@@ -1,8 +1,8 @@
 <?php
 
 class Admin_ArticleController extends Zend_Controller_Action {
-
     //  messages
+
     const MSG_SELECTED_ARTICLES_DELETED = 'success|Artikel yang dipilih berhasil dihapus.';
     const MSG_ARTICLE_CREATED = 'success|Artikel berhasil diterbitkan.';
     const MSG_ARTICLE_PENDING = 'success|Artikel berhasil dibuat, anda harus menunggu persetujuan admin untuk diterbitkan.';
@@ -20,6 +20,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
      *
      */
     protected $form = null;
+
     /**
      * @var Admin_Model_DbTable_Article
      *
@@ -28,12 +29,14 @@ class Admin_ArticleController extends Zend_Controller_Action {
      *
      */
     protected $article = null;
+
     /**
      * @var Admin_Model_DbTable_Tag
      *
      *
      */
     protected $tag = null;
+
     /**
      * @var Zend_Session_Namespace
      *
@@ -64,7 +67,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
                         }
                     }
                     $this->_helper->flashMessenger->addMessage(
-                    self::MSG_SELECTED_ARTICLES_DELETED);
+                            self::MSG_SELECTED_ARTICLES_DELETED);
                     break;
                 case 'filter':
                     $this->filter->article = $post['filter'];
@@ -118,12 +121,12 @@ class Admin_ArticleController extends Zend_Controller_Action {
 
                 $this->tag->save($this->form->tags->getValue());
                 $this->article->insert(array(
-                    'title'      => $this->form->title->getValue(),
-                    'content'    => $this->form->content->getValue(),
-                    'tags'       => $this->form->tags->getValue(),
+                    'title' => $this->form->title->getValue(),
+                    'content' => $this->form->content->getValue(),
+                    'tags' => $this->form->tags->getValue(),
                     'created_by' => $user->username,
                     'created_on' => Date('Y-m-d H:i:s'),
-                    'status'     => $status
+                    'status' => $status
                 ));
 
 
@@ -163,16 +166,16 @@ class Admin_ArticleController extends Zend_Controller_Action {
                         }
 
                         $article->setFromArray(array(
-                            'title'      => $this->form->title->getValue(),
-                            'content'    => $this->form->content->getValue(),
-                            'tags'       => $this->form->tags->getValue(),
-                            'status'     => $status,
+                            'title' => $this->form->title->getValue(),
+                            'content' => $this->form->content->getValue(),
+                            'tags' => $this->form->tags->getValue(),
+                            'status' => $status,
                             'updated_by' => Zend_Auth::getInstance()->getIdentity()->username,
                             'updated_on' => Date('Y-m-d H:i:s')
                         ))->save();
 
                         $this->_helper->flashMessenger->addMessage
-                        (self::MSG_ARTICLE_EDITED);
+                                (self::MSG_ARTICLE_EDITED);
                         if (null !== $return) {
                             $this->_helper->redirector($return);
                         } else {
@@ -198,12 +201,12 @@ class Admin_ArticleController extends Zend_Controller_Action {
                     $this->tag->save('', $article->tags);
                     $article->delete();
                     $this->_helper->flashMessenger->addMessage
-                    (self::MSG_ARTICLE_DELETED);
+                            (self::MSG_ARTICLE_DELETED);
                 } else {
                     $article->status = Admin_Model_Status::ARCHIVED;
                     $article->save();
                     $this->_helper->flashMessenger->addMessage
-                    (self::MSG_ARTICLE_ARCHIVED);
+                            (self::MSG_ARTICLE_ARCHIVED);
                 }
             }
         }
@@ -219,6 +222,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
         // action body
         $this->_helper->viewRenderer->setNoRender();
         $id = $this->getParam('id');
+        $return = $this->getParam('return');
         if (null !== $id) {
             $article = $this->article->find($id)->current();
             if (null !== $article && Admin_Model_Status::ARCHIVED === $article->status) {
@@ -227,7 +231,11 @@ class Admin_ArticleController extends Zend_Controller_Action {
                 $this->_helper->flashMessenger->addMessage(self::MSG_ARTICLE_RESTORED);
             }
         }
-        $this->_helper->redirector('index');
+        if (null !== $return) {
+            $this->_helper->redirector($return);
+        } else {
+            $this->_helper->redirector('index');
+        }
     }
 
     public function approveAction() {
@@ -259,16 +267,16 @@ class Admin_ArticleController extends Zend_Controller_Action {
                         }
                     }
                     $this->_helper->flashMessenger->addMessage(
-                    self::MSG_SELECTED_ARTICLES_DELETED);
+                            self::MSG_SELECTED_ARTICLES_DELETED);
                     break;
                 case 'approve':
                     $articles = $post['articles'];
                     $ids = implode(',', $articles);
                     $this->article->update(array(
                         'status' => Admin_Model_Status::PUBLISH
-                    ), array("id IN({$ids})"));
+                            ), array("id IN({$ids})"));
                     $this->_helper->flashMessenger->addMessage(
-                    sprintf(self::MSG_SELECTED_ARTICLES_APPROVED, count($articles))
+                            sprintf(self::MSG_SELECTED_ARTICLES_APPROVED, count($articles))
                     );
                     break;
                 case 'filter':
@@ -311,7 +319,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
                         }
                     }
                     $this->_helper->flashMessenger->addMessage(
-                    self::MSG_SELECTED_ARTICLES_DELETED);
+                            self::MSG_SELECTED_ARTICLES_DELETED);
                     break;
                 case 'filter':
                     $this->filter->article = $post['filter'];
@@ -329,7 +337,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
         $username = Zend_Auth::getInstance()->getIdentity()->username;
         $data = $this->article->findAll(null, $this->filter->article);
 
-        $countStatus = $this->article->countStatus($username);
+        $countStatus = $this->article->countStatus(null);
 
         $paginator = Zend_Paginator::factory($data);
         $paginator->setCurrentPageNumber($pageNumber);
