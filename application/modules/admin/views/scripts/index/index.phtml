@@ -10,17 +10,17 @@
             <div class="w-box" id="w_sort02" style="">
                 <div class="w-box-header">
                     <i class="icon-book"></i>&nbsp;Buku tamu
-                    <div class="pull-right">
+<!--                    <div class="pull-right">
                         <div class="btn-group">
                             <a class="btn dropdown-toggle btn-mini" data-toggle="dropdown" href="#">
                                 <i class="icon-cog"></i> <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
+                                <li><a href="#"><i class="icon-remove"></i> Hapus semua</a></li>
+                                <li><a href="#"><i class="icon-trash"></i> Hapus yang terpilih</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="w-box-content cnt_a">
                     <ul class="unstyled" id="guestbook-list">
@@ -55,10 +55,10 @@
                     <?php foreach ($this->latestComments as $index => $comment): ?>
                         <?php
                         $url = $this->url(array(
-                            'module'     => 'default',
+                            'module' => 'default',
                             'controller' => 'article',
-                            'action'     => 'view',
-                            'id'         => $comment['article_id']
+                            'action' => 'view',
+                            'id' => $comment['article_id']
                         ));
                         ?>
                         <li>

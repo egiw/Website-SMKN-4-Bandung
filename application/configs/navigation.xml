@@ -138,6 +138,13 @@
                     <resource>article</resource>
                     <privilege>approve</privilege>
                 </approveArticle>
+                <guestbook>
+                    <label>Buku Tamu</label>
+                    <module>admin</module>
+                    <controller>guestbook</controller>
+                    <action>index</action>
+                    <resource>guestbook</resource>
+                </guestbook>
                 <account>
                     <resource>account</resource>
                     <label>Akun</label>
