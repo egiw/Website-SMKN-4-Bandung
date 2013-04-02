@@ -37,7 +37,7 @@ class IndexController extends Zend_Controller_Action {
         $this->view->sortedHighlight = $cache->getCachedHighlight();
         $this->view->latestAlbumWithPhotos = $cache->getCachedLatestAlbum();
         $this->view->feeds = $cache->getCachedFeed();
-        $this->view->news = $cache->getCachedLatestNews();
+        $this->view->news = $this->getCachedLatestNews();
         $this->view->latestArticles = $cache->getCachedLatestArticle();
     }
 
