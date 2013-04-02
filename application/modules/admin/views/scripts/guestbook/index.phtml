@@ -1,0 +1,61 @@
+<?php echo $this->flashMessenger($this->messages); ?>
+<div class="row-fluid">
+    <h3>Buku Tamu</h3>
+</div>
+<div class="row-fluid">
+    <form id="guestbook" action="<?php echo $this->url(array('action' => 'delete')); ?>" method="post">
+        <div class="span8">
+            <input type="checkbox" name="" id=""
+                   onclick="
+                           var checkboxes = $('#guestbook .media-list input:checkbox');
+                           if ($(this).attr('checked')) {
+                               $(checkboxes).attr('checked', true);
+                           } else {
+                               $(checkboxes).removeAttr('checked');
+                           }
+                   " />
+                   <?php echo $this->paginationControl($this->paginator, 'sliding', 'partial/pagination_control.phtml'); ?>
+            <hr />
+            <ul class="media-list">
+                <?php foreach ($this->paginator as $index => $guestbook): ?>
+                    <li class="media">
+                        <a class="pull-left" href="#">
+                            <input type="checkbox" name="messages[]" id="" value="<?php echo $guestbook->id; ?>"/>
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">
+                                <?php echo $guestbook->name; ?>
+                                (<a href="mailto:<?php echo $guestbook->email; ?>"><?php echo $guestbook->email; ?></a>)
+                                <span class="pull-right">
+                                    <?php echo Date('d M', strtotime($guestbook->created_on)); ?>
+                                </span>
+                            </h4>
+                            <q><?php echo $guestbook->message; ?></q>
+                        </div>
+                    </li>
+
+                <?php endforeach; ?>
+
+
+            </ul>
+        </div>
+        <div class="span4">
+            <div class="well" style="padding: 8px 0;">
+                <ul class="nav nav-list">
+                    <li>
+                        <a href="#" onclick="
+                           if (!confirm('Apakah anda yakin?'))
+                               return false;
+                           else
+                               $('#guestbook').submit()">
+                            <i class="icon-trash"></i> Hapus yang Terpilih</a></li>
+                    <li><a href="<?php echo $this->url(array('action' => 'deleteall')); ?>"
+                           onclick="if (!confirm('Apakah anda yakin ingin menghapus semua pesan?'))
+                               return false;"><i class="icon-warning-sign"></i> Hapus Semua</a></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+
+

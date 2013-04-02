@@ -174,6 +174,7 @@
             </controllerFile>
             <controllerFile controllerName="Guestbook">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="delete"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
@@ -400,6 +401,9 @@
               <viewControllerScriptsDirectory forControllerName="Guestbook">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Guestbook">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -618,6 +622,7 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Guestbook">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="delete"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

@@ -25,6 +25,7 @@ class SITi_Acl extends Zend_Acl {
     const RES_ADMIN = 'admin';
     const RES_DASHBOARD_GUESTBOOK = 'dashboard_guestbook';
     const RES_GUESTBOOK = 'guestbook';
+    const RES_SEARCH = 'search';
 
     public function __construct() {
         $this->addRole(new Zend_Acl_Role(self::ROLE_SISWA))
@@ -48,11 +49,14 @@ class SITi_Acl extends Zend_Acl {
                 ->add(new Zend_Acl_Resource(self::RES_ACCOUNT))
                 ->add(new Zend_Acl_Resource(self::RES_ADMIN))
                 ->add(new Zend_Acl_Resource(self::RES_GUESTBOOK))
+                ->add(new Zend_Acl_Resource(self::RES_SEARCH))
                 ->add(new Zend_Acl_Resource(self::RES_DASHBOARD_GUESTBOOK));
 
         $this->allow(null, self::RES_TAG);
 
-        $this->allow(null, self::RES_GUESTBOOK);
+        $this->allow(null, self::RES_SEARCH);
+
+        $this->allow(self::ROLE_GURU, self::RES_GUESTBOOK);
 
         $this->allow(self::ROLE_ADMIN);
 
