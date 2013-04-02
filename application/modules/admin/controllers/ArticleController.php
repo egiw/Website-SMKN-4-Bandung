@@ -145,9 +145,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
 // action body
         $id = $this->getParam('id');
         $return = $this->getParam('return');
-        if ($return == 'approve') {
-            $this->form->submit->setLabel('Simpan dan terbitkan.');
-        }
+        $this->form->submit->setLabel('Simpan dan terbitkan.');
         if (null !== $id) {
             $article = $this->article->find($id)->current();
             if (null !== $article) {
