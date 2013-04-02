@@ -9,12 +9,12 @@ class Application_Model_DbTable_News extends Zend_Db_Table_Abstract {
 
     protected $_name = 'news';
     protected $_user = 'user';
-        
 
     public function findLatestNews($limit = 5) {
         $select = $this->select()->from($this->_name, array('title', 'id'));
         $select->limit($limit);
         $select->order('created_on asc');
+        $select->where("{$this->_name}.status = ?", Admin_Model_Status::PUBLISH);
         $result = $this->fetchAll($select);
 
         return $result;

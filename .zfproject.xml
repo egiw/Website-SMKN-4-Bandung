@@ -88,6 +88,7 @@
               <actionMethod actionName="edit"/>
               <actionMethod actionName="delete"/>
               <actionMethod actionName="restore"/>
+              <actionMethod actionName="approve"/>
             </controllerFile>
             <controllerFile controllerName="Abstract">
               <actionMethod actionName="index"/>
@@ -169,6 +170,9 @@
               <actionMethod actionName="edit"/>
             </controllerFile>
             <controllerFile controllerName="Search">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+            <controllerFile controllerName="Guestbook">
               <actionMethod actionName="index"/>
             </controllerFile>
           </controllersDirectory>
@@ -390,6 +394,12 @@
               <viewControllerScriptsDirectory forControllerName="Search">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Article">
+                <viewScriptFile forActionName="approve"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Guestbook">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -522,6 +532,7 @@
                 <testApplicationActionMethod forActionName="edit"/>
                 <testApplicationActionMethod forActionName="delete"/>
                 <testApplicationActionMethod forActionName="restore"/>
+                <testApplicationActionMethod forActionName="approve"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Abstract">
                 <testApplicationActionMethod forActionName="index"/>
@@ -603,6 +614,9 @@
                 <testApplicationActionMethod forActionName="edit"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Search">
+                <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Guestbook">
                 <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>

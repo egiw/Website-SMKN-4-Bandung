@@ -2,9 +2,7 @@
 <form action="" method="post">
     <div class="row-fluid" style="margin-bottom: 20px">
         <div class="pull-left">
-            <h3 style="display: inline">Berita</h3>
-            <a href="<?php echo $this->url(array('action' => 'create')); ?>" 
-               class="btn btn-link label label-success">Tambah Berita</a>
+            <h3 style="display: inline">Semua Berita</h3>
         </div>
         <div class="pull-right">
             <?php
@@ -53,6 +51,7 @@
                                 }"/>
                         </th>
                         <th>Judul</th>
+                        <th>Dibuat Oleh</th>
                         <th>Status</th>
                         <th>Tanggal</th>
                         <th><i class="icon-eye-open"></i></th>
@@ -70,13 +69,13 @@
                             ));
                             ?>
                         </th>
+                        <th></th>
                         <th>
                             <?php
                             echo $this->formSelect('filter[status]', $this->filter['status'], array(), array(
                                 null => '-Tampilkan semua status-',
                                 Admin_Model_Status::ARCHIVED => "Diarsipkan ({$this->countStatus['archived']})",
                                 Admin_Model_Status::DRAFT => "Konsep ({$this->countStatus['draft']})",
-                                Admin_Model_Status::PENDING => "Menunggu Persetujuan ({$this->countStatus['pending']})",
                                 Admin_Model_Status::PUBLISH => "Diterbitkan ({$this->countStatus['publish']})"
                             ));
                             ?>
@@ -90,14 +89,28 @@
                 </thead>
                 <tbody>
                     <?php foreach ($this->news as $index => $news): ?>
+                        <?php
+                        $viewUrl = $this->url(array(
+                            'module' => 'default',
+                            'controller' => 'news',
+                            'action' => 'view',
+                            'id' => $news->id
+                        ));
+                        ?>
                         <tr>
                             <td>
                                 <input type="checkbox" name="news[]" id="" 
                                        value="<?php echo $news->id; ?>" />
                             </td>
                             <td>
-                                <a href="">
+                                <a href="<?php echo $viewUrl; ?>"
+                                   target="_blank">
                                     <strong><?php echo $news->title; ?></strong>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <?php echo $news->created_by; ?>
                                 </a>
                             </td>
                             <td><?php echo $this->status($news->status); ?></td>
@@ -121,15 +134,15 @@
                             </td>
                             <td>
                                 <?php if (Admin_Model_Status::ARCHIVED === $news->status): ?>
-                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $news->id)); ?>"
+                                    <a href="<?php echo $this->url(array('action' => 'restore', 'id' => $news->id, 'return' => 'all')); ?>"
                                        title="Kembalikan">
                                         <i class="icon-refresh"></i>
                                     </a>
                                 <?php endif; ?>
-                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $news->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $news->id, 'return' => 'all')); ?>"
                                    title="Sunting">
                                     <i class="icon-edit"></i></a>
-                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $news->id)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $news->id, 'return' => 'all')); ?>"
                                    title="Hapus"
                                    onclick="return confirm('Apakah anda yakin ingin menghapus berita ini?')">
                                     <i class="icon-trash"></i></a>

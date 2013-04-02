@@ -23,15 +23,32 @@ class ArticleController extends Zend_Controller_Action {
         if (null !== $id) {
             $model = new Application_Model_DbTable_Article();
             $user = Zend_Auth::getInstance()->getIdentity();
+            $acl = new SITi_Acl();
             $article = $model->find($id)->current();
+
+            // Apakah artikel ditemukan
+            $isFound = null !== $article;
+
+            // Apakah artikel berstatus "publish"
+            $isPublish = $article->status == Admin_Model_Status::PUBLISH;
+
+            // Apakah artikel milik user yang sedang login
+            $isBelongs = $article->created_by == $user->username;
+
+            // Apakah user yang sedang login dapat menyetujui artikel (guru/admin)
+            $allowedToApprove = $acl->isAllowed($user->role, SITi_Acl::RES_ARTICLE, 'approve');
+
             // Jika artikel ditemukan dan artikel nya harus berstatus publish
             // atau juga jika artikel milik pengguna yang sedang online dengan semua status
             // yang berarti artikel yang ditampilkan akan dalam mode pratinjau.
-            if (null !== $article && ($article->status == Admin_Model_Status::PUBLISH || $article->created_by == $user->username)) {
-                if (!$this->getRequest()->getCookie('view_article_' . $id)) {
-                    $article->views += 1;
-                    $article->save();
-                    setcookie('view_article_' . $id, true, time() + 60 * 60 * 24, '/');
+            if ($isFound && ($isPublish || $isBelongs || $allowedToApprove)) {
+                // views hanya akan ditambahkan jika status nya publish (tidak dalam mode pratinjau)
+                if ($isPublish) {
+                    if (!$this->getRequest()->getCookie('view_article_' . $id)) {
+                        $article->views += 1;
+                        $article->save();
+                        setcookie('view_article_' . $id, true, time() + 60 * 60 * 24, '/');
+                    }
                 }
 
                 $form = new Application_Form_Comment();
@@ -77,25 +94,38 @@ class ArticleController extends Zend_Controller_Action {
         $this->_helper->layout->disableLayout();
         $id = $this->getParam('id');
         $return = $this->getParam('return');
+        $model = new Application_Model_DbTable_Article();
+        $article = $model->find($id)->current();
         if ($this->getRequest()->isPost() && null !== $id) {
-            $model = new Application_Model_DbTable_Article();
-            $article = $model->find($id)->current();
-            if (null !== $article) {
-                $form = new Application_Form_Comment();
-                $data = $this->getRequest()->getPost();
-                if ($form->isValid($data)) {
-                    $comment = new Application_Model_DbTable_Comment();
-                    $id = $comment->insert(array(
-                        'user'       => Zend_Auth::getInstance()->getIdentity()->username,
-                        'created_on' => Date('Y-m-d H:i:s'),
-                        'content'    => $form->content->getValue(),
-                    ));
+            $user = Zend_Auth::getInstance();
+            if ($user->hasIdentity()) {
+                if (null !== $article) {
+                    $form = new Application_Form_Comment();
+                    $data = $this->getRequest()->getPost();
+                    if ($form->isValid($data)) {
+                        $comment = new Application_Model_DbTable_Comment();
+                        $id = $comment->insert(array(
+                            'user' => Zend_Auth::getInstance()->getIdentity()->username,
+                            'created_on' => Date('Y-m-d H:i:s'),
+                            'content' => $form->content->getValue(),
+                                ));
 
-                    $comment->getAdapter()->insert('article_comments', array(
-                        'article_id' => $article->id,
-                        'comment_id' => $id
-                    ));
+                        $comment->getAdapter()->insert('article_comments', array(
+                            'article_id' => $article->id,
+                            'comment_id' => $id
+                        ));
+                    }
                 }
+            } else {
+
+                $loginUrl = $this->view->url(array(
+                    'controller' => 'user',
+                    'action' => 'login',
+                    'module' => 'admin',
+                    'return' => "article|view|id|{$article->id}#comment"), null, true);
+
+                $this->_helper->flashMessenger->addMessage('error|Anda sepertinya belum login');
+                $this->redirect($loginUrl);
             }
         }
         $this->redirect(str_replace('|', '/', $return));

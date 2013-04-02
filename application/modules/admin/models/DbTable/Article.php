@@ -1,13 +1,12 @@
 <?php
 
-class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
-{
+class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract {
+
     protected $_name = 'article';
 
-    public function findAll($user = null, $filter = NULL)
-    {
+    public function findAll($user = null, $filter = NULL) {
         $select = $this->select()->setIntegrityCheck(false)->from($this->_name);
-        
+
         // Add comments count column :)
         $select->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"));
 
@@ -31,19 +30,28 @@ class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract
             }
         }
 
+        $select->where("{$this->_name}.status != ?", Admin_Model_Status::PENDING);
+
         $select->order("{$this->_name}.created_on DESC");
 
         $result = $this->fetchAll($select);
         return $result;
     }
 
-    public function countStatus($username = null)
-    {
+    public function findPendingArticles() {
+        $select = $this->select()->from($this->_name);
+        $select->where("{$this->_name}.status = ?", Admin_Model_Status::PENDING);
+        $select->order("{$this->_name}.created_on DESC}");
+        $result = $this->fetchAll($select);
+        return $result;
+    }
+
+    public function countStatus($username = null) {
         $select = $this->select()->from($this->_name, array(
             'archived' => "SUM(status = 'archived')",
-            'draft'    => "SUM(status = 'draft')",
-            'pending'  => "SUM(status = 'pending')",
-            'publish'  => "SUM(status = 'publish')"));
+            'draft' => "SUM(status = 'draft')",
+            'pending' => "SUM(status = 'pending')",
+            'publish' => "SUM(status = 'publish')"));
 
         if (null !== $username) {
             $select->where("{$this->_name}.created_by = ?", $username);
