@@ -85,6 +85,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
         $username = Zend_Auth::getInstance()->getIdentity()->username;
         $data = $this->article->findAll($username, $this->filter->article);
 
+
         $countStatus = $this->article->countStatus($username);
 
         $paginator = Zend_Paginator::factory($data);

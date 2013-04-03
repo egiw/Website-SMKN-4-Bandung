@@ -30,8 +30,6 @@ class Admin_Model_DbTable_Article extends Zend_Db_Table_Abstract {
             }
         }
 
-        $select->where("{$this->_name}.status != ?", Admin_Model_Status::PENDING);
-
         $select->order("{$this->_name}.created_on DESC");
 
         $result = $this->fetchAll($select);

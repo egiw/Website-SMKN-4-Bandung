@@ -33,17 +33,17 @@
             <a href="#highlight" class="carousel-control right" data-slide="next">&rsaquo;</a>
         </div>
     </div>
-    <div class="post span4 top-green" style="">
+    <div class="post span4 top-green">
         <div class="inner">
             <h4>Berita Terbaru</h4>
             <ul class="news-list">
                 <?php foreach ($this->news as $news): ?>
                     <?php
                     $url = $this->url(array(
-                        'module'     => 'default',
+                        'module' => 'default',
                         'controller' => 'news',
-                        'action'     => 'view',
-                        'id'         => $news['id']
+                        'action' => 'view',
+                        'id' => $news['id']
                     ));
                     ?>
                     <li><a href="<?php echo $url; ?>"><?php echo $news['title']; ?></a></li>
@@ -55,7 +55,7 @@
 <div class="jurusan row-fluid">
     <div class="inner">
         <div class="span4">
-            <i class="icon-globe icon-2x" style="margin-left: 10px;"></i>
+            <i class="icon-globe icon-2x"></i>
             <h3>Rekayasa Perangkat Lunak</h3>
             <p>Rekayasa Perangkat Lunak, Teknik Komputer dan Jaringan, dan Multimedia.</p>
         </div>
@@ -111,7 +111,7 @@
             <ul class="unstyled article">
                 <?php foreach ($this->latestArticles as $index => $article): ?>
                     <?php
-                    $link = $this->url(array('controller' => 'article', 'action'     => 'view', 'id'         => $article['id']));
+                    $link = $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $article['id']));
                     ?>
                     <li>
                         <article>
@@ -128,10 +128,11 @@
                                         <?php echo $article['title']; ?>
                                     </a>
                                 </h5>
-                                <?php echo $this->truncate($article['content'], 250, "&nbsp;<a href='{$link}'>[...]</a>", true, true); ?>
+                                <p><?php echo strip_tags($this->truncate($article['content'], 250, "&nbsp;<a href='{$link}'>[...]</a>", true, true), '<a>'); ?></p>
                             </div>
                             <div class="article-footer">
-                                <i class="icon-user"></i>&nbsp;<a href="#"><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;
+                                <i class="icon-user"></i>&nbsp;
+                                    <a class="userlink" href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index', 'username' => $article['created_by'])); ?>" data-toggle='modal'><?php echo $article['created_by']; ?></a>&nbsp;&nbsp;
                                 <i class="icon-eye-open"></i>&nbsp;<?php echo $article['views']; ?>&nbsp;&nbsp;
                                 <i class="icon-comments"></i>&nbsp;<?php echo $article['comments']; ?> &nbsp;&nbsp;
                                 <i class="icon-thumbs-up"></i>&nbsp;

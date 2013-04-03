@@ -32,11 +32,18 @@ class ArticleController extends Zend_Controller_Action {
             // Apakah artikel berstatus "publish"
             $isPublish = $article->status == Admin_Model_Status::PUBLISH;
 
-            // Apakah artikel milik user yang sedang login
-            $isBelongs = $article->created_by == $user->username;
+            $isBelongs = false;
+            $allowedToApprove = false;
 
-            // Apakah user yang sedang login dapat menyetujui artikel (guru/admin)
-            $allowedToApprove = $acl->isAllowed($user->role, SITi_Acl::RES_ARTICLE, 'approve');
+
+            if ($user) {
+                // Apakah artikel milik user yang sedang login
+                $isBelongs = $article->created_by == $user->username;
+
+                // Apakah user yang sedang login dapat menyetujui artikel (guru/admin)
+                $allowedToApprove = $acl->isAllowed($user->role, SITi_Acl::RES_ARTICLE, 'approve');
+            }
+
 
             // Jika artikel ditemukan dan artikel nya harus berstatus publish
             // atau juga jika artikel milik pengguna yang sedang online dengan semua status
@@ -108,7 +115,7 @@ class ArticleController extends Zend_Controller_Action {
                             'user' => Zend_Auth::getInstance()->getIdentity()->username,
                             'created_on' => Date('Y-m-d H:i:s'),
                             'content' => $form->content->getValue(),
-                                ));
+                        ));
 
                         $comment->getAdapter()->insert('article_comments', array(
                             'article_id' => $article->id,
