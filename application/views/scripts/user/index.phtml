@@ -1,0 +1,22 @@
+<div class="media">
+    <a class="pull-left" href="#">
+        <?php echo $this->thumbnail('avatar', $this->user['avatar'], 'no-avatar.jpg', 100, 100, 100); ?>
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading"><?php echo $this->user['fullname']; ?> (<?php echo $this->user['username']; ?>)</h4>
+        <table class="table table-striped">
+            <tr>
+                <th>Role</th>
+                <td><?php echo ucfirst($this->user['role']); ?></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><a href="mailto:<?php echo $this->user['email']; ?>"><?php echo $this->user['email']; ?></a></td>
+            </tr>
+            <tr>
+                <th>Bio</th>
+                <td><?php echo $this->user['bio']; ?></td>
+            </tr>
+        </table>
+    </div>
+</div>

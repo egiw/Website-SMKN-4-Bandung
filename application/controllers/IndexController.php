@@ -18,7 +18,7 @@ class IndexController extends Zend_Controller_Action {
             ))->save();
         } else {
             $model->insert(array(
-                'name'        => $user,
+                'name' => $user,
                 'last_active' => Date('Y-m-d H:i:s')
             ));
         }
@@ -27,8 +27,8 @@ class IndexController extends Zend_Controller_Action {
     public function indexAction() {
         $frontend = new Zend_Cache_Frontend_Class(array(
             'cached_entity' => $this,
-            'lifetime'      => 1800,
-            'caching'       => true
+            'lifetime' => 1800,
+            'caching' => true
         ));
         $backend = new Zend_Cache_Backend_File();
         $backend->setCacheDir(APPLICATION_PATH . '/cache/');
