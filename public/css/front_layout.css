@@ -20,6 +20,12 @@ input[type="text"], input[type="password"] {
     font-size: 19.5px;
 }
 
+.brand p {
+    margin-left: 10px;margin-top: 15px;
+}
+
+
+
 .header.row-fluid {
 
     min-height: 138px;
@@ -187,6 +193,10 @@ address#school-address {
 
 .jurusan.row-fluid div[class*="span"] {
     margin-left: 1%;
+}
+
+.jurusan .icon-globe {
+    margin-left: 10px;
 }
 
 .row-fluid-bordered {

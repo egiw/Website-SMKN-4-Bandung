@@ -85,6 +85,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
         $username = Zend_Auth::getInstance()->getIdentity()->username;
         $data = $this->article->findAll($username, $this->filter->article);
 
+
         $countStatus = $this->article->countStatus($username);
 
         $paginator = Zend_Paginator::factory($data);
@@ -145,9 +146,7 @@ class Admin_ArticleController extends Zend_Controller_Action {
 // action body
         $id = $this->getParam('id');
         $return = $this->getParam('return');
-        if ($return == 'approve') {
-            $this->form->submit->setLabel('Simpan dan terbitkan.');
-        }
+        $this->form->submit->setLabel('Simpan dan terbitkan.');
         if (null !== $id) {
             $article = $this->article->find($id)->current();
             if (null !== $article) {

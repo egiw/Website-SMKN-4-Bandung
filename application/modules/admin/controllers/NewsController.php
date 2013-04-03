@@ -115,6 +115,7 @@ class Admin_NewsController extends Zend_Controller_Action {
         // action body
         $id = $this->getParam('id');
         $form = new Admin_Form_News();
+        $form->submit->setLabel('Simpan dan Terbitkan');
         $return = $this->getParam('return');
         if (null == $id) {
             $this->_helper->redirector('index');

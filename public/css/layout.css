@@ -1,25 +1,26 @@
 .sidebar {
-  border:1px solid #ddd;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 40px;
-  width: 150px;
-  border-radius: 0;
-  padding: 20px;
- 
+    border:1px solid #ddd;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 40px;
+    width: 150px;
+    border-radius: 0;
+    padding: 20px;
+
 }
 
 .main-content {
-  margin-left: 192px;
-  margin-top: 40px;
-  padding-top: 10px;
+    margin-left: 192px;
+    margin-top: 40px;
+    padding-top: 10px;
 }
 
+
 @media (max-width: 979px) {
-  .main-content {
-    margin: 0;
-    padding-top: 0;
-  }
+    .main-content {
+        margin: 0;
+        padding-top: 0;
+    }
 }
 
