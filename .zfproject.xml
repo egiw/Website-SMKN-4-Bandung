@@ -44,6 +44,10 @@
         <controllerFile controllerName="Search">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Event">
+          <actionMethod actionName="index"/>
+          <actionMethod actionName="view"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory>
         <formFile formName="Guestbook"/>
@@ -453,6 +457,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Article">
             <viewScriptFile forActionName="comment"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Event">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Event">
+            <viewScriptFile forActionName="view"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

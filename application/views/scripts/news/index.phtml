@@ -45,9 +45,9 @@
                             </div>
 
                             <div class="article-footer" style="padding-top: 11px">
-                                <i class="icon-eye-open"></i>&nbsp;<?php // echo $article['views'];      ?>&nbsp;&nbsp;
-                                <i class="icon-comments"></i>&nbsp;<?php // echo rand(0, 1000);      ?> &nbsp;&nbsp;
-                                <i class="icon-thumbs-up"></i>&nbsp;<?php // echo $article['likes'];      ?> &nbsp;&nbsp;
+                                <i class="icon-eye-open"></i>&nbsp;<?php echo $news['views'];      ?>&nbsp;&nbsp;
+                                <i class="icon-comments"></i>&nbsp;<?php echo $news['comments'];      ?> &nbsp;&nbsp;
+                                <i class="icon-thumbs-up"></i>&nbsp;<?php echo (null !== $news['likes'] ) ? count(explode(',', $news['likes'])) : 0;  ?> &nbsp;&nbsp;
                             </div>
 
 

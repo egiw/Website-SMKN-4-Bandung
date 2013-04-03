@@ -52,15 +52,15 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                                     // calling the API ...
                                     var obj = {
                                         method: 'feed',
-                                        //                                        redirect_uri: '<?php echo $fullUrl; ?>',
-                                        //                                        link: '<?php echo $fullUrl; ?>',
-                                        link : 'www.w3schools.com',
+                                                                              redirect_uri: '<?php echo $fullUrl; ?>',
+                                                                             link: '<?php echo $fullUrl; ?>',
+//                                        link : 'www.w3schools.com',
                                         picture: 'http://fbrell.com/f8.jpg',
-                                        //                                        name: '<?php echo $this->news['title']; ?>',
-                                        name: 'haha',
+                                                                              name: '<?php echo $this->news['title']; ?>',
+                                        //name: 'haha',
                                         caption: 'Reference Documentation',
-                                        //                                        description: '<?php echo strip_tags($this->news['content']); ?>'
-                                        description: 'haha'
+                                                                                description: '<?php echo strip_tags($this->news['content']); ?>'
+                                        //description: 'haha'
                                     };
 
                                     function callback(response) {
