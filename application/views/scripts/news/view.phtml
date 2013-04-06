@@ -14,10 +14,13 @@ $permaLink = $this->url(array(
     'module' => 'default',
     'id' => $this->news['id']));
 
+$fullPermalink = 'http://tinyurl.com/api-create.php?url=' .$permaLink;
 
-$tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
+
+$tweet = "https://twitter.com/intent/tweet?source=webclient&text={$fullPermalink}";
 
 $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url();
+
 ?>
 
 
