@@ -9,8 +9,6 @@
             <div class="row-fluid">
                 <div class="pull-left">
                     <span class="label label-info" style="font-size: 30px; line-height: 47px; padding: 3px 11px; margin-top: -13px;">Artikel</span>
-                    <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
-                    <?php endif; ?>
                 </div>
                 <div class="pull-right">
                     <?php if (null !== $this->tag): ?>

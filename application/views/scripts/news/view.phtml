@@ -14,10 +14,13 @@ $permaLink = $this->url(array(
     'module' => 'default',
     'id' => $this->news['id']));
 
+$fullPermalink = 'http://tinyurl.com/api-create.php?url=' .$permaLink;
 
-$tweet = "https://twitter.com/intent/tweet?source=webclient&text={$permaLink}";
+
+$tweet = "https://twitter.com/intent/tweet?source=webclient&text={$fullPermalink}";
 
 $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url();
+
 ?>
 
 
@@ -52,15 +55,15 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                                     // calling the API ...
                                     var obj = {
                                         method: 'feed',
-                                        //                                        redirect_uri: '<?php echo $fullUrl; ?>',
-                                        //                                        link: '<?php echo $fullUrl; ?>',
-                                        link : 'www.w3schools.com',
+                                                                              redirect_uri: '<?php echo $fullUrl; ?>',
+                                                                             link: '<?php echo $fullUrl; ?>',
+//                                        link : 'www.w3schools.com',
                                         picture: 'http://fbrell.com/f8.jpg',
-                                        //                                        name: '<?php echo $this->news['title']; ?>',
-                                        name: 'haha',
+                                                                              name: '<?php echo $this->news['title']; ?>',
+                                        //name: 'haha',
                                         caption: 'Reference Documentation',
-                                        //                                        description: '<?php echo strip_tags($this->news['content']); ?>'
-                                        description: 'haha'
+                                                                                description: '<?php echo strip_tags($this->news['content']); ?>'
+                                        //description: 'haha'
                                     };
 
                                     function callback(response) {

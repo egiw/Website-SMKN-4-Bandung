@@ -4,6 +4,18 @@ class Application_Model_DbTable_Event extends Zend_Db_Table_Abstract {
 
     protected $_name = 'event';
 
+    
+    public function findAll(){
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from($this->_name)
+                ->order('until_date desc');
+        
+        $result = $this->fetchAll($select);
+        return $result;
+                
+    }
+    
     public function findLatestEvent($limit = 2) {
         $select = $this->select()->from($this->_name, array('from_date', 'until_date', 'title'));
         $select->limit($limit);
