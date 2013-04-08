@@ -18,10 +18,11 @@ $(document).ready(function() {
             url: $(this).attr('href'),
             method: 'GET',
             success: function(data) {
-                $("#myModal .modal-body").html(data);
+                $("#myModal").html(data);
+                $("#myModal").modal('show');
             }
         });
-        $("#myModal").modal('show');
+        
         return false;
     });
 });
