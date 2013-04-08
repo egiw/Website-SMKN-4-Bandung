@@ -14,5 +14,16 @@ class Application_Model_DbTable_Jobs extends Zend_Db_Table_Abstract
     $result = $this->fetchAll($select);
     return $result;
   }
+  
+  public function findAll(){
+      $select = $this->select()
+              ->setIntegrityCheck(false)
+              ->from($this->_name)
+              ->order('created_on desc');
+      
+      $result = $this->fetchAll($select);
+      
+      return $result;
+  }
 
 }
