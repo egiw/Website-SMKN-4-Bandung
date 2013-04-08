@@ -1,0 +1,53 @@
+<div class="main row-fluid">
+
+    <div class="span8">
+
+        <div class="content-inner">
+            <div class="row-fluid">
+                <div class="pull-left">
+                    <span class="label label-info" style="font-size: 30px; line-height: 47px; padding: 3px 11px; margin-top: -13px;">Lowongan Kerja</span>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <ul class="unstyled">
+                    <?php foreach ($this->jobs as $index => $job) : ?>
+                        <?php
+                        $link = $this->url(array('controller' => 'jobs', 'action' => 'view', 'id' => $job['id']));
+                        ?>
+                        <li>
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <blockquote>
+                                        <h3><?php echo $job['title'] ?></h3>
+                                        <small>
+                                            <cite>
+                                                <?php echo $job['company'] ?>
+                                            </cite>
+                                        </small>
+                                        <ul class="inline">
+                                            <li>
+                                                <a href="<?php echo $link ?>" class="btn btn-small btn-info">
+                                                    Info
+                                                </a>
+                                            </li>
+                                            <li>
+                                            </li>
+                                        </ul>
+
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="span4">
+        <?php echo $this->render('sidebar.phtml'); ?>
+    </div>
+
+</div>

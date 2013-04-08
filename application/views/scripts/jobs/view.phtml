@@ -1,0 +1,32 @@
+<div class="main row-fluid">
+
+    <div class="content-inner">
+        <ul class="inline">
+            <li>
+                <h2>
+                    <?php echo $this->jobs['title'] ?>
+                </h2>
+            </li>
+            <li class="pull-right">
+                <span class="label label-info"><font size="3px"><?php echo $this->jobs['company'] ?></font></span>
+            </li>
+        </ul>
+        <br />
+
+        <blockquote>
+
+            <?php echo $this->jobs['info'] ?>
+
+            <small>
+                <cite>
+                    Diposting oleh <a href="#"><?php echo $this->jobs['created_by']?></a> pada tanggal <?php echo Date('j M Y', strtotime($this->jobs['created_on'] ))?> jam <?php echo Date('H:i',strtotime($this->jobs['created_on'])) ?>
+                </cite>
+            </small>
+        </blockquote>
+
+        Website : <a href="<?php echo $this->jobs['website'] ?>"><?php echo $this->jobs['website'] ?></a>
+
+    </div>
+    <br />
+
+</div>
