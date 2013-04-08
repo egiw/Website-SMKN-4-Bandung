@@ -1,1 +1,110 @@
 <?php echo $this->flashMessenger($this->messages); ?>
+<style type="text/css">
+    /* vcard */
+    .vcard .thumbnail {float:left}
+    .vcard > ul {list-style:none;margin:10px 0 0 120px;overflow:hidden}
+    .vcard > ul > li:first-child {border-top:1px dashed #dcdcdc}
+    .vcard > ul > li {padding:8px;border-bottom:1px dashed #dcdcdc;overflow:hidden}
+    .vcard .item-key {float:left;color:#888}
+    .vcard .vcard-item {margin-left:120px}
+    .vcard .v-heading {background:#F0F9FF;font-weight:700}
+    .vcard .v-heading span {font-weight:100;font-size:11px;color:#666}
+    .vcard .item-list-more,.vcard .thumbnail.item-list-more {display:none}
+</style>
+<div class="row-fluid">
+    <div class="content-inner">
+        <div class="span12">
+            <h3 class="heading">Profil Pengguna</h3>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="vcard">
+                        <?php echo $this->thumbnail('avatar', $this->user->avatar, 'no-avatar.jpg', 90, 90, 100); ?>
+                        <ul>
+                            <li class="v-heading">
+                                Informasi Pengguna
+                            </li>
+                            <li>
+                                <span class="item-key">Nama Lengkap</span>
+                                <div class="vcard-item"><?php echo $this->user->fullname; ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Nama Pengguna</span>
+                                <div class="vcard-item"><?php echo $this->user->username; ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Email</span>
+                                <div class="vcard-item"><?php echo $this->user->email; ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Role</span>
+                                <div class="vcard-item"><?php echo ucfirst($this->user->role); ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Bio</span>
+                                <div class="vcard-item"><?php echo $this->user->bio; ?></div>
+                            </li>
+                            <!--                        <li>
+                                                        <span class="item-key">Languages:</span>
+                                                        <div class="vcard-item">
+                                                            <ul class="list_a">
+                                                                <li>English</li>
+                                                                <li>French</li>
+                                                                <li>German</li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="item-key">Signature</span>
+                                                        <div class="vcard-item">
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id quam orci, in ornare sapien. Nulla ultrices vestibulum erat a ullamcorper. Fusce eu nisl at nulla tempus posuere.
+                                                        </div>
+                                                    </li>-->
+                            <!--                        <li class="v-heading">
+                                                        Aktivitas Terakhir<span>(24 Jam terakhr)</span>
+                                                    </li>-->
+                            <!--                        <li>
+                                                        <ul class="unstyled sepH_b item-list">
+                                                            <li><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet...</a></li>
+                                                            <li><i class="splashy-document_letter_edit sepV_b"></i>John <a href="#">posted</a> new article <a href="#">Lorem ipsum dolor sit amet, consectetur...</a></li>
+                                                            <li><i class="splashy-image_cultured  sepV_b"></i>John added <a href="#">new_image,jpg</a></li>
+                                                            <li><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit </a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur </a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum, consectetur adipiscing elit</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit </a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur </a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></li>
+                                                            <li class="item-list-more"><i class="splashy-comment sepV_b"></i>John <a href="#">commented</a> on <a href="#">Lorem ipsum, consectetur adipiscing elit</a></li>
+                                                        </ul>
+                                                        <a href="#" data-items="5" class="item-list-show btn btn-mini">Show 5 more...</a>
+                                                    </li>-->
+                            <!--                        <li class="v-heading">
+                                                        User images
+                                                    </li>
+                                                    <li>
+                                                        <div class="sepH_a item-list clearfix">
+                                                            <img class="thumbnail sepV_a sepH_a" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                            <img class="thumbnail sepV_a sepH_a item-list-more" src="http://www.placehold.it/100x100/EFEFEF/AAAAAA" alt="">
+                                                        </div>
+                                                        <a href="#" data-items="5" class="item-list-show btn btn-mini">Show 5 more...</a>
+                                                    </li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>

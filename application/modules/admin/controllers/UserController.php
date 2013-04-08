@@ -4,8 +4,8 @@
  *
  * @author Egi Soleh Hasdi <egi.hasdi@sangkuriang.co.id>
  */
-class Admin_UserController extends Zend_Controller_Action
-{
+class Admin_UserController extends Zend_Controller_Action {
+
     const MSG_USER_NOT_FOUND = 'error|Nama Pengguna tidak ditemukan.';
     const MSG_PASSWORD_INVALID = 'error|Kata Sandi salah.';
     const MSG_FIELD_EMPTY = 'error|Harap isikan semua field.';
@@ -17,23 +17,21 @@ class Admin_UserController extends Zend_Controller_Action
      */
     protected $user;
 
-    public function init()
-    {
+    public function init() {
         /* Initialize action controller here */
 
         $this->_helper->layout->setLayout('admin');
         $this->user = new Admin_Model_DbTable_User();
     }
 
-    public function indexAction()
-    {
+    public function indexAction() {
         // action body
-
+        $user = Zend_Auth::getInstance()->getIdentity();
+        $this->view->user = $user;
         $this->view->messages = $this->_helper->flashMessenger->getMessages();
     }
 
-    public function loginAction()
-    {
+    public function loginAction() {
         $form = new Admin_Form_Login();
         $this->_helper->layout->disableLayout();
         $messages = $this->_helper->flashMessenger->getMessages();
@@ -77,8 +75,7 @@ class Admin_UserController extends Zend_Controller_Action
         $this->view->form = $form;
     }
 
-    public function logoutAction()
-    {
+    public function logoutAction() {
         // action body
         Zend_Auth::getInstance()->clearIdentity();
         if ($return = $this->getParam('return')) {
@@ -88,11 +85,10 @@ class Admin_UserController extends Zend_Controller_Action
         }
     }
 
-    public function settingAction()
-    {
+    public function settingAction() {
         $form = new Admin_Form_User();
         $user = $this->user->find(Zend_Auth::getInstance()
-        ->getIdentity()->username)->current();
+                                ->getIdentity()->username)->current();
         $form->populate($user->toArray());
 
         if ($this->getRequest()->isPost()) {
@@ -105,7 +101,7 @@ class Admin_UserController extends Zend_Controller_Action
                 if ($form->avatar->isUploaded()) {
                     $info = pathinfo($form->avatar->getFileName());
                     $form->avatar->addFilter('Rename', UPLOAD_FOLDER . 'avatar/'
-                    . $info['filename'] . '_' . time() . '.' . $info['extension']
+                            . $info['filename'] . '_' . time() . '.' . $info['extension']
                     );
                     if ($form->avatar->receive()) {
                         $user->avatar = $form->avatar->getValue();

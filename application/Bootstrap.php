@@ -19,9 +19,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $view->addHelperPath(APPLICATION_PATH . '/modues/admin/views/helpers', 'Admin_View_Helper');
     }
 
-    public function _initRoute() {
-        $router = Zend_Controller_Front::getInstance()->getRouter();
-        $router->addRoute('user', new Zend_Controller_Router_Route('user/:username', array('controller' => 'user', 'action' => 'index', 'username' => null)));
-    }
+//    public function _initRoute() {
+//        $router = Zend_Controller_Front::getInstance()->getRouter();
+//        $router->addRoute('user', new Zend_Controller_Router_Route('/user/view/:username', array('controller' => 'user', 'action' => 'view', 'username' => null)));
+//    }
 
 }
