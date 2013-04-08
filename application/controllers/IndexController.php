@@ -6,24 +6,6 @@ class IndexController extends Zend_Controller_Action {
         /* Initialize action controller here */
     }
 
-    public function testAction() {
-        $this->_helper->viewRenderer->setNoRender();
-        $user = $this->getParam('user');
-        $model = new Zend_Db_Table(array(
-            'name' => 'testing'
-        ));
-        if ($user = $model->find($user)->current()) {
-            $user->setFromArray(array(
-                'last_active' => Date('Y-m-d H:i:s')
-            ))->save();
-        } else {
-            $model->insert(array(
-                'name' => $user,
-                'last_active' => Date('Y-m-d H:i:s')
-            ));
-        }
-    }
-
     public function indexAction() {
         $frontend = new Zend_Cache_Frontend_Class(array(
             'cached_entity' => $this,
