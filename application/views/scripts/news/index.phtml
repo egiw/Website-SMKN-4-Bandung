@@ -16,8 +16,8 @@
 
             <ul class="unstyled article">
                 <?php foreach ($this->newss as $index => $news): ?>
-                <?php
-                    $link = $this->url(array('controller' => 'news', 'action'     => 'view', 'id'         => $news['id']));
+                    <?php
+                    $link = $this->url(array('controller' => 'news', 'action' => 'view', 'id' => $news['id']));
                     ?>
                     <li>
                         <article>
@@ -45,16 +45,16 @@
                             </div>
 
                             <div class="article-footer" style="padding-top: 11px">
-                                <i class="icon-eye-open"></i>&nbsp;<?php echo $news['views'];      ?>&nbsp;&nbsp;
-                                <i class="icon-comments"></i>&nbsp;<?php echo $news['comments'];      ?> &nbsp;&nbsp;
-                                <i class="icon-thumbs-up"></i>&nbsp;<?php echo (null !== $news['likes'] ) ? count(explode(',', $news['likes'])) : 0;  ?> &nbsp;&nbsp;
+                                <i class="icon-eye-open"></i>&nbsp;<?php echo $news['views']; ?>&nbsp;&nbsp;
+                                <i class="icon-comments"></i>&nbsp;<?php echo $news['comments']; ?> &nbsp;&nbsp;
+                                <i class="icon-thumbs-up"></i>&nbsp;<?php echo (null !== $news['likes'] ) ? count(explode(',', $news['likes'])) : 0; ?> &nbsp;&nbsp;
                             </div>
 
 
 
                             <div class="article-footer pull-right">
                                 <small>
-                                    by&nbsp;<a href="#"><?php echo $news['created_by']; ?></a>&nbsp;&nbsp;
+                                    oleh&nbsp;<a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'view', 'username' => $news['created_by'])); ?>"><?php echo $news['created_by']; ?></a>&nbsp;&nbsp;
                                 </small>
                             </div>
 

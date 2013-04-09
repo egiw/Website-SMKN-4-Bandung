@@ -74,6 +74,8 @@ class ArticleController extends Zend_Controller_Action {
             } else {
                 throw new Exception('Halaman tidak ditemukan', 404);
             }
+        } else {
+            throw new Exception('Not Found!', 404);
         }
     }
 

@@ -24,7 +24,7 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
         return $result;
     }
 
-    public function findLatestArticles($limit = 5) {
+    public function findLatestArticles($limit = 5, $user = null) {
         $select = $this->select()
                 ->setIntegrityCheck(false)
                 ->from($this->_name)
@@ -33,6 +33,11 @@ class Application_Model_DbTable_Article extends Zend_Db_Table_Abstract {
                 ->columns(array('comments' => "(SELECT COUNT(*) FROM article_comments WHERE article_id = {$this->_name}.id)"))
                 ->join($this->_user, "{$this->_name}.created_by = {$this->_user}.username", array(
             'avatar'));
+
+        if (null !== $user) {
+            $select->where("{$this->_name}.created_by = ?", $user);
+        }
+
         $result = $this->fetchAll($select);
         return $result;
     }

@@ -139,7 +139,9 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#"><?php echo $article->created_by; ?></a>
+                                <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'user', 'action' => 'view', 'username' => $article['created_by'])); ?>">
+                                    <?php echo $article->created_by; ?>
+                                </a>
                             </td>
                             <td><?php echo $this->status($article->status); ?></td>
                             <td><?php echo Date('d/m/Y', strtotime($article->created_on)); ?></td>

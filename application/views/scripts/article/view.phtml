@@ -1,6 +1,6 @@
 <?php
 $this->MinifyHeadLink()
-->appendStylesheet($this->baseUrl('css/application/article/view.css'));
+        ->appendStylesheet($this->baseUrl('css/application/article/view.css'));
 $auth = Zend_Auth::getInstance();
 ?>
 
@@ -18,7 +18,8 @@ $auth = Zend_Auth::getInstance();
                 <h4><?php echo $this->article['title']; ?></h4>
                 <small>
                     <cite>
-                        Diposting oleh <a href="#"><?php echo $this->article['created_by']; ?></a>
+                        Diposting oleh <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'view', 'username' => $this->article['created_by'])); ?>">
+                            <?php echo $this->article['created_by']; ?></a>
                         pada tanggal
                         <?php echo Date('j M Y', strtotime($this->article['created_on'])); ?>
                         <?php echo Date('H:i', strtotime($this->article['created_on'])); ?>
@@ -34,7 +35,7 @@ $auth = Zend_Auth::getInstance();
                     <li>
                         <?php if ($auth->hasIdentity() && !in_array($auth->getIdentity()->username, explode(',', $this->article['likes']))): ?>
                             <a id="like-link"
-                               href="<?php echo $this->url(array('action' => 'like', 'id'     => $this->article['id'])); ?>"
+                               href="<?php echo $this->url(array('action' => 'like', 'id' => $this->article['id'])); ?>"
                                title="Suka">
                                 <i class="icon-thumbs-up"></i>
                                 <?php echo (null != $this->article['likes'] ? count(explode(',', $this->article['likes'])) : 0); ?> &nbsp;&nbsp;
@@ -52,21 +53,21 @@ $auth = Zend_Auth::getInstance();
                 <?php if ($this->auth->hasIdentity() && $user = $this->auth->getIdentity()): ?>
                     <?php
                     $commentUrl = $this->url(array(
-                        'action'     => 'comment',
+                        'action' => 'comment',
                         'controller' => 'article',
-                        'module'     => 'default',
-                        'id'         => $this->article['id'],
-                        'return'     => str_replace('/', '|', $this->url()) . '#comment'
+                        'module' => 'default',
+                        'id' => $this->article['id'],
+                        'return' => str_replace('/', '|', $this->url()) . '#comment'
                     ));
                     ?>
                     <form onsubmit="if (this.content.value == '')
-                                        return false"
+                                return false"
                           action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
                         <div class="input-prepend">
                             <div class="add-on">
                                 <?php
                                 echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg'
-                                , 50, 50, 100, '');
+                                        , 50, 50, 100, '');
                                 ?>
                                 <?php echo $this->form->submit; ?>
                             </div>
@@ -77,9 +78,9 @@ $auth = Zend_Auth::getInstance();
                     <?php
                     $loginUrl = $this->url(array(
                         'controller' => 'user',
-                        'action'     => 'login',
-                        'module'     => 'admin',
-                        'return'     => "article|view|id|{$this->article['id']}#comment"), null, true);
+                        'action' => 'login',
+                        'module' => 'admin',
+                        'return' => "article|view|id|{$this->article['id']}#comment"), null, true);
                     ?>
                     <div class="alert">
                         <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -101,7 +102,7 @@ $auth = Zend_Auth::getInstance();
                                         <?php echo $comment['content']; ?>
                                     </p>
                                     <small>
-                                        <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
+                                        <cite><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'view', 'username' => $comment['user']), null, true); ?>"><?php echo $comment['user']; ?></a></cite>
                                         <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
                                     </small>
                                 </blockquote>

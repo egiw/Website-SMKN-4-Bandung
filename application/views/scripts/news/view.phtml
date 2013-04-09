@@ -14,13 +14,12 @@ $permaLink = $this->url(array(
     'module' => 'default',
     'id' => $this->news['id']));
 
-$fullPermalink = 'http://tinyurl.com/api-create.php?url=' .$permaLink;
+$fullPermalink = 'http://tinyurl.com/api-create.php?url=' . $permaLink;
 
 
 $tweet = "https://twitter.com/intent/tweet?source=webclient&text={$fullPermalink}";
 
 $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHttpHost() . $this->url();
-
 ?>
 
 
@@ -43,27 +42,28 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
                             <script src='http://connect.facebook.net/en_US/all.js'></script>
-                            <a href="#" onclick='postToFeed(); return false;'>Facebook</a>
+                            <a href="#" onclick='postToFeed();
+                                    return false;'>Facebook</a>
                             <p id='msg'>
 
                             </p>
-                            <script> 
-                                FB.init({appId:547516891937024, status: true, cookie: true});
+                            <script>
+                                FB.init({appId: 547516891937024, status: true, cookie: true});
 
                                 function postToFeed() {
 
                                     // calling the API ...
                                     var obj = {
                                         method: 'feed',
-                                                                              redirect_uri: '<?php echo $fullUrl; ?>',
-                                                                             link: '<?php echo $fullUrl; ?>',
+                                        redirect_uri: '<?php echo $fullUrl; ?>',
+                                        link: '<?php echo $fullUrl; ?>',
 //                                        link : 'www.w3schools.com',
                                         picture: 'http://fbrell.com/f8.jpg',
-                                                                              name: '<?php echo $this->news['title']; ?>',
+                                        name: '<?php echo $this->news['title']; ?>',
                                         //name: 'haha',
                                         caption: 'Reference Documentation',
-                                                                                description: '<?php echo strip_tags($this->news['content']); ?>'
-                                        //description: 'haha'
+                                        description: '<?php echo strip_tags($this->news['content']); ?>'
+                                                //description: 'haha'
                                     };
 
                                     function callback(response) {
@@ -72,7 +72,7 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
 
                                     FB.ui(obj, callback);
                                 }
-    
+
                             </script>
                         </li>
                         <li>
@@ -93,7 +93,9 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                 </li>
                 <li>
 
-                    <cite>Diposting oleh : <a href="#"><b><?php echo $this->news['created_by']; ?></b></a>
+                    <cite>Diposting oleh :
+                        <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'view', 'username' => $this->news['created_by']), null, true); ?>">
+                            <b><?php echo $this->news['created_by']; ?></b></a>
                         <br />
                         <div><?php echo Date('F j, Y', strtotime($this->news['created_on'])); ?></div>
                     </cite>
@@ -149,7 +151,7 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                     'module' => 'default',
                     'id' => $this->news['id'],
                     'return' => str_replace('/', '|', $this->url()) . '#comment'
-                        ));
+                ));
                 ?>
                 <form action="<?php echo $commentUrl; ?>" method="post" id="comment-form">
                     <div class="input-prepend">
@@ -190,7 +192,7 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
                                     <?php echo $comment['content']; ?>
                                 </p>
                                 <small>
-                                    <cite><a href="#"><?php echo $comment['user']; ?></a></cite>
+                                    <cite><a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'view', 'username' => $comment['user']), null, true); ?>"><?php echo $comment['user']; ?></a></cite>
                                     <?php echo $this->timeSince(time() - strtotime($comment['created_on'])); ?>
                                 </small>
                             </blockquote>
@@ -213,19 +215,20 @@ $fullUrl = 'http://' . Zend_Controller_Front::getInstance()->getRequest()->getHt
 <script>
 
 
-    $('#shareTwitter').click(function(event){
+    $('#shareTwitter').click(function(event) {
         event.preventDefault();
-        
+
         var w = 700;
         var h = 500;
-        var x = screen.width/2 - w/2;
-        var y = screen.height/2 - h/2;
-        
-        window.open($(this).attr('href'),'1362073567533','width='+w+',height='+h+',toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left='+x+',top='+y+'');return false;
+        var x = screen.width / 2 - w / 2;
+        var y = screen.height / 2 - h / 2;
+
+        window.open($(this).attr('href'), '1362073567533', 'width=' + w + ',height=' + h + ',toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=' + x + ',top=' + y + '');
+        return false;
     })
 
-    
-    
+
+
 
 
 </script>

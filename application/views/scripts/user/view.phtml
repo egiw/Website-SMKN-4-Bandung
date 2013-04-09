@@ -1,0 +1,109 @@
+<style type="text/css">
+    /* vcard */
+    .vcard .thumbnail {float:left}
+    .vcard > ul {list-style:none;margin:10px 0 0 120px;overflow:hidden}
+    .vcard > ul > li:first-child {border-top:1px dashed #dcdcdc}
+    .vcard > ul > li {padding:8px;border-bottom:1px dashed #dcdcdc;overflow:hidden}
+    .vcard .item-key {float:left;color:#888}
+    .vcard .vcard-item {margin-left:120px}
+    .vcard .v-heading {background:#F0F9FF;font-weight:700}
+    .vcard .v-heading span, .vcard span.time {font-weight:100;font-size:11px;color:#666}
+    .vcard .item-list-more,.vcard .thumbnail.item-list-more {display:none}
+</style>
+<div class="row-fluid">
+    <div class="content-inner">
+        <div class="span12">
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="vcard">
+                        <?php echo $this->thumbnail('avatar', $this->user->avatar, 'no-avatar.jpg', 90, 90, 100); ?>
+                        <ul>
+                            <li class="v-heading">
+                                Informasi Pengguna
+                            </li>
+                            <li>
+                                <span class="item-key">Nama Lengkap</span>
+                                <div class="vcard-item"><?php echo $this->user->fullname; ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Nama Pengguna</span>
+                                <div class="vcard-item"><?php echo $this->user->username; ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Email</span>
+                                <div class="vcard-item">
+                                    <a href="mailto:<?php echo $this->user->email; ?>">
+                                        <?php echo $this->user->email; ?>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="item-key">Role</span>
+                                <div class="vcard-item"><?php echo ucfirst($this->user->role); ?></div>
+                            </li>
+                            <li>
+                                <span class="item-key">Bio</span>
+                                <div class="vcard-item"><?php echo $this->user->bio; ?></div>
+                            </li>
+                            <li class="v-heading">
+                                Postingan Terakhir
+                                <!--<span>(10 terakhr)</span>-->
+                            </li>
+                            <?php if (!empty($this->posts)): ?>
+                                <li>
+                                    <ul class="item-list">
+                                        <?php foreach ($this->posts as $index => $post): ?>
+                                            <li>
+                                                <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $post['id']), null, true); ?>">
+                                                    <?php echo $post['title']; ?>
+                                                </a>
+                                                <span class="time">Pada <?php echo Date('d M Y', strtotime($post['created_on'])); ?></span>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
+                            <?php else: ?>
+                                Tidak mempunyai satupun artikel.
+                            <?php endif; ?>
+                            <li class="v-heading">
+                                Komentar Terakhir
+                            </li>
+                            <?php if (!empty($this->comments)): ?>
+                                <li>
+                                    <ul class="unstyled item-list">
+                                        <?php foreach ($this->comments as $index => $comment): ?>
+                                            <li>
+                                                <blockquote>
+                                                    <?php echo $comment['content']; ?>
+                                                    <small>
+                                                        pada <?php echo Date('d M', strtotime($comment['created_on'])); ?>
+                                                        di
+                                                        <?php if ($comment['type'] == 'article'): ?>
+                                                            artikel
+                                                        <?php elseif ($comment['type'] == 'news'): ?>
+                                                            berita
+                                                        <?php endif; ?>
+                                                        <a href="<?php echo $this->url(array('controller' => $comment['type'], 'action' => 'view', 'id' => $comment['post_id']), null, true); ?>">
+                                                            <?php echo $comment['title']; ?></a>
+                                                    </small>
+
+                                                </blockquote>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </li>
+                            <?php else: ?>
+                                Tidak mempunyai satupun komentar.
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span12 well bottombar">
+        <?php echo $this->render('bottombar.phtml'); ?>
+    </div>
+</div>
