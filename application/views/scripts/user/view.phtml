@@ -75,9 +75,18 @@
                                             <li>
                                                 <blockquote>
                                                     <?php echo $comment['content']; ?>
-                                                    <small>pada
-                                                        <a href="<?php echo $this->url(array('controller' => 'article', 'action' => 'view', 'id' => $comment['article_id']), null, true); ?>">
-                                                            <?php echo $comment['title']; ?></a></small>
+                                                    <small>
+                                                        pada <?php echo Date('d M', strtotime($comment['created_on'])); ?>
+                                                        di
+                                                        <?php if ($comment['type'] == 'article'): ?>
+                                                            artikel
+                                                        <?php elseif ($comment['type'] == 'news'): ?>
+                                                            berita
+                                                        <?php endif; ?>
+                                                        <a href="<?php echo $this->url(array('controller' => $comment['type'], 'action' => 'view', 'id' => $comment['post_id']), null, true); ?>">
+                                                            <?php echo $comment['title']; ?></a>
+                                                    </small>
+
                                                 </blockquote>
                                             </li>
                                         <?php endforeach; ?>

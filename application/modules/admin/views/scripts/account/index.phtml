@@ -64,7 +64,7 @@
                         <th colspan="2">
                             <?php
                             echo $this->formText('filter[username]', $this->filter['username'], array(
-                                'class'       => 'span12',
+                                'class' => 'span12',
                                 'placeholder' => 'Cari berdasarkan nama pengguna'
                             ));
                             ?>
@@ -72,7 +72,7 @@
                         <th>
                             <?php
                             echo $this->formText('filter[fullname]', $this->filter['fullname'], array(
-                                'class'       => 'span12',
+                                'class' => 'span12',
                                 'placeholder' => 'Cari berdasarkan nama lengkap'
                             ));
                             ?>
@@ -80,7 +80,7 @@
                         <th>
                             <?php
                             echo $this->formText('filter[email]', $this->filter['email'], array(
-                                'class'       => 'span12',
+                                'class' => 'span12',
                                 'placeholder' => 'Cari berdasarkan email'
                             ));
                             ?>
@@ -89,10 +89,10 @@
                             <?php
                             echo $this->formSelect('filter[role]', $this->filter['role'], array(
                                 'class' => 'span12'
-                            ), array(
-                                null                 => "--Tampilkan Semua ({$this->rolesCount['all']})",
+                                    ), array(
+                                null => "--Tampilkan Semua ({$this->rolesCount['all']})",
                                 SITi_Acl::ROLE_SISWA => "Siswa ({$this->rolesCount['siswa']})",
-                                SITi_Acl::ROLE_GURU  => "Guru ({$this->rolesCount['guru']})",
+                                SITi_Acl::ROLE_GURU => "Guru ({$this->rolesCount['guru']})",
                                 SITi_Acl::ROLE_ADMIN => "Admin ({$this->rolesCount['admin']})",
                             ));
                             ?>
@@ -107,16 +107,16 @@
                             <td>
                                 <?php echo $this->thumbnail('avatar', $user->avatar, 'no-avatar.jpg', 32, 32); ?>
                             </td>
-                            <td><?php echo $user->username; ?></td>
+                            <td><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'user', 'action' => 'view', 'username' => $user->username)); ?>"><?php echo $user->username; ?></a></td>
                             <td><?php echo $user->fullname; ?></td>
                             <td><?php echo $user->email; ?></td>
                             <td><?php echo $user->role; ?></td>
                             <td>
-                                <a href="<?php echo $this->url(array('action' => 'edit', 'id'     => $user->username)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'edit', 'id' => $user->username)); ?>"
                                    title="Sunting">
                                     <i class="icon-edit"></i>
                                 </a>
-                                <a href="<?php echo $this->url(array('action' => 'delete', 'id'     => $user->username)); ?>"
+                                <a href="<?php echo $this->url(array('action' => 'delete', 'id' => $user->username)); ?>"
                                    title="Hapus"
                                    onclick="return confirm('Hapus akun \'<?php echo $user->username ?>\'?')">
                                     <i class="icon-trash"></i>

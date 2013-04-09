@@ -10,11 +10,11 @@
             <?php
             echo $this->formSelect('filter[row]', $this->filter['row'], array(
                 'style' => 'width:55px'), array(
-                5   => 5,
-                10  => 10,
-                15  => 15,
-                25  => 25,
-                50  => 50,
+                5 => 5,
+                10 => 10,
+                15 => 15,
+                25 => 25,
+                50 => 50,
                 100 => 100
             ));
             ?>
@@ -74,27 +74,27 @@
                     <?php foreach ($this->articles as $index => $article): ?>
                         <?php
                         $viewUrl = $this->url(array(
-                            'module'     => 'default',
-                            'action'     => 'view',
+                            'module' => 'default',
+                            'action' => 'view',
                             'controller' => 'article',
-                            'id'         => $article->id
+                            'id' => $article->id
                         ));
 
                         $editUrl = $this->url(array(
-                            'module'     => 'admin',
+                            'module' => 'admin',
                             'controller' => 'article',
-                            'action'     => 'edit',
-                            'id'         => $article->id,
-                            'return'     => 'approve'
+                            'action' => 'edit',
+                            'id' => $article->id,
+                            'return' => 'approve'
                         ));
 
 
                         $deleteUrl = $this->url(array(
-                            'module'     => 'admin',
+                            'module' => 'admin',
                             'controller' => 'article',
-                            'action'     => 'delete',
-                            'id'         => $article->id,
-                            'return'     => 'approve'
+                            'action' => 'delete',
+                            'id' => $article->id,
+                            'return' => 'approve'
                         ));
                         ?>
 
@@ -108,7 +108,9 @@
                                     <strong><?php echo $article->title; ?></strong>
                                 </a>
                             </td>
-                            <td><a href="#"><?php echo $article->created_by; ?></a></td>
+                            <td><a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'user', 'action' => 'view', 'username' => $article['created_by'])); ?>">
+                                    <?php echo $article->created_by; ?></a>
+                            </td>
                             <td><?php echo Date('d F Y', strtotime($article->created_on)); ?></td>
                             <td><?php echo $this->tags($article->tags); ?></td>
                             <td>

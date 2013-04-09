@@ -16,7 +16,6 @@ class UserController extends Zend_Controller_Action {
                 $comment = new Application_Model_DbTable_Comment();
                 $posts = $model->findLatestArticles(5, $user->username);
                 $comments = $comment->findUserComments($user->username, 5);
-
                 $this->view->comments = $comments->toArray();
                 $this->view->posts = $posts->toArray();
                 $this->view->user = $user;
