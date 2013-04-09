@@ -26,9 +26,8 @@
                                     </a>
                                 </h4>
                                 <?php echo strip_tags($this->truncate($post['content'], 250)); ?>
-                                <small style="margin-top: 10px;
-                                       ">
-                                    <i class="icon-user"></i><cite><a href="#"><?php echo $post['created_by']; ?></a></cite></a>&nbsp;&nbsp;
+                                <small style="margin-top: 10px;">
+                                    <i class="icon-user"></i><cite><a href="<?php echo $this->url(array('controller'=>'user', 'action'=>'view', 'username'=> $post['created_by'])) ?>"><?php echo $post['created_by']; ?></a></cite></a>&nbsp;&nbsp;
                                     <i class="icon-eye-open"></i>&nbsp;<?php echo $post['views']; ?>&nbsp;&nbsp;
                                     <i class="icon-comments"></i>&nbsp;<?php echo $post['comments']; ?> &nbsp;&nbsp;
                                     <i class="icon-thumbs-up"></i>&nbsp;
