@@ -26,15 +26,13 @@
                                                 <?php echo $job['company'] ?>
                                             </cite>
                                         </small>
-                                        <ul class="inline">
-                                            <li>
-                                                <a href="<?php echo $link ?>" class="btn btn-small btn-info">
-                                                    Info
-                                                </a>
-                                            </li>
-                                            <li>
-                                            </li>
-                                        </ul>
+
+                                        <br />
+                                        
+                                        <a href="<?php echo $link ?>" class="btn btn-small btn-info">
+                                            Info
+                                        </a>
+
 
                                     </blockquote>
                                 </div>
@@ -43,6 +41,8 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
+
+            <?php echo $this->paginationControl($this->jobs, 'sliding', 'pagination_control.phtml') ?>            
         </div>
 
     </div>

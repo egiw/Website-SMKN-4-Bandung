@@ -8,10 +8,15 @@ class EventController extends Zend_Controller_Action {
 
     public function indexAction() {
 
+        $pageNumber = $this->getParam('page');
         $model = new Application_Model_DbTable_Event();
         $data = $model->findAll();
+        
+        $events = Zend_Paginator::factory($data);
+        $events->setItemCountPerPage(20);
+        $events->setCurrentPageNumber($pageNumber);
 
-        $this->view->events = $data;
+        $this->view->events = $events;
     }
 
     public function viewAction() {

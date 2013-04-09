@@ -12,6 +12,7 @@ class ArticleController extends Zend_Controller_Action {
         $model = new Application_Model_DbTable_Article();
         $data = $model->findAll($tag);
         $articles = Zend_Paginator::factory($data);
+        $articles->setItemCountPerPage(10);
         $articles->setCurrentPageNumber($pageNumber);
         $this->view->articles = $articles;
         $this->view->tag = $tag;

@@ -34,11 +34,15 @@
 
                     <?php foreach ($this->events as $index => $event): ?>
                         <?php
-                        $eventDay = date("d M Y", strtotime($event['until_date']));
+                        
+                        
 
-                        if ($eventDay < Date("d M y")) {
+                        
+                        if (strtotime($event['until_date']) < time()) {
                             $extra = "error";
-                        } elseif ($eventDay > Date("d M y")) {
+                        } elseif (strtotime($event['until_date']) > time()) {
+                            $extra = "success";
+                        } else{
                             $extra = "success";
                         }
                         ?>
@@ -65,6 +69,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php echo $this->paginationControl($this->events, 'sliding', 'pagination_control.phtml'); ?>
         </div>
     </div>
     <div class="span4 well sidebar">

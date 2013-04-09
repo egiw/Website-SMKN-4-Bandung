@@ -8,11 +8,18 @@ class NewsController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
+        
+        $pageNumber = $this->getParam('page');
 
         $model = new Application_Model_DbTable_News();
         $data = $model->findAll();
+        
+        $newss = Zend_Paginator::factory($data);
+        $newss->setItemCountPerPage(3);
+        $newss->setCurrentPageNumber($pageNumber);
+        
 
-        $this->view->newss = $data;
+        $this->view->newss = $newss;
     }
 
     public function viewAction() {

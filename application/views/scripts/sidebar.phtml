@@ -32,7 +32,7 @@
                     <div class="time">
                         <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventUC['from_date'])); ?>
                     </div>
-                    <a href="#"><?php echo $eventUC['title']; ?></a>
+                    <a class="userlink" data-toggle="modal" href="<?php echo $this->url(array('controller' => 'event', 'action' => 'view', 'id' =>$eventUC['id'] )) ?>"><?php echo $eventUC['title']; ?></a>
                 </li>
             <?php endforeach; ?>
             <?php foreach ($this->Widget()->getLatestEvent() as $eventL): ?>
@@ -41,7 +41,7 @@
                         <div class="time">
                             <?php echo date("d M Y", strtotime($eventL['from_date'])); ?> s/d <?php echo date("d M Y", strtotime($eventL['from_date'])); ?>
                         </div>
-                        <a href="#"><?php echo $eventL['title']; ?></a>
+                        <a class="userlink" data-toggle="modal" href="<?php echo $this->url(array('controller' => 'event', 'action' => 'view', 'id' =>$eventL['id'] )) ?>"><?php echo $eventL['title']; ?></a>
                     </del>
                 </li>
             <?php endforeach; ?>
@@ -73,7 +73,7 @@
         <ul class = "unstyled">
             <?php foreach ($this->Widget()->getLatestJobs() as $index => $job): ?>
                 <li>
-                    <a href="#"><?php echo $job['title']; ?></a><br />
+                    <a href="<?php echo $this->url(array('controller' => 'jobs', 'action' => 'view', 'id' => $job['id'])) ?>"><?php echo $job['title']; ?></a><br />
                     <small>- <?php echo $job['company']; ?></small>
                 </li>
             <?php endforeach; ?>
