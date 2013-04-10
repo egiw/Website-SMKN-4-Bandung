@@ -123,4 +123,18 @@ class Admin_UserController extends Zend_Controller_Action {
         $this->view->form = $form;
     }
 
+    public function delcacheAction() {
+        $this->_helper->layout->disableLayout();
+        $this->_helper->viewRenderer->setNoRender(true);
+        $frontend = new Zend_Cache_Frontend_Class(array(
+            'cached_entity' => $this,
+            'lifetime' => 1800,
+            'caching' => true
+        ));
+        $backend = new Zend_Cache_Backend_File();
+        $backend->setCacheDir(APPLICATION_PATH . '/cache/');
+        $cache = Zend_Cache::factory($frontend, $backend);
+        $cache->clean();
+    }
+
 }

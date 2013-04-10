@@ -9,29 +9,29 @@
         $user = Zend_Auth::getInstance()->getIdentity();
 
         $this->MinifyHeadLink()
-        ->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
-        ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
-        ->appendStylesheet($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.css'))
-        ->prependStylesheet($this->baseUrl('lib/Tag-Handler/css/jquery.taghandler.css'))
-        ->appendStylesheet($this->baseUrl('lib/jquery-ui/css/Aristo/Aristo.css'))
-        ->appendStylesheet($this->baseUrl('lib/gebo/css/blue.css'))
-        ->appendStylesheet($this->baseUrl('lib/gebo/css/style.css'))
+                ->prependStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap.css'))
+                ->appendStylesheet($this->baseUrl('lib/bootstrap/css/bootstrap-responsive.css'))
+                ->appendStylesheet($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.css'))
+                ->prependStylesheet($this->baseUrl('lib/Tag-Handler/css/jquery.taghandler.css'))
+                ->appendStylesheet($this->baseUrl('lib/jquery-ui/css/Aristo/Aristo.css'))
+                ->appendStylesheet($this->baseUrl('lib/gebo/css/blue.css'))
+                ->appendStylesheet($this->baseUrl('lib/gebo/css/style.css'))
 //        ->appendStylesheet('http://fonts.googleapis.com/css?family=PT+Sans')
-        ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'));
+                ->appendStylesheet($this->baseUrl('lib/font-awesome/css/font-awesome.css'));
 
         $this
-        ->MinifyHeadScript()
-        ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
-        ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
-        ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.plugins.js'), 'text/javascript', array('minify_disabled' => true))
-        ->appendFile($this->baseUrl('lib/jquery/jquery.debouncedresize.min.js'))
-        ->appendFile($this->baseUrl('lib/jquery/jquery.actual.min.js'))
-        ->appendFile($this->baseUrl('lib/jquery/cookie.js'))
-        ->appendFile($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.js'))
-        ->appendFile($this->baseUrl('lib/jquery/antiscroll/antiscroll.js'))
-        ->appendFile($this->baseUrl('lib/jquery/antiscroll/jquery-mousewheel.js'))
-        ->appendFile($this->baseUrl('lib/other/ios-orientationchange-fix.js'))
-        ->appendFile($this->baseUrl('lib/gebo/js/gebo_common.js'));
+                ->MinifyHeadScript()
+                ->prependFile($this->baseUrl('lib/jquery/jquery-1.8.3.js'))
+                ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.js'))
+                ->appendFile($this->baseUrl('lib/bootstrap/js/bootstrap.plugins.js'), 'text/javascript', array('minify_disabled' => true))
+                ->appendFile($this->baseUrl('lib/jquery/jquery.debouncedresize.min.js'))
+                ->appendFile($this->baseUrl('lib/jquery/jquery.actual.min.js'))
+                ->appendFile($this->baseUrl('lib/jquery/cookie.js'))
+                ->appendFile($this->baseUrl('lib/jquery/qtip2/jquery.qtip.min.js'))
+                ->appendFile($this->baseUrl('lib/jquery/antiscroll/antiscroll.js'))
+                ->appendFile($this->baseUrl('lib/jquery/antiscroll/jquery-mousewheel.js'))
+                ->appendFile($this->baseUrl('lib/other/ios-orientationchange-fix.js'))
+                ->appendFile($this->baseUrl('lib/gebo/js/gebo_common.js'));
         ?>
 
         <?php echo $this->MinifyHeadLink(); ?>
@@ -41,18 +41,20 @@
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/navigation.xml', 'admin');
         $navigation = new Zend_Navigation($config);
         $this->navigation($navigation)
-        ->setAcl(new SITi_Acl())->setRole($user->role)
+                ->setAcl(new SITi_Acl())->setRole($user->role)
         ;
 
         $article = new Admin_Model_DbTable_Article();
         $count = $article->select()
-        ->from('article', array('COUNT(*)'))
-        ->where('status = ?', Admin_Model_Status::PENDING);
+                ->from('article', array('COUNT(*)'))
+                ->where('status = ?', Admin_Model_Status::PENDING);
         $count = $article->getAdapter()->fetchOne($count);
 
         $menu = $this->navigation()->myMenu()->setUlClass('nav nav-list');
         $menu = preg_replace('#\{(.*)\}#', '<i class="$1"></i>', $menu);
         $menu = str_replace(':articleCount', $count, $menu);
+
+        $acl = new SITi_Acl();
         ?>
 
 
@@ -107,7 +109,7 @@
                 <div class="navbar navbar-fixed-top">
                     <div class="navbar-inner">
                         <div class="container-fluid">
-                            <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action'     => 'index')); ?>">
+                            <a class="brand" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index')); ?>">
                               <!--<i class="icon-home icon-white"></i>-->
                                 <img src="/img/favico.png" width="32" alt="" />
                                 Teknik Informatika
@@ -125,23 +127,32 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="<?php echo $this->url(array('module'     => 'default', 'controller' => 'index', 'action'     => 'index')); ?>">
+                                            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index')); ?>">
                                                 <i class="icon-home"></i> Ke halaman depan
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'index')); ?>">
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'index')); ?>">
                                                 <i class="icon-user"></i> Profil
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'setting')); ?>">
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'setting')); ?>">
                                                 <i class="icon-cog"></i> Sunting Akun
                                             </a>
                                         </li>
                                         <li class="divider"></li>
+
+                                        <?php if ($acl->isAllowed($user->role, 'delcache')): ?>
+                                            <li>
+                                                <a id="delcache" href="<?php echo $this->url(array('controller' => 'user', 'action' => 'delcache')); ?>">
+                                                    <i class="icon-refresh"></i> Bersihkan Cache
+                                                </a>
+                                            </li>
+                                        <?php endif; ?>
+
                                         <li>
-                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action'     => 'logout')); ?>">
+                                            <a href="<?php echo $this->url(array('controller' => 'user', 'action' => 'logout')); ?>">
                                                 <i class="icon-off"></i> Keluar
                                             </a>
                                         </li>
@@ -174,7 +185,7 @@
                     <div class="antiscroll-inner">
                         <div class="antiscroll-content">
                             <div class="sidebar_inner">
-                                <form action="<?php echo $this->url(array('controller' => 'search', 'module'     => 'admin'), null, true); ?>"
+                                <form action="<?php echo $this->url(array('controller' => 'search', 'module' => 'admin'), null, true); ?>"
                                       class="input-append" method="get"
                                       onsubmit="return this.query.value !== ''">
                                     <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Pencarian..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
@@ -192,6 +203,19 @@
             $(document).ready(function() {
                 //* show all elements & remove preloader
                 setTimeout('$("html").removeClass("js")', 1000);
+
+                $("#delcache").click(function(e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        success: function() {
+                            alert('Cache berhasil dibersihkan');
+                        }
+                    });
+                    return false;
+                });
             });
             </script>
 

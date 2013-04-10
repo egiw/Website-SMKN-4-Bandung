@@ -26,6 +26,7 @@ class SITi_Acl extends Zend_Acl {
     const RES_DASHBOARD_GUESTBOOK = 'dashboard_guestbook';
     const RES_GUESTBOOK = 'guestbook';
     const RES_SEARCH = 'search';
+    const RES_DELCACHE = 'delcache';
 
     public function __construct() {
         $this->addRole(new Zend_Acl_Role(self::ROLE_SISWA))
@@ -50,7 +51,9 @@ class SITi_Acl extends Zend_Acl {
                 ->add(new Zend_Acl_Resource(self::RES_ADMIN))
                 ->add(new Zend_Acl_Resource(self::RES_GUESTBOOK))
                 ->add(new Zend_Acl_Resource(self::RES_SEARCH))
-                ->add(new Zend_Acl_Resource(self::RES_DASHBOARD_GUESTBOOK));
+                ->add(new Zend_Acl_Resource(self::RES_DELCACHE))
+                ->add(new Zend_Acl_Resource(self::RES_DASHBOARD_GUESTBOOK))
+        ;
 
         $this->allow(null, self::RES_TAG);
 
@@ -59,6 +62,8 @@ class SITi_Acl extends Zend_Acl {
         $this->allow(self::ROLE_GURU, self::RES_GUESTBOOK);
 
         $this->allow(self::ROLE_ADMIN);
+
+        $this->allow(self::ROLE_ADMIN, self::RES_DELCACHE);
 
         $this->allow(self::ROLE_SISWA, self::RES_INDEX);
 
