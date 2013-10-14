@@ -5,8 +5,8 @@ class Application_Model_Gallery extends Zend_Gdata_Photos
     function __construct()
     {
         $service = self::AUTH_SERVICE_NAME;
-        $email = 'egi.hasdi@sangkuriang.co.id';
-        $password = 'axcldsiox';
+        $email = '';
+        $password = '';
         $client = Zend_Gdata_ClientLogin::getHttpClient($email, $password, $service);
         $this->setHttpClient($client);
     }
